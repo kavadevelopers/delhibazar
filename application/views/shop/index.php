@@ -20,12 +20,12 @@
 			            	<?php } else{ ?>
 			            		<img src="<?= $this->config->config['admin_url'] ?>uploads/shop/<?= $value['photo'] ?>" class="img-height img-fluid" alt="#">
 			            	<?php } ?>
-                            <!-- <span class="featured-rating-orange">6.5</span> -->
+                            <span class="featured-rating-orange">6.5</span>
                             <div class="featured-title-box">
                                 <h6><?= $value['shop_name'] ?></h6>
-                                <!-- <p>Restaurant </p> <span>• </span> -->
-                                <!-- <p>Reviews</p> <span> • </span> -->
-                                <!-- <p><span>$$$</span>$$</p> -->
+                                <p>Shop </p> <span>• </span>
+                                <p>Reviews</p> <span> • </span>
+                                <p><span>$$$</span>$$</p>
                                 <ul>
                                 	<li><span class="icon-key"></span>
                                         <p><?= 'SH000'.$value['id'] ?></p>
@@ -37,11 +37,11 @@
                                         <p><?= $value['mobile'] ?></p>
                                     </li>
                                  </ul>
-                               <!--  <div class="bottom-icons">
+                                <div class="bottom-icons">
                                     <div class="closed-now">CLOSED NOW</div>
                                     <span class="ti-heart"></span>
                                     <span class="ti-bookmark"></span>
-                                </div> -->
+                                </div>
                             </div>
 			            </a>
 			        </div>
