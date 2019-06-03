@@ -15,7 +15,7 @@
                     <?php foreach ($shop as $key => $value) { ?>
                         <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
                             <div class="featured-place-wrap">
-                                <a href="detail.html">
+                                <a href="<?= base_url() ?>shop/shop_detail/<?= $value['id'] ?>">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/shop/<?= $value['photo'] ?>" class="img-fluid" alt="#">
                                     <span class="featured-rating-orange ">6.5</span>
                                     <div class="featured-title-box">
@@ -32,7 +32,7 @@
                                             </li>
                                         </ul>
                                         <div class="bottom-icons">
-                                            <div class="closed-now">CLOSED NOW</div>
+                                            <div class="closed-now"></div>
                                             <span class="ti-heart"></span>
                                             <span class="ti-bookmark"></span>
                                         </div>

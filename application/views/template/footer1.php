@@ -16,7 +16,7 @@
     
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="<?= base_url() ?>temp_1/js/jquery-3.2.1.min.js"></script>
+    
     <script src="<?= base_url() ?>temp_1/js/popper.min.js"></script>
     <script src="<?= base_url() ?>temp_1/js/bootstrap.min.js"></script>
     <!-- Magnific popup JS -->

@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>temp_1/css/magnific-popup.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>temp_1/css/style.css">
+    <script src="<?= base_url() ?>temp_1/js/jquery-3.2.1.min.js"></script>
 </head>
 
 <body>
