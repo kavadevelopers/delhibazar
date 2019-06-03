@@ -8,7 +8,7 @@
     <meta name="description" content="#">
     <meta name="keywords" content="#">
     <link rel="shortcut icon" href="<?= base_url() ?>image/favicon.png">
-    <title>Listing | DELHIBAZAR</title>
+    <title>DELHIBAZAR</title>
     <link rel="stylesheet" href="<?= base_url() ?>temp_1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
     <!-- Simple line Icon -->

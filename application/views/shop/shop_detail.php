@@ -48,8 +48,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h5><?= $shop[0]['shop_name'] ?></h5>
-                <p><span>$$$</span>$$</p><br>
+                <h5><?= $shop[0]['shop_name'] ?></h5><br>
                 <p class="reserve-description"><?= $shop[0]['info'] ?></p>
             </div>
             <div class="col-md-6">
@@ -85,12 +84,20 @@
                     </div>
                 </div>
                 
+                <div class="booking-checkbox_wrap">
+                    <h6>Products or Services</h6>
+                    <div class="booking-checkbox">
+                        <p><?= $shop[0]['pro_or_servi'] ?></p>
+                        <hr>
+                    </div>
+                </div>
+
                 <div class="booking-checkbox_wrap mt-4">
                     <h5>34 Reviews</h5>
                     <hr>
                     <div class="customer-review_wrap">
                         <div class="customer-img">
-                            <img src="images/customer-img1.jpg" class="img-fluid" alt="#">
+                            <img src="<?= base_url() ?>temp_1/images/customer-img1.jpg" class="img-fluid" alt="#">
                             <p>Amanda G</p>
                             <span>35 Reviews</span>
                         </div>
@@ -115,9 +122,9 @@
                                 to bring cash.
                             </p>
                             <ul>
-                                <li><img src="images/review-img1.jpg" class="img-fluid" alt="#"></li>
-                                <li><img src="images/review-img2.jpg" class="img-fluid" alt="#"></li>
-                                <li><img src="images/review-img3.jpg" class="img-fluid" alt="#"></li>
+                                <li><img src="<?= base_url() ?>temp_1/images/review-img1.jpg" class="img-fluid" alt="#"></li>
+                                <li><img src="<?= base_url() ?>temp_1/images/review-img2.jpg" class="img-fluid" alt="#"></li>
+                                <li><img src="<?= base_url() ?>temp_1/images/review-img3.jpg" class="img-fluid" alt="#"></li>
                             </ul>
                             <span>28 people marked this review as helpful</span>
                             <a href="#"><span class="icon-like"></span>Helpful</a>
@@ -126,7 +133,7 @@
                     <hr>
                     <div class="customer-review_wrap">
                         <div class="customer-img">
-                            <img src="images/customer-img2.jpg" class="img-fluid" alt="#">
+                            <img src="<?= base_url() ?>temp_1/images/customer-img2.jpg" class="img-fluid" alt="#">
                             <p>Kevin W</p>
                             <span>17 Reviews</span>
                         </div>
@@ -154,21 +161,32 @@
             </div>
             <div class="col-md-4 responsive-wrap">
                 <div class="contact-info">
-                    <img src="<?= base_url() ?>image/map.jpg" class="img-fluid" alt="#">
-                    <div class="address">
+                    <img src="<?= $this->config->config['admin_url'] ?>uploads/shop/<?= $shop[0]['photo'] ?>" class="img-fluid" alt="#">
+                        <div class="address">
+                            <span class="ti-pin-alt"></span>
+                            <p><?= $shop[0]['landmark'] ?></p>
+                        </div>
+                        <div class="address">
                             <span class="icon-location-pin"></span>
                             <p><?= $shop[0]['address'] ?></p>
+                        </div>
+                        <div class="address">
+                            <span class="ti-email"></span>
+                            <p><?= $shop[0]['email'] ?></p>
                         </div>
                         <div class="address">
                             <span class="icon-screen-smartphone"></span>
                             <p><?= $shop[0]['mobile'] ?></p>
                         </div>
                         <div class="address">
-                            <span class="icon-clock"></span>
-                            <p><?= $shop[0]['hour_operation'] ?><br>
-                                <span class="open-now">OPEN NOW</span></p>
+                            <span class="fa fa-whatsapp"></span>
+                            <p><?= $shop[0]['wp_no'] ?></p>
                         </div>
-                        <a href="#" class="btn btn-outline-danger btn-contact">SEND A MESSAGE</a>
+                        <div class="address">
+                            <span class="icon-clock"></span>
+                            <p><?= $shop[0]['hour_operation'] ?>
+                        </div>
+                        <!-- <a href="#" class="btn btn-outline-danger btn-contact">SEND A MESSAGE</a> -->
                 </div>
                
             </div>

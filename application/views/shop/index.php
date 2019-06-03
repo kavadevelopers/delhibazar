@@ -1,6 +1,5 @@
 <section>
     <div class="container-fluid">
-        <?php if($shop){ ?>
         <div class="row">
             <div class="col-md-7 responsive-wrap">
                 <div class="row detail-filter-wrap">
@@ -11,7 +10,7 @@
                     </div>
                 </div>
                 
-                <div class="row light-bg detail-options-wrap">
+                <div class="row light-bg detail-options-wrap" style="min-height: 500px;">
                     <?php foreach ($shop as $key => $value) { ?>
                         <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
                             <div class="featured-place-wrap">
@@ -20,12 +19,13 @@
                                     <span class="featured-rating-orange ">6.5</span>
                                     <div class="featured-title-box">
                                         <h6><?= $value['shop_name'] ?></h6>
-                                        <p>Shop </p> <span>• </span>
-                                        <p>3 Reviews</p> <span> • </span>
-                                        <p><span>$$$</span>$$</p>
+                                        <p>3 Reviews</p>
                                         <ul>
                                             <li><span class="icon-location-pin"></span>
-                                                <p><?= $value['address'] ?></p>
+                                                <p><?= cut_string($value['address'],35,'...') ?>  </p>
+                                            </li>
+                                            <li><span class="ti-view-grid"></span>
+                                                <p><?= cut_string($value['pro_or_servi'],35,'...') ?>  </p>
                                             </li>
                                             <li><span class="icon-screen-smartphone"></span>
                                                 <p><?= $value['mobile'] ?></p>
@@ -33,8 +33,6 @@
                                         </ul>
                                         <div class="bottom-icons">
                                             <div class="closed-now"></div>
-                                            <span class="ti-heart"></span>
-                                            <span class="ti-bookmark"></span>
                                         </div>
                                     </div>
                                 </a>
@@ -50,14 +48,6 @@
                 </div>
             </div>
         </div>
-    <?php } else { ?>
-        <div class="container text-center" style="padding : 70px 0;">
-            <div class="detail-filter-text" style="padding: 40px 0;">
-                <h5><?= count($shop); ?> Results For <span>Shops</span></h5>
-            </div>
-            <h1 style="color: black;text-align: center;">Result Not Found</h1>
-        </div>
-    <?php } ?>
     </div>
 </section>
 

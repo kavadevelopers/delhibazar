@@ -51,7 +51,7 @@ p {
   background: #f3f4f7; }
 
 .dark-bg {
-  background: #252a33; }
+  background: #000; }
 
 /* ==============================================================
    HEADER
@@ -224,7 +224,7 @@ p {
   font-size: 18px;
   padding: 17px;
   width: 27%;
-  background: #ff3a6d;
+  background: #e4d808;
   color: #ffffff;
   border: none;
   border-top-right-radius: 3px;
@@ -279,7 +279,7 @@ p {
       content: "";
       width: 60px;
       height: 3px;
-      background: #ff3a6d;
+      background: #e4d808;
       bottom: 0;
       left: 50%;
       -webkit-transform: translateX(-50%);
@@ -391,7 +391,7 @@ p {
     padding: 0 0 0 12px; }
 
 .closed-now {
-  color: #ff3a6d;
+  color: #e4d808;
   font-size: 13px;
   display: block;
   font-weight: 400;
@@ -410,7 +410,7 @@ p {
     .featured-btn-wrap {
       margin: 3px 0 0; } }
   .featured-btn-wrap .btn-danger {
-    background: #ff3a6d;
+    background: #e4d808;
     padding: 16px 50px;
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
@@ -677,11 +677,11 @@ footer {
     font-size: 13px;
     margin-top: 3px; }
   .review-btn .btn-outline-danger {
-    color: #ff3a6d;
-    border-color: #ff3a6d; }
+    color: #e4d808;
+    border-color: #e4d808; }
     .review-btn .btn-outline-danger:hover {
       color: #fff;
-      background: #ff3a6d; }
+      background: #e4d808; }
 
 .reserve-btn {
   display: inline-block;
@@ -867,12 +867,12 @@ footer {
   display: block;
   padding: 16px;
   margin: 12px 16px;
-  border: 2px solid #ff3a6d;
-  color: #ff3a6d;
+  border: 2px solid #e4d808;
+  color: #e4d808;
   font-weight: 400; }
   .btn-contact:hover {
-    background: #ff3a6d;
-    border: 2px solid #ff3a6d; }
+    background: #e4d808;
+    border: 2px solid #e4d808; }
 
 .follow {
   background: #fff; }
@@ -906,7 +906,7 @@ footer {
       .follow ul li h6 {
         margin: 0; }
   .follow a {
-    color: #ff3a6d;
+    color: #e4d808;
     text-align: center;
     display: block;
     font-size: 14px;
