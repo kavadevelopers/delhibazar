@@ -25,11 +25,38 @@
     <!-- Magnific Popup CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>temp_1/css/magnific-popup.css">
     <!-- Main CSS -->
+
+    <link rel="stylesheet" href="<?= base_url() ?>user_login/alert/sweetalert.css">
+    <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+    
     <link rel="stylesheet" href="<?= base_url() ?>temp_1/css/style.css">
     <script src="<?= base_url() ?>temp_1/js/jquery-3.2.1.min.js"></script>
+
+    <script src="<?= base_url() ?>user_login/alert/sweetalert.min.js"></script>
 </head>
 
 <body>
+
+<script type="text/javascript">
+<?php if(!empty($this->session->flashdata('error'))){ ?>
+JSalert();
+function JSalert()
+{
+    swal("Cancelled", "<?= $this->session->flashdata('error'); ?>", "error");
+}
+  
+
+<?php $this->session->set_flashdata('error',''); } ?>
+
+<?php if(!empty($this->session->flashdata('msg'))){ ?>
+JSalert();
+function JSalert(){
+    swal("Congrats!","<?= $this->session->flashdata('msg'); ?>", "success");
+}
+<?php $this->session->set_flashdata('msg',''); } ?>
+
+</script>
+
     <!--============================= HEADER =============================-->
     <div class="dark-bg sticky-top">
         <div class="container-fluid">
@@ -43,10 +70,35 @@
                         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                             <ul class="navbar-nav">
                                 
-                                <li class="nav-item active">
+                                <li class="nav-item">
                                     <a class="nav-link" href="<?= base_url(); ?>">Home</a>
                                 </li>
                                 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Contact</a>
+                                </li>
+                                
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User
+                                    <span class="icon-arrow-down"></span>
+                                    </a>
+                                    
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <?php if($this->session->userdata('id')) { ?>
+                                        
+                                            <a class="dropdown-item" href="<?= base_url() ?>welcome/logout">Logout</a>
+                                        
+                                        <?php }else{ ?> 
+
+                                            <a class="dropdown-item" href="<?= base_url() ?>login">Login</a>
+                                            <a class="dropdown-item" href="<?= base_url() ?>register">Register</a>
+
+                                        <?php } ?>
+
+                                    </div>
+                                </li>
+
+
                             </ul>
                         </div>
                     </nav>

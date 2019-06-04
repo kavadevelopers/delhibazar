@@ -16,10 +16,10 @@
                             <div class="featured-place-wrap">
                                 <a href="<?= base_url() ?>shop/shop_detail/<?= $value['id'] ?>">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/shop/<?= $value['photo'] ?>" class="img-fluid" alt="#">
-                                    <span class="featured-rating-orange ">6.5</span>
+                                    <span class="featured-rating-orange" style="padding: 13px 5px;"><?= round($this->rating_model->get_avarage_rating($value['id'])[0]['average'],1) ?></span>
                                     <div class="featured-title-box">
                                         <h6><?= $value['shop_name'] ?></h6>
-                                        <p>3 Reviews</p>
+                                        <p><?= $this->rating_model->count_review($value['id']) ?> Reviews</p>
                                         <ul>
                                             <li><span class="icon-location-pin"></span>
                                                 <p><?= cut_string($value['address'],35,'...') ?>  </p>

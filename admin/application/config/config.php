@@ -29,6 +29,7 @@ $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER
 $config['projectName'] = 'DELHIBAZAR';
 $config['logoFile'] = 'image/logo.png';
 $config['companyWebLink'] = '#';
+$config['web_url'] = 'http://localhost/delhibazar/';
 /*
 |--------------------------------------------------------------------------
 | Index File

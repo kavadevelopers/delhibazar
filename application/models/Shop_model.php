@@ -1,5 +1,5 @@
 <?php
-class shop_model extends CI_Model
+class Shop_model extends CI_Model
 {
 	
 	function __construct()
@@ -14,6 +14,8 @@ class shop_model extends CI_Model
 		return $this->db->get('shop')->result_array();
 	}
 
+	
+	
 	public function shop_where($id)
 	{
 		return $this->db->get_where('shop',['id' => $id])->result_array();

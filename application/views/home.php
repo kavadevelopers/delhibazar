@@ -3,15 +3,21 @@
     <head>
         <link href="<?= base_url() ?>home_file/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>home_file/css/home_style.css">
-        <link rel="shortcut icon" href="image/favicon.png">
+        <link rel="shortcut icon" href="<?= base_url() ?>image/favicon.png">
         <title>DELHIBAZAR</title>
         <link rel="stylesheet" href="<?= base_url() ?>home_file/jQueryUI/jquery-ui.css">
 
         <link rel="stylesheet" href="<?= base_url() ?>home_file/css/font-awesome/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="<?= base_url() ?>user_login/alert/sweetalert.css">
+
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="<?= base_url() ?>home_file/jQueryUI/jquery-ui.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>home_file/js/main.js"></script>
+
+        <script src="<?= base_url() ?>user_login/alert/sweetalert.min.js"></script>
+        
         <script>
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
 </script>
@@ -53,7 +59,12 @@
                         <a href="<?= base_url(); ?>">Home</a>
                     </li>
                     
-                    <li class="dropdown">
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                    
+
+                    <!-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
                         <ul class="dropdown-menu my-dropdown" role="menu">
                             <li><a href="#">Action</a></li>
@@ -62,8 +73,16 @@
                             <li><a href="#">Separated link</a></li>
                             <li><a href="#">One more separated link</a></li>
                         </ul>
-                    </li>
-                    
+                    </li> -->
+                    <?php if($this->session->userdata('id')) { ?>
+                        <li>
+                            <a href="<?= base_url(); ?>welcome/logout">Logout</a>
+                        </li>
+                    <?php } else{ ?> 
+
+                        <li class="nav-item"><a class="nav-link" href="<?= base_url() ?>login">Login</a>
+                        
+                    <?php } ?>
                 </ul>
             </nav>
 
@@ -121,8 +140,6 @@
                     </button>
                 </div>
             </div>
-            
-
 
             <div class="container">
                 <div class="row justify-content-md-center">
@@ -154,7 +171,7 @@
                             <div class="col-md-1"></div>
                         </div>
                         <div class="col-md-12" style="margin-bottom: 20px; margin-top: 15px;">
-                            <img class="center-block" src="image/logo.png" width="270" alt="DELHIBAZAR" id="logo">
+                            <img class="center-block" src="<?= base_url() ?>image/logo.png" width="270" alt="DELHIBAZAR" id="logo">
                             <form method="post" action="<?= base_url() ?>welcome/list">
                                 <div class="row text-center">
                                     <div class="col-12 col-xs-6 col-lg-6 col-md-6 col-sm-12">
@@ -231,8 +248,6 @@
 
             <script type="text/javascript">
                 startTime();
-
-
                 $(function(){
                     $( "#search").autocomplete({
                         source: "<?= base_url('welcome/shop_autocomplete/?');?>",
@@ -250,6 +265,25 @@
                 });
                 
             </script>
+
+            <!--  HEADER 2 SESSION MESSAGE -->
+            <script type="text/javascript">
+                <?php if(!empty($this->session->flashdata('error'))){ ?>
+                    JSalert();
+                    function JSalert()
+                    {
+                        swal("Cancelled", "<?= $this->session->flashdata('error'); ?>", "error");
+                    }
+                <?php $this->session->set_flashdata('error',''); } ?>
+
+                <?php if(!empty($this->session->flashdata('msg'))){ ?>
+                    JSalert();
+                    function JSalert(){
+                        swal("Congrats!","<?= $this->session->flashdata('msg'); ?>", "success");
+                    }
+                <?php $this->session->set_flashdata('msg',''); } ?>
+            </script>
+            <!-- //  HEADER 2 SESSION MESSAGE -->
 
            
     </body>

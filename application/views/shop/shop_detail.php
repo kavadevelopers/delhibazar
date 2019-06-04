@@ -1,3 +1,53 @@
+<style type="text/css">
+    
+.btn-outline-danger.focus, .btn-outline-danger:focus {
+    box-shadow: unset !important;
+}
+
+.customer-img img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+.color-red{ color : red;font-weight:bold; }
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+</style>
+
 <div>
     <!-- Swiper -->
     <div class="swiper-container">
@@ -54,11 +104,23 @@
             <div class="col-md-6">
                 <div class="reserve-seat-block">
                     <div class="reserve-rating">
-                        <span>9.5</span>
+                        <span><?= round($ava_rating[0]['average'],1) ?></span>
                     </div>
                     <div class="review-btn">
-                        <a href="#" class="btn btn-outline-danger">WRITE A REVIEW</a>
-                        <span>34 reviews</span>
+
+                        <?php if($this->session->userdata('id')) { ?>
+                            <?php if($this->rating_model->rating_where($this->uri->segment('3'),$this->session->userdata('id'))) { ?>
+                                <a href="#" class="btn btn-outline-danger" onclick="allready_click()" >WRITE A REVIEW</a>                            
+                            <?php } else {?>
+                                <a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal">WRITE A REVIEW</a>
+                            <?php } ?>
+                        <?php } else{ ?> 
+
+                            <a href="#" class="btn btn-outline-danger" onclick="guest_click()">WRITE A REVIEW</a>
+                            
+
+                        <?php } ?>
+                        <span><?= $total_review ?> reviews</span>
                     </div>
                     <!-- <div class="reserve-btn">
                         <div class="featured-btn-wrap">
@@ -93,70 +155,35 @@
                 </div>
 
                 <div class="booking-checkbox_wrap mt-4">
-                    <h5>34 Reviews</h5>
-                    <hr>
-                    <div class="customer-review_wrap">
+                    <h5><?= $total_review ?> Reviews</h5>
+                    
+                    <?php foreach ($this->rating_model->review_list($shop[0]['id']) as $key => $value) { 
+                        $user = $this->rating_model->user_where($value['user_id'])[0];
+                    ?>
+                        <hr>
+                        <div class="customer-review_wrap">
                         <div class="customer-img">
-                            <img src="<?= base_url() ?>temp_1/images/customer-img1.jpg" class="img-fluid" alt="#">
-                            <p>Amanda G</p>
-                            <span>35 Reviews</span>
+                            <img src="<?= base_url() ?>image/social_user_uploads/<?= $user['image'] ?>" class="img-fluid" alt="#">
+                            <p><?= cut_string($user['first_name'].' '.$user['last_name'],13,'...') ?></p>
+                            <span><?= $this->rating_model->count_user_review($value['user_id']) ?> Reviews</span>
                         </div>
                         <div class="customer-content-wrap">
                             <div class="customer-content">
                                 <div class="customer-review">
-                                    <h6>Best noodles in the Newyork city</h6>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span class="round-icon-blank"></span>
-                                    <p>Reviewed 2 days ago</p>
+                                    <h6><?= cut_string($value['subject'],45,'...') ?></h6>
+                                    <?= rating_dot($value['rating']); ?>
+                                    <p><?= diff_date($value['created_at']); ?></p>
                                 </div>
-                                <div class="customer-rating">8.0</div>
+                                <div class="customer-rating"><?= round($value['rating'],1) ?>.0</div>
                             </div>
-                            <p class="customer-text">I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the
-                                hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great
-                                dipped in their chili sauce.
+                            <p class="customer-text">
+                                <?= nl2br($value['review']) ?>
                             </p>
-                            <p class="customer-text">I love how you can see into the kitchen and watch them make the noodles and you can definitely tell that this is a family run establishment. The prices are are great with one dish maybe being $9. You just have to remember
-                                to bring cash.
-                            </p>
-                            <ul>
-                                <li><img src="<?= base_url() ?>temp_1/images/review-img1.jpg" class="img-fluid" alt="#"></li>
-                                <li><img src="<?= base_url() ?>temp_1/images/review-img2.jpg" class="img-fluid" alt="#"></li>
-                                <li><img src="<?= base_url() ?>temp_1/images/review-img3.jpg" class="img-fluid" alt="#"></li>
-                            </ul>
-                            <span>28 people marked this review as helpful</span>
-                            <a href="#"><span class="icon-like"></span>Helpful</a>
                         </div>
                     </div>
-                    <hr>
-                    <div class="customer-review_wrap">
-                        <div class="customer-img">
-                            <img src="<?= base_url() ?>temp_1/images/customer-img2.jpg" class="img-fluid" alt="#">
-                            <p>Kevin W</p>
-                            <span>17 Reviews</span>
-                        </div>
-                        <div class="customer-content-wrap">
-                            <div class="customer-content">
-                                <div class="customer-review">
-                                    <h6>A hole-in-the-wall old school shop.</h6>
-                                    <span class="customer-rating-red"></span>
-                                    <span class="round-icon-blank"></span>
-                                    <span class="round-icon-blank"></span>
-                                    <span class="round-icon-blank"></span>
-                                    <span class="round-icon-blank"></span>
-                                    <p>Reviewed 3 months ago</p>
-                                </div>
-                                <div class="customer-rating customer-rating-red">2.0</div>
-                            </div>
-                            <p class="customer-text">The dumplings were so greasy...the pan-fried shrimp noodles were the same. So much oil and grease it was difficult to eat. The shrimp noodles only come with 3 shrimp (luckily the dish itself is cheap) </p>
-                            <p class="customer-text">The beef noodle soup was okay. I added black vinegar into the broth to give it some extra flavor. The soup has bok choy which I liked - it's a nice textural element. The shop itself is really unclean (which is the case
-                                in many restaurants in Chinatown) They don't wipe down the tables after customers have eaten. If you peak into the kitchen many of their supplies are on the ground which is unsettling... </p>
-                            <span>10 people marked this review as helpful</span>
-                            <a href="#"><span class="icon-like"></span>Helpful</a>
-                        </div>
-                    </div>
+
+                    <?php } ?>
+                    
                 </div>
             </div>
             <div class="col-md-4 responsive-wrap">
@@ -195,4 +222,122 @@
 </section>
 <!--//END BOOKING DETAILS -->
 
+
+<!-- Review Modal -->
+<form method="post" id="review_modal" action="<?= base_url() ?>shop/rating">
+    <div class="modal" id="myModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Write a Review</h4>
+              <button type="button" class="close" data-dismiss="modal" style="cursor: pointer;">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="font-weight-bold">Subject</label>
+                    <input class="form-control" type="text" id="subject" name="subject" placeholder="Subject">
+                    <span class="color-red" id="subject_span"></span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="font-weight-bold">Description</label>
+                    <textarea class="form-control" type="text" name="review" id="review" placeholder="Description"></textarea>
+                    <span class="color-red" id="review_span"></span>
+                </div>
+            </div>
+            
+            <div class="container">
+                <p class="font-weight-bold" style="margin:0px;">Rating</p>
+                    <div class="rate">
+
+                        <input type="radio" id="star5" name="rating" value="5" />
+                        <label for="star5" title="rating">5 stars</label>
+                        <input type="radio" id="star4" name="rating" value="4" />
+                        <label for="star4" title="rating">4 stars</label>
+                        <input type="radio" id="star3" name="rating" value="3" />
+                        <label for="star3" title="rating">3 stars</label>
+                        <input type="radio" id="star2" name="rating" value="2" />
+                        <label for="star2" title="rating">2 stars</label>
+                        <input type="radio" id="star1" name="rating" value="1" />
+                        <label for="star1" title="rating">1 star</label>
+
+                    </div><br>
+                    <p class="color-red" id="rating_span"></p>
+            </div>
+
+            <input type="hidden" name="shop_id" value="<?= $this->uri->segment('3') ?>">
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success" style="cursor: pointer;">Save</button>
+            </div>
+            
+          </div>
+        </div>
+    </div>
+</form>
+<!-- // Review Modal -->
+<script type="text/javascript">
+
+function guest_click()
+{
+    swal("Cancelled", "Please Login First", "error");
+}
+
+function allready_click()
+{
+    swal("Cancelled", "Your rating is already submited", "error");   
+}
+
+$(document).ready(function(){
+    $("#review_modal").submit(function(){
+        var subject    = $('#subject').val();
+        var review    = $('#review').val();
+        var rating    = $("input[name='rating']:checked").val();
+        var blank     = 0;
+        
+
+        // Subject Validation
+        if(subject == ''){
+            $('#subject_span').html("Subject is required");
+            blank = 1;
+            $('#subject_span').fadeIn();
+        }
+        else{
+            $('#subject_span').fadeOut();
+        }
+
+        // Email Validation
+        if(review == ''){
+            $('#review_span').html("Description is required");
+            blank = 1;
+            $('#review_span').fadeIn();
+        }
+        else{
+            $('#review_span').fadeOut();
+        }
+
+        // Email Validation
+        if(!rating){
+            $('#rating_span').html("Rating is required");
+            blank = 1;
+            $('#rating_span').fadeIn();
+        }
+        else{
+            $('#rating_span').fadeOut();
+        }
+
+        if(blank == 1){
+            return false;
+        }
+
+    });
+});
+</script>
 

@@ -6,14 +6,25 @@ class Welcome extends CI_Controller {
 	function __construct(){
         parent::__construct();
     	$this->load->model('shop_model');   
+        $this->load->model('rating_model');   
     }
 
 	public function index()
 	{
-        $data['top_add'] = $this->shop_model->get_add_top();
+        $data['top_add']    = $this->shop_model->get_add_top();
         $data['bottom_add'] = $this->shop_model->get_add_bottom();
 		$this->load->view('home',$data);
 	}
+
+    public function logout()
+    {
+        $user_data = $this->session->all_userdata();
+            
+        $this->session->unset_userdata($user_data['id']);
+               
+        $this->session->sess_destroy();
+        redirect(base_url('login'));
+    }
 
 	public function shop_autocomplete()
 	{
@@ -49,7 +60,7 @@ class Welcome extends CI_Controller {
 	{
 		$data['_title']				= "DELHIBAZAR";
 		$data['shop']				= $this->shop_model->shop_search($this->input->post('search'));
-		$this->load->template('shop/index',$data);
+        $this->load->template('shop/index',$data);
 	}
 
 }

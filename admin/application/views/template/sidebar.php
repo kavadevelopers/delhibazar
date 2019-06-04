@@ -104,6 +104,13 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="<?php echo base_url('social_user'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("social_user"))[0]; ?>">
+                            <i class="nav-icon fa fa-users"></i>
+                            <p>Users</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="<?php echo base_url('advertising'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("advertising"))[0]; ?>">
                             <i class="nav-icon fa fa-audio-description"></i>
                             <p>Advertising</p>
