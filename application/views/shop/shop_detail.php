@@ -98,8 +98,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h5><?= $shop[0]['shop_name'] ?></h5><br>
-                <p class="reserve-description"><?= $shop[0]['info'] ?></p>
+                <h5 title="Shop Name"><?= $shop[0]['shop_name'] ?></h5><br>
+                <p class="reserve-description" title="Shop Info"><?= $shop[0]['info'] ?></p>
             </div>
             <div class="col-md-6">
                 <div class="reserve-seat-block">
@@ -189,29 +189,33 @@
             <div class="col-md-4 responsive-wrap">
                 <div class="contact-info">
                     <img src="<?= $this->config->config['admin_url'] ?>uploads/shop/<?= $shop[0]['photo'] ?>" class="img-fluid" alt="#">
-                        <div class="address">
+                        <div class="address" title="Landmark">
                             <span class="ti-pin-alt"></span>
                             <p><?= $shop[0]['landmark'] ?></p>
                         </div>
-                        <div class="address">
+                        <div class="address" title="Address">
                             <span class="icon-location-pin"></span>
                             <p><?= $shop[0]['address'] ?></p>
                         </div>
-                        <div class="address">
+                        <div class="address" title="Email">
                             <span class="ti-email"></span>
                             <p><?= $shop[0]['email'] ?></p>
                         </div>
-                        <div class="address">
+                        <div class="address" title="Mobile">
                             <span class="icon-screen-smartphone"></span>
                             <p><?= $shop[0]['mobile'] ?></p>
                         </div>
-                        <div class="address">
+                        <div class="address" title="Watsapp No.">
                             <span class="fa fa-whatsapp"></span>
                             <p><?= $shop[0]['wp_no'] ?></p>
                         </div>
-                        <div class="address">
+                        <div class="address" title="Hours Of Operation">
                             <span class="icon-clock"></span>
                             <p><?= $shop[0]['hour_operation'] ?>
+                        </div>
+                        <div class="address" title="Mode Of Payment">
+                            <span class="fa fa-money"></span>
+                            <p><?= $shop[0]['payment_mode'] ?>
                         </div>
                         <!-- <a href="#" class="btn btn-outline-danger btn-contact">SEND A MESSAGE</a> -->
                 </div>
