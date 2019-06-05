@@ -54,7 +54,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Mobile <span class="astrick">*</span></label>
-                                            <input class="form-control form-control-sm" value="<?php echo set_value('mobile'); ?>" type="text" name="mobile" placeholder="Mobile" autocomplete="off">
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('mobile'); ?>" type="number" name="mobile" placeholder="Mobile" step="0" min="0"  autocomplete="off">
                                             <?php echo form_error('mobile'); ?>
                                         </div>
                                     </div>
@@ -62,7 +62,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Watsapp No. <span class="astrick">*</span></label>
-                                            <input class="form-control form-control-sm" value="<?php echo set_value('wp_no'); ?>" type="text" name="wp_no" placeholder="Watsapp No." autocomplete="off">
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('wp_no'); ?>" type="number" name="wp_no" placeholder="Watsapp No." step="0" min="0" autocomplete="off">
                                             <?php echo form_error('wp_no'); ?>
                                         </div>
                                     </div>
@@ -129,6 +129,14 @@
                                             <label>Detail Description Section</label>
                                             <textarea class="form-control form-control-sm" type="text" name="detail_desc" placeholder="Detail Description Section" autocomplete="off"><?= set_value('detail_desc'); ?></textarea>
                                             <?= form_error('detail_desc'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Category<span class="astrick">*</span></label>
+                                            <textarea class="form-control form-control-sm" type="text" name="category" placeholder="Category" autocomplete="off"><?= set_value('category'); ?></textarea>
+                                            <?= form_error('category'); ?>
                                         </div>
                                     </div>
 

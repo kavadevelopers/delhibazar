@@ -134,6 +134,14 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            <label>Category<span class="astrick">*</span></label>
+                                            <textarea class="form-control form-control-sm" type="text" name="category" placeholder="Category" autocomplete="off"><?= set_value('category',$shop[0]['category']); ?></textarea>
+                                            <?= form_error('category'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <div class="row"><label>Photo</label></div>
                                             <img src="<?= base_url() ?>uploads/shop/<?= $shop[0]['photo'] ?>" height="150px" width="150px"/>
                                             <!-- <input class="form-control form-control-sm" value="<?= set_value('photo',$shop[0]['photo']); ?>" type="file" name="photo" placeholder="Photo" autocomplete="off"> -->

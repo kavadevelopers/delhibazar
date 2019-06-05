@@ -75,6 +75,7 @@ class Shop extends CI_Controller {
         $this->form_validation->set_rules('payment_mode', 'Mode of Payment', 'trim|required|min_length[2]|max_length[240]');
         $this->form_validation->set_rules('info', 'Information', 'trim|min_length[2]|max_length[1000]');
         $this->form_validation->set_rules('detail_desc', 'Detail Description Section', 'trim|min_length[2]|max_length[1000]');
+        $this->form_validation->set_rules('category', 'Category', 'required|trim|min_length[2]|max_length[3000]');
 
         
 
@@ -99,6 +100,7 @@ class Shop extends CI_Controller {
                         'payment_mode'   =>  $this->input->post('payment_mode'),
                         'info'           =>  $this->input->post('info'),
                         'detail_desc'    =>  $this->input->post('detail_desc'),
+                        'category'       =>  $this->input->post('category'),
                         'created_by'     =>  $this->session->userdata('id'),
                         'created_at'     =>  date('Y-m-d H:i:s')
                     ];
@@ -174,6 +176,7 @@ class Shop extends CI_Controller {
         $this->form_validation->set_rules('payment_mode', 'Mode of Payment', 'trim|required|min_length[2]|max_length[240]');
         $this->form_validation->set_rules('info', 'Information', 'trim|min_length[2]|max_length[1000]');
         $this->form_validation->set_rules('detail_desc', 'Detail Description Section', 'trim|min_length[2]|max_length[1000]');
+        $this->form_validation->set_rules('category', 'Category', 'required|trim|min_length[2]|max_length[3000]');
 
         
 
@@ -200,6 +203,7 @@ class Shop extends CI_Controller {
                         'pro_or_servi'   =>  $this->input->post('pro_or_servi'),
                         'payment_mode'   =>  $this->input->post('payment_mode'),
                         'info'           =>  $this->input->post('info'),
+                        'category'       =>  $this->input->post('category'),
                         'detail_desc'    =>  $this->input->post('detail_desc'),
                         'updated_at'     =>  date('Y-m-d H:i:s')
                     ];

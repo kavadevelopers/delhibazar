@@ -54,7 +54,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Mobile <span class="astrick">*</span></label>
-                                            <input class="form-control form-control-sm" value="<?= set_value('mobile',$shop[0]['mobile']); ?>" type="text" name="mobile" placeholder="Mobile" autocomplete="off">
+                                            <input class="form-control form-control-sm" value="<?= set_value('mobile',$shop[0]['mobile']); ?>" type="number" name="mobile" placeholder="Mobile" step="0" min="0" autocomplete="off">
                                             <?= form_error('mobile'); ?>
                                         </div>
                                     </div>
@@ -62,7 +62,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Watsapp No. <span class="astrick">*</span></label>
-                                            <input class="form-control form-control-sm" value="<?= set_value('wp_no',$shop[0]['wp_no']); ?>" type="text" name="wp_no" placeholder="Watsapp No." autocomplete="off">
+                                            <input class="form-control form-control-sm" value="<?= set_value('wp_no',$shop[0]['wp_no']); ?>" type="number" name="wp_no" placeholder="Watsapp No." step="0" min="0" autocomplete="off">
                                             <?= form_error('wp_no'); ?>
                                         </div>
                                     </div>
@@ -132,6 +132,14 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Category<span class="astrick">*</span></label>
+                                            <textarea class="form-control form-control-sm" type="text" name="category" placeholder="Category" autocomplete="off"><?= set_value('category',$shop[0]['category']); ?></textarea>
+                                            <?= form_error('category'); ?>
+                                        </div>
+                                    </div>
+                                    
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <div class="row"><label>Photo</label></div>
