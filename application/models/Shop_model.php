@@ -14,7 +14,20 @@ class Shop_model extends CI_Model
 		return $this->db->get('shop')->result_array();
 	}
 
-	
+	public function load_more($start,$shop_id)
+	{
+		$this->db->limit(2,$start);
+		$data = $this->db->get_where('shop_rating',['shop_id' => $shop_id])->result_array();
+		$record = '';
+		foreach ($data as $key => $value) {
+			
+
+			$record .= '<hr>';
+            
+		}
+		return [count($data),$record];
+
+	}
 	
 	public function shop_where($id)
 	{

@@ -54,6 +54,35 @@ function rating_dot($rating){
 	}
 }
 
+function rating_dollar($rating){
+	
+	if($rating <= 0.5)
+	{
+		return  '<span></span>$$$$$';
+
+	}
+	elseif($rating > 0.5 && $rating <= 1.5)
+	{
+		return  '<span>$</span>$$$$';
+	}
+	elseif($rating > 1.5 && $rating <= 2.5)
+	{
+		return  '<span>$$</span>$$$';
+	}
+	elseif($rating > 2.5 && $rating <= 3.5)
+	{
+		return  '<span>$$$</span>$$';
+	}
+	elseif($rating > 3.5 && $rating <= 4.5)
+	{
+		return  '<span>$$$$</span>$';
+	}
+	elseif($rating > 4.5)
+	{
+		return  '<span>$$$$$</span>';
+	}
+}
+
 function diff_date($date)
 {
 	$startTimeStamp = strtotime(date('Y-m-d',strtotime($date)));

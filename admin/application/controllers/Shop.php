@@ -23,8 +23,6 @@ class Shop extends CI_Controller {
 		$this->load->template('shop/add',$data);
     }
 
-
-
     public function edit($id)
     {
         $data['page_title'] = 'Edit Shop';

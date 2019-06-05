@@ -249,7 +249,15 @@
             <script type="text/javascript">
                 startTime();
                 $(function(){
-                    $( "#search").autocomplete({
+                    $('form').submit(function(){
+                        if($.trim($('#search').val()) == '')
+                        {
+                            return false;
+                        }
+
+                    });
+
+                    $( "#searlch").autocomplete({
                         source: "<?= base_url('welcome/shop_autocomplete/?');?>",
                         select: function (event, ui) {
                             $("#search").val(ui.item.label);

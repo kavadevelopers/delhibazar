@@ -8,6 +8,13 @@ class Rating_model extends CI_Model
 		$this->load->database();
 	}
 
+	public function review_list_with_limit($shop_id,$limit,$start)
+	{
+				$this->db->limit($limit,$start);
+		return $this->db->get_where('shop_rating',['shop_id' => $shop_id])->result_array();
+
+	}
+
 	public function review_list($shop_id)
 	{
 		return $this->db->get_where('shop_rating',['shop_id' => $shop_id])->result_array();

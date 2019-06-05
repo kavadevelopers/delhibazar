@@ -139,51 +139,61 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 responsive-wrap">
+                
+
                 <div class="booking-checkbox_wrap">
                     <div class="booking-checkbox">
-                        <p><?= $shop[0]['detail_desc'] ?></p>
+                        <p><?= nl2br($shop[0]['detail_desc']) ?></p>
                         <hr>
                     </div>
-                </div>
-                
-                <div class="booking-checkbox_wrap">
-                    <h6>Products or Services</h6>
-                    <div class="booking-checkbox">
-                        <p><?= $shop[0]['pro_or_servi'] ?></p>
-                        <hr>
+                    <div class="row">
+                        <div class="col-md-12 text-center" style="margin-bottom: 15px;"><h6>What We Offer</h6></div>
+                        <?php foreach(explode(',',$shop[0]['pro_or_servi']) as $services => $service){ ?>
+                            <div class="col-md-4">
+                                <label class="custom-checkbox">
+                                    <span class="ti-check-box"></span>
+                                    <span class="custom-control-description"><?= $service ?></span>
+                                </label> 
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
 
                 <div class="booking-checkbox_wrap mt-4">
                     <h5><?= $total_review ?> Reviews</h5>
                     
-                    <?php foreach ($this->rating_model->review_list($shop[0]['id']) as $key => $value) { 
+                    <?php foreach ($this->rating_model->review_list_with_limit($shop[0]['id'],2,0) as $key => $value) { 
                         $user = $this->rating_model->user_where($value['user_id'])[0];
                     ?>
                         <hr>
                         <div class="customer-review_wrap">
-                        <div class="customer-img">
-                            <img src="<?= base_url() ?>image/social_user_uploads/<?= $user['image'] ?>" class="img-fluid" alt="#">
-                            <p><?= cut_string($user['first_name'].' '.$user['last_name'],13,'...') ?></p>
-                            <span><?= $this->rating_model->count_user_review($value['user_id']) ?> Reviews</span>
-                        </div>
-                        <div class="customer-content-wrap">
-                            <div class="customer-content">
-                                <div class="customer-review">
-                                    <h6><?= cut_string($value['subject'],45,'...') ?></h6>
-                                    <?= rating_dot($value['rating']); ?>
-                                    <p><?= diff_date($value['created_at']); ?></p>
-                                </div>
-                                <div class="customer-rating"><?= round($value['rating'],1) ?>.0</div>
+                            <div class="customer-img">
+                                <img src="<?= base_url() ?>image/social_user_uploads/<?= $user['image'] ?>" class="img-fluid" alt="#">
+                                <p><?= cut_string($user['first_name'].' '.$user['last_name'],13,'...') ?></p>
+                                <span><?= $this->rating_model->count_user_review($value['user_id']) ?> Reviews</span>
                             </div>
-                            <p class="customer-text">
-                                <?= nl2br($value['review']) ?>
-                            </p>
+                            <div class="customer-content-wrap">
+                                <div class="customer-content">
+                                    <div class="customer-review">
+                                        <h6><?= cut_string($value['subject'],45,'...') ?></h6>
+                                        <?= rating_dot($value['rating']); ?>
+                                        <p><?= diff_date($value['created_at']); ?></p>
+                                    </div>
+                                    <div class="customer-rating"><?= round($value['rating'],1) ?>.0</div>
+                                </div>
+                                <p class="customer-text">
+                                    <?= nl2br($value['review']) ?>
+                                </p>
+                            </div>
                         </div>
-                    </div>
 
                     <?php } ?>
-                    
+                    <hr>
+
+                    <div id="other"></div>
+                    <div class="customer-review_wrap text-center">
+                        <button type="button" class="btn btn-sm btn-success" id="load_more" style="cursor: pointer;">Load more..</button>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4 responsive-wrap">
@@ -286,6 +296,9 @@
         </div>
     </div>
 </form>
+
+<input type="hidden" id="load_more_record" value="2">
+
 <!-- // Review Modal -->
 <script type="text/javascript">
 
@@ -342,6 +355,30 @@ $(document).ready(function(){
         }
 
     });
+
+
+    // Load More Button 
+    $('#load_more').click(function(e){
+        e.preventDefault();
+        var record  =    $('#load_more_record').val();
+        var shop_id =    '<?= $shop[0]['id'] ?>';
+        
+            $.ajax({
+                    type : "post",
+                    url : "<?= base_url() ?>shop/load_more",
+                    data : "record="+record+"&shop_id="+shop_id,
+                    cache : false,
+                    beforeSend: function() {
+                       
+                    },
+                    success:function( out ){
+                        alert(out);
+                        $('#other').append(out[1]);
+                        $('#load_more_record').val($('#load_more_record').val() + out[0]);
+                    }
+            });
+    });
+
 });
 </script>
 

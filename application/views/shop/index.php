@@ -19,7 +19,10 @@
                                     <span class="featured-rating-orange" style="padding: 13px 5px;"><?= round($this->rating_model->get_avarage_rating($value['id'])[0]['average'],1) ?></span>
                                     <div class="featured-title-box">
                                         <h6><?= $value['shop_name'] ?></h6>
-                                        <p><?= $this->rating_model->count_review($value['id']) ?> Reviews</p>
+
+                                        <p><?= cut_string($value['category'],15,'...') ?></p> <span>• </span>
+                                        <p><?= $this->rating_model->count_review($value['id']) ?> Reviews</p><span>• </span>
+                                        <p><?= rating_dollar(round($this->rating_model->get_avarage_rating($value['id'])[0]['average'],1)) ?></p>
                                         <ul>
                                             <li><span class="icon-location-pin"></span>
                                                 <p><?= cut_string($value['address'],35,'...') ?>  </p>

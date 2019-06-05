@@ -18,6 +18,12 @@ class Shop extends CI_Controller {
 		$this->load->template('shop/shop_detail',$data);
 	}
 
+	public function load_more()
+    {
+        print_r($this->shop_model->load_more($this->input->post('record'),$this->input->post('shop_id')));
+    }
+
+	
 	public function rating()
 	{
 		$data = [

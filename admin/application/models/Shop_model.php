@@ -19,4 +19,7 @@ class shop_model extends CI_Model
 		return $this->db->get_where('shop',['id' => $id])->result_array();
 	}
 
+	
+
+
 }	
