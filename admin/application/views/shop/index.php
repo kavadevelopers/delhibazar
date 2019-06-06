@@ -31,7 +31,7 @@
                                         <th>Email</th>
                                         <th>Hours of Operation</th>
                                         <th>Mode of Payment</th>
-                                        <th class="text-center" id="action">Action</th>
+                                        <th class="text-center" id="action" style="min-width: 150px;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -48,6 +48,10 @@
                                                 
                                             <td class="text-center">
                                                 
+                                                <a class="btn btn-sm btn-secondary" href="<?= base_url();?>shop/slider/<?= $value['id'];?>" title="Slider Upload">
+                                                    <i class="fa fa-image"></i>
+                                                </a>
+
                                                 <a class="btn btn-sm btn-success" href="<?= base_url();?>shop/edit/<?= $value['id'];?>" title="Edit">
                                                     <i class="fa fa-edit"></i>
                                                 </a>

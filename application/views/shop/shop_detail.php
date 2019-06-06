@@ -53,36 +53,17 @@
     <div class="swiper-container">
         <div class="swiper-wrapper">
 
-            <div class="swiper-slide">
-                <a href="<?= base_url() ?>image/slider/s1.jpg" class="grid image-link">
-                    <img src="<?= base_url() ?>image/slider/s1.jpg" class="img-fluid" alt="#">
-                </a>
-            </div>
-            <div class="swiper-slide">
-                <a href="<?= base_url() ?>image/slider/s2.png" class="grid image-link">
-                    <img src="<?= base_url() ?>image/slider/s2.png" class="img-fluid" alt="#">
-                </a>
-            </div>
-            <div class="swiper-slide">
-                <a href="<?= base_url() ?>image/slider/s1.jpg" class="grid image-link">
-                    <img src="<?= base_url() ?>image/slider/s1.jpg" class="img-fluid" alt="#">
-                </a>
-            </div>
-            <div class="swiper-slide">
-                <a href="<?= base_url() ?>image/slider/s2.png" class="grid image-link">
-                    <img src="<?= base_url() ?>image/slider/s2.png" class="img-fluid" alt="#">
-                </a>
-            </div>
-            <div class="swiper-slide">
-                <a href="<?= base_url() ?>image/slider/s1.jpg" class="grid image-link">
-                    <img src="<?= base_url() ?>image/slider/s1.jpg" class="img-fluid" alt="#">
-                </a>
-            </div>
-            <div class="swiper-slide">
-                <a href="<?= base_url() ?>image/slider/s2.png" class="grid image-link">
-                    <img src="<?= base_url() ?>image/slider/s2.png" class="img-fluid" alt="#">
-                </a>
-            </div>
+            <?php foreach ($this->shop_model->slider_where($shop[0]['id']) as $key => $value) { ?>
+
+                <div class="swiper-slide">
+                    <a href="<?= $this->config->config['admin_url'] ?>uploads/slider/<?= $value['image'] ?>" class="grid image-link">
+                        <img src="<?= $this->config->config['admin_url'] ?>uploads/slider/<?= $value['image'] ?>" class="img-fluid" alt="#">
+                    </a>
+                </div>
+
+            <?php } ?>
+
+            
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination swiper-pagination-white"></div>

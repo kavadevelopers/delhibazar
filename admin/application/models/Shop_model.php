@@ -19,7 +19,14 @@ class shop_model extends CI_Model
 		return $this->db->get_where('shop',['id' => $id])->result_array();
 	}
 
-	
+	public function get_slider_image($shop_id)
+	{
+		return $this->db->get_where('shop_slider',['shop_id' => $shop_id])->result_array();
+	}
 
+	public function slider_where($id)
+	{
+		return $this->db->get_where('shop_slider',['id' => $id])->result_array();
+	}
 
 }	

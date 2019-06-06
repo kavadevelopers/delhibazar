@@ -23,6 +23,14 @@ class Shop extends CI_Controller {
 		$this->load->template('shop/add',$data);
     }
 
+
+    public function slider($id)
+    {
+        $data['page_title']         = 'Add Slider';
+        $data['shop_slider_image']  = $this->shop_model->get_slider_image($id);
+        $this->load->template('shop/slider_upload',$data);
+    }
+
     public function edit($id)
     {
         $data['page_title'] = 'Edit Shop';
@@ -55,6 +63,10 @@ class Shop extends CI_Controller {
             redirect(base_url().'shop');
         }
     }
+
+    /**********************************************************************
+                                SAVE(INSERT)
+    **********************************************************************/
 
     public function save()
     {
@@ -156,6 +168,10 @@ class Shop extends CI_Controller {
 
         }
     }
+
+    /**********************************************************************
+                                UPDATE
+    **********************************************************************/
 
     public function update()
     {
@@ -263,6 +279,10 @@ class Shop extends CI_Controller {
         }
     }
 
+    /**********************************************************************
+                                DELETE
+    **********************************************************************/
+
     public function delete($id = false)
     {
         if($id)
@@ -288,5 +308,91 @@ class Shop extends CI_Controller {
             redirect(base_url().'shop');
         }
     }
+
+
+    /**********************************************************************
+                                SLIDER UPLOAD
+    **********************************************************************/
+    public function slider_upload()
+    {
+        if(!empty($_FILES['image']['name']))
+        {
+            $path       = $_FILES['image']['name'];
+            $newName    = md5(microtime(true)).".".pathinfo($path, PATHINFO_EXTENSION); 
+            $config['upload_path']      = './uploads/slider';
+            $config['allowed_types']    = 'gif|jpg|png|jpeg';
+            $config['max_size']         = 2000000;
+            
+            $config['file_name']        = $newName;
+            $this->load->library('upload', $config);
+
+            $image = [ 
+                        'image'       =>    $newName,
+                        'shop_id'     =>    $this->input->post('shop_id'),
+                        'created_by'  =>    $this->session->userdata('id'),
+                        'created_at'  =>    date('Y-m-d H:i:s')
+
+                    ];
+
+            if($this->upload->do_upload('image'))
+            {
+                if($this->db->insert('shop_slider', $image))
+                {
+                    $this->session->set_flashdata('msg', 'Slider Successfully Added');
+                    redirect(base_url().'shop/slider/'.$this->input->post('shop_id'));
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Problem In Upload Slider');
+                    redirect(base_url().'shop');
+                }
+            }
+            else
+            {
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+                redirect(base_url().'shop');
+            }
+
+        }
+    }
+   
+
+    /**********************************************************************
+                               SLIDER DELETE
+    **********************************************************************/
+
+    public function slider_delete($id = false)
+    {
+        if($id)
+        {
+            if($this->shop_model->slider_where($id))
+            {
+                $slider = $this->shop_model->slider_where($id);
+                if($slider[0]['image'] != '')
+                {
+                    unlink('./uploads/slider/'.$slider[0]['image']);
+                }
+
+                $this->db->where('id',$id);
+                $this->db->delete('shop_slider');
+
+                $this->session->set_flashdata('msg', 'Slider Successfully Deleted');
+                redirect(base_url().'shop/slider/'.$slider[0]['shop_id']);
+            }   
+            else
+            {
+                $this->session->set_flashdata('error', 'Slider Not Found');
+                redirect(base_url().'shop');
+            }
+            
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'Slider Not Found');
+            redirect(base_url().'shop');
+        }
+    }
+
+
 
 }

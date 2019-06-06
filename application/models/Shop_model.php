@@ -14,6 +14,11 @@ class Shop_model extends CI_Model
 		return $this->db->get('shop')->result_array();
 	}
 
+	public function slider_where($shop_id)
+	{
+		return $this->db->get_where('shop_slider',['shop_id' => $shop_id])->result_array();
+	}
+
 	public function load_more($start,$shop_id)
 	{
 		$this->db->limit(2,$start);
