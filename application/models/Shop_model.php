@@ -20,12 +20,31 @@ class Shop_model extends CI_Model
 		$data = $this->db->get_where('shop_rating',['shop_id' => $shop_id])->result_array();
 		$record = '';
 		foreach ($data as $key => $value) {
-			
+				$user = $this->rating_model->user_where($value['user_id'])[0];
 
-			$record .= '<hr>';
+			$record .= '<div class="customer-review_wrap">
+                            <div class="customer-img">
+                                <img src="'.base_url().'image/social_user_uploads/'.$user['image'].'" class="img-fluid" alt="#">
+                                <p>'. cut_string($user['first_name'].' '.$user['last_name'],13,'...').'</p>
+                                <span>'. $this->rating_model->count_user_review($value['user_id']) .' Reviews</span>
+                            </div>
+                            <div class="customer-content-wrap">
+                                <div class="customer-content">
+                                    <div class="customer-review">
+                                        <h6>'. cut_string($value['subject'],45,'...').'</h6>
+                                        '. rating_dot($value['rating']).'
+                                        <p>'. diff_date($value['created_at']).'</p>
+                                    </div>
+                                    <div class="customer-rating">'. round($value['rating'],1) .'.0</div>
+                                </div>
+                                <p class="customer-text">
+                                    '. nl2br($value['review']).'
+                                </p>
+                            </div>
+                        </div><hr>';
             
 		}
-		return [count($data),$record];
+		return [count($data),$record,$this->db->get_where('shop_rating',['shop_id' => $shop_id])->num_rows()];
 
 	}
 	

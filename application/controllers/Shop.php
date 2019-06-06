@@ -20,7 +20,7 @@ class Shop extends CI_Controller {
 
 	public function load_more()
     {
-        print_r($this->shop_model->load_more($this->input->post('record'),$this->input->post('shop_id')));
+        echo json_encode($this->shop_model->load_more($this->input->post('record'),$this->input->post('shop_id')));
     }
 
 	

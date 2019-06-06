@@ -257,7 +257,7 @@
 
                     });
 
-                    $( "#searlch").autocomplete({
+                    $( "#search").autocomplete({
                         source: "<?= base_url('welcome/shop_autocomplete/?');?>",
                         select: function (event, ui) {
                             $("#search").val(ui.item.label);

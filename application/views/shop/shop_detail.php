@@ -192,7 +192,7 @@
 
                     <div id="other"></div>
                     <div class="customer-review_wrap text-center">
-                        <button type="button" class="btn btn-sm btn-success" id="load_more" style="cursor: pointer;">Load more..</button>
+                        <button type="button" class="btn btn-sm btn-default" id="load_more" style="cursor: pointer;"><span id="but_main">Load more</span> <span id="load" style="display: none;"><i class='fa fa-circle-o-notch fa-spin'></i> Loding</span></button>
                     </div>
                 </div>
             </div>
@@ -364,18 +364,30 @@ $(document).ready(function(){
         var shop_id =    '<?= $shop[0]['id'] ?>';
         
             $.ajax({
-                    type : "post",
-                    url : "<?= base_url() ?>shop/load_more",
-                    data : "record="+record+"&shop_id="+shop_id,
-                    cache : false,
-                    beforeSend: function() {
-                       
-                    },
-                    success:function( out ){
-                        alert(out);
+                type : "post",
+                url : "<?= base_url() ?>shop/load_more",
+                data : "record="+record+"&shop_id="+shop_id,
+                cache : false,
+                dataType: "json",
+                beforeSend: function() {
+                    $('#load').show();
+                    $('#but_main').hide();
+                },
+                success:function( out ){
+                    setTimeout(function(){
                         $('#other').append(out[1]);
-                        $('#load_more_record').val($('#load_more_record').val() + out[0]);
-                    }
+                        $('#load_more_record').val(parseFloat($('#load_more_record').val()) + parseFloat(out[0]));
+                        
+                        if($('#load_more_record').val() == out[2])
+                        {
+                            $('#load_more').fadeOut();
+                        }
+
+                        $('#load').hide();
+                        $('#but_main').show();
+
+                    }, 2000);
+                }
             });
     });
 
