@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 05, 2019 at 08:58 AM
+-- Generation Time: Jun 06, 2019 at 09:54 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -208,6 +208,34 @@ INSERT INTO `shop_rating` (`id`, `user_id`, `shop_id`, `subject`, `review`, `rat
 (4, '7', '2', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the\r\n                                hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great\r\n                                dipped in their chili sauce.', 2, '2019-06-04 18:44:44'),
 (5, '6', '2', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the\r\n                                hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great\r\n                                dipped in their chili sauce.', 3, '2019-06-04 19:41:40'),
 (6, '6', '4', '', 'This is good', 4, '2019-06-04 20:32:53');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shop_slider`
+--
+
+DROP TABLE IF EXISTS `shop_slider`;
+CREATE TABLE IF NOT EXISTS `shop_slider` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `image` text NOT NULL COMMENT 'Slider Image',
+  `shop_id` varchar(250) NOT NULL,
+  `created_by` varchar(250) DEFAULT NULL,
+  `updated_by` varchar(250) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `shop_slider`
+--
+
+INSERT INTO `shop_slider` (`id`, `image`, `shop_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, '489baedcfec8ebee14ad613734876cca.jpg', '', '1', '', '2019-06-06 13:56:04', NULL),
+(14, 'de93555952ad9b6f582c02b404d7fae8.jpg', '6', '1', '', '2019-06-06 15:12:22', NULL),
+(12, '5b47e9e1df1fd1e4282b1acc63f989e9.jpg', '6', '1', '', '2019-06-06 15:10:55', NULL),
+(13, '6fd81900ee6f27bb7a2f93af93ee3289.jpg', '6', '1', '', '2019-06-06 15:12:12', NULL);
 
 -- --------------------------------------------------------
 
