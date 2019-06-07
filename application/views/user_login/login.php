@@ -1,3 +1,21 @@
+<!--================Home Banner Area =================-->
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+		<div class="container">
+			<div class="banner_content text-center">
+				<h2>Login</h2>
+				<div class="page_link">
+					<a href="<?= base_url() ?>">Home</a>
+					<a href="<?= base_url() ?>login">Login</a>
+				</div>
+			</div>
+		</div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+
+
+
 <!--================Login Box Area =================-->
 <section class="login_box_area p_120">
 	<div class="container">

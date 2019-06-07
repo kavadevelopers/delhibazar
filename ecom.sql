@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 06, 2019 at 09:54 AM
+-- Generation Time: Jun 07, 2019 at 01:40 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -107,15 +107,19 @@ CREATE TABLE IF NOT EXISTS `product` (
   `updated_at` datetime NOT NULL,
   `df` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`id`, `hash`, `name`, `amount`, `short_desc`, `desc`, `category`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `df`) VALUES
-(1, '02d97bed230cb3255b908f51699e33bd', 'Moto Z play', '25000.00', '25000.00', '25000.00', '4', 2, '1', '1', '2019-05-06 09:46:09', '2019-05-06 09:46:09', 0),
-(2, '4366a1f0469f990d530a3e2b6219f79e', 'Samsung Galaxy s10a', '12001.00', 'Samsung Branda', '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h3><strong><em><u>Specification</u></em></strong></h3>\r\n\r\n<ul>\r\n	<li>5.5 inch display</li>\r\n	<li>full displays</li>\r\n	<li>123</li>\r\n</ul>', '3', 1, '1', '1', '2019-05-06 09:48:37', '2019-05-06 11:05:16', 0);
+(1, '02d97bed230cb3255b908f51699e33bd', 'Moto Z play', '25000.00', '25000.00', '25000.00', '4', 1, '1', '1', '2019-05-06 09:46:09', '2019-05-06 09:46:09', 0),
+(2, '4366a1f0469f990d530a3e2b6219f79e', 'Samsung Galaxy s10a', '12001.00', 'Samsung Branda', '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h3><strong><em><u>Specification</u></em></strong></h3>\r\n\r\n<ul>\r\n	<li>5.5 inch display</li>\r\n	<li>full displays</li>\r\n	<li>123</li>\r\n</ul>', '4', 1, '1', '1', '2019-05-06 09:48:37', '2019-05-06 11:05:16', 0),
+(3, '79f3c79fbbdce0cebb18027dc0812610', 'Redmi 6 Pro', '12999.00', 'asdasd asd asdasdasdasdasdsad', '<p>asda sdasd asdasd</p>', '4', 1, '1', '1', '2019-06-07 17:17:02', '2019-06-07 17:17:02', 0),
+(4, '0cd155e84b4266c63337a02303551499', 'Redmi 6', '11999.00', 'asdasdasd asd', '<p>asdasdasdsad</p>', '4', 1, '1', '1', '2019-06-07 17:17:36', '2019-06-07 17:17:36', 0),
+(5, '1ccdcca89fbe346071ed3c4f6c370621', 'redmi 7', '14999.00', 'asdasdasdasd', '<p>asdasdasd<em>as asd asdasasd</em></p>', '4', 1, '1', '1', '2019-06-07 17:18:03', '2019-06-07 17:18:03', 0),
+(6, 'ffa0eddb2f3f73dda1fac27ff6b0b1ea', 'redmi 7 pro', '15999.00', 'asda sda', '<p>asdasdasd<strong>asdas asd asd</strong></p>', '4', 1, '1', '1', '2019-06-07 17:18:26', '2019-06-07 17:18:26', 0);
 
 -- --------------------------------------------------------
 
@@ -135,7 +139,11 @@ CREATE TABLE IF NOT EXISTS `product_images` (
 
 INSERT INTO `product_images` (`p_id`, `image`) VALUES
 ('1', 'no-image.png'),
-('2', 'no-image.png');
+('2', 'no-image.png'),
+('3', 'no-image.png'),
+('4', 'no-image.png'),
+('5', 'no-image.png'),
+('6', 'no-image.png');
 
 -- --------------------------------------------------------
 
@@ -195,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `shop_rating` (
   `rating` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shop_rating`
@@ -207,7 +215,13 @@ INSERT INTO `shop_rating` (`id`, `user_id`, `shop_id`, `subject`, `review`, `rat
 (3, '7', '2', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the\r\n                                hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great\r\n                                dipped in their chili sauce.', 5, '2019-06-01 18:43:13'),
 (4, '7', '2', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the\r\n                                hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great\r\n                                dipped in their chili sauce.', 2, '2019-06-04 18:44:44'),
 (5, '6', '2', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the\r\n                                hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great\r\n                                dipped in their chili sauce.', 3, '2019-06-04 19:41:40'),
-(6, '6', '4', '', 'This is good', 4, '2019-06-04 20:32:53');
+(6, '6', '2', '', 'This is good', 4, '2019-06-04 20:32:53'),
+(7, '7', '2', '** I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the\r\n                                hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great\r\n                                dipped in their chili sauce.', 3, '2019-06-04 18:40:22'),
+(8, '7', '2', '* \r\nI love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly', 'I\r\n\r\n', 4, '2019-06-03 00:00:00'),
+(9, '7', '2', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the\r\n                                hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great\r\n                                dipped in their chili sauce.', 5, '2019-06-01 18:43:13'),
+(10, '7', '2', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the\r\n                                hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great\r\n                                dipped in their chili sauce.', 2, '2019-06-04 18:44:44'),
+(11, '6', '2', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the\r\n                                hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great\r\n                                dipped in their chili sauce.', 3, '2019-06-04 19:41:40'),
+(12, '6', '2', '', 'This is good', 4, '2019-06-04 20:32:53');
 
 -- --------------------------------------------------------
 
@@ -236,6 +250,30 @@ INSERT INTO `shop_slider` (`id`, `image`, `shop_id`, `created_by`, `updated_by`,
 (14, 'de93555952ad9b6f582c02b404d7fae8.jpg', '6', '1', '', '2019-06-06 15:12:22', NULL),
 (12, '5b47e9e1df1fd1e4282b1acc63f989e9.jpg', '6', '1', '', '2019-06-06 15:10:55', NULL),
 (13, '6fd81900ee6f27bb7a2f93af93ee3289.jpg', '6', '1', '', '2019-06-06 15:12:12', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_icon`
+--
+
+DROP TABLE IF EXISTS `social_icon`;
+CREATE TABLE IF NOT EXISTS `social_icon` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` text NOT NULL,
+  `class` text NOT NULL,
+  `link` text NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `social_icon`
+--
+
+INSERT INTO `social_icon` (`id`, `title`, `class`, `link`, `created_at`) VALUES
+(2, 'Instagram', 'fa-instagram', 'https://instagram.com', '2019-06-07 00:00:00'),
+(3, 'facebook', 'fa-facebook', 'http://facebook.com', '2019-06-07 00:00:00');
 
 -- --------------------------------------------------------
 

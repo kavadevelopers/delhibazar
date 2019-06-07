@@ -102,4 +102,10 @@ function diff_date($date)
 	}
 }
 
+function social_icons()
+{
+	$CI=&get_instance();
+	return $CI->db->get('social_icon')->result_array();
+
+}
 ?>

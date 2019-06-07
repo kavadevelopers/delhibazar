@@ -143,7 +143,7 @@
                 <div class="booking-checkbox_wrap mt-4">
                     <h5><?= $total_review ?> Reviews</h5>
                     
-                    <?php foreach ($this->rating_model->review_list_with_limit($shop[0]['id'],2,0) as $key => $value) { 
+                    <?php foreach ($this->rating_model->review_list_with_limit($shop[0]['id'],5,0) as $key => $value) { 
                         $user = $this->rating_model->user_where($value['user_id'])[0];
                     ?>
                         <hr>
@@ -173,7 +173,9 @@
 
                     <div id="other"></div>
                     <div class="customer-review_wrap text-center">
-                        <button type="button" class="btn btn-sm btn-default" id="load_more" style="cursor: pointer;"><span id="but_main">Load more</span> <span id="load" style="display: none;"><i class='fa fa-circle-o-notch fa-spin'></i> Loding</span></button>
+                        <?php if($total_review > 5){ ?>
+                            <button type="button" class="btn btn-sm btn-default" id="load_more" style="cursor: pointer;"><span id="but_main">Load more</span> <span id="load" style="display: none;"><i class='fa fa-circle-o-notch fa-spin'></i> Loding</span></button>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -278,7 +280,7 @@
     </div>
 </form>
 
-<input type="hidden" id="load_more_record" value="2">
+<input type="hidden" id="load_more_record" value="5">
 
 <!-- // Review Modal -->
 <script type="text/javascript">

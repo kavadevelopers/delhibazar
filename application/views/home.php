@@ -25,22 +25,13 @@
     <body>
         <div class="sticky-container">
             <ul class="sticky">
-                <li>
-                    <img width="32" height="32" title="" alt="" src="<?= base_url() ?>image/fb1.png" />
-                    <p>Facebook</p>
-                </li>
-                <li>
-                    <img width="32" height="32" title="" alt="" src="<?= base_url() ?>image/tw1.png" />
-                    <p>Twitter</p>
-                </li>
-                <li>
-                    <img width="32" height="32" title="" alt="" src="<?= base_url() ?>image/pin1.png" />
-                    <p>Pinterest</p>
-                </li>
-                <li>
-                    <img width="32" height="32" title="" alt="" src="<?= base_url() ?>image/li1.png" />
-                    <p>Linkedin</p>
-                </li>
+                <?php foreach (social_icons() as $key => $value) { ?>
+                    <a href="<?= $value['link'] ?>" target="_blank">  
+                        <li>
+                            <p><span style="font-size: 22px;margin: 12px;"><i class="fa <?= $value['class'] ?>"></i></span> <?= $value['title'] ?></p>
+                        </li>
+                    </a>
+                <?php } ?>
                 
             </ul>
         </div>

@@ -6,7 +6,14 @@
                     
                     <p>Copyright &copy; 2019 DELHIBAZAR | Powered By : <a href="http://kavadevelopers.com" target="_blank">Kava Developers</a></p>
                     
-                    
+                    <ul>
+                        <?php foreach (social_icons() as $key => $value) { ?>
+                            
+                            <li><a href="<?= $value['link'] ?>" target="_blank"><span class="fa <?= $value['class'] ?>"></span></a></li>
+                        
+                        <?php } ?>
+                        
+                    </ul>
                 </div>
             </div>
         </div>

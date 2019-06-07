@@ -1,3 +1,8 @@
+<?php 
+$CI=&get_instance();
+$CI->load->model('product_model');
+?>
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -31,10 +36,32 @@
         <!-- sweet alert js -->
 
     </head>
+
     <body>
         
         <!--================Header Menu Area =================-->
         <header class="header_area">
+
+        	<div class="top_menu row m0">
+           		<div class="container">
+					<div class="float-left">
+						<a href="mailto:support@colorlib.com">delhibazar@.com</a>
+						<a href="#">Welcome to DELHIBAZAR</a>
+					</div>
+					<div class="float-right">
+						<ul class="header_social">
+
+							<?php foreach (social_icons() as $key => $value) { ?>
+							
+							<li><a href="<?= $value['link'] ?>" target="_blank"><i class="fa <?= $value['class'] ?>"></i></a></li>
+
+							<?php } ?>
+							
+						</ul>
+					</div>
+           		</div>	
+           	</div>
+
            	<div class="main_menu">
             	<nav class="navbar navbar-expand-lg navbar-light main_box">
 					<div class="container">
@@ -51,8 +78,22 @@
 							<ul class="nav navbar-nav menu_nav ml-auto">
 								<li class="nav-item"><a class="nav-link" href="<?= base_url() ?>">Home</a></li> 
 								
-								<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-								
+								<li class="nav-item submenu dropdown">
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+									
+									<ul class="dropdown-menu">
+										
+										<?php  foreach ($CI->product_model->get_category() as $key => $value) { ?>
+											
+										<li class="nav-item">
+											<a class="nav-link" href="<?= base_url('products/list/').$value['id'] ?>"><?= $value['name'] ?></a>
+										</li>
+										
+										<?php } ?>
+									
+									</ul>
+								</li>
+
 								<li class="nav-item submenu dropdown">
 									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User</a>
 									<ul class="dropdown-menu">
@@ -68,7 +109,10 @@
 
 										<?php } ?>
 									</ul>
-								</li> 
+								</li>
+
+								<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li class="nav-item"><a href="#" class="cart"><i class="lnr lnr lnr-cart"></i></a></li>
