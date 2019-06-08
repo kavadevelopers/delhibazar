@@ -70,7 +70,7 @@ class Product extends CI_Controller {
 
             $product =  [
                             'hash'          =>  md5(microtime(true)),
-                            'name'          =>  $this->input->post('name'),
+                            'name'          =>  ucfirst($this->input->post('name')),
                             'amount'        =>  $this->input->post('price'),
                             'short_desc'    =>  $this->input->post('short_desc'),
                             'desc'          =>  $this->input->post('editor1'),
@@ -83,11 +83,47 @@ class Product extends CI_Controller {
 
                 if($this->db->insert('product', $product)){
                     $insert_id = $this->db->insert_id();
-                    $this->db->insert('product_images', ['p_id' => $insert_id,'image' => 'no-image.png']);
+
+                    if(!empty($_FILES['image']['name']))
+                    {
+                        $path = $_FILES['image']['name'];
+                        $newName = md5(microtime(true)).".".pathinfo($path, PATHINFO_EXTENSION); 
+                        $config['upload_path']      = './uploads/product';
+                        $config['allowed_types']    = 'gif|jpg|png|jpeg';
+                        $config['max_size']         = 2000000;
+                        
+                        $config['file_name']        = $newName;
+                        $this->load->library('upload', $config);
+
+                        $image = [ 'image'       =>    $newName ];
+
+                        if($this->upload->do_upload('image'))
+                        {
+                            $image = [ 
+                                        'p_id'        =>  $insert_id, 
+                                        'image'       =>  $newName 
+                                      ];
+
+                            if($this->db->insert('product_images', $image))
+                            {
+                                $this->session->set_flashdata('msg', 'Product Successfully Added');
+                                redirect(base_url().'product');
+                            }
+                            else
+                            {
+                                $this->session->set_flashdata('error', 'Problem In Upload Image');
+                                redirect(base_url().'product/add');
+                            }
+                        }
+                        else
+                        {
+                            $this->session->set_flashdata('error', $this->upload->display_errors());
+                            redirect(base_url().'product/add');
+                        }
+                    }
 
                     $this->session->set_flashdata('msg', 'Product Successfully Added');
                     redirect(base_url().'product');
-                                
                 }
                 else
                 {
@@ -98,6 +134,7 @@ class Product extends CI_Controller {
         }
 
     }
+
 
     public function update()
     {
@@ -121,7 +158,7 @@ class Product extends CI_Controller {
         {
 
             $product =  [
-                            'name'          =>  $this->input->post('name'),
+                            'name'          =>  ucfirst($this->input->post('name')),
                             'amount'        =>  $this->input->post('price'),
                             'short_desc'    =>  $this->input->post('short_desc'),
                             'desc'          =>  $this->input->post('editor1'),
@@ -132,6 +169,54 @@ class Product extends CI_Controller {
                 $this->db->where('id',$this->input->post('product_id'));
                 if($this->db->update('product', $product)){
                     
+
+                    if(!empty($_FILES['image']['name']))
+                    {
+                        $path       = $_FILES['image']['name'];
+                        $newName    = md5(microtime(true)).".".pathinfo($path, PATHINFO_EXTENSION); 
+                        $config['upload_path']      = './uploads/product';
+                        $config['allowed_types']    = 'gif|jpg|png|jpeg';
+                        $config['max_size']         = 2000000;
+                        
+                        $config['file_name']        = $newName;
+                        $this->load->library('upload', $config);
+
+                        $image = [ 'image'       =>    $newName ];
+
+                        if($this->upload->do_upload('image'))
+                        {
+                            $product    = $this->product_model->product_image_where($this->input->post('product_id'));
+
+                            if($product[0]['image'] != '')
+                            {
+                                unlink('./uploads/product/'.$product[0]['image']);
+                            }
+
+                            $image = [
+                                        'p_id'        =>    $this->input->post('product_id'),
+                                        'image'       =>    $newName 
+                                      ];
+
+                                $this->db->where('p_id',$this->input->post('product_id'));
+                            if($this->db->update('product_images', $image))
+                            {
+                                $this->session->set_flashdata('msg', 'Product Successfully Saved');
+                                redirect(base_url().'product');
+                            }
+                            else
+                            {
+                                $this->session->set_flashdata('error', 'Problem In Upload Image');
+                                redirect(base_url().'product/add');
+                            }
+                        }
+                        else
+                        {
+                            $this->session->set_flashdata('error', $this->upload->display_errors());
+                            redirect(base_url().'product/add');
+                        }
+                    }
+
+
                     $this->session->set_flashdata('msg', 'Product Successfully Saved');
                     redirect(base_url().'product');
                                 

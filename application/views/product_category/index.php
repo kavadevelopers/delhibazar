@@ -31,12 +31,26 @@
 				</div>
 				<div class="latest_product_inner row">
 					<?php if(!empty($products)) { ?>
-						<?php foreach ($products as $key => $value) { ?>
+						<?php foreach ($products as $key => $value) { 
+
+						$product_image = $this->product_model->product_image_where($value['id']);
+						?>
 							
+
 							<div class="col-lg-4 col-md-4 col-sm-6">
 								<div class="f_p_item">
 									<div class="f_p_img">
-										<img class="img-fluid" src="<?= base_url() ?>user_login/img/product/feature-product/f-p-1.jpg" alt="">
+										
+										<?php if(!empty($product_image)) { ?> 
+
+											<img class="img-fluid" src="<?= base_url() ?>admin/uploads/product/<?= $this->product_model->product_image_where($value['id'])[0]['image'] ?>" alt="Product Image">
+
+										<?php } else { ?>
+
+											<img class="img-fluid" src="<?= base_url() ?>admin/uploads/product/no-image.png" alt="Product Image">
+
+										<?php } ?>
+
 										<div class="p_icon">
 											<a href="#"><i class="lnr lnr-cart"></i></a>
 										</div>

@@ -90,7 +90,9 @@ class Products extends CI_Controller {
 		{
 			if($this->product_model->product_where($hash))
 			{
-
+				$data['_title']		= "DELHIBAZAR";
+				$data['product']	= $this->product_model->product_where($hash);
+				$this->load->template1('product_category/product_detail',$data);
 			}
 			else
 			{

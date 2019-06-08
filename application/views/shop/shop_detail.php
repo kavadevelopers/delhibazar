@@ -74,6 +74,7 @@
 </div>
 
 
+
 <!--============================= RESERVE A SEAT =============================-->
 <section class="reserve-block">
     <div class="container">
@@ -90,17 +91,22 @@
                     <div class="review-btn">
 
                         <?php if($this->session->userdata('id')) { ?>
+
                             <?php if($this->rating_model->rating_where($this->uri->segment('3'),$this->session->userdata('id'))) { ?>
+                            
                                 <a href="#" class="btn btn-outline-danger" onclick="allready_click()" >WRITE A REVIEW</a>                            
-                            <?php } else {?>
+                            <?php } else { ?>
+                            
                                 <a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal">WRITE A REVIEW</a>
+                            
                             <?php } ?>
-                        <?php } else{ ?> 
+
+                        <?php } else { ?> 
 
                             <a href="#" class="btn btn-outline-danger" onclick="guest_click()">WRITE A REVIEW</a>
                             
-
                         <?php } ?>
+
                         <span><?= $total_review ?> reviews</span>
                     </div>
                     <!-- <div class="reserve-btn">
