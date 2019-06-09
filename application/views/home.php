@@ -17,24 +17,122 @@
         <script type="text/javascript" src="<?= base_url() ?>home_file/js/main.js"></script>
 
         <script src="<?= base_url() ?>user_login/alert/sweetalert.min.js"></script>
-        
+        <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5cfd06e54351e9001264fdd0&product="sticky-share-buttons"></script>
         <script>
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
 </script>
+
+    
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5cfd12b0267b2e57853186fc/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
     </head>
     <body>
-        <div class="sticky-container">
+        <!-- <div class="sticky-container">
             <ul class="sticky">
-                <?php foreach (social_icons() as $key => $value) { ?>
-                    <a href="<?= $value['link'] ?>" target="_blank">  
-                        <li>
-                            <p><span style="font-size: 22px;margin: 12px;"><i class="fa <?= $value['class'] ?>"></i></span> <?= $value['title'] ?></p>
-                        </li>
-                    </a>
-                <?php } ?>
-                
+                <a href="https://wa.me/?text=urlencodedtext">
+                    
+                        <p>
+                            <span style="font-size: 22px;margin: 12px;">
+                                <i class="fa fa-whatsapp"></i>
+                            </span> Whatsapp
+                        </p>
+                       
+                </a>
             </ul>
+        </div> -->
+
+        <div class="overlay-2">
+          <div class="videoBox" id="videobox">
+            <a class="close"><i class="fa fa-close a-iii"></i></a>
+            <video autoplay controls src="<?= base_url() ?>SampleVideo.mp4"></video>
+          </div>
         </div>
+
+        <script>
+            $(function() {
+              // CLOSE AND REMOVE ON ESC
+              $(document).on('keyup',function(e) {
+                if (e.keyCode == 27) {
+                  $('.overlay-2').remove();
+                }
+              });
+              
+              // CLOSE AND REMOVE ON CLICK
+              $('body').on('click','.overlay-2, .close', function() {
+                $('.overlay-2').remove();
+              });
+              
+              // SO PLAYING WITH THE VIDEO CONTROLS DOES NOT
+              // CLOSE THE POPUP
+              $('body').on('click','.videoBox', function(e) {
+                e.stopPropagation();
+              });
+            });
+        </script>
+
+        <style type="text/css">
+            .overlay-2 {
+              width: 100%;
+              background: rgba(0,0,0,.75);
+              position: fixed;
+              left: 0;
+              top: 0;
+              bottom: 0;
+              right: 0;
+              z-index: 99999;
+            }
+            .videoBox {
+              position: fixed;
+              width: 90%;
+              left: 50%;
+              top:50%;
+              transform: translateY(-50%) translateX(-50%);
+              padding: 20px;
+              background: #fff;
+              text-align: center;
+              border-radius: 5px;
+            }
+            .videoBox video {
+              width: 100%;
+            }
+            .close {
+              width: 36px;
+              height: 36px;
+              position: absolute;
+              top: -35px;
+              right: -29px;
+              display: block;
+              opacity: .8;
+            }
+            .close:hover {
+              opacity: 1;
+            }
+            @media (min-width: 767px) {
+              .videoBox {
+                width: 50%;
+              }
+            }
+
+            .a-iii{
+                padding: 10px;
+                background: #656b6b;
+                border-radius: 50%;
+                color: #fff;
+            }
+        </style>
+
         <div id="wrapper">
             <div class="overlay"></div>
             <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
@@ -49,9 +147,13 @@
                     <li>
                         <a href="<?= base_url(); ?>">Home</a>
                     </li>
+
+                    <li>
+                        <a href="<?= base_url(); ?>pages/about">About</a>
+                    </li>
                     
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="<?= base_url(); ?>pages/contact">Contact</a>
                     </li>
                     
 
@@ -74,6 +176,8 @@
                         <li class="nav-item"><a class="nav-link" href="<?= base_url() ?>login">Login</a>
                         
                     <?php } ?>
+
+
                 </ul>
             </nav>
 
@@ -161,13 +265,14 @@
                               <?php  } ?>
                             <div class="col-md-1"></div>
                         </div>
+
                         <div class="col-md-12" style="margin-bottom: 20px; margin-top: 15px;">
                             <img class="center-block" src="<?= base_url() ?>image/logo.png" width="270" alt="DELHIBAZAR" id="logo">
                             <form method="post" action="<?= base_url() ?>welcome/list">
                                 <div class="row text-center">
                                     <div class="col-12 col-xs-6 col-lg-6 col-md-6 col-sm-12">
                                         <div class="input-group">
-                                                <input type="text" id="search" class="form-control" name="search" style="border-radius: 50px 0px 0px 50px; padding: 20px;">
+                                                <input type="text" id="search" class="form-control" placeholder="what are you looking for?" name="search" style="border-radius: 50px 0px 0px 50px; padding: 20px;">
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-primary" type="submit" style="border-radius: 0px 50px 50px 0px; padding: 10px 16px;"><i class="fa fa-search"></i></button>
                                                 </span>
@@ -215,14 +320,22 @@
                         <div class="container">
 
                             <ul class="nav navbar-nav navbar-left">
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="<?= base_url(); ?>pages/about">About</a></li>
+                                <li><a href="<?= base_url(); ?>pages/contact">Contact</a></li>
                             </ul>
 
                             <ul class="nav navbar-nav navbar-right">
 
-                                <li><a href="#">Privacy</a></li>
-                                <li><a href="#">Terms</a></li>
+                                <?php foreach (social_icons() as $key => $value) { ?>
+                                     
+                                    <li title="<?= $value['title'] ?>">
+                                        <a href="<?= $value['link'] ?>" target="_blank"> 
+                                            <i class="fa <?= $value['class'] ?>"></i>
+                                        </a>
+                                    </li>
+                                    
+                                <?php } ?>
+                                  <li style="padding-right: 50px;"></li>
 
                             </ul>
                         </div>

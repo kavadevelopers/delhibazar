@@ -75,7 +75,7 @@ function JSalert(){
                                 </li>
                                 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Contact</a>
+                                    <a class="nav-link" href="<?= base_url(); ?>pages/about">About</a>
                                 </li>
                                 
                                 <li class="nav-item dropdown">
@@ -96,6 +96,9 @@ function JSalert(){
                                         <?php } ?>
 
                                     </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?= base_url(); ?>pages/contact">Contact</a>
                                 </li>
 
 

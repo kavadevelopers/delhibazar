@@ -77,6 +77,7 @@ $CI->load->model('product_model');
 						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 							<ul class="nav navbar-nav menu_nav ml-auto">
 								<li class="nav-item"><a class="nav-link" href="<?= base_url() ?>">Home</a></li> 
+								<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>pages/about">About</a></li>
 								
 								<li class="nav-item submenu dropdown">
 									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
@@ -111,7 +112,7 @@ $CI->load->model('product_model');
 									</ul>
 								</li>
 
-								<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+								<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>pages/contact">Contact</a></li>
 
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
