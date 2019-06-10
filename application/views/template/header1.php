@@ -1,3 +1,8 @@
+<?php 
+    $CI=&get_instance();
+    $CI->load->model('product_model');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,6 +85,21 @@ function JSalert(){
                                     <a class="nav-link" href="<?= base_url(); ?>pages/about">About</a>
                                 </li>
                                 
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop
+                                    <span class="icon-arrow-down"></span>
+                                    </a>
+                                    
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        
+                                        <?php  foreach ($CI->product_model->get_category() as $key => $value) { ?>
+                                            
+                                            <a class="dropdown-item" href="<?= base_url('products/list/').$value['id'] ?>"><?= $value['name'] ?></a>
+                                    
+                                        <?php } ?>
+                                    </div>
+                                </li>
+
                                 <li class="nav-item dropdown">
                                     <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User
                                     <span class="icon-arrow-down"></span>
