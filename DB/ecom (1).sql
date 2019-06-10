@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 10, 2019 at 11:12 AM
+-- Generation Time: Jun 10, 2019 at 01:17 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -210,6 +210,7 @@ CREATE TABLE IF NOT EXISTS `setting` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` text NOT NULL,
   `support_email` text NOT NULL,
+  `contact_email` text NOT NULL,
   `mobile` text NOT NULL,
   `city` text NOT NULL,
   `address` text NOT NULL,
@@ -222,8 +223,8 @@ CREATE TABLE IF NOT EXISTS `setting` (
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`id`, `email`, `support_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`) VALUES
-(1, 'kavadev@gmail.com', 'support.kava@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown');
+INSERT INTO `setting` (`id`, `email`, `support_email`, `contact_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`) VALUES
+(1, 'kavadev@gmail.com', 'support.kava@gmail.com', 'nayanpatel807@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown');
 
 -- --------------------------------------------------------
 
