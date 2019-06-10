@@ -15,43 +15,19 @@
         <script src="<?= base_url() ?>home_file/jQueryUI/jquery-ui.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>home_file/js/main.js"></script>
+        <script type="text/javascript" src="<?= base_url() ?>home_file/kava.js"></script>
+        <link rel="stylesheet" href="<?= base_url() ?>home_file/kava.css">
 
         <script src="<?= base_url() ?>user_login/alert/sweetalert.min.js"></script>
-        <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5cfd06e54351e9001264fdd0&product="sticky-share-buttons"></script>
+        <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5cfd06e54351e9001264fdd0&product='sticky-share-buttons'"></script>
         <script>
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
 </script>
 
     
-    <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/5cfd12b0267b2e57853186fc/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
 
     </head>
     <body>
-        <!-- <div class="sticky-container">
-            <ul class="sticky">
-                <a href="https://wa.me/?text=urlencodedtext">
-                    
-                        <p>
-                            <span style="font-size: 22px;margin: 12px;">
-                                <i class="fa fa-whatsapp"></i>
-                            </span> Whatsapp
-                        </p>
-                       
-                </a>
-            </ul>
-        </div> -->
 
         <div class="overlay-2">
           <div class="videoBox" id="videobox">
@@ -59,79 +35,6 @@ s0.parentNode.insertBefore(s1,s0);
             <video autoplay controls src="<?= base_url() ?>SampleVideo.mp4"></video>
           </div>
         </div>
-
-        <script>
-            $(function() {
-              // CLOSE AND REMOVE ON ESC
-              $(document).on('keyup',function(e) {
-                if (e.keyCode == 27) {
-                  $('.overlay-2').remove();
-                }
-              });
-              
-              // CLOSE AND REMOVE ON CLICK
-              $('body').on('click','.overlay-2, .close', function() {
-                $('.overlay-2').remove();
-              });
-              
-              // SO PLAYING WITH THE VIDEO CONTROLS DOES NOT
-              // CLOSE THE POPUP
-              $('body').on('click','.videoBox', function(e) {
-                e.stopPropagation();
-              });
-            });
-        </script>
-
-        <style type="text/css">
-            .overlay-2 {
-              width: 100%;
-              background: rgba(0,0,0,.75);
-              position: fixed;
-              left: 0;
-              top: 0;
-              bottom: 0;
-              right: 0;
-              z-index: 99999;
-            }
-            .videoBox {
-              position: fixed;
-              width: 90%;
-              left: 50%;
-              top:50%;
-              transform: translateY(-50%) translateX(-50%);
-              padding: 20px;
-              background: #fff;
-              text-align: center;
-              border-radius: 5px;
-            }
-            .videoBox video {
-              width: 100%;
-            }
-            .close {
-              width: 36px;
-              height: 36px;
-              position: absolute;
-              top: -35px;
-              right: -29px;
-              display: block;
-              opacity: .8;
-            }
-            .close:hover {
-              opacity: 1;
-            }
-            @media (min-width: 767px) {
-              .videoBox {
-                width: 50%;
-              }
-            }
-
-            .a-iii{
-                padding: 10px;
-                background: #656b6b;
-                border-radius: 50%;
-                color: #fff;
-            }
-        </style>
 
         <div id="wrapper">
             <div class="overlay"></div>
@@ -222,9 +125,11 @@ s0.parentNode.insertBefore(s1,s0);
                               </script>
                             </div>
                         </div>
+
                         <div class="col-md-2 col-lg-2 text-center">
                             <a target="_blank" href="https://www.booked.net/weather/new-delhi-18038"><img src="https://w.bookcdn.com/weather/picture/26_18038_1_1_f1c411_250_f39c13_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=61221"  alt="booked.net"/></a>
                         </div>
+
                     </div>
                 </div>
                 <div class="row">
@@ -360,34 +265,6 @@ s0.parentNode.insertBefore(s1,s0);
 
         </div>
 
-            <script type="text/javascript">
-                startTime();
-                $(function(){
-                    $('form').submit(function(){
-                        if($.trim($('#search').val()) == '')
-                        {
-                            return false;
-                        }
-
-                    });
-
-                    $( "#search").autocomplete({
-                        source: "<?= base_url('welcome/shop_autocomplete/?');?>",
-                        select: function (event, ui) {
-                            $("#search").val(ui.item.label);
-                          }
-                    });
-
-                     $( "#search").addClass('search');
-
-                    $('iframe').load( function() {
-                        $('iframe').contents().find("head")
-                          .append($("<style type='text/css'>  #weatherWidget{ font-size: 12px !important; }  </style>"));
-                    });
-                });
-                
-            </script>
-
             <!--  HEADER 2 SESSION MESSAGE -->
             <script type="text/javascript">
                 <?php if(!empty($this->session->flashdata('error'))){ ?>
@@ -406,7 +283,51 @@ s0.parentNode.insertBefore(s1,s0);
                 <?php $this->session->set_flashdata('msg',''); } ?>
             </script>
             <!-- //  HEADER 2 SESSION MESSAGE -->
+            <script type="text/javascript">
+              $(function() {
+                  $(document).on('keyup',function(e) {
+                    if (e.keyCode == 27) {
+                        $('.overlay-2').remove();
+                    }
+                  });
+                            
+                  $('body').on('click','.overlay-2, .close', function() {
+                    $('.overlay-2').remove();
+                  });
+                            
+                  $('body').on('click','.videoBox', function(e) {
+                      e.stopPropagation();
+                  });
+              });
 
+
+
+
+              startTime();
+              $(function(){
+                  $('form').submit(function(){
+                      if($.trim($('#search').val()) == '')
+                      {
+                          return false;
+                      }
+
+                  });
+
+                  $( "#search").autocomplete({
+                      source: "<?= base_url('welcome/shop_autocomplete/?');?>",
+                      select: function (event, ui) {
+                          $("#search").val(ui.item.label);
+                        }
+                  });
+
+                   $( "#search").addClass('search');
+
+                  $('iframe').load( function() {
+                      $('iframe').contents().find("head")
+                        .append($("<style type='text/css'>  #weatherWidget{ font-size: 12px !important; }  </style>"));
+                  });
+              });
+            </script>
            
     </body>
 </html>
