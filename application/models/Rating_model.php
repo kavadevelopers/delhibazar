@@ -14,11 +14,22 @@ class Rating_model extends CI_Model
 		return $this->db->get_where('shop_rating',['shop_id' => $shop_id])->result_array();
 
 	}
+	
+	/**************************************************
+						Product Rating
+	***************************************************/
+	public function product_rating_where($hash,$user_id)
+	{
+		return $this->db->where('product_rating',['hash' => $hash,'user_id' => $user_id])->result_array();
+	}
+	/**************************************************
+						Product Rating
+	***************************************************/
+
 
 	public function review_list($shop_id)
 	{
 		return $this->db->get_where('shop_rating',['shop_id' => $shop_id])->result_array();
-
 	}
 
 	public function user_where($user_id)
