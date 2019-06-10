@@ -35,12 +35,12 @@
     </head>
     <body>
 
-        <div class="overlay-2">
+        <!-- <div class="overlay-2">
           <div class="videoBox" id="videobox">
             <a class="close"><i class="fa fa-close a-iii"></i></a>
             <video autoplay controls src="<?= base_url() ?>SampleVideo.mp4"></video>
           </div>
-        </div>
+        </div> -->
 
         <div id="wrapper">
             <div class="overlay"></div>
@@ -96,7 +96,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-2 col-lg-2">
-                            <p class="date_top_p">
+                            <p class="date_top_p" style="color: #000;">
                                 <span id="MydateDisplay"></span>
                             </p>
                         </div>
@@ -232,35 +232,49 @@
                     <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
                         <div class="container">
 
-                            <ul class="nav navbar-nav navbar-left">
-                                <li><a href="<?= base_url(); ?>pages/about">About</a></li>
-                                <li><a href="<?= base_url(); ?>pages/contact">Contact</a></li>
-                            </ul>
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                        
+                                    <ul class="nav navbar-nav navbar-left">
+                                        <li><a href="<?= base_url(); ?>pages/about">About</a></li>
+                                        <li><a href="<?= base_url(); ?>pages/contact">Contact</a></li>
+                                    </ul>
 
-                            <ul class="nav navbar-nav navbar-right">
-
-                                <!-- <?php foreach (social_icons() as $key => $value) { ?>
-                                     
-                                    <li title="<?= $value['title'] ?>">
-                                        <a href="<?= $value['link'] ?>" target="_blank"> 
-                                            <i class="fa <?= $value['class'] ?>"></i>
-                                        </a>
-                                    </li>
+                                </div>
+                                <div class="col-md-4" style="display: flex; justify-content: center;">
+                                    <ul class="nav navbar-nav">  
+                                        <?php foreach (social_icons() as $key => $value) { ?>
+                                             
+                                            <li title="<?= $value['title'] ?>">
+                                                <a href="<?= $value['link'] ?>" target="_blank"> 
+                                                    <i class="fa <?= $value['class'] ?>"></i>
+                                                </a>
+                                            </li>
+                                            
+                                        <?php } ?>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
                                     
-                                <?php } ?> -->
-                                  <li>
-                                      <a href="<?= base_url(); ?>pages/terms"> 
-                                        Terms
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="<?= base_url(); ?>pages/privacy"> 
-                                        Privacy
-                                      </a>
-                                  </li>
-                                  <li style="padding-right: 50px;"></li>
+                                    <ul class="nav navbar-nav navbar-right">
 
-                            </ul>
+                                          <li>
+                                              <a href="<?= base_url(); ?>pages/terms"> 
+                                                Terms
+                                              </a>
+                                          </li>
+                                          <li>
+                                              <a href="<?= base_url(); ?>pages/privacy"> 
+                                                Privacy
+                                              </a>
+                                          </li>
+                                          <li style="padding-right: 50px;"></li>
+
+                                    </ul>
+
+                                </div>
+                            </div>
+
                         </div>
                         <div class="container-fluid copyrights_div">
                             
