@@ -1,3 +1,9 @@
+<?php 
+    $CI=&get_instance();
+    $CI->load->model('product_model');
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -55,21 +61,23 @@
                         <a href="<?= base_url(); ?>pages/about">About</a>
                     </li>
                     
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop <span class="caret"></span></a>
+                        <ul class="dropdown-menu my-dropdown" role="menu">
+                            
+                            <?php  foreach ($CI->product_model->get_category() as $key => $value) { ?>
+
+                                <li><a href="<?= base_url('products/list/').$value['id'] ?>"><?= $value['name'] ?></a></li>
+
+                            <?php } ?>
+                            
+                        </ul>
+                    </li>
+                    
                     <li>
                         <a href="<?= base_url(); ?>pages/contact">Contact</a>
                     </li>
                     
-
-                    <!-- <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
-                        <ul class="dropdown-menu my-dropdown" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li> -->
                     <?php if($this->session->userdata('id')) { ?>
                         <li>
                             <a href="<?= base_url(); ?>welcome/logout">Logout</a>

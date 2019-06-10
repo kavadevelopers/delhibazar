@@ -60,7 +60,8 @@
 
 							<?php 
 								$product_image = $this->product_model->product_image_where($product[0]['id']);
-								if(!empty($product_image)) { ?> 
+
+								if($product_image) { ?> 
 
 								<div class="carousel-item active">
 									<img class="d-block w-100" src="<?= base_url() ?>admin/uploads/product/<?= $product_image[0]['image'] ?>" alt="First slide">
