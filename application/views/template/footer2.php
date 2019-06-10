@@ -13,16 +13,16 @@
                         <div class="single-footer-widget">
                             <h6 class="footer_title">Newsletter</h6>
                             <p>Stay updated with our latest trends</p>      
-                            <div id="mc_embed_signup">
-                                <form action="<?= base_url(); ?>welcome/save_newalatter" method="post" class="subscribe_form relative">
+                            <form action="<?= base_url(); ?>welcome/save_newalatter" id="news_form" method="post" class="subscribe_form relative">
+                                <div id="mc_embed_signup">
                                     <div class="input-group d-flex flex-row">
-                                        <input name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
+                                        <input name="email" id="news_email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" type="email">
                                         <input type="hidden" name="url" value="<?= base_url(uri_string()); ?>">
                                         <button type="submit" class="btn sub-btn"><span class="lnr lnr-arrow-right"></span></button>      
-                                    </div>                                  
-                                    <div class="mt-10 info"></div>
-                                </form>
-                            </div>
+                                    </div>       
+                                    <p style="margin-left: 10px; color: red; font-weight: bold;" id="err_newslatter"></p>                     
+                                </div>
+                            </form>
                         </div>
                     </div>
                    

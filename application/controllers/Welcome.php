@@ -66,7 +66,16 @@ class Welcome extends CI_Controller {
 
     public function save_newalatter()
     {
-        
+        if($this->db->get_where('newsletter',['email' => $this->input->post('email')])->result_array())
+        {
+            $this->session->set_flashdata('error', 'Already Subscribed');
+            redirect($this->input->post('url'));
+        }
+        else{
+            $this->db->insert('newsletter',['email' => $this->input->post('email'),'created_at' => date('Y-m-d H:i:s')]);
+            $this->session->set_flashdata('msg', 'Newsletter Subscribed Thankyou');
+            redirect($this->input->post('url'));
+        }
     }
 
 }
