@@ -85,6 +85,11 @@ class Products extends CI_Controller {
 		}
 	}
 
+	public function load_more()
+    {
+        echo json_encode($this->rating_model->product_rating_load_more($this->input->post('record'),$this->input->post('product_id')));
+    }
+
 	public function product_detail($hash)
 	{
 		if($hash)
@@ -94,6 +99,12 @@ class Products extends CI_Controller {
 				$data['_title']			= "DELHIBAZAR";
 				$data['product']		= $this->product_model->product_where($hash);
 				$data['product_review']	= $this->rating_model->product_where_hash($hash);
+				$data['avarage_rating'] = $this->rating_model->get_product_avarage_rating($hash);
+				$data['star_1']			= $this->rating_model->star_rating_1($hash);
+				$data['star_2']			= $this->rating_model->star_rating_2($hash);
+				$data['star_3']			= $this->rating_model->star_rating_3($hash);
+				$data['star_4']			= $this->rating_model->star_rating_4($hash);
+				$data['star_5']			= $this->rating_model->star_rating_5($hash);
 				$this->load->template1('product_category/product_detail',$data);
 			}
 			else

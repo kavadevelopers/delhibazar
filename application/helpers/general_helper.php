@@ -115,6 +115,33 @@ function get_setting()
 	return $CI->db->get_where('setting',['id' => '1'])->result_array()[0];
 }
 
+/*************************************************************
+					PRODUCT RATING
+*************************************************************/
+
+function product_rating_star($rating){
+	
+	if($rating > 0.5 && $rating <= 1.5)
+	{
+		return  '<i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>';
+	}
+	elseif($rating > 1.5 && $rating <= 2.5)
+	{
+		return  '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>';
+	}
+	elseif($rating > 2.5 && $rating <= 3.5)
+	{
+		return  '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>';
+	}
+	elseif($rating > 3.5 && $rating <= 4.5)
+	{
+		return  '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>';
+	}
+	elseif($rating > 4.5)
+	{
+		return  '<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>';
+	}
+}
 
 
 ?>

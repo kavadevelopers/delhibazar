@@ -8,7 +8,7 @@
 }
 .rate:not(:checked) > input {
     position:absolute;
-    top:-9999px;
+    display: none;
 }
 .rate:not(:checked) > label {
     float:right;
@@ -132,47 +132,58 @@
 							<div class="col-6">
 								<div class="box_total">
 									<h5>Overall</h5>
-									<h4>4.0</h4>
-									<h6>(0<?= count($product_review) ?> Reviews)</h6>
+									<h4><?= round($avarage_rating[0]['average'],1) ?></h4>
+									<h6>(<?php if(count($product_review) <= 9) { echo '0'.count($product_review); } else { echo count($product_review); } ?> Reviews)</h6>
 								</div>
 							</div>
 							<div class="col-6">
 								<div class="rating_list">
-									<h3>Based on 3 Reviews</h3>
+									<h3>Based on <?php if(count($product_review) <= 9) { echo '0'.count($product_review); } else { echo count($product_review); } ?> Reviews</h3>
 									<ul class="list">
-										<li><a href="#">5 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-										<li><a href="#">4 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-										<li><a href="#">3 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-										<li><a href="#">2 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-										<li><a href="#">1 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
+										<li><a href="#">5 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <?= $star_5; ?></a></li>
+										<li><a href="#">4 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i> <?= $star_4; ?></a></li>
+										<li><a href="#">3 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i> <?= $star_3; ?></a></li>
+										<li><a href="#">2 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i> <?= $star_2; ?></a></li>
+										<li><a href="#">1 Star <i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i> <?= $star_1; ?></a></li>
 									</ul>
 								</div>
 							</div>
 						</div>
 						<div class="review_list">
 
-							<?php foreach ($product_review as $key => $value) { 
-								$user = $this->rating_model->user_where($value['user_id'])[0];
-							?>
+							<?php if($product_review) {  ?>
 								
-								<div class="review_item">
-									<div class="media">
-										<div class="d-flex">
-											<img src="<?= base_url() ?>image/social_user_uploads/<?= $user['image'] ?>" alt="" style="height: 50px;width: 50px;border-radius: 25px;">
+								<?php foreach ($this->rating_model->product_review_list_with_limit($product_review[0]['hash'],5,0) as $key => $value) { 
+									$user = $this->rating_model->user_where($value['user_id'])[0];
+								?>
+									
+									<div class="review_item">
+										<div class="media">
+											<div class="d-flex">
+												<img src="<?= base_url() ?>image/social_user_uploads/<?= $user['image'] ?>" alt="" style="height: 50px;width: 50px;border-radius: 25px;">
+											</div>
+											<div class="media-body">
+												<h4><?= $user['first_name'].' '.$user['last_name'] ?></h4>
+												<?= product_rating_star($value['rating']) ?>
+											</div>
 										</div>
-										<div class="media-body">
-											<h4><?= $user['first_name'].' '.$user['last_name'] ?></h4>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-										</div>
+										<p><?= nl2br($value['review']) ?></p>
 									</div>
-									<p><?= nl2br($value['review']) ?></p>
-								</div>
 
+								<?php } ?>
+							<?php } else { ?>
+								<div class="review-item" style="border-radius: 8px;border: 1px solid #e8f0f2;box-shadow: 5px 10px #e8f0f2;">
+									<h5 class="text-center" style="padding: 20px;">No Review</h5>
+								</div>
 							<?php } ?>
+
+							<div id="other"></div>
+		                    <div class="customer-review_wrap text-center">
+		                        <?php if(count($product_review) > 5){ ?>
+		                            <button type="button" class="btn btn-sm btn-default" id="load_more" style="cursor: pointer;"><span id="but_main">Load more</span> <span id="load" style="display: none;"><i class='fa fa-circle-o-notch fa-spin'></i> Loding</span></button>
+		                        <?php } ?>
+		                    </div>
+
 						</div>
 							
 					</div>
@@ -249,6 +260,8 @@
 		</div>
 	</div>
 </section>
+
+<input type="hidden" id="load_more_record" value="5">
 <!--================End Product Description Area =================-->
 
 <script type="text/javascript">
@@ -297,5 +310,39 @@ $(document).ready(function(){
     });
 });
 
+
+// Load More Button 
+$('#load_more').click(function(e){
+    e.preventDefault();
+    var record  	=    $('#load_more_record').val();
+    var product_id  =    '<?= $product[0]['id'] ?>';
+    
+        $.ajax({
+            type : "post",
+            url : "<?= base_url() ?>products/load_more",
+            data : "record="+record+"&product_id="+product_id,
+            cache : false,
+            dataType: "json",
+            beforeSend: function() {
+                $('#load').show();
+                $('#but_main').hide();
+            },
+            success:function( out ){
+                setTimeout(function(){
+                    $('#other').append(out[1]);
+                    $('#load_more_record').val(parseFloat($('#load_more_record').val()) + parseFloat(out[0]));
+                    
+                    if($('#load_more_record').val() == out[2])
+                    {
+                        $('#load_more').fadeOut();
+                    }
+
+                    $('#load').hide();
+                    $('#but_main').show();
+
+                }, 2000);
+            }
+        });
+});
 
 </script>
