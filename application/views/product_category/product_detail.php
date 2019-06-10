@@ -60,12 +60,12 @@
 
 							<?php 
 								$product_image = $this->product_model->product_image_where($product[0]['id']);
-
 								if($product_image) { ?> 
 
 								<div class="carousel-item active">
 									<img class="d-block w-100" src="<?= base_url() ?>admin/uploads/product/<?= $product_image[0]['image'] ?>" alt="First slide">
 								</div>
+
 							<?php } else { ?>
 
 								<div class="carousel-item">
@@ -229,9 +229,31 @@
 										<textarea class="form-control" name="review" id="message" rows="1" placeholder="Review"></textarea>
 									</div>
 								</div>
-								<div class="col-md-12 text-right">
-									<button type="submit" value="submit" id="submit" class="btn submit_btn">Submit Now</button>
-								</div>
+
+								<?php if($this->session->userdata('id')) { ?>
+									
+									<?php if($this->rating_model->product_rating_where($this->uri->segment('3'),$this->session->userdata('id'))) { ?>
+										
+										<div class="col-md-12 text-right">
+											<button type="submit" value="submit" id="submit" onclick="allready_click()" class="btn submit_btn">Submit Now</button>
+										</div>
+
+									<?php } else { ?>
+										
+										<div class="col-md-12 text-right">
+											<button type="submit" value="submit" id="submit" onclick="allready_click()" class="btn submit_btn">Submit Now</button>
+										</div>
+
+									<?php } ?>
+
+																	
+								<?php } else { ?> 
+
+									<div class="col-md-12 text-right">
+										<button type="submit" value="submit" id="submit" onclick="guest_click()" class="btn submit_btn">Submit Now</button>
+									</div>
+
+								<?php } ?>
 							</form>
 						</div>
 					</div>
@@ -241,3 +263,16 @@
 	</div>
 </section>
 <!--================End Product Description Area =================-->
+
+<script type="text/javascript">
+
+function guest_click()
+{
+    swal("Cancelled", "Please Login First", "error");
+}
+
+function allready_click()
+{
+    swal("Cancelled", "Your rating is already submited", "error");   
+}
+</script>
