@@ -249,12 +249,12 @@
                                     
                                 <?php } ?> -->
                                   <li>
-                                      <a href="#" target="_blank"> 
+                                      <a href="<?= base_url(); ?>pages/terms"> 
                                         Terms
                                       </a>
                                   </li>
                                   <li>
-                                      <a href="#" target="_blank"> 
+                                      <a href="<?= base_url(); ?>pages/privacy"> 
                                         Privacy
                                       </a>
                                   </li>

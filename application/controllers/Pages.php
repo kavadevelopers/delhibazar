@@ -19,5 +19,17 @@ class Pages extends CI_Controller {
     	$this->load->template1('pages/about',$data);
     }
 
+    public function terms()
+    {
+        $data['_title']     = "DELHIBAZAR | Terms";
+        $this->load->template1('pages/terms',$data);
+    }
+
+    public function privacy()
+    {
+        $data['_title']     = "DELHIBAZAR | Privacy";
+        $this->load->template1('pages/privacy',$data);
+    }
+
 
 }

@@ -100,6 +100,14 @@ function JSalert(){
                                     </div>
                                 </li>
 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?= base_url(); ?>pages/terms">Terms</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?= base_url(); ?>pages/privacy">Privacy</a>
+                                </li>
+
                                 <li class="nav-item dropdown">
                                     <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User
                                     <span class="icon-arrow-down"></span>

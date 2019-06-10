@@ -95,6 +95,8 @@ $CI->load->model('product_model');
 									
 									</ul>
 								</li>
+								<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>pages/terms">Terms</a></li>
+								<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>pages/privacy">Privacy</a></li>
 
 								<li class="nav-item submenu dropdown">
 									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User</a>
