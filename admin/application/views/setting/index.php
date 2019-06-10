@@ -32,6 +32,14 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            <label>Contact Form Email <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('contact_email',$setting['contact_email']); ?>" type="text" name="contact_email" placeholder="Contact Form Email" >
+                                            <?php echo form_error('contact_email'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <label>Mobile <span class="astrick">*</span></label>
                                             <input class="form-control form-control-sm" value="<?php echo set_value('mobile',$setting['mobile']); ?>" type="text" name="mobile" placeholder="Mobile" >
                                             <?php echo form_error('mobile'); ?>

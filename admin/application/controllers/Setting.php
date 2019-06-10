@@ -22,6 +22,7 @@ class Setting extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="my_text_error">', '</div>');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|xss_clean|max_length[100]');
         $this->form_validation->set_rules('support_email', 'Support Email', 'required|trim|valid_email|xss_clean|max_length[100]');
+        $this->form_validation->set_rules('contact_email', 'Contact Form Email', 'required|trim|valid_email|xss_clean|max_length[100]');
         $this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|min_length[10]|max_length[20]');
         $this->form_validation->set_rules('city', 'City', 'trim|required|max_length[40]');
         $this->form_validation->set_rules('address', 'Address', 'trim|required|max_length[200]');
@@ -42,6 +43,7 @@ class Setting extends CI_Controller {
             $data = [
                         'email'             =>     $this->input->post('email'),
                         'support_email'     =>     $this->input->post('support_email'),
+                        'contact_email'     =>     $this->input->post('contact_email'),
                         'mobile'            =>     $this->input->post('mobile'),
                         'city'              =>     $this->input->post('city'),
                         'address'           =>     $this->input->post('address'),

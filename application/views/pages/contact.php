@@ -49,18 +49,18 @@
                         <form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+                                    <input type="text" class="form-control contact-design" id="name" name="name" placeholder="Enter your name">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address">
+                                    <input type="email" class="form-control contact-design" id="email" name="email" placeholder="Enter email address">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter Subject">
+                                    <input type="text" class="form-control contact-design" id="subject" name="subject" placeholder="Enter Subject">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <textarea class="form-control" name="message" id="message" rows="1" placeholder="Enter Message"></textarea>
+                                    <textarea class="form-control contact-design" name="message" id="message" rows="1" placeholder="Enter Message"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 text-right">
@@ -75,3 +75,11 @@
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
         <script src="<?= base_url() ?>/user_login/js/gmaps.min.js"></script>
+
+
+
+        <style type="text/css">
+            .contact-design:focus{
+                border: 1px solid #c5322d !important;
+            }
+        </style>
