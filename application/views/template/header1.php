@@ -40,6 +40,13 @@
     <script src="<?= base_url() ?>user_login/alert/sweetalert.min.js"></script>
     <script type="text/javascript" src="<?= base_url() ?>home_file/kava.js"></script>
     <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5cfd06e54351e9001264fdd0&product='sticky-share-buttons'"></script>
+
+    <style type="text/css">
+        body {
+            font-family: 'Nunito', sans-serif !important;
+        }
+    </style>
+
 </head>
 
 <body>

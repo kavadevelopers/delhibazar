@@ -63,4 +63,10 @@ class Welcome extends CI_Controller {
         $this->load->template('shop/index',$data);
 	}
 
+
+    public function save_newalatter()
+    {
+        
+    }
+
 }

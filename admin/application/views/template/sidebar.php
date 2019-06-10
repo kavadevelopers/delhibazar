@@ -60,9 +60,9 @@
                     
                     <?php if($this->session->userdata('id') == '1'){ ?>
 
-                        <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("category"))[1]; ?>">
+                        <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("category","social_icon","setting"))[1]; ?>">
                 
-                            <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("category"))[0]; ?>">
+                            <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("category","social_icon","setting"))[0]; ?>">
                                 <i class="nav-icon fa fa-cogs"></i>
                                 <p>Setting
                                     <i class="fa fa-angle-left right"></i>
@@ -70,6 +70,13 @@
                             </a>
                            
                             <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?= base_url('setting'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("setting"))[0]; ?>">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Site Setting</p>
+                                    </a>
+                                </li>
+
                                 <li class="nav-item">
                                     <a href="<?= base_url('category'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("category"))[0]; ?>">
                                         <i class="fa fa-circle-o nav-icon"></i>

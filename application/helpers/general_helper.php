@@ -108,4 +108,13 @@ function social_icons()
 	return $CI->db->get('social_icon')->result_array();
 
 }
+
+function get_setting()
+{
+	$CI=&get_instance();
+	return $CI->db->get_where('setting',['id' => '1'])->result_array()[0];
+}
+
+
+
 ?>

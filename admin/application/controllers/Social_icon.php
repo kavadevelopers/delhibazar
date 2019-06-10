@@ -13,7 +13,7 @@ class Social_icon extends CI_Controller {
     public function index()
     {
         $data['page_title'] = 'Manage Social Links';
-        $data['icon']		= $this->db->order_by('id','DESC')->get('social_icon')->result_array();
+        $data['icon']		= $this->db->order_by('id','ASC')->get('social_icon')->result_array();
         $this->load->template('social_icon/index',$data);
     }
 

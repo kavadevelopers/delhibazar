@@ -37,7 +37,7 @@
                         <div class="card">
                              <div class="card-footer">
                                 <div class="float-right">
-                                  <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Save</button>
+                                  <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Save</button>
                                 </div>
                             </div>
                         </div>

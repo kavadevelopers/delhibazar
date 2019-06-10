@@ -46,7 +46,7 @@ $CI->load->model('product_model');
         	<div class="top_menu row m0">
            		<div class="container">
 					<div class="float-left">
-						<a href="mailto:support@colorlib.com">delhibazar@.com</a>
+						<a href="mailto:<?= get_setting()['email'] ?>"><?= get_setting()['email'] ?></a>
 						<a href="#">Welcome to DELHIBAZAR</a>
 					</div>
 					<div class="float-right">
