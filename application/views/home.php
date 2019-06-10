@@ -326,7 +326,7 @@ s0.parentNode.insertBefore(s1,s0);
 
                             <ul class="nav navbar-nav navbar-right">
 
-                                <?php foreach (social_icons() as $key => $value) { ?>
+                                <!-- <?php foreach (social_icons() as $key => $value) { ?>
                                      
                                     <li title="<?= $value['title'] ?>">
                                         <a href="<?= $value['link'] ?>" target="_blank"> 
@@ -334,7 +334,17 @@ s0.parentNode.insertBefore(s1,s0);
                                         </a>
                                     </li>
                                     
-                                <?php } ?>
+                                <?php } ?> -->
+                                  <li>
+                                      <a href="#" target="_blank"> 
+                                        Terms
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="#" target="_blank"> 
+                                        Privacy
+                                      </a>
+                                  </li>
                                   <li style="padding-right: 50px;"></li>
 
                             </ul>
