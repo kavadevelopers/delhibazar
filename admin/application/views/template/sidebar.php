@@ -95,6 +95,41 @@
                             </a>
                         </li>
 
+                        <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("pages"))[1]; ?>">
+                
+                            <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("pages"))[0]; ?>">
+                                <i class="nav-icon fa fa-window-restore"></i>
+                                <p>Pages
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                           
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?= base_url('pages/about'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("about"))[0]; ?>">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>About</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="<?= base_url('pages/terms'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("terms"))[0]; ?>">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Terms</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="<?= base_url('pages/privacy'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("privacy"))[0]; ?>">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Privacy</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+
                     <?php } ?>
 
                     <li class="nav-item">
