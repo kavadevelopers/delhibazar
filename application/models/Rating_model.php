@@ -18,9 +18,14 @@ class Rating_model extends CI_Model
 	/**************************************************
 						Product Rating
 	***************************************************/
+	public function product_where_hash($hash)
+	{
+		return $this->db->get_where('product_rating',['hash' => $hash])->result_array();
+	}
+
 	public function product_rating_where($hash,$user_id)
 	{
-		return $this->db->where('product_rating',['hash' => $hash,'user_id' => $user_id])->result_array();
+		return $this->db->get_where('product_rating',['hash' => $hash,'user_id' => $user_id])->result_array();
 	}
 	/**************************************************
 						Product Rating

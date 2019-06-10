@@ -319,7 +319,7 @@ $(document).ready(function(){
             $('#subject_span').fadeOut();
         }
 
-        // Email Validation
+        // Review Validation
         if(review == ''){
             $('#review_span').html("Description is required");
             blank = 1;
@@ -329,7 +329,7 @@ $(document).ready(function(){
             $('#review_span').fadeOut();
         }
 
-        // Email Validation
+        // Rating Validation
         if(!rating){
             $('#rating_span').html("Rating is required");
             blank = 1;

@@ -6,6 +6,7 @@ class Products extends CI_Controller {
 	function __construct(){
         parent::__construct(); 
     	$this->load->model('product_model');   
+    	$this->load->model('rating_model');   
 
     	$this->load->library('pagination');
     	$this->perPage = 2;
@@ -90,8 +91,9 @@ class Products extends CI_Controller {
 		{
 			if($this->product_model->product_where($hash))
 			{
-				$data['_title']		= "DELHIBAZAR";
-				$data['product']	= $this->product_model->product_where($hash);
+				$data['_title']			= "DELHIBAZAR";
+				$data['product']		= $this->product_model->product_where($hash);
+				$data['product_review']	= $this->rating_model->product_where_hash($hash);
 				$this->load->template1('product_category/product_detail',$data);
 			}
 			else
@@ -109,6 +111,32 @@ class Products extends CI_Controller {
 	public function set_filter()
 	{
 		$this->session->set_userdata('filter',['min' => $_POST['min'],'max' => $_POST['max']]);
+	}
+
+
+	public function review()
+	{
+		
+
+		$data =	[
+					'product_id'=> $this->input->post('product_id'),
+					'hash'		=> $this->input->post('product_hash'),
+					'user_id'	=> $this->input->post('user_id'),
+					'rating'	=> $this->input->post('rating'),
+					'review'	=> ucfirst($this->input->post('review')),
+					'created_at'=> date('Y-m-d H:i:s')
+				]; 
+
+			if($this->db->insert('product_rating',$data))
+			{
+				$this->session->set_flashdata('msg', 'Thank you for rating');
+				redirect(base_url('products/product_detail/'.$this->input->post('product_hash')));
+			}
+			else
+			{
+				$this->session->set_flashdata('error', 'Something went wrong try again');
+				redirect(base_url('products/product_detail/'.$this->input->post('product_hash')));
+			}
 	}
 
 	

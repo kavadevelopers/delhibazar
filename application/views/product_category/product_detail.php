@@ -1,4 +1,6 @@
 <style type="text/css">
+.color-red{ color : red;font-weight:bold; }
+
 .rate {
     float: left;
     height: 46px;
@@ -131,7 +133,7 @@
 								<div class="box_total">
 									<h5>Overall</h5>
 									<h4>4.0</h4>
-									<h6>(03 Reviews)</h6>
+									<h6>(0<?= count($product_review) ?> Reviews)</h6>
 								</div>
 							</div>
 							<div class="col-6">
@@ -148,100 +150,78 @@
 							</div>
 						</div>
 						<div class="review_list">
-							<div class="review_item">
-								<div class="media">
-									<div class="d-flex">
-										<img src="img/product/single-product/review-1.png" alt="">
+
+							<?php foreach ($product_review as $key => $value) { 
+								$user = $this->rating_model->user_where($value['user_id'])[0];
+							?>
+								
+								<div class="review_item">
+									<div class="media">
+										<div class="d-flex">
+											<img src="<?= base_url() ?>image/social_user_uploads/<?= $user['image'] ?>" alt="" style="height: 50px;width: 50px;border-radius: 25px;">
+										</div>
+										<div class="media-body">
+											<h4><?= $user['first_name'].' '.$user['last_name'] ?></h4>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</div>
 									</div>
-									<div class="media-body">
-										<h4>Blake Ruiz</h4>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</div>
+									<p><?= nl2br($value['review']) ?></p>
 								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-							</div>
-							<div class="review_item">
-								<div class="media">
-									<div class="d-flex">
-										<img src="img/product/single-product/review-2.png" alt="">
-									</div>
-									<div class="media-body">
-										<h4>Blake Ruiz</h4>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</div>
-								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-							</div>
-							<div class="review_item">
-								<div class="media">
-									<div class="d-flex">
-										<img src="img/product/single-product/review-3.png" alt="">
-									</div>
-									<div class="media-body">
-										<h4>Blake Ruiz</h4>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</div>
-								</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-							</div>
+
+							<?php } ?>
 						</div>
+							
 					</div>
 					<div class="col-lg-6">
 						<div class="review_box">
 							
 							<h4>Add a Review</h4>
-							
-							<div class="rate">
-								<input type="radio" id="star5" name="rating" value="5" />
-		                        <label for="star5" title="rating">5 stars</label>
-		                        <input type="radio" id="star4" name="rating" value="4" />
-		                        <label for="star4" title="rating">4 stars</label>
-		                        <input type="radio" id="star3" name="rating" value="3" />
-		                        <label for="star3" title="rating">3 stars</label>
-		                        <input type="radio" id="star2" name="rating" value="2" />
-		                        <label for="star2" title="rating">2 stars</label>
-		                        <input type="radio" id="star1" name="rating" value="1" />
-		                        <label for="star1" title="rating">1 star</label>
-							</div><br>
-		                    <p class="color-red" id="rating_span"></p>
-
 							<p>Your Rating:</p>
 							<p>Outstanding</p>
 
 							
 
-							<form class="row contact_form" action="<?= base_url() ?>product/review" method="post" id="contactForm" novalidate="novalidate">
+							<form class="row contact_form" action="<?= base_url() ?>products/review" method="post" id="ReviewForm" novalidate="novalidate">
 								
+								<div class="rate">
+									<input type="radio" id="star5" name="rating" value="5" />
+			                        <label for="star5" title="rating">5 stars</label>
+			                        <input type="radio" id="star4" name="rating" value="4" />
+			                        <label for="star4" title="rating">4 stars</label>
+			                        <input type="radio" id="star3" name="rating" value="3" />
+			                        <label for="star3" title="rating">3 stars</label>
+			                        <input type="radio" id="star2" name="rating" value="2" />
+			                        <label for="star2" title="rating">2 stars</label>
+			                        <input type="radio" id="star1" name="rating" value="1" />
+			                        <label for="star1" title="rating">1 star</label>
+								</div>
 								<div class="col-md-12">
+		                    		<p class="color-red" id="rating_span"></p>
+		                    	</div>
+
+								<div class="col-md-12" style="padding-top: 15px;">
 									<div class="form-group">
-										<textarea class="form-control" name="review" id="message" rows="1" placeholder="Review"></textarea>
+										<textarea class="form-control" name="review" id="product_review" rows="1" placeholder="Review"></textarea>
+										<span class="color-red" id="review_span"></span>
 									</div>
 								</div>
 
 								<?php if($this->session->userdata('id')) { ?>
 									
 									<?php if($this->rating_model->product_rating_where($this->uri->segment('3'),$this->session->userdata('id'))) { ?>
-										
+
 										<div class="col-md-12 text-right">
-											<button type="submit" value="submit" id="submit" onclick="allready_click()" class="btn submit_btn">Submit Now</button>
+											<button type="submit" value="submit" id="submit" onclick="return allready_click()" class="btn submit_btn">Submit Now</button>
 										</div>
 
 									<?php } else { ?>
 										
 										<div class="col-md-12 text-right">
-											<button type="submit" value="submit" id="submit" onclick="allready_click()" class="btn submit_btn">Submit Now</button>
+											<button type="submit" value="submit" id="submit" class="btn submit_btn">Submit Now</button>
 										</div>
 
 									<?php } ?>
@@ -250,10 +230,17 @@
 								<?php } else { ?> 
 
 									<div class="col-md-12 text-right">
-										<button type="submit" value="submit" id="submit" onclick="guest_click()" class="btn submit_btn">Submit Now</button>
+										<button type="submit" value="submit" id="submit" onclick="return guest_click()" class="btn submit_btn">Submit Now</button>
 									</div>
 
 								<?php } ?>
+
+								<input type="hidden" name="product_hash" value="<?= $this->uri->segment('3') ?>">
+
+
+								<input type="hidden" name="product_id" value="<?= $this->product_model->product_where($this->uri->segment('3'))[0]['id'] ?>">
+								<input type="hidden" name="user_id" value="<?= $this->session->userdata('id') ?>">
+
 							</form>
 						</div>
 					</div>
@@ -269,10 +256,46 @@
 function guest_click()
 {
     swal("Cancelled", "Please Login First", "error");
+    return false;
 }
 
 function allready_click()
 {
     swal("Cancelled", "Your rating is already submited", "error");   
+    return false;
 }
+
+$(document).ready(function(){
+    $("#ReviewForm").submit(function(){
+    	var review    = $('#product_review').val();
+        var rating    = $("input[name='rating']:checked").val();
+        var blank     = 0;
+        
+        // Review Validation
+        if(review == ''){
+            $('#review_span').html("Review is required");
+            blank = 1;
+            $('#review_span').fadeIn();
+        }
+        else{
+            $('#review_span').fadeOut();
+        }
+
+        // Rating Validation
+        if(!rating){
+            $('#rating_span').html("Rating is required");
+            blank = 1;
+            $('#rating_span').fadeIn();
+        }
+        else{
+            $('#rating_span').fadeOut();
+        }
+
+        if(blank == 1){
+            return false;
+        }
+    });
+});
+
+
 </script>
