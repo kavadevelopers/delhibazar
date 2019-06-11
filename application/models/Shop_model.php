@@ -77,20 +77,17 @@ class Shop_model extends CI_Model
 	}
 
 
-	public function get_add_top()
+	public function hash_dynamic_add($position)
 	{	
-		$date = date('Y-m-d');
+		
 				$this->db->order_by('id','asc');
-				$this->db->limit(5, 0);
-				$this->db->where('exp_date <=',$date);
+				$this->db->where('exp_date <=',date('Y-m-d'));
+				$this->db->where('position',$position);
+				$this->db->where('page','Home');
 		return 	$this->db->get('advertising')->result_array();
 	}
 
 
-	public function get_add_bottom()
-	{	
-				$this->db->order_by('id','asc');
-				$this->db->limit(5, 5);
-		return 	$this->db->get('advertising')->result_array();
-	}
+
+
 }	

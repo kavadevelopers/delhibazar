@@ -11,9 +11,7 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-        $data['top_add']    = $this->shop_model->get_add_top();
-        $data['bottom_add'] = $this->shop_model->get_add_bottom();
-		$this->load->view('home',$data);
+		$this->load->view('home');
 	}
 
     public function indexa()
