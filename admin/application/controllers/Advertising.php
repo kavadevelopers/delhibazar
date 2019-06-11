@@ -38,6 +38,8 @@ class Advertising extends CI_Controller {
         $this->form_validation->set_rules('address', 'Address', 'trim|required');
         $this->form_validation->set_rules('web_link', 'Website Link', 'trim|required|callback_valid_url');
         $this->form_validation->set_rules('plan_name', 'Plan', 'required|trim');
+        $this->form_validation->set_rules('page', 'Page', 'required|trim');
+        $this->form_validation->set_rules('position', 'Position', 'required|trim');
 
 
         if ($this->form_validation->run() == FALSE)
@@ -60,6 +62,8 @@ class Advertising extends CI_Controller {
                         'link'                  =>  $this->input->post('web_link'),
                         'plan_name'          	=>  $this->input->post('plan_name'),
                         'exp_date'              =>  $exp_date,
+                        'page'                  =>  $this->input->post('page'),
+                        'position'              =>  $this->input->post('position'),
                         'created_by'     		=>  $this->session->userdata('id'),
                         'updated_by'     		=>  $this->session->userdata('id'),
                         'created_at'     		=>  date('Y-m-d H:i:s'),

@@ -99,6 +99,52 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Page<span class="astrick">*</span></label>
+                                            <select class="form-control form-control-sm select2" name="page" id="page">
+                                                
+                                                <option value="">-- Select Page --</option>
+                                                <option value="Home" <?php if('Home' == set_value('page')){ echo "selected"; } ?>>Home</option>
+                                                <option value="Listing" <?php if('Listing' == set_value('page')){ echo "selected"; } ?>>Listing</option>
+                                                <!-- <option value="Business Detail" <?php if('Business Detail' == set_value('page')){ echo "selected"; } ?>>Business Detail</option> -->
+                                            </select>
+                                            <?= form_error('page'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Position<span class="astrick">*</span></label>
+                                            <select class="form-control form-control-sm" name="position" id="positions">
+                                                
+                                                <?php if(set_value('page') == 'Home'){ ?>
+                                                    <option value="">-- Select Position --</option>
+                                                    <?php for($i = 1;$i <= 10;$i++){ ?>
+
+                                                        <option value="<?= $i ?>" <?php if($i == set_value('position')){ echo "selected"; } ?>>#<?= $i ?></option>
+
+                                                    <?php } ?>
+
+                                                <?php }else if(set_value('page') == 'Listing'){ ?>
+                                                    <option value="">-- Select Position --</option>
+                                                    <?php for($i = 1;$i <= 3;$i++){ ?>
+
+                                                        <option value="<?= $i ?>" <?php if($i == set_value('position')){ echo "selected"; } ?>>#<?= $i ?></option>
+
+                                                    <?php } ?>
+
+                                                <?php }else{ ?>
+
+                                                        <option value="">-- Select Position --</option>
+
+                                                <?php }?>
+
+                                            </select>
+                                            <?= form_error('position'); ?>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -115,3 +161,28 @@
         </div>
     </section>
 
+    <script type="text/javascript">
+        $(function(){
+            $('#page').change(function(){
+                if($(this).val()  == 'Home'){
+                    $('#positions').html('');
+                    var str = '<option value="">-- Select Position --</option>';
+                    for(var i = 1;i <= 10;i++){
+                        str += '<option value="'+i+'">#'+i+'</option>';
+                    }
+                    $('#positions').html(str);
+                }
+                else if($(this).val()  == 'Listing'){
+                    $('#positions').html('');
+                    var str = '<option value="">-- Select Position --</option>';
+                    for(var i = 1;i <= 3;i++){
+                        str += '<option value="'+i+'">#'+i+'</option>';
+                    }
+                    $('#positions').html(str);
+                }
+                else{
+                    $('#positions').html('<option value="">-- Select Position --</option>');
+                }
+            })
+        })
+    </script>

@@ -81,13 +81,20 @@ class Shop_model extends CI_Model
 	{	
 		
 				$this->db->order_by('id','asc');
-				$this->db->where('exp_date <=',date('Y-m-d'));
+				$this->db->where('exp_date >=',date('Y-m-d'));
 				$this->db->where('position',$position);
 				$this->db->where('page','Home');
 		return 	$this->db->get('advertising')->result_array();
 	}
 
-
+	public function listing_ad($position)
+	{
+				$this->db->order_by('id','asc');
+				$this->db->where('exp_date >=',date('Y-m-d'));
+				$this->db->where('position',$position);
+				$this->db->where('page','Listing');
+		return 	$this->db->get('advertising')->result_array();	
+	}
 
 
 }	

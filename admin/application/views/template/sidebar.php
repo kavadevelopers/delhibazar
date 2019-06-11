@@ -96,9 +96,9 @@
                         </li>
 
 
-                        <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("package"))[1]; ?>">
+                        <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("packages"))[1]; ?>">
                 
-                            <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("package"))[0]; ?>">
+                            <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("packages"))[0]; ?>">
                                 <i class="nav-icon fa fa-th-large"></i>
                                 <p>Package
                                     <i class="fa fa-angle-left right"></i>
@@ -108,14 +108,14 @@
                             <ul class="nav nav-treeview">
                                 
                                 <li class="nav-item">
-                                    <a href="<?= base_url('packages/ad_index'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("ad"))[0]; ?>">
+                                    <a href="<?= base_url('packages/ad_index'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("ad_index","ad"))[0]; ?>">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Ads Packages</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="<?= base_url('packages/shop_index'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("shop"))[0]; ?>">
+                                    <a href="<?= base_url('packages/shop_index'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("shop_index","shop"))[0]; ?>">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Shop Packages</p>
                                     </a>

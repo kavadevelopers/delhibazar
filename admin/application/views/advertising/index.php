@@ -29,6 +29,8 @@
                                         <th>Mobile</th>
                                         <th>Address</th>
                                         <th>Link</th>
+                                        <th>Page</th>
+                                        <th>Position</th>
                                         <th>Expiry Date</th>
                                         <th class="text-center" id="action">Action</th>
                                     </tr>
@@ -42,6 +44,8 @@
                                             <td><?= $value['mobile'] ?></td>
                                             <td><?= nl2br($value['address']); ?></td>
                                             <td><?= nl2br($value['link']); ?></td>
+                                            <td><?= $value['page'] ?></td>
+                                            <td><?= $value['position'] ?></td>
                                             <td><?=  date('d-m-Y',strtotime($value['exp_date'])) ?></td>
                                             <td class="text-center">
 
@@ -72,7 +76,7 @@
             "columnDefs": [
                 
                 
-                    { "orderable": false, "targets": [5] }
+                    { "orderable": false, "targets": [8] }
                     
                 
             ],
@@ -83,21 +87,21 @@
                     extend: 'print',
                     title: '<?=$this->config->config["projectTitle"]?> Advertising',
                     exportOptions: {
-                        columns: [0,1,2,3,4]
+                        columns: [0,1,2,3,4,5,6,7]
                     }
                 },
                 { 
                     extend: 'pdf',
                     title: '<?=$this->config->config["projectTitle"]?> Advertising',
                     exportOptions: {
-                        columns: [0,1,2,3,4]
+                        columns: [0,1,2,3,4,5,6,7]
                     }
                 },
                 { 
                     extend: 'excel',
                     title: '<?=$this->config->config["projectTitle"]?> Advertising',
                     exportOptions: {
-                        columns: [0,1,2,3,4]
+                        columns: [0,1,2,3,4,5,6,7]
                     }
                 }
             ]
