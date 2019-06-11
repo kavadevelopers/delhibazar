@@ -16,6 +16,13 @@ class Welcome extends CI_Controller {
 		$this->load->view('home',$data);
 	}
 
+    public function indexa()
+    {
+        $data['top_add']    = $this->shop_model->get_add_top();
+        $data['bottom_add'] = $this->shop_model->get_add_bottom();
+        $this->load->view('nhome',$data);
+    }
+
     public function logout()
     {
         $user_data = $this->session->all_userdata();
