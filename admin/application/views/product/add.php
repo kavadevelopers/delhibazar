@@ -73,7 +73,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Image <span class="astrick">*</span></label>
-                                            <input type="file" class="form-control form-control-sm" name="image" placeholder="Image" value="" required>
+                                            <input type="file" class="form-control form-control-sm" name="image" placeholder="Image" value="">
                                         </div>
                                     </div>
                                     

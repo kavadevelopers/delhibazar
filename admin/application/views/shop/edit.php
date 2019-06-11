@@ -149,19 +149,11 @@
                                                 <img src="<?= base_url() ?>uploads/shop/<?= $shop[0]['photo'] ?>" height="150px" width="150px" style="margin-bottom: 5px;"/>
                                             <?php } ?>
 
-                                            <input class="form-control form-control-sm" value="<?= set_value('photo',$shop[0]['photo']); ?>" type="file" name="photo" placeholder="Photo" autocomplete="off" required>
+                                            <input class="form-control form-control-sm" value="<?= set_value('photo',$shop[0]['photo']); ?>" type="file" name="photo" placeholder="Photo" autocomplete="off" >
                                             <?= form_error('photo'); ?>
                                         </div>
                                     </div> 
                                     
-                                    <!-- <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Video</label>
-                                            <input class="form-control form-control-sm" value="<?= set_value('video'); ?>" type="file" name="video" placeholder="Video" autocomplete="off">
-                                            <?= form_error('video'); ?>
-                                        </div>
-                                    </div>  -->
-
                                     <input type="hidden" name="id" value="<?= $shop[0]['id'] ?>">
                                     
                                 </div>
