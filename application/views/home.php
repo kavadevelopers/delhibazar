@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="<?= base_url() ?>home_file/kava.css">
 
         <script src="<?= base_url() ?>user_login/alert/sweetalert.min.js"></script>
-        <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5cfd06e54351e9001264fdd0&product='sticky-share-buttons'"></script>
+        <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5cfd1d9d4351e9001264fde8&product=sticky-share-buttons"></script>
         <script>
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
 </script>
@@ -58,24 +58,11 @@
                     </li>
 
                     <li>
-                        <a href="<?= base_url(); ?>pages/about">About</a>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop <span class="caret"></span></a>
-                        <ul class="dropdown-menu my-dropdown" role="menu">
-                            
-                            <?php  foreach ($CI->product_model->get_category() as $key => $value) { ?>
-
-                                <li><a href="<?= base_url('products/list/').$value['id'] ?>"><?= $value['name'] ?></a></li>
-
-                            <?php } ?>
-                            
-                        </ul>
+                        <a href="<?= base_url(); ?>#">Shopping</a>
                     </li>
                     
                     <li>
-                        <a href="<?= base_url(); ?>pages/contact">Contact</a>
+                        <a href="<?= base_url(); ?>#">Blog</a>
                     </li>
                     
                     <?php if($this->session->userdata('id')) { ?>
@@ -95,47 +82,57 @@
             <div class="container-fluid" style="margin-top: 5px;">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="col-md-2 col-lg-2">
-                            <p class="date_top_p" style="color: #000;">
-                                <span id="MydateDisplay"></span>
-                            </p>
+                        <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12">
+                            <!-- clock widget start -->
+<script type="text/javascript"> var css_file=document.createElement("link"); css_file.setAttribute("rel","stylesheet"); css_file.setAttribute("type","text/css"); css_file.setAttribute("href","//s.bookcdn.com//css/cl/bw-cl-120x45.css"); document.getElementsByTagName("head")[0].appendChild(css_file); </script> <div id="tw_5_2056819673"><div style="width:130px; height:45px; margin: 0 auto;"><a href="https://booked.net/time/new-delhi-18038">New Delhi</a><br/></div></div> <script type="text/javascript"> function setWidgetData_2056819673(data){ if(typeof(data) != 'undefined' && data.results.length > 0) { for(var i = 0; i < data.results.length; ++i) { var objMainBlock = ''; var params = data.results[i]; objMainBlock = document.getElementById('tw_'+params.widget_type+'_'+params.widget_id); if(objMainBlock !== null) objMainBlock.innerHTML = params.html_code; } } } var clock_timer_2056819673 = -1; </script> <script type="text/javascript" charset="UTF-8" src="https://widgets.booked.net/time/info?ver=2&domid=209&type=5&id=2056819673&scode=2&city_id=18038&wlangid=1&mode=1&details=0&background=35475e&color=ffffff&add_background=a0a1a1&add_color=ffffff&head_color=ffffff&border=2&transparent=0"></script>
+<!-- clock widget end -->
+
                         </div>
-                        <div class="col-md-8 col-lg-8">
+                        <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12">
                             <div class="tradingview-widget-container">
                               <div class="tradingview-widget-container__widget"></div>
                               <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text"></span></a></div>
-                              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
-                              {
-                              "symbols": [
-                                {
-                                  "title": "S&P 500",
-                                  "proName": "OANDA:SPX500USD"
-                                },
-                                {
-                                  "title": "Shanghai Composite",
-                                  "proName": "INDEX:XLY0"
-                                },
-                                {
-                                  "title": "EUR/USD",
-                                  "proName": "FX_IDC:EURUSD"
-                                },
-                                {
-                                  "title": "BTC/USD",
-                                  "proName": "BITSTAMP:BTCUSD"
-                                },
-                                {
-                                  "title": "ETH/USD",
-                                  "proName": "BITSTAMP:ETHUSD"
-                                }
-                              ],
-                              "locale": "en"
-                            }
-                              </script>
-                            </div>
+                              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+  "symbols": [
+    {
+      "description": "USD/INR",
+      "proName": "OANDA:USDINR"
+    },
+    {
+      "description": "EUR/INR",
+      "proName": "FX_IDC:EURINR"
+    },
+    {
+      "description": "GOLD/INR",
+      "proName": "FX_IDC:XAUINR"
+    },
+    {
+      "description": "BSE",
+      "proName": "NSE:BSE"
+    },
+    {
+      "description": "NIFTY",
+      "proName": "NSE:NIFTY"
+    },
+    {
+      "description": "RELIANCE",
+      "proName": "NSE:RELIANCE"
+    }
+  ],
+  "colorTheme": "dark",
+  "isTransparent": false,
+  "displayMode": "adaptive",
+  "locale": "in"
+}
+  </script>
+</div>
                         </div>
 
-                        <div class="col-md-2 col-lg-2 text-center">
-                            <a target="_blank" href="https://www.booked.net/weather/new-delhi-18038"><img src="https://w.bookcdn.com/weather/picture/26_18038_1_1_f1c411_250_f39c13_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=61221"  alt="booked.net"/></a>
+                        <div class="col-md-2 col-lg-2 text-center col-xs-12 col-sm-12">
+                        <!-- weather widget start -->
+                        <a target="_blank" href="https://www.booked.net/weather/new-delhi-18038"><img src="https://w.bookcdn.com/weather/picture/26_18038_1_1_34495e_250_2c3e50_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=2&domid=w209&anc_id=65336"  alt="booked.net"/></a>
+                        <!-- weather widget end -->
                         </div>
 
                     </div>
