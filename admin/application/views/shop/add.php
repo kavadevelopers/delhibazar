@@ -148,15 +148,6 @@
                                         </div>
                                     </div>
                                      
-                                    <!-- <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Video</label>
-                                            <input class="form-control form-control-sm" value="<?= set_value('video'); ?>" type="file" name="video" placeholder="Video" autocomplete="off">
-                                            <?= form_error('video'); ?>
-                                        </div>
-                                    </div>  -->
-
-
                                 </div>
                             </div>
                             <div class="card-footer">
