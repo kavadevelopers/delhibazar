@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 10, 2019 at 01:17 PM
+-- Generation Time: Jun 11, 2019 at 10:48 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -37,29 +37,55 @@ CREATE TABLE IF NOT EXISTS `advertising` (
   `address` text NOT NULL,
   `link` text NOT NULL,
   `photo` varchar(250) NOT NULL DEFAULT 'no-image.png',
+  `plan_name` varchar(250) DEFAULT NULL,
+  `exp_date` date DEFAULT NULL COMMENT 'Expiry Date',
   `created_by` varchar(50) NOT NULL,
   `updated_by` varchar(50) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `df` varchar(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `advertising`
 --
 
-INSERT INTO `advertising` (`id`, `business_name`, `intro`, `mobile`, `address`, `link`, `photo`, `created_by`, `updated_by`, `created_at`, `updated_at`, `df`) VALUES
-(4, 'kava dev3', 'hello there', '9898375981', 'ahmedabad', '#', 'no-image.png', '1', '1', '2019-06-03 09:57:55', '2019-06-03 09:57:55', '0'),
-(2, 'Kava Developers1', 'Hello', '9898375981', 'Ahmedabad', '#', '11770532fc0180f51df2e644898098c4.png', '1', '1', '2019-06-03 08:51:30', '2019-06-03 08:51:30', '0'),
-(3, 'Kava Dev2', 'hello', '9898375981', 'Ahmedabad', 'https://www.kavadevelopers.com', '6c0d59b13327e401e4a15d8d849693a5.png', '1', '1', '2019-06-03 08:53:13', '2019-06-03 08:53:13', '0'),
-(5, 'kava Dev4', 'hello', '9898375981', 'ahmedabad', '#', 'no-image.png', '1', '1', '2019-06-03 09:58:12', '2019-06-03 09:58:12', '0'),
-(6, 'kava dev5', 'hello', '9898375981', 'ahmedabad', '#', 'no-image.png', '1', '1', '2019-06-03 09:58:28', '2019-06-03 09:58:28', '0'),
-(7, 'kava defv6', 'hello', '9898375981', 'ahmedabad', '#', 'no-image.png', '1', '1', '2019-06-03 09:59:02', '2019-06-03 09:59:02', '0'),
-(8, 'kava dev7', 'hello', '9898375981', 'ahmedabad', '#', 'no-image.png', '1', '1', '2019-06-03 09:59:27', '2019-06-03 09:59:27', '0'),
-(9, 'kava dev8', 'hello', '9898375981', 'ahmedabad', '#', 'no-image.png', '1', '1', '2019-06-03 09:59:44', '2019-06-03 09:59:44', '0'),
-(10, 'kava dev9', 'helo', '9898375981', 'ahmedabad', '#', 'no-image.png', '1', '1', '2019-06-03 10:00:03', '2019-06-03 10:00:03', '0'),
-(11, 'kava dev10', 'hellpo', '9898375981', 'ahmedabads', '#', 'no-image.png', '1', '1', '2019-06-03 10:00:24', '2019-06-03 10:00:24', '0');
+INSERT INTO `advertising` (`id`, `business_name`, `intro`, `mobile`, `address`, `link`, `photo`, `plan_name`, `exp_date`, `created_by`, `updated_by`, `created_at`, `updated_at`, `df`) VALUES
+(4, 'kava dev3', 'hello there', '9898375981', 'ahmedabad', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 09:57:55', '2019-06-03 09:57:55', '0'),
+(2, 'Kava Developers1', 'Hello', '9898375981', 'Ahmedabad', '#', '11770532fc0180f51df2e644898098c4.png', NULL, '2019-07-10', '1', '1', '2019-06-03 08:51:30', '2019-06-03 08:51:30', '0'),
+(3, 'Kava Dev2', 'hello', '9898375981', 'Ahmedabad', 'https://www.kavadevelopers.com', '6c0d59b13327e401e4a15d8d849693a5.png', NULL, '2019-07-11', '1', '1', '2019-06-03 08:53:13', '2019-06-03 08:53:13', '0'),
+(5, 'kava Dev4', 'hello', '9898375981', 'ahmedabad', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 09:58:12', '2019-06-03 09:58:12', '0'),
+(6, 'kava dev5', 'hello', '9898375981', 'ahmedabad', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 09:58:28', '2019-06-03 09:58:28', '0'),
+(7, 'kava defv6', 'hello', '9898375981', 'ahmedabad', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 09:59:02', '2019-06-03 09:59:02', '0'),
+(8, 'kava dev7', 'hello', '9898375981', 'ahmedabad', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 09:59:27', '2019-06-03 09:59:27', '0'),
+(9, 'kava dev8', 'hello', '9898375981', 'ahmedabad', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 09:59:44', '2019-06-03 09:59:44', '0'),
+(10, 'kava dev9', 'helo', '9898375981', 'ahmedabad', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 10:00:03', '2019-06-03 10:00:03', '0'),
+(11, 'kava dev10', 'hellpo', '9898375981', 'ahmedabads', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 10:00:24', '2019-06-03 10:00:24', '0'),
+(12, 'asdasd a', 'as das d', '1234567890', 'sadas dasd asd', 'https://www.google.com', 'no-image.png', '2', '2019-07-11', '1', '1', '2019-06-11 14:42:03', '2019-06-11 14:42:03', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ad_package`
+--
+
+DROP TABLE IF EXISTS `ad_package`;
+CREATE TABLE IF NOT EXISTS `ad_package` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `plan` varchar(250) NOT NULL,
+  `price` varchar(250) NOT NULL,
+  `duration` varchar(250) NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ad_package`
+--
+
+INSERT INTO `ad_package` (`id`, `plan`, `price`, `duration`, `created_at`) VALUES
+(2, 'silver', '4000.00', '30', '2019-06-11 14:36:52');
 
 -- --------------------------------------------------------
 
@@ -250,23 +276,50 @@ CREATE TABLE IF NOT EXISTS `shop` (
   `info` longtext NOT NULL COMMENT 'Information',
   `detail_desc` longtext NOT NULL,
   `category` longtext NOT NULL,
+  `shop_plan` varchar(250) DEFAULT NULL COMMENT 'shop package id',
+  `exp_date` date DEFAULT NULL COMMENT 'Shop Expiry Date',
   `created_by` varchar(250) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shop`
 --
 
-INSERT INTO `shop` (`id`, `shop_name`, `owner_name`, `employee_name`, `mobile`, `wp_no`, `address`, `landmark`, `email`, `hour_operation`, `pro_or_servi`, `payment_mode`, `photo`, `info`, `detail_desc`, `category`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'asdasd', 'asdasd', 'asdasd l', '34234234234', '34234234234', 'asdasdasd asdasd asd asd This page didn\'t load Google Maps correctly. See the JavaScript console for technical details.', 'asdasd asdasdasda', 'asdas@gmail.com', '1212', 'sda adsd', 'aasdasd', '9e36c6a6b346ce680fa0c0b850ec714c.png', 'sadasdads', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', '1', '2019-05-29 18:07:25', NULL, '2019-05-29 18:55:49'),
-(2, 'kava developers', 'kava', 'jay', '9099998171', '9099998171', 'adasd asdasdasd asda s dasd', 'asdasd asda dasd', 'asdasd@gmail.com', '45', 'web developement,software,seo,smo,android,ios,desktop', 'dsasdasd', '148bc37cadf9d8170700c4122bbbd70b.jpg', 'asdasdasd', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium\r\n\r\n, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the \r\n\r\nScrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', 'It Developement', '1', '2019-05-29 18:20:48', '2019-06-05 11:41:51', NULL),
-(4, 'Gotham', 'Bruce Wayne', 'Lucius Fox', '2222222222', '2222555555', 'Gotham City', 'Wayne Towe', 'dsgsdkgjh@gmail.com', '9-5', 'application and', 'CASH', '9e36c6a6b346ce680fa0c0b850ec714c.png', 'DSMNB GKD GJHDKFGHDKF GHKD', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', '1', '2019-05-30 16:30:07', NULL, NULL),
-(5, 'food Junction ***', 'coca cola', 'jguar', '7897897822', '4564585685', 'jkl sda dasdasdsssssssssssssssssssssss', 'Darpan Six Road, Ahemdabad', '108@gmail.com', '8 to 8', '//////////////////////////////////////////////////////////', 'Paytam  6363', '9e36c6a6b346ce680fa0c0b850ec714c.png', '[][][][]][asdasssssssssssssssssssssssssssssssssss', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst\r\n                                many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', '1', '2019-05-31 14:59:50', '2019-05-31 15:39:00', NULL),
-(6, 'lenovo', 'zoo', 'park', '1234564454', '01212121211', 'sdas dasd asda', 'asd asdasd asda sd', '712@gmail.com', '08:00  AM to 9:00 PM', 'asdasdas sad asdas dasd', 'Cash', 'aa5891bf0c76a6ddafeed87830ada232.jpg', 'asd dasd asd as', 'asdasd', 'Electronic, mouse, keyboard, laptop, mobile,all items', '1', '2019-06-05 10:34:13', '2019-06-05 10:36:49', NULL);
+INSERT INTO `shop` (`id`, `shop_name`, `owner_name`, `employee_name`, `mobile`, `wp_no`, `address`, `landmark`, `email`, `hour_operation`, `pro_or_servi`, `payment_mode`, `photo`, `info`, `detail_desc`, `category`, `shop_plan`, `exp_date`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'asdasd', 'asdasd', 'asdasd l', '34234234234', '34234234234', 'asdasdasd asdasd asd asd This page didn\'t load Google Maps correctly. See the JavaScript console for technical details.', 'asdasd asdasdasda', 'asdas@gmail.com', '1212', 'sda adsd', 'aasdasd', '9e36c6a6b346ce680fa0c0b850ec714c.png', 'sadasdads', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', NULL, '2020-06-05', '1', '2019-05-29 18:07:25', NULL, '2019-05-29 18:55:49'),
+(2, 'kava developers', 'kava', 'jay', '9099998171', '9099998171', 'adasd asdasdasd asda s dasd', 'asdasd asda dasd', 'asdasd@gmail.com', '45', 'web developement,software,seo,smo,android,ios,desktop', 'dsasdasd', '148bc37cadf9d8170700c4122bbbd70b.jpg', 'asdasdasd', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium\r\n\r\n, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the \r\n\r\nScrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', 'It Developement', NULL, '2020-06-05', '1', '2019-05-29 18:20:48', '2019-06-05 11:41:51', NULL),
+(4, 'Gotham', 'Bruce Wayne', 'Lucius Fox', '2222222222', '2222555555', 'Gotham City', 'Wayne Towe', 'dsgsdkgjh@gmail.com', '9-5', 'application and', 'CASH', '9e36c6a6b346ce680fa0c0b850ec714c.png', 'DSMNB GKD GJHDKFGHDKF GHKD', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', NULL, '2020-06-05', '1', '2019-05-30 16:30:07', NULL, NULL),
+(5, 'food Junction ***', 'coca cola', 'jguar', '7897897822', '4564585685', 'jkl sda dasdasdsssssssssssssssssssssss', 'Darpan Six Road, Ahemdabad', '108@gmail.com', '8 to 8', '//////////////////////////////////////////////////////////', 'Paytam  6363', '9e36c6a6b346ce680fa0c0b850ec714c.png', '[][][][]][asdasssssssssssssssssssssssssssssssssss', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst\r\n                                many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', NULL, '2020-06-05', '1', '2019-05-31 14:59:50', '2019-05-31 15:39:00', NULL),
+(6, 'lenovo', 'zoo', 'park', '1234564454', '01212121211', 'sdas dasd asda', 'asd asdasd asda sd', '712@gmail.com', '08:00  AM to 9:00 PM', 'asdasdas sad asdas dasd', 'Cash', 'aa5891bf0c76a6ddafeed87830ada232.jpg', 'asd dasd asd as', 'asdasd', 'Electronic, mouse, keyboard, laptop, mobile,all items', NULL, '2020-06-05', '1', '2019-06-05 10:34:13', '2019-06-05 10:36:49', NULL),
+(7, 'umiya', 'ooo', 'adasdas', '4564525652', '1234567890', 'asdas dasd asd asdas das', 'asda sdas', 'dasdas@gmail.com', '12 to 9', 'asda as dasd', 'check', '', '', '', 'Veg', '3', '2020-06-05', '1', '2019-06-11 12:43:06', '2019-06-11 12:52:42', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shop_package`
+--
+
+DROP TABLE IF EXISTS `shop_package`;
+CREATE TABLE IF NOT EXISTS `shop_package` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `plan` varchar(250) NOT NULL,
+  `price` varchar(250) NOT NULL,
+  `duration` varchar(250) NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `shop_package`
+--
+
+INSERT INTO `shop_package` (`id`, `plan`, `price`, `duration`, `created_at`) VALUES
+(2, 'Silver', '4000.00', '165', '2019-06-11 12:13:14'),
+(3, 'Gold', '8000.00', '360', '2019-06-11 12:51:36');
 
 -- --------------------------------------------------------
 
