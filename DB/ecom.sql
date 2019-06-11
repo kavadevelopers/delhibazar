@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 11, 2019 at 10:48 AM
+-- Generation Time: Jun 11, 2019 at 12:21 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -39,30 +39,34 @@ CREATE TABLE IF NOT EXISTS `advertising` (
   `photo` varchar(250) NOT NULL DEFAULT 'no-image.png',
   `plan_name` varchar(250) DEFAULT NULL,
   `exp_date` date DEFAULT NULL COMMENT 'Expiry Date',
+  `page` varchar(250) DEFAULT NULL,
+  `position` varchar(250) DEFAULT NULL,
   `created_by` varchar(50) NOT NULL,
   `updated_by` varchar(50) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `df` varchar(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `advertising`
 --
 
-INSERT INTO `advertising` (`id`, `business_name`, `intro`, `mobile`, `address`, `link`, `photo`, `plan_name`, `exp_date`, `created_by`, `updated_by`, `created_at`, `updated_at`, `df`) VALUES
-(4, 'kava dev3', 'hello there', '9898375981', 'ahmedabad', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 09:57:55', '2019-06-03 09:57:55', '0'),
-(2, 'Kava Developers1', 'Hello', '9898375981', 'Ahmedabad', '#', '11770532fc0180f51df2e644898098c4.png', NULL, '2019-07-10', '1', '1', '2019-06-03 08:51:30', '2019-06-03 08:51:30', '0'),
-(3, 'Kava Dev2', 'hello', '9898375981', 'Ahmedabad', 'https://www.kavadevelopers.com', '6c0d59b13327e401e4a15d8d849693a5.png', NULL, '2019-07-11', '1', '1', '2019-06-03 08:53:13', '2019-06-03 08:53:13', '0'),
-(5, 'kava Dev4', 'hello', '9898375981', 'ahmedabad', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 09:58:12', '2019-06-03 09:58:12', '0'),
-(6, 'kava dev5', 'hello', '9898375981', 'ahmedabad', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 09:58:28', '2019-06-03 09:58:28', '0'),
-(7, 'kava defv6', 'hello', '9898375981', 'ahmedabad', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 09:59:02', '2019-06-03 09:59:02', '0'),
-(8, 'kava dev7', 'hello', '9898375981', 'ahmedabad', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 09:59:27', '2019-06-03 09:59:27', '0'),
-(9, 'kava dev8', 'hello', '9898375981', 'ahmedabad', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 09:59:44', '2019-06-03 09:59:44', '0'),
-(10, 'kava dev9', 'helo', '9898375981', 'ahmedabad', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 10:00:03', '2019-06-03 10:00:03', '0'),
-(11, 'kava dev10', 'hellpo', '9898375981', 'ahmedabads', '#', 'no-image.png', NULL, '2019-07-11', '1', '1', '2019-06-03 10:00:24', '2019-06-03 10:00:24', '0'),
-(12, 'asdasd a', 'as das d', '1234567890', 'sadas dasd asd', 'https://www.google.com', 'no-image.png', '2', '2019-07-11', '1', '1', '2019-06-11 14:42:03', '2019-06-11 14:42:03', '0');
+INSERT INTO `advertising` (`id`, `business_name`, `intro`, `mobile`, `address`, `link`, `photo`, `plan_name`, `exp_date`, `page`, `position`, `created_by`, `updated_by`, `created_at`, `updated_at`, `df`) VALUES
+(1, 'alpha', 'abcd', '8758432032', 'asdasdas', '#', 'no-image.png', '2', '2019-07-10', 'Home', '6', '1', '1', '2019-06-11 17:23:47', '2019-06-11 17:23:47', '0'),
+(2, 'Beta', 'asdasd', '1203454567', 'asdasd', '#', 'no-image.png', '2', '2019-07-11', 'Home', '8', '1', '1', '2019-06-11 17:27:26', '2019-06-11 17:27:26', '0'),
+(3, 'Gama', 'asdasd', '1201232032', 'asdasd', '#', 'no-image.png', '2', '2019-07-11', 'Home', '1', '1', '1', '2019-06-11 17:27:45', '2019-06-11 17:27:45', '0'),
+(4, 'Lemda', 'dasdasd', '4506345269', 'asdasda', '#', 'no-image.png', '2', '2019-07-11', 'Home', '4', '1', '1', '2019-06-11 17:28:26', '2019-06-11 17:28:26', '0'),
+(5, 'dasdasd', 'asdasd', '1201232032', 'asdasd', '#', 'no-image.png', '2', '2019-07-11', 'Home', '5', '1', '1', '2019-06-11 17:28:54', '2019-06-11 17:28:54', '0'),
+(6, 'xx2', 'asdasd', '7807898098', 'asdasd', '#', 'no-image.png', '2', '2019-07-11', 'Home', '3', '1', '1', '2019-06-11 17:29:34', '2019-06-11 17:29:34', '0'),
+(7, 'sssdfd', 'sadasd', '7807898090', 'sadasd', '#', 'no-image.png', '2', '2019-07-11', 'Home', '2', '1', '1', '2019-06-11 17:29:57', '2019-06-11 17:29:57', '0'),
+(8, 'trtrt', 'rtrt', '7807898020', 'asdasd', '#', 'no-image.png', '2', '2019-07-11', 'Home', '7', '1', '1', '2019-06-11 17:30:30', '2019-06-11 17:30:30', '0'),
+(9, 'fdgdfg', 'sfdgfsdg', '7807898071', 'sadasd', '#', 'no-image.png', '2', '2019-07-11', 'Home', '9', '1', '1', '2019-06-11 17:30:59', '2019-06-11 17:30:59', '0'),
+(10, 'cvvcvcv', 'scsd', '7807898010', 'sdasdasd', '#', 'no-image.png', '2', '2019-07-11', 'Home', '10', '1', '1', '2019-06-11 17:31:32', '2019-06-11 17:31:32', '0'),
+(11, 'asdasd asd asd dasda vvvvvvvvvvvvv', 'asdasda asd asd asd asd asdasd asdasd asd\r\nasd asd asd asd asdasd asdasd asd\r\nasd asd asd asd asdasd asdasd asd', '1201232032', 'asd asd asd asd asdasd asdasd asd\r\nasd asd asd asd asdasd asdasd asd\r\nasd asd asd asd asdasd asdasd asd', '#', 'no-image.png', '2', '2019-07-11', 'Listing', '1', '1', '1', '2019-06-11 17:46:29', '2019-06-11 17:46:29', '0'),
+(12, 'zibra', 'adsdasdasd', '4564563022', 'asdasdasda asdas', '#', 'no-image.png', '2', '2019-07-11', 'Listing', '3', '1', '1', '2019-06-11 17:50:11', '2019-06-11 17:50:11', '0'),
+(13, 'Croobow', 'asdasdas', '7897865565', 'asdas dasd', '#', 'no-image.png', '2', '2019-07-11', 'Listing', '2', '1', '1', '2019-06-11 17:50:48', '2019-06-11 17:50:48', '0');
 
 -- --------------------------------------------------------
 
