@@ -29,6 +29,7 @@
                                         <th>Mobile</th>
                                         <th>Address</th>
                                         <th>Link</th>
+                                        <th>Expiry Date</th>
                                         <th class="text-center" id="action">Action</th>
                                     </tr>
                                 </thead>
@@ -41,7 +42,7 @@
                                             <td><?= $value['mobile'] ?></td>
                                             <td><?= nl2br($value['address']); ?></td>
                                             <td><?= nl2br($value['link']); ?></td>
-                                                
+                                            <td><?=  date('d-m-Y',strtotime($value['exp_date'])) ?></td>
                                             <td class="text-center">
 
                                                <a class="btn btn-sm btn-danger" href="<?= base_url();?>advertising/delete/<?= $value['id'];?>" onclick="return confirm('Are you Sure You Want to Delete this Advertising .?');" title="Delete">

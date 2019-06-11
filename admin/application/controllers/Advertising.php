@@ -7,6 +7,8 @@ class Advertising extends CI_Controller {
         parent::__construct();
         $this->auth->check_session();
         $this->load->model('advertising_model');
+        $this->load->model('package_model');
+
     }
 
 
@@ -18,8 +20,9 @@ class Advertising extends CI_Controller {
 
     public function add(){
 
-    	$data['page_title']	= 'Add Advertising';
-		$this->load->template('advertising/add',$data);
+    	$data['page_title']	       = 'Add Advertising';
+        $data['ad_package']        = $this->package_model->ad();
+        $this->load->template('advertising/add',$data);
 
 
     }
@@ -30,25 +33,33 @@ class Advertising extends CI_Controller {
     	$this->form_validation->set_error_delimiters('<div class="my_text_error">', '</div>');
         
         $this->form_validation->set_rules('business_name', 'Business Name', 'trim|required|min_length[3]|max_length[200]');
-        $this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|min_length[10]|max_length[12]');
+        $this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|is_natural|min_length[10]|max_length[12]');
         $this->form_validation->set_rules('intro', 'Intro', 'trim|required');
         $this->form_validation->set_rules('address', 'Address', 'trim|required');
         $this->form_validation->set_rules('web_link', 'Website Link', 'trim|required|callback_valid_url');
+        $this->form_validation->set_rules('plan_name', 'Plan', 'required|trim');
+
 
         if ($this->form_validation->run() == FALSE)
         {
-            $data['page_title']	= 'Add Advertising';
-			$this->load->template('advertising/add',$data);
+            $data['page_title']	       = 'Add Advertising';
+            $data['ad_package']        = $this->package_model->ad();
+            $this->load->template('advertising/add',$data);
         }
         else
         { 
+            $ad_pkg     = $this->package_model->ad_where($this->input->post('plan_name'))[0];
+            $date       = date('Y-m-d H:i:s');
+            $exp_date   = date('Y-m-d', strtotime($date. ' +'.$ad_pkg['duration'].'days'));
 
-        	$data = [
+            $data = [
                         'business_name'      	=>  $this->input->post('business_name'),
                         'intro'     			=>  $this->input->post('intro'),
                         'mobile'  				=>  $this->input->post('mobile'),
                         'address'         		=>  $this->input->post('address'),
-                        'link'          		=>  $this->input->post('web_link'),
+                        'link'                  =>  $this->input->post('web_link'),
+                        'plan_name'          	=>  $this->input->post('plan_name'),
+                        'exp_date'              =>  $exp_date,
                         'created_by'     		=>  $this->session->userdata('id'),
                         'updated_by'     		=>  $this->session->userdata('id'),
                         'created_at'     		=>  date('Y-m-d H:i:s'),

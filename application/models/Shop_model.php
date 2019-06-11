@@ -79,8 +79,10 @@ class Shop_model extends CI_Model
 
 	public function get_add_top()
 	{	
+		$date = date('Y-m-d');
 				$this->db->order_by('id','asc');
 				$this->db->limit(5, 0);
+				$this->db->where('exp_date <=',$date);
 		return 	$this->db->get('advertising')->result_array();
 	}
 

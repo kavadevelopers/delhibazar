@@ -147,9 +147,33 @@
                                             <?= form_error('photo'); ?>
                                         </div>
                                     </div>
-                                     
+                                    
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Plan<span class="astrick">*</span></label>
+                                            <select class="form-control form-control-sm select2" name="shop_plan">
+                                                
+                                                <?php if($shop_package){ ?>
+                                                    <option value="">-- Select Plan --</option>
+                                                <?php foreach ($shop_package as $key => $value) { ?>
+                                                    
+                                                    <option value="<?= $value['id'] ?>" <?php if($value['id'] == set_value('shop_plan')){ echo "selected"; } ?>><?= $value['plan'] ?></option>
+
+                                                <?php } } else { ?>
+
+                                                    <option value="">No Plan Found</option>
+                                                
+                                                <?php } ?>
+                                            
+                                            </select>
+                                            <?= form_error('shop_plan'); ?>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
+
+
                             <div class="card-footer">
                                 <div class="float-right">
                                   <a href="<?= base_url(); ?>shop" class="btn btn-danger">Cancel</a>

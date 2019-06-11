@@ -142,21 +142,24 @@
                                     
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            <label>Plan<span class="astrick">*</span></label>
+                                            <select class="form-control form-control-sm select2" name="shop_plan">
+                                                
+                                                <option value="<?= $shop[0]['shop_plan'] ?>"><?= $this->package_model->shop_where($shop[0]['shop_plan'])[0]['plan'] ?></option>
+
+                                            </select>
+                                            <?= form_error('shop_plan'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <div class="row"><label>Photo</label></div>
                                             <img src="<?= base_url() ?>uploads/shop/<?= $shop[0]['photo'] ?>" height="150px" width="150px"/>
                                             <!-- <input class="form-control form-control-sm" value="<?= set_value('photo',$shop[0]['photo']); ?>" type="file" name="photo" placeholder="Photo" autocomplete="off"> -->
                                             <?= form_error('photo'); ?>
                                         </div>
                                     </div> 
-                                    
-                                    <!-- <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Video</label>
-                                            <input class="form-control form-control-sm" value="<?= set_value('video'); ?>" type="file" name="video" placeholder="Video" autocomplete="off">
-                                            <?= form_error('video'); ?>
-                                        </div>
-                                    </div>  -->
-
                                     
                                 </div>
                             </div>
@@ -170,6 +173,7 @@
 
 <script type="text/javascript">
     $(function(){
-        $('input,textarea').attr('readonly', 'TRUE');
+        $('input,textarea,option').attr('readonly', 'TRUE');
+        $('select').attr('disabled', 'TRUE');
     })
 </script>

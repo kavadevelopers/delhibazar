@@ -142,6 +142,28 @@
                                     
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            <label>Plan<span class="astrick">*</span></label>
+                                            <select class="form-control form-control-sm select2" name="shop_plan">
+                                                
+                                                <?php if($shop_package){ ?>
+                                                    <option value="">-- Select Plan --</option>
+                                                <?php foreach ($shop_package as $key => $value) { ?>
+                                                    
+                                                    <option value="<?= $value['id'] ?>" <?php if($value['id'] == set_value('shop_plan',$shop[0]['shop_plan'])){ echo "selected"; } ?>><?= $value['plan'] ?></option>
+
+                                                <?php } } else { ?>
+
+                                                    <option value="">Add New Plan</option>
+                                                
+                                                <?php } ?>
+                                            
+                                            </select>
+                                            <?= form_error('shop_plan'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <div class="row"><label>Photo</label></div>
                                             <?php if($shop[0]['photo'] == ''){ ?>
                                                 <img src="<?= base_url() ?>uploads/product/no-image.png" class="img-height img-fluid" alt="No Image" height="150px" width="150px" style="margin-bottom: 5px;">
@@ -153,7 +175,7 @@
                                             <?= form_error('photo'); ?>
                                         </div>
                                     </div> 
-                                    
+
                                     <input type="hidden" name="id" value="<?= $shop[0]['id'] ?>">
                                     
                                 </div>

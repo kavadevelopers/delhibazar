@@ -1,5 +1,8 @@
     <title><?=$this->config->config["projectTitle"]?> | <?= $page_title; ?></title>
-
+    <style type="text/css">
+        table > thead > tr > th{ padding: 0px !important; }
+        table > tbody > tr > td{ padding: 0px !important; }
+    </style>
 
    	<div class="content-header">
       	<div class="container-fluid">
@@ -31,6 +34,7 @@
                                         <th>Email</th>
                                         <th>Hours of Operation</th>
                                         <th>Mode of Payment</th>
+                                        <th>Expiry Date</th>
                                         <th class="text-center" id="action" style="min-width: 150px;">Action</th>
                                     </tr>
                                 </thead>
@@ -45,7 +49,8 @@
                                             <td><?= $value['email']; ?></td>
                                             <td><?= $value['hour_operation']; ?></td>
                                             <td><?= $value['payment_mode']; ?></td>
-                                                
+                                            <td><?= date('d-m-Y',strtotime($value['exp_date'])); ?></td>
+                                            
                                             <td class="text-center">
                                                 
                                                 <a class="btn btn-sm btn-secondary" href="<?= base_url();?>shop/slider/<?= $value['id'];?>" title="Slider Upload">

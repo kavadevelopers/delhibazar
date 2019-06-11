@@ -7,6 +7,7 @@ class Shop extends CI_Controller {
         parent::__construct();
         $this->auth->check_session();
         $this->load->model('shop_model');
+        $this->load->model('package_model');
     }
 
 
@@ -19,7 +20,8 @@ class Shop extends CI_Controller {
 
     public function add()
     {
-    	$data['page_title']	= 'Add Shop';
+    	$data['page_title']	        = 'Add Shop';
+        $data['shop_package']       = $this->package_model->shop();
 		$this->load->template('shop/add',$data);
     }
 
@@ -33,8 +35,9 @@ class Shop extends CI_Controller {
 
     public function edit($id)
     {
-        $data['page_title'] = 'Edit Shop';
-        $data['shop']       = $this->shop_model->shop_where($id);
+        $data['page_title']         = 'Edit Shop';
+        $data['shop']               = $this->shop_model->shop_where($id);
+        $data['shop_package']       = $this->package_model->shop();
         $this->load->template('shop/edit',$data);
     }
 
@@ -86,16 +89,24 @@ class Shop extends CI_Controller {
         $this->form_validation->set_rules('info', 'Information', 'trim|min_length[2]|max_length[1000]');
         $this->form_validation->set_rules('detail_desc', 'Detail Description Section', 'trim|min_length[2]|max_length[1000]');
         $this->form_validation->set_rules('category', 'Category', 'required|trim|min_length[2]|max_length[3000]');
+        $this->form_validation->set_rules('shop_plan', 'Plan', 'required|trim');
 
         
 
         if ($this->form_validation->run() == FALSE)
         {
-            $data['page_title'] = 'Add Shop';
+            $data['page_title']         = 'Add Shop';
+            $data['shop_package']       = $this->package_model->shop();
             $this->load->template('shop/add',$data);
         }
         else
         { 
+            $shop_pkg   = $this->package_model->shop_where($this->input->post('shop_plan'))[0];
+            $date       = date('Y-m-d H:i:s');
+            $exp_date   = date('Y-m-d', strtotime($date. ' +'.$shop_pkg['duration'].'days'));
+            
+            
+
             $data = [
                         'shop_name'      =>  $this->input->post('shop_name'),
                         'owner_name'     =>  $this->input->post('owner_name'),
@@ -111,6 +122,8 @@ class Shop extends CI_Controller {
                         'info'           =>  $this->input->post('info'),
                         'detail_desc'    =>  $this->input->post('detail_desc'),
                         'category'       =>  $this->input->post('category'),
+                        'shop_plan'      =>  $this->input->post('shop_plan'),
+                        'exp_date'       =>  $exp_date,
                         'created_by'     =>  $this->session->userdata('id'),
                         'created_at'     =>  date('Y-m-d H:i:s')
                     ];
@@ -191,18 +204,23 @@ class Shop extends CI_Controller {
         $this->form_validation->set_rules('info', 'Information', 'trim|min_length[2]|max_length[1000]');
         $this->form_validation->set_rules('detail_desc', 'Detail Description Section', 'trim|min_length[2]|max_length[1000]');
         $this->form_validation->set_rules('category', 'Category', 'required|trim|min_length[2]|max_length[3000]');
-
+        $this->form_validation->set_rules('shop_plan', 'Plan', 'required|trim');
         
 
         if ($this->form_validation->run() == FALSE)
         {
             $data['page_title']     = 'Edit Shop';
             $data['shop']           = $this->shop_model->shop_where($this->input->post('id'));
+            $data['shop_package']   = $this->package_model->shop();
             $this->load->template('shop/edit',$data);
         }
         else
         { 
-             $shop   = $this->shop_model->shop_where($this->input->post('id'));
+            $shop   = $this->shop_model->shop_where($this->input->post('id'));
+
+            $shop_pkg   = $this->package_model->shop_where($this->input->post('shop_plan'))[0];
+            $date       = date('Y-m-d H:i:s');
+            $exp_date   = date('Y-m-d', strtotime($date. ' +'.$shop_pkg['duration'].'days'));
 
             $data = [
                         'shop_name'      =>  $this->input->post('shop_name'),
@@ -218,6 +236,8 @@ class Shop extends CI_Controller {
                         'payment_mode'   =>  $this->input->post('payment_mode'),
                         'info'           =>  $this->input->post('info'),
                         'category'       =>  $this->input->post('category'),
+                        'shop_plan'      =>  $this->input->post('shop_plan'),
+                        'exp_date'       =>  $exp_date,
                         'detail_desc'    =>  $this->input->post('detail_desc'),
                         'updated_at'     =>  date('Y-m-d H:i:s')
                     ];

@@ -77,6 +77,28 @@
                                     </div>
 
 
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Plan<span class="astrick">*</span></label>
+                                            <select class="form-control form-control-sm select2" name="plan_name">
+                                                
+                                                <?php if($ad_package){ ?>
+                                                    <option value="">-- Select Plan --</option>
+                                                <?php foreach ($ad_package as $key => $value) { ?>
+
+                                                    <option value="<?= $value['id'] ?>" <?php if($value['id'] == set_value('plan_name')){ echo "selected"; } ?>><?= $value['plan'] ?></option>
+
+                                                <?php } } else { ?>
+
+                                                    <option value="">No Plan Found</option>
+                                                
+                                                <?php } ?>
+                                            
+                                            </select>
+                                            <?= form_error('plan_name'); ?>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="card-footer">
