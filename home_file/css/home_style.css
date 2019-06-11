@@ -7,8 +7,9 @@ body {
 
 .navbar-default {
   background-color: #c5322d !important;
-  border-color: #c5322d;
+  border-color: none;
   color: #ecf0f1;
+  margin-bottom: 0;
 }
 
 .navbar-right {
@@ -407,4 +408,24 @@ div.btn-group {
 
   .block_cen{
     margin: 0 auto;
+  }
+
+  .center_new_f{
+    justify-content: center;
+    display: flex;
+  }
+
+
+  .a_footer{
+    color: #fff;
+    text-decoration: none;
+    margin: 5px;
+    padding: 5px;
+  }
+
+  .a_footer:hover{
+    color: #fff;
+    text-decoration: none;
+    margin: 5px;
+    padding: 5px;
   }

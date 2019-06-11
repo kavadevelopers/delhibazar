@@ -10,6 +10,7 @@
         <link href="<?= base_url() ?>home_file/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>home_file/css/home_style.css">
         <link rel="shortcut icon" href="<?= base_url() ?>image/favicon.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>DELHIBAZAR</title>
         <link rel="stylesheet" href="<?= base_url() ?>home_file/jQueryUI/jquery-ui.css">
 
@@ -25,7 +26,7 @@
         <link rel="stylesheet" href="<?= base_url() ?>home_file/kava.css">
 
         <script src="<?= base_url() ?>user_login/alert/sweetalert.min.js"></script>
-        <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5cfd06e54351e9001264fdd0&product='sticky-share-buttons'"></script>
+        <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5cfd1d9d4351e9001264fde8&product=sticky-share-buttons"></script>
         <script>
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
 </script>
@@ -58,24 +59,11 @@
                     </li>
 
                     <li>
-                        <a href="<?= base_url(); ?>pages/about">About</a>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop <span class="caret"></span></a>
-                        <ul class="dropdown-menu my-dropdown" role="menu">
-                            
-                            <?php  foreach ($CI->product_model->get_category() as $key => $value) { ?>
-
-                                <li><a href="<?= base_url('products/list/').$value['id'] ?>"><?= $value['name'] ?></a></li>
-
-                            <?php } ?>
-                            
-                        </ul>
+                        <a href="<?= base_url(); ?>#">Shopping</a>
                     </li>
                     
                     <li>
-                        <a href="<?= base_url(); ?>pages/contact">Contact</a>
+                        <a href="<?= base_url(); ?>#">Blog</a>
                     </li>
                     
                     <?php if($this->session->userdata('id')) { ?>
@@ -92,63 +80,66 @@
                 </ul>
             </nav>
 
-            <div class="container-fluid" style="margin-top: 5px;">
+            <div class="container" style="margin-top: 5px;">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="col-md-2 col-lg-2">
-                            <p class="date_top_p" style="color: #000;">
-                                <span id="MydateDisplay"></span>
-                            </p>
+                        <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12">
+                            <!-- clock widget start -->
+                                <script type="text/javascript"> var css_file=document.createElement("link"); css_file.setAttribute("rel","stylesheet"); css_file.setAttribute("type","text/css"); css_file.setAttribute("href","//s.bookcdn.com//css/cl/bw-cl-120x45.css"); document.getElementsByTagName("head")[0].appendChild(css_file); </script> <div id="tw_5_2056819673"><div style="width:130px; height:45px; margin: 0 auto;"><a href="https://booked.net/time/new-delhi-18038">New Delhi</a><br/></div></div> <script type="text/javascript"> function setWidgetData_2056819673(data){ if(typeof(data) != 'undefined' && data.results.length > 0) { for(var i = 0; i < data.results.length; ++i) { var objMainBlock = ''; var params = data.results[i]; objMainBlock = document.getElementById('tw_'+params.widget_type+'_'+params.widget_id); if(objMainBlock !== null) objMainBlock.innerHTML = params.html_code; } } } var clock_timer_2056819673 = -1; </script> <script type="text/javascript" charset="UTF-8" src="https://widgets.booked.net/time/info?ver=2&domid=209&type=5&id=2056819673&scode=2&city_id=18038&wlangid=1&mode=1&details=0&background=35475e&color=ffffff&add_background=a0a1a1&add_color=ffffff&head_color=ffffff&border=2&transparent=0"></script>
+<!-- clock widget end -->
+
                         </div>
-                        <div class="col-md-8 col-lg-8">
-                            <div class="tradingview-widget-container">
+                        <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12" style="margin-top: 5px;">
+                            <div class="tradingview-widget-container" style="height: auto !important;">
                               <div class="tradingview-widget-container__widget"></div>
                               <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text"></span></a></div>
-                              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+                              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
                               {
                               "symbols": [
                                 {
-                                  "title": "S&P 500",
-                                  "proName": "OANDA:SPX500USD"
+                                  "description": "USD/INR",
+                                  "proName": "OANDA:USDINR"
                                 },
                                 {
-                                  "title": "Shanghai Composite",
-                                  "proName": "INDEX:XLY0"
+                                  "description": "EUR/INR",
+                                  "proName": "FX_IDC:EURINR"
                                 },
                                 {
-                                  "title": "EUR/USD",
-                                  "proName": "FX_IDC:EURUSD"
+                                  "description": "GOLD/INR",
+                                  "proName": "FX_IDC:XAUINR"
                                 },
                                 {
-                                  "title": "BTC/USD",
-                                  "proName": "BITSTAMP:BTCUSD"
+                                  "description": "BSE",
+                                  "proName": "NSE:BSE"
                                 },
                                 {
-                                  "title": "ETH/USD",
-                                  "proName": "BITSTAMP:ETHUSD"
+                                  "description": "NIFTY",
+                                  "proName": "NSE:NIFTY"
+                                },
+                                {
+                                  "description": "RELIANCE",
+                                  "proName": "NSE:RELIANCE"
                                 }
                               ],
-                              "locale": "en"
+                              "colorTheme": "dark",
+                              "isTransparent": false,
+                              "displayMode": "adaptive",
+                              "locale": "in"
                             }
                               </script>
                             </div>
                         </div>
 
-                        <div class="col-md-2 col-lg-2 text-center">
-                            <a target="_blank" href="https://www.booked.net/weather/new-delhi-18038"><img src="https://w.bookcdn.com/weather/picture/26_18038_1_1_f1c411_250_f39c13_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=61221"  alt="booked.net"/></a>
+                        <div class="col-md-2 col-lg-2 text-center col-xs-12 col-sm-12">
+                        <!-- weather widget start -->
+                        <a target="_blank" href="https://www.booked.net/weather/new-delhi-18038"><img src="https://w.bookcdn.com/weather/picture/26_18038_1_1_34495e_250_2c3e50_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=2&domid=w209&anc_id=65336"  alt="booked.net"/></a>
+                        <!-- weather widget end -->
                         </div>
 
                     </div>
                 </div>
-                <div class="row">
-                    <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
-                        <span class="hamb-top"></span>
-                        <span class="hamb-middle"></span>
-                        <span class="hamb-bottom"></span>
-                    </button>
-                </div>
             </div>
-
+            <div style="width: 100%; padding:10px;"></div>
             <div class="container">
                 <div class="row justify-content-md-center">
                         <div class="col-md-10 text-center center-fource justify-content-md-center">
@@ -178,25 +169,27 @@
                               <?php  } ?>
                             <div class="col-md-1"></div>
                         </div>
-
-                        <div class="col-md-12" style="margin-bottom: 20px; margin-top: 15px;">
-                            <img class="center-block" src="<?= base_url() ?>image/logo.png" width="270" alt="DELHIBAZAR" id="logo">
-                            <form method="post" action="<?= base_url() ?>welcome/list">
-                                <div class="row text-center">
-                                    <div class="col-12 col-xs-6 col-lg-6 col-md-6 col-sm-12">
-                                        <div class="input-group">
-                                                <input type="text" id="search" class="form-control" placeholder="what are you looking for?" name="search" style="border-radius: 50px 0px 0px 50px; padding: 20px;">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-primary" type="submit" style="border-radius: 0px 50px 50px 0px; padding: 10px 16px;"><i class="fa fa-search"></i></button>
-                                                </span>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-12 col-xs-12 col-lg-12 col-md-6 col-sm-12" style="margin-bottom: 20px; margin-top: 15px;">
+                                <img class="center-block" src="<?= base_url() ?>image/logo.png" width="270" alt="DELHIBAZAR" id="logo">
+                                <form method="post" action="<?= base_url() ?>welcome/list">
+                                    <div class="row text-center center_new_f">
+                                        <div class="col-12 col-xs-12 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="input-group">
+                                                    <input type="text" id="search" class="form-control" placeholder="what are you looking for?" name="search" style="border-radius: 50px 0px 0px 50px; padding: 20px;">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-primary" type="submit" style="border-radius: 0px 50px 50px 0px; padding: 10px 16px;"><i class="fa fa-search"></i></button>
+                                                    </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                
-                            </form>
+                                    
+                                </form>
+                            </div>
                         </div>
-                        
+                    <div class="row"> 
                         <div class="col-md-10 text-center center-fource justify-content-md-center">
                             <div class="col-md-1"></div>
                                 <?php foreach ($bottom_add as $key => $value) { ?>
@@ -225,50 +218,45 @@
                             <div class="col-md-1"></div>
                         </div>
                 </div>
-
+            </div>
                 
 
-                <div id="footer">
-                    <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-                        <div class="container">
+                <div id="footer" style="margin-top: 20px;">
+                    <div class="navbar navbar-default" role="navigation">
+                        <div class="container-fluid">
 
-                            <div class="col-md-12">
-                                <div class="col-md-4">
-                                        
-                                    <ul class="nav navbar-nav navbar-left">
-                                        <li><a href="<?= base_url(); ?>pages/about">About</a></li>
-                                        <li><a href="<?= base_url(); ?>pages/contact">Contact</a></li>
-                                    </ul>
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <div class="col-md-4 col-xs-12 col-sm-12" style="display: flex; justify-content: center; margin:5px 0">
+
+                                    
+                                    <a href="<?= base_url(); ?>pages/about" class="a_footer">About</a>
+                                    <a href="<?= base_url(); ?>pages/contact" class="a_footer">Contact</a>
+                                    
 
                                 </div>
-                                <div class="col-md-4" style="display: flex; justify-content: center;">
-                                    <ul class="nav navbar-nav">  
+                                <div class="col-md-4 col-xs-12 col-sm-12" style="display: flex; justify-content: center; margin:5px 0">
+                                     
                                         <?php foreach (social_icons() as $key => $value) { ?>
                                              
-                                            <li title="<?= $value['title'] ?>">
-                                                <a href="<?= $value['link'] ?>" target="_blank"> 
-                                                    <i class="fa <?= $value['class'] ?>"></i>
-                                                </a>
-                                            </li>
+                                            
+                                            <a href="<?= $value['link'] ?>" target="_blank" class="a_footer"> 
+                                                <i class="fa <?= $value['class'] ?>"></i>
+                                            </a>
+                                            
                                             
                                         <?php } ?>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
                                     
-                                    <ul class="nav navbar-nav navbar-right">
-
-                                          <li>
-                                              <a href="<?= base_url(); ?>pages/terms"> 
-                                                Terms
-                                              </a>
-                                          </li>
-                                          <li>
-                                              <a href="<?= base_url(); ?>pages/privacy"> 
-                                                Privacy
-                                              </a>
-                                          </li>
-                                          <li style="padding-right: 50px;"></li>
+                                </div>
+                                <div class="col-md-4  col-xs-12 col-sm-12" style="display: flex; justify-content: center; margin:5px 0">
+                                    
+                                    
+                                      <a href="<?= base_url(); ?>pages/terms" class="a_footer"> 
+                                        Terms
+                                      </a>
+                                  
+                                      <a href="<?= base_url(); ?>pages/privacy" class="a_footer"> 
+                                        Privacy
+                                      </a>
 
                                     </ul>
 
@@ -283,7 +271,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            
 
         </div>
 

@@ -30,7 +30,7 @@ $config['projectTitle'] = 'DELHIBAZAR';
 $config['projectName'] = 'DELHIBAZAR';
 $config['logoFile'] = 'image/logo.png';
 $config['companyWebLink'] = '#';
-$config['admin_url'] = 'http://localhost/delhibazar/admin/';
+$config['admin_url'] = $config['base_url'].'admin/';
 
 /*
 |--------------------------------------------------------------------------

@@ -21,7 +21,7 @@
 		var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 		var yyyy = today.getFullYear();
 
-		document.getElementById('MydateDisplay').innerHTML = dd + '/' + mm + '/' + yyyy +' <br>'+ h + ":" + m + " " + session;
+		//document.getElementById('MydateDisplay').innerHTML = dd + '/' + mm + '/' + yyyy +' <br>'+ h + ":" + m + " " + session;
 	}
 
 	function checkTime(i) {
