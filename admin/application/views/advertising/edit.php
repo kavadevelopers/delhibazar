@@ -30,7 +30,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Business Name <span class="astrick">*</span></label>
-                                            <input class="form-control form-control-sm" value="<?php echo set_value('business_name'); ?>" id="business_name" type="text" name="business_name" placeholder="Business Name" autocomplete="off">
+                                            <input class="form-control form-control-sm" value="<?= set_value('business_name',$advertise[0]['business_name']); ?>" id="business_name" type="text" name="business_name" placeholder="Business Name" autocomplete="off">
                                             <?php echo form_error('business_name'); ?>
                                         </div>
                                     </div>
@@ -38,7 +38,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Intro <span class="astrick">*</span></label>
-                                            <textarea class="form-control form-control-sm" type="text" name="intro" placeholder="Intro" autocomplete="off"><?= set_value('intro'); ?></textarea>
+                                            <textarea class="form-control form-control-sm" type="text" name="intro" placeholder="Intro" autocomplete="off"><?= set_value('intro',$advertise[0]['intro']); ?></textarea>
                                             <?= form_error('intro'); ?>
                                         </div>
                                     </div>
@@ -46,36 +46,27 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Mobile <span class="astrick">*</span></label>
-                                            <input class="form-control form-control-sm" value="<?php echo set_value('mobile'); ?>" type="text" name="mobile" placeholder="Mobile" autocomplete="off">
-                                            <?php echo form_error('mobile'); ?>
+                                            <input class="form-control form-control-sm" value="<?= set_value('mobile',$advertise[0]['mobile']); ?>" type="text" name="mobile" placeholder="Mobile" autocomplete="off">
+                                            <?= form_error('mobile'); ?>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Address <span class="astrick">*</span></label>
-                                            <textarea class="form-control form-control-sm" type="text" name="address" placeholder="Address" autocomplete="off"><?= set_value('address'); ?></textarea>
-                                            <?php echo form_error('address'); ?>
+                                            <textarea class="form-control form-control-sm" type="text" name="address" placeholder="Address" autocomplete="off"><?= set_value('address',$advertise[0]['address']); ?></textarea>
+                                            <?= form_error('address'); ?>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Website Link <span class="astrick">*</span></label>
-                                            <input class="form-control form-control-sm" value="<?php echo set_value('web_link'); ?>" type="text" name="web_link" placeholder="Website Link" autocomplete="off">
-                                            <?php echo form_error('web_link'); ?>
+                                            <input class="form-control form-control-sm" value="<?= set_value('web_link',$advertise[0]['link']); ?>" type="text" name="web_link" placeholder="Website Link" autocomplete="off">
+                                            <?= form_error('web_link'); ?>
                                             <small><b>Note : </b>If You Put This Blank Please Add (#)</small>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Photo</label>
-                                            <input class="form-control form-control-sm" value="<?= set_value('photo'); ?>" type="file" name="photo" placeholder="Photo" autocomplete="off">
-                                            <?= form_error('photo'); ?>
-                                        </div>
-                                    </div>
-
 
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -86,7 +77,7 @@
                                                     <option value="">-- Select Plan --</option>
                                                 <?php foreach ($ad_package as $key => $value) { ?>
 
-                                                    <option value="<?= $value['id'] ?>" <?php if($value['id'] == set_value('plan_name')){ echo "selected"; } ?>><?= $value['plan'] ?></option>
+                                                    <option value="<?= $value['id'] ?>" <?php if($value['id'] == set_value('plan_name',$this->advertising_model->ad_package_planname_where($advertise[0]['plan_name'])[0]['id'])){ echo "selected"; } ?>><?= $value['plan'] ?></option>
 
                                                 <?php } } else { ?>
 
@@ -105,8 +96,8 @@
                                             <select class="form-control form-control-sm select2" name="page" id="page">
                                                 
                                                 <option value="">-- Select Page --</option>
-                                                <option value="Home" <?php if('Home' == set_value('page')){ echo "selected"; } ?>>Home</option>
-                                                <option value="Listing" <?php if('Listing' == set_value('page')){ echo "selected"; } ?>>Listing</option>
+                                                <option value="Home" <?php if('Home' == set_value('page',$advertise[0]['page'])){ echo "selected"; } ?>>Home</option>
+                                                <option value="Listing" <?php if('Listing' == set_value('page',$advertise[0]['page'])){ echo "selected"; } ?>>Listing</option>
                                                 <!-- <option value="Business Detail" <?php if('Business Detail' == set_value('page')){ echo "selected"; } ?>>Business Detail</option> -->
                                             </select>
                                             <?= form_error('page'); ?>
@@ -118,19 +109,19 @@
                                             <label>Position<span class="astrick">*</span></label>
                                             <select class="form-control form-control-sm" name="position" id="positions">
                                                 
-                                                <?php if(set_value('page') == 'Home'){ ?>
+                                                <?php if(set_value('page',$advertise[0]['page']) == 'Home'){ ?>
                                                     <option value="">-- Select Position --</option>
                                                     <?php for($i = 1;$i <= 10;$i++){ ?>
 
-                                                        <option value="<?= $i ?>" <?php if($i == set_value('position')){ echo "selected"; } ?>>#<?= $i ?></option>
+                                                        <option value="<?= $i ?>" <?php if($i == set_value('position',$advertise[0]['position'])){ echo "selected"; } ?>>#<?= $i ?></option>
 
                                                     <?php } ?>
 
-                                                <?php }else if(set_value('page') == 'Listing'){ ?>
+                                                <?php }else if(set_value('page',$advertise[0]['page']) == 'Listing'){ ?>
                                                     <option value="">-- Select Position --</option>
                                                     <?php for($i = 1;$i <= 3;$i++){ ?>
 
-                                                        <option value="<?= $i ?>" <?php if($i == set_value('position')){ echo "selected"; } ?>>#<?= $i ?></option>
+                                                        <option value="<?= $i ?>" <?php if($i == set_value('position',$advertise[0]['position'])){ echo "selected"; } ?>>#<?= $i ?></option>
 
                                                     <?php } ?>
 
@@ -145,12 +136,27 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <div class="row"><label>Photo</label></div>
+                                                
+                                            <img src="<?= base_url() ?>uploads/add/<?= $advertise[0]['photo'] ?>" style="width: 150px;padding-bottom: 5px;">
+
+                                            <input class="form-control form-control-sm" value="<?= set_value('photo'); ?>" type="file" name="photo" placeholder="Photo" autocomplete="off">
+                                            <?= form_error('photo'); ?>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </div>
+                            
+                            <input type="hidden" name="id" value="<?= $advertise[0]['id'] ?>">
+
                             <div class="card-footer">
                                 <div class="float-right">
                                   <a href="<?= base_url(); ?>shop" class="btn btn-danger">Cancel</a>
-                                  <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Add</button>
+                                  <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Sava</button>
                                 </div>
                             </div>
                         </div>

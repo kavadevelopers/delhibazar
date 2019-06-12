@@ -70,15 +70,6 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Photo</label>
-                                            <input class="form-control form-control-sm" value="<?= set_value('photo'); ?>" type="file" name="photo" placeholder="Photo" autocomplete="off">
-                                            <?= form_error('photo'); ?>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-4">
-                                        <div class="form-group">
                                             <label>Plan<span class="astrick">*</span></label>
                                             <select class="form-control form-control-sm select2" name="plan_name">
                                                 
@@ -145,6 +136,14 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Photo</label>
+                                            <input class="form-control form-control-sm" value="<?= set_value('photo'); ?>" type="file" name="photo" placeholder="Photo" autocomplete="off">
+                                            <?= form_error('photo'); ?>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="card-footer">
