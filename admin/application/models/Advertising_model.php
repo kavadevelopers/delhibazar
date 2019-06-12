@@ -19,4 +19,9 @@ class Advertising_model extends CI_Model
 		return $this->db->get_where('advertising',['id' => $id])->result_array();
 	}
 
+	public function ad_package_planname_where($id)
+	{
+		return $this->db->get_where('ad_package',['id' => $id])->result_array();
+	}
+
 }	
