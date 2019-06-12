@@ -54,7 +54,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Mobile <span class="astrick">*</span></label>
-                                            <input class="form-control form-control-sm" value="<?php echo set_value('mobile'); ?>" type="number" name="mobile" placeholder="Mobile" step="0" min="0"  autocomplete="off">
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('mobile'); ?>" type="text" name="mobile" placeholder="Mobile" step="0" min="0"  autocomplete="off">
                                             <?php echo form_error('mobile'); ?>
                                         </div>
                                     </div>
@@ -62,7 +62,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Watsapp No. <span class="astrick">*</span></label>
-                                            <input class="form-control form-control-sm" value="<?php echo set_value('wp_no'); ?>" type="number" name="wp_no" placeholder="Watsapp No." step="0" min="0" autocomplete="off">
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('wp_no'); ?>" type="text" name="wp_no" placeholder="Watsapp No." step="0" min="0" autocomplete="off">
                                             <?php echo form_error('wp_no'); ?>
                                         </div>
                                     </div>
