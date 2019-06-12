@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 
-	<title>Champs | 404 Page Not Found</title>
+	<title>DELHIBAZAR | 404 Page Not Found</title>
 
 	
 	<link rel="shortcut icon" href="<?php echo base_url(); ?>image/favicon.png" type="image/png"/>

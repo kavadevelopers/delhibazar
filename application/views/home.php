@@ -89,8 +89,8 @@
 <!-- clock widget end -->
 
                         </div>
-                        <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12" style="margin-top: 5px;">
-                            <div class="tradingview-widget-container" style="height: auto !important;">
+                        <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12" style="margin-top: 5px; height: 90px !important;">
+                            <div class="tradingview-widget-container" style="">
                               <div class="tradingview-widget-container__widget"></div>
                               <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text"></span></a></div>
                               <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
@@ -139,7 +139,6 @@
                     </div>
                 </div>
             </div>
-            <div style="width: 100%; padding:10px;"></div>
             <div class="container">
                 <div class="row justify-content-md-center">
                         <div class="col-md-10 text-center center-fource justify-content-md-center">
@@ -527,7 +526,8 @@
 
             <!--  FOOTER REMOVE CLASS -->
             <script type="text/javascript">
-            $(function(){    
+            $(function(){ 
+
                 $(window).resize(function() {
                     if ($(window).width() < 1050) {
                         $('#footer-fix').removeClass('navbar-fixed-bottom');
