@@ -157,6 +157,16 @@
                     ?>
                         <hr>
                         <div class="customer-review_wrap">
+
+                            <?php if($this->session->userdata('id')){ ?>
+                                <?php if($this->session->userdata('id') == $value['user_id']){ ?>
+                                <p class="text-right" style="margin: 3px;">
+                                    <a href="javascript:;" class="edit_button" data-subject="<?= $value['subject'] ?>" data-review="<?= $value['review'] ?>" data-rating="<?= $value['rating'] ?>" data-id="<?= $value['id'] ?>">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                </p>
+                            <?php } } ?>
+
                             <div class="customer-img">
                                 <img src="<?= base_url() ?>image/social_user_uploads/<?= $user['image'] ?>" class="img-fluid" alt="#">
                                 <p><?= cut_string($user['first_name'].' '.$user['last_name'],13,'...') ?></p>
@@ -289,6 +299,65 @@
     </div>
 </form>
 
+<form method="post" id="review_modal_edit" action="<?= base_url() ?>shop/edit_rating">
+    <div class="modal" id="edit_myModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Edit a Review</h4>
+              <button type="button" class="close" data-dismiss="modal" style="cursor: pointer;">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="font-weight-bold">Subject</label>
+                    <input class="form-control" type="text" id="edit_subject" name="subject" placeholder="Subject">
+                    <span class="color-red" id="edit_subject_span"></span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="font-weight-bold">Description</label>
+                    <textarea class="form-control" type="text" name="review" id="edit_review" placeholder="Description"></textarea>
+                    <span class="color-red" id="edit_review_span"></span>
+                </div>
+            </div>
+            
+            <div class="container">
+                <p class="font-weight-bold" style="margin:0px;">Rating</p>
+                    <div class="rate">
+
+                        <input type="radio" id="edit_star5" name="edit_rating" value="5" />
+                        <label for="edit_star5" title="rating">5 stars</label>
+                        <input type="radio" id="edit_star4" name="edit_rating" value="4" />
+                        <label for="edit_star4" title="rating">4 stars</label>
+                        <input type="radio" id="edit_star3" name="edit_rating" value="3" />
+                        <label for="edit_star3" title="rating">3 stars</label>
+                        <input type="radio" id="edit_star2" name="edit_rating" value="2" />
+                        <label for="edit_star2" title="rating">2 stars</label>
+                        <input type="radio" id="edit_star1" name="edit_rating" value="1" />
+                        <label for="edit_star1" title="rating">1 star</label>
+
+                    </div><br>
+                    <p class="color-red" id="edit_rating_span"></p>
+            </div>
+
+            <input type="hidden" name="review_id" id="review_id" value="">
+            <input type="hidden" name="shop_id" value="<?= $this->uri->segment('3') ?>">
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success" style="cursor: pointer;">Save</button>
+            </div>
+            
+          </div>
+        </div>
+    </div>
+</form>
+
 <input type="hidden" id="load_more_record" value="5">
 
 <!-- // Review Modal -->
@@ -348,6 +417,49 @@ $(document).ready(function(){
 
     });
 
+    $("#review_modal_edit").submit(function(){
+        var subject    = $('#edit_subject').val();
+        var review    = $('#edit_review').val();
+        var rating    = $("input[name='edit_rating']:checked").val();
+        var blank     = 0;
+        
+
+        // Subject Validation
+        if(subject == ''){
+            $('#edit_subject_span').html("Subject is required");
+            blank = 1;
+            $('#edit_subject_span').fadeIn();
+        }
+        else{
+            $('#edit_subject_span').fadeOut();
+        }
+
+        // Review Validation
+        if(review == ''){
+            $('#edit_review_span').html("Description is required");
+            blank = 1;
+            $('#edit_review_span').fadeIn();
+        }
+        else{
+            $('#edit_review_span').fadeOut();
+        }
+
+        // Rating Validation
+        if(!rating){
+            $('#edit_rating_span').html("Rating is required");
+            blank = 1;
+            $('#edit_rating_span').fadeIn();
+        }
+        else{
+            $('#edit_rating_span').fadeOut();
+        }
+
+        if(blank == 1){
+            return false;
+        }
+
+    });
+
 
     // Load More Button 
     $('#load_more').click(function(e){
@@ -381,6 +493,15 @@ $(document).ready(function(){
                     }, 2000);
                 }
             });
+    });
+
+
+    $(document).delegate('.edit_button','click',function(){
+        $('#edit_myModal').modal('show');
+        $('#edit_subject').val($(this).data('subject'));
+        $('#edit_review').val($(this).data('review'));
+        $("input[name=edit_rating][value=" + $(this).data('rating') + "]").prop('checked', true);
+        $('#review_id').val($(this).data('id'));
     });
 
 });

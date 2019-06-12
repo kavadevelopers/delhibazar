@@ -47,4 +47,24 @@ class Shop extends CI_Controller {
 				}
 	}
 
+	public function edit_rating()
+	{
+		$data = [
+					'subject'		=> $this->input->post('subject'),
+					'review'		=> $this->input->post('review'),
+					'rating'		=> $this->input->post('edit_rating')
+				];
+				$this->db->where('id',$this->input->post('review_id'));
+				if($this->db->update('shop_rating',$data))
+				{
+					$this->session->set_flashdata('msg', 'Rating Updated Thankyou');
+					redirect(base_url('shop/shop_detail/'.$this->input->post('shop_id')));
+				}
+				else
+				{
+					$this->session->set_flashdata('error', 'Something went wrong try again');
+					redirect(base_url('shop/shop_detail/'.$this->input->post('shop_id')));
+				}
+	}
+
 }
