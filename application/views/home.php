@@ -263,7 +263,7 @@
                         </div>
                     </div>
                     <div class="row">
-                            <div class="col-md-12 col-xs-12 col-lg-12 col-md-6 col-sm-12" style="margin-bottom: 20px; margin-top: 15px;">
+                            <div class="col-md-12 col-xs-12 col-lg-12 col-md-12 col-sm-12" style="margin-bottom: 20px; margin-top: 15px;">
                                 <img class="center-block" src="<?= base_url() ?>image/logo.png" width="270" alt="DELHIBAZAR" id="logo">
                                 <form method="post" action="<?= base_url() ?>welcome/list">
                                     <div class="row text-center center_new_f">
@@ -407,8 +407,8 @@
             </div>
                 
 
-                <div id="footer" style="margin-top: 20px;">
-                    <div class="navbar navbar-default" role="navigation">
+                <div id="footer" style="margin-top: 1em;">
+                    <div id="footer-fix" class="navbar navbar-default" role="navigation">
                         <div class="container-fluid">
 
                             <div class="col-md-12 col-xs-12 col-sm-12">
@@ -523,6 +523,19 @@
                         .append($("<style type='text/css'>  #weatherWidget{ font-size: 12px !important; }  </style>"));
                   });
               });
+            </script>
+
+            <!--  FOOTER REMOVE CLASS -->
+            <script type="text/javascript">
+            $(function(){    
+                $(window).resize(function() {
+                    if ($(window).width() < 1050) {
+                        $('#footer-fix').removeClass('navbar-fixed-bottom');
+                    } else {
+                        $('#footer-fix').addClass('navbar-fixed-bottom');
+                    }
+                }).resize();
+            });
             </script>
            
     </body>
