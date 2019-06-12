@@ -22,12 +22,24 @@ class Shop_model extends CI_Model
 	public function load_more($start,$shop_id)
 	{
 		$this->db->limit(5,$start);
+		$this->db->order_by('id','DESC');
 		$data = $this->db->get_where('shop_rating',['shop_id' => $shop_id])->result_array();
 		$record = '';
 		foreach ($data as $key => $value) {
 				$user = $this->rating_model->user_where($value['user_id'])[0];
 
+            if($this->session->userdata('id') && $this->session->userdata('id') == $value['user_id']){
+                    $edit = '<p class="text-right" style="margin: 3px;">
+                                    <a href="#" class="edit_button" data-subject="'.$value["subject"].'" data-review="'. $value["review"].'" data-rating="'.$value["rating"].'" data-id="'.$value["id"].'">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                </p>';
+            }else{
+            	$edit = "";
+            }
+
 			$record .= '<div class="customer-review_wrap">
+							'.$edit.'	
                             <div class="customer-img">
                                 <img src="'.base_url().'image/social_user_uploads/'.$user['image'].'" class="img-fluid" alt="#">
                                 <p>'. cut_string($user['first_name'].' '.$user['last_name'],13,'...').'</p>
