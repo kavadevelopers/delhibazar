@@ -78,8 +78,8 @@ class Shop extends CI_Controller {
         $this->form_validation->set_rules('shop_name', 'Shop Name', 'trim|required|min_length[2]|max_length[30]|is_unique[shop.shop_name]',array('is_unique' => 'Shop Name Is Already Exists'));
         $this->form_validation->set_rules('owner_name', 'Owner Name', 'trim|required|min_length[3]|max_length[200]');
         $this->form_validation->set_rules('employee_name', 'Employee Name', 'trim|required|min_length[3]|max_length[200]');
-        $this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|min_length[10]|max_length[12]');
-        $this->form_validation->set_rules('wp_no', 'Watsapp No', 'trim|required|min_length[10]|max_length[12]');
+        $this->form_validation->set_rules('mobile', 'Mobile', 'trim|is_natural|required|min_length[10]|max_length[12]');
+        $this->form_validation->set_rules('wp_no', 'Watsapp No', 'trim|required|is_natural|min_length[10]|max_length[12]');
         $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[10]|max_length[250]');
         $this->form_validation->set_rules('landmark', 'Landmark', 'trim|required|min_length[3]|max_length[100]');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|xss_clean|max_length[100]');
@@ -193,8 +193,8 @@ class Shop extends CI_Controller {
         $this->form_validation->set_rules('shop_name', 'Shop Name', 'trim|required|min_length[2]|max_length[30]');
         $this->form_validation->set_rules('owner_name', 'Owner Name', 'trim|required|min_length[3]|max_length[200]');
         $this->form_validation->set_rules('employee_name', 'Employee Name', 'trim|required|min_length[3]|max_length[200]');
-        $this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|min_length[10]|max_length[12]');
-        $this->form_validation->set_rules('wp_no', 'Watsapp No', 'trim|required|min_length[10]|max_length[12]');
+        $this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|is_natural|min_length[10]|max_length[12]');
+        $this->form_validation->set_rules('wp_no', 'Watsapp No', 'trim|required|is_natural|min_length[10]|max_length[12]');
         $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[10]|max_length[250]');
         $this->form_validation->set_rules('landmark', 'Landmark', 'trim|required|min_length[3]|max_length[100]');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|xss_clean|max_length[100]');
