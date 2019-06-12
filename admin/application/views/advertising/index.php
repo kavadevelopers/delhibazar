@@ -24,6 +24,7 @@
                             <table class="table table-bordered table-striped table-sm">
                                 <thead>
                                     <tr>
+                                        <th>Id</th>
                                         <th>Business Name</th>
                                         <th>Intro</th>
                                         <th>Mobile</th>
@@ -32,13 +33,14 @@
                                         <th>Page</th>
                                         <th>Position</th>
                                         <th>Expiry Date</th>
-                                        <th class="text-center" id="action">Action</th>
+                                        <th class="text-center" id="action" style="min-width: 70px;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($advertising as $key => $value) { ?>
 
                                         <tr>
+                                            <td><?= 'AD0'.$value['id'] ?></td>
                                             <td><?= $value['business_name']; ?></td>
                                             <td><?= nl2br($value['intro']); ?></td>
                                             <td><?= $value['mobile'] ?></td>
@@ -48,6 +50,10 @@
                                             <td><?= $value['position'] ?></td>
                                             <td><?=  date('d-m-Y',strtotime($value['exp_date'])) ?></td>
                                             <td class="text-center">
+
+                                                <a class="btn btn-sm btn-success" href="<?= base_url();?>advertising/edit/<?= $value['id'];?>" title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
 
                                                <a class="btn btn-sm btn-danger" href="<?= base_url();?>advertising/delete/<?= $value['id'];?>" onclick="return confirm('Are you Sure You Want to Delete this Advertising .?');" title="Delete">
                                                     <i class="fa fa-trash"></i>
@@ -69,6 +75,7 @@
     </section>
 <!-- /.container-fluid -->
 
+
 <script type="text/javascript">
     $(function(){
         $('.table').DataTable({
@@ -76,7 +83,7 @@
             "columnDefs": [
                 
                 
-                    { "orderable": false, "targets": [8] }
+                    { "orderable": false, "targets": [9] }
                     
                 
             ],
@@ -87,21 +94,21 @@
                     extend: 'print',
                     title: '<?=$this->config->config["projectTitle"]?> Advertising',
                     exportOptions: {
-                        columns: [0,1,2,3,4,5,6,7]
+                        columns: [0,1,2,3,4,5,6,7,8]
                     }
                 },
                 { 
                     extend: 'pdf',
                     title: '<?=$this->config->config["projectTitle"]?> Advertising',
                     exportOptions: {
-                        columns: [0,1,2,3,4,5,6,7]
+                        columns: [0,1,2,3,4,5,6,7,8]
                     }
                 },
                 { 
                     extend: 'excel',
                     title: '<?=$this->config->config["projectTitle"]?> Advertising',
                     exportOptions: {
-                        columns: [0,1,2,3,4,5,6,7]
+                        columns: [0,1,2,3,4,5,6,7,8]
                     }
                 }
             ]

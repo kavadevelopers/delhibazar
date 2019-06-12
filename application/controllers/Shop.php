@@ -27,6 +27,7 @@ class Shop extends CI_Controller {
 	public function rating()
 	{
 		$data = [
+					'subject'		=> $this->input->post('subject'),
 					'review'		=> $this->input->post('review'),
 					'rating'		=> $this->input->post('rating'),
 					'user_id'		=> $this->session->userdata('id'),

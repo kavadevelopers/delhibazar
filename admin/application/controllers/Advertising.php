@@ -23,8 +23,14 @@ class Advertising extends CI_Controller {
     	$data['page_title']	       = 'Add Advertising';
         $data['ad_package']        = $this->package_model->ad();
         $this->load->template('advertising/add',$data);
+    }
 
+    public function edit($id){
 
+        $data['page_title']        = 'Edit Advertising';
+        $data['ad_package']        = $this->package_model->ad();
+        $data['advertise']         = $this->advertising_model->advertising_where($id);
+        $this->load->template('advertising/add',$data);
     }
 
     public function save(){
@@ -123,6 +129,12 @@ class Advertising extends CI_Controller {
 	            }
 
         }
+    }
+
+    public function update()
+    {
+        pre_print($_POST);
+        die;
     }
 
     public function delete($id = false)

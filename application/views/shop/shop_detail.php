@@ -81,7 +81,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h5 title="Shop Name"><?= $shop[0]['shop_name'] ?></h5><br>
-                <p class="reserve-description" title="Shop Info"><?= $shop[0]['info'] ?></p>
+                <p class="reserve-description" title="Shop Info"><?= $shop[0]['category'] ?></p>
             </div>
             <div class="col-md-6">
                 <div class="reserve-seat-block">
@@ -131,6 +131,9 @@
                 <div class="booking-checkbox_wrap">
                     <div class="booking-checkbox">
                         <p><?= nl2br($shop[0]['detail_desc']) ?></p>
+                        <hr>
+                        <div class="col-md-12 text-center" style="margin-bottom: 15px;"><h5>Information</h5></div>
+                        <p><?= nl2br($shop[0]['info']) ?></p>
                         <hr>
                     </div>
                     <div class="row">

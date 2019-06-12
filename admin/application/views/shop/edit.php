@@ -115,15 +115,6 @@
                                         </div>
                                     </div> 
 
-
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Information</label>
-                                            <textarea class="form-control form-control-sm" type="text" name="info" placeholder="Information" autocomplete="off"><?= set_value('info',$shop[0]['info']); ?></textarea>
-                                            <?= form_error('info'); ?>
-                                        </div>
-                                    </div> 
-
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Detail Description Section</label>
@@ -180,6 +171,28 @@
                                     
                                 </div>
                             </div>
+                        </div>    
+
+                        <div class="card card-secondary"> 
+                            <div class="card-header">
+                                <h3 class="card-title">Information</h3>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <textarea class="ckeditor" cols="80" id="editor1" name="info" rows="10"><?= set_value('info',$shop[0]['info']); ?></textarea>
+                                    </div>
+                                    <?php echo form_error('info'); ?>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="card">
                             <div class="card-footer">
                                 <div class="float-right">
                                   <a href="<?= base_url(); ?>shop" class="btn btn-danger">Cancel</a>
@@ -193,3 +206,5 @@
             </form>    
         </div>
     </section>
+<script src="<?= base_url(); ?>plugins/ckeditor/ckeditor.js"></script>
+
