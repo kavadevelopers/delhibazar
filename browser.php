@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 
-	<title>Champs | Browser Not Supported</title>
+	<title>DELHIBAZAR | Browser Not Supported</title>
 
 	
 	<link rel="shortcut icon" href="image/favicon.png" type="image/png"/>
