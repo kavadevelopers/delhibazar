@@ -43,8 +43,9 @@
 										
 										<?php if(!empty($product_image)) { ?> 
 
-											<img class="img-fluid" src="<?= base_url() ?>admin/uploads/product/<?= $this->product_model->product_image_where($value['id'])[0]['image'] ?>" alt="Product Image">
-
+											
+												<img class="img-fluid" src="<?= base_url() ?>admin/uploads/product/<?= $this->product_model->product_image_where($value['id'])[0]['image'] ?>" alt="Product Image">
+											
 										<?php } else { ?>
 
 											<img class="img-fluid" src="<?= base_url() ?>admin/uploads/product/no-image.png" alt="Product Image">
@@ -61,7 +62,13 @@
 							</div>
 
 						<?php } } else { ?>
-							No Data
+							
+							<div class="col-md-12 text-center">
+								<div class="f_p_item" style="background-color: #e8f0f2;padding: 25px;font-style: oblique;box-shadow: 3px 2px;">
+									<h5>Product not available visit few hour again </h5>
+								</div>
+							</div>
+
 						<?php } ?>
 
 				</div>
