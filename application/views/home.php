@@ -84,9 +84,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12">
-                            <!-- clock widget start -->
-                                <script type="text/javascript"> var css_file=document.createElement("link"); css_file.setAttribute("rel","stylesheet"); css_file.setAttribute("type","text/css"); css_file.setAttribute("href","//s.bookcdn.com//css/cl/bw-cl-120x45.css"); document.getElementsByTagName("head")[0].appendChild(css_file); </script> <div id="tw_5_2056819673"><div style="width:130px; height:45px; margin: 0 auto;"><a href="https://booked.net/time/new-delhi-18038">New Delhi</a><br/></div></div> <script type="text/javascript"> function setWidgetData_2056819673(data){ if(typeof(data) != 'undefined' && data.results.length > 0) { for(var i = 0; i < data.results.length; ++i) { var objMainBlock = ''; var params = data.results[i]; objMainBlock = document.getElementById('tw_'+params.widget_type+'_'+params.widget_id); if(objMainBlock !== null) objMainBlock.innerHTML = params.html_code; } } } var clock_timer_2056819673 = -1; </script> <script type="text/javascript" charset="UTF-8" src="https://widgets.booked.net/time/info?ver=2&domid=209&type=5&id=2056819673&scode=2&city_id=18038&wlangid=1&mode=1&details=0&background=35475e&color=ffffff&add_background=a0a1a1&add_color=ffffff&head_color=ffffff&border=2&transparent=0"></script>
-<!-- clock widget end -->
+                            
+                            <p id="MydateDisplay"></p>
 
                         </div>
                         <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12" style="margin-top: 5px; height: 90px !important;">
