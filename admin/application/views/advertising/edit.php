@@ -97,8 +97,10 @@
                                                 
                                                 <option value="">-- Select Page --</option>
                                                 <option value="Home" <?php if('Home' == set_value('page',$advertise[0]['page'])){ echo "selected"; } ?>>Home</option>
+
                                                 <option value="Listing" <?php if('Listing' == set_value('page',$advertise[0]['page'])){ echo "selected"; } ?>>Listing</option>
-                                                <option value="Business Detail" <?php if('Business Detail' == set_value('page')){ echo "selected"; } ?>>Business Detail</option>
+                                                
+                                                <option value="Business Detail" <?php if('Business Detail' == set_value('page',$advertise[0]['page'])){ echo "selected"; } ?>>Business Detail</option>
                                             </select>
                                             <?= form_error('page'); ?>
                                         </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 12, 2019 at 01:11 PM
+-- Generation Time: Jun 14, 2019 at 11:35 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -47,7 +47,17 @@ CREATE TABLE IF NOT EXISTS `advertising` (
   `updated_at` datetime NOT NULL,
   `df` varchar(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `advertising`
+--
+
+INSERT INTO `advertising` (`id`, `business_name`, `intro`, `mobile`, `address`, `link`, `photo`, `plan_name`, `exp_date`, `page`, `position`, `created_by`, `updated_by`, `created_at`, `updated_at`, `df`) VALUES
+(1, 'new Shop', 'adsa sa asd', '4504565065', 'asda sda', '#', '540f5a0e8327161886e8444231efbcbb.png', '2', '2019-07-14', 'Listing', '10', '1', '1', '2019-06-14 14:05:37', '2019-06-14 16:14:30', '0'),
+(2, 'Shop 2', 'asdasd', '7898745645', 'adsadasd', '#', 'f83a1832f6c51797bed6de412d4358ce.jpg', '2', '2019-07-14', 'Business Detail', '3', '1', '1', '2019-06-14 16:06:11', '2019-06-14 16:31:28', '0'),
+(3, 'Shop', 'sdas', '1201232032', 'dasdas', '#', '0fa462ca006753b0554feb32d8cdefcd.png', '2', '2019-07-14', 'Business Detail', '2', '1', '1', '2019-06-14 16:57:22', '2019-06-14 16:57:22', '0'),
+(4, 'sadas', 'dasd', '7897865465', 'asdas', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Business Detail', '1', '1', '1', '2019-06-14 16:57:52', '2019-06-14 16:57:52', '0');
 
 -- --------------------------------------------------------
 
@@ -71,6 +81,31 @@ CREATE TABLE IF NOT EXISTS `ad_package` (
 
 INSERT INTO `ad_package` (`id`, `plan`, `price`, `duration`, `created_at`) VALUES
 (2, 'silver', '4000.00', '30', '2019-06-11 14:36:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+DROP TABLE IF EXISTS `cart`;
+CREATE TABLE IF NOT EXISTS `cart` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qty` varchar(250) NOT NULL,
+  `product_id` varchar(250) NOT NULL,
+  `user_id` varchar(250) NOT NULL,
+  `delivered` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 = delivery done, 0 = not delivered',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `qty`, `product_id`, `user_id`, `delivered`, `created_at`, `updated_at`) VALUES
+(1, '1', '8', '8', 0, '2019-06-13 18:34:57', NULL);
 
 -- --------------------------------------------------------
 
@@ -156,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `updated_at` datetime NOT NULL,
   `df` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product`
@@ -169,7 +204,10 @@ INSERT INTO `product` (`id`, `hash`, `name`, `amount`, `short_desc`, `desc`, `ca
 (4, '0cd155e84b4266c63337a02303551499', 'Redmi 6', '11999.00', 'asdasdasd asd', '<p>asdasdasdsad</p>', '4', 1, '1', '1', '2019-06-07 17:17:36', '2019-06-07 17:17:36', 0),
 (5, '1ccdcca89fbe346071ed3c4f6c370621', 'redmi 7', '14999.00', 'asdasdasdasd', '<p>asdasdasd<em>as asd asdasasd</em></p>', '4', 1, '1', '1', '2019-06-07 17:18:03', '2019-06-07 17:18:03', 0),
 (6, 'ffa0eddb2f3f73dda1fac27ff6b0b1ea', 'redmi 7 pro', '15999.00', 'asda sda', '<p>asdasdasd<strong>asdas asd asd</strong></p>', '4', 1, '1', '1', '2019-06-07 17:18:26', '2019-06-07 17:18:26', 0),
-(7, 'b14c983e834525d2cc1ab48c5559282f', 'Redmi 7 pro..', '15999.00', 'rrrrrrrrrrrrrrrrrrrrrrrrr\r\ndasdas dasd asdas a\r\nasdasdasd', '<p><strong>Camera&nbsp;</strong></p>\r\n\r\n<p><em>fornt Camera : 12px</em></p>\r\n\r\n<p><em>Seconad Camera : 48px;</em></p>\r\n\r\n<p><strong>Display</strong></p>\r\n\r\n<p><em>6.2 display..</em></p>', '4', 0, '1', '1', '2019-06-08 14:41:04', '2019-06-08 15:16:45', 0);
+(7, 'b14c983e834525d2cc1ab48c5559282f', 'Redmi 7 pro..', '15999.00', 'rrrrrrrrrrrrrrrrrrrrrrrrr\r\ndasdas dasd asdas a\r\nasdasdasd', '<p><strong>Camera&nbsp;</strong></p>\r\n\r\n<p><em>fornt Camera : 12px</em></p>\r\n\r\n<p><em>Seconad Camera : 48px;</em></p>\r\n\r\n<p><strong>Display</strong></p>\r\n\r\n<p><em>6.2 display..</em></p>', '4', 0, '1', '1', '2019-06-08 14:41:04', '2019-06-08 15:16:45', 0),
+(8, '9a6a7050f40408d6c5c3c75b574bb2f2', 'One Plus 7', '32999.00', 'Rear Camera - 48MP (Primary) + 5 MP (Tele-photo) | Front Camera - 16MP\r\n16.2814 centimeters (6.41-inch) multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution\r\nMemory, Storage and SIM: 6GB RAM | 128GB internal memory | Dual SIM dual-standby (4G+4G)\r\nAndroid Oxygen operating system with 2.84GHz Snapdragon 855 octa core processor\r\n3700mAH lithium-ion battery\r\n1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase\r\nBox also includes: Power Adapter, Type-C Cable (Support USB 2.0), Quick Start Guide, Welcome Letter, Safety Information and Warranty Card, Logo Sticker, Case, Screen Protector (pre-applied) and SIM Tray Ejector', 'Rear Camera - 48MP (Primary) + 5 MP (Tele-photo) | Front Camera - 16MP\r\n16.2814 centimeters (6.41-inch) multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution\r\nMemory, Storage and SIM: 6GB RAM | 128GB internal memory | Dual SIM dual-standby (4G+4G)\r\nAndroid Oxygen operating system with 2.84GHz Snapdragon 855 octa core processor\r\n3700mAH lithium-ion battery\r\n1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase\r\nBox also includes: Power Adapter, Type-C Cable (Support USB 2.0), Quick Start Guide, Welcome Letter, Safety Information and Warranty Card, Logo Sticker, Case, Screen Protector (pre-applied) and SIM Tray Ejector', '4', 0, '1', '1', '2019-06-13 12:08:48', '2019-06-13 12:11:24', 0),
+(9, '2418871f1f523aad556195529c9d9831', 'Redmi Y3', '9999.00', '12MP+2MP dual rear camera | 32MP front facing camera\r\n15.9004 centimeters (6.26-inch) with 1520 x 720 pixels resolution, 269 ppi pixel density\r\nMemory, Storage and SIM: 3GB RAM | 32GB internal memory expandable up to 512GB | Dual SIM (nano+nano) dual-standby (4G+4G)', '<ul>\r\n	<li>12MP+2MP dual rear camera | 32MP front facing camera</li>\r\n	<li>15.9004 centimeters (6.26-inch) with 1520 x 720 pixels resolution, 269 ppi pixel density</li>\r\n	<li>Memory, Storage and SIM: 3GB RAM | 32GB internal memory expandable up to 512GB | Dual SIM (nano+nano) dual-standby (4G+4G)</li>\r\n	<li>Android Pie v9.0 operating system with 1.8GHz Qualcomm Snapdragon 632 octa core processor, Adreno 506</li>\r\n	<li>4000mAH lithium-ion battery</li>\r\n	<li>1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase</li>\r\n	<li>Box also includes: Adapter, USB cable, warranty card, user guide, SIM insertion tool, back cover</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', '4', 0, '1', '1', '2019-06-13 12:19:06', '2019-06-13 12:31:49', 0),
+(10, 'c607f715947347d69fb29fbddd2d9ed2', 'Samsung m30', '15999.00', '13+5+5MP Triple rear camera with f1.9 aperture, 2.2 wide angle, 2.2 flash | 16MP front camera with f2.0 aperture\r\n16.21 centimeters (6.4-inch) FHD+ multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution and 16M color support', '<ul>\r\n	<li>13+5+5MP Triple rear camera with f1.9 aperture, 2.2 wide angle, 2.2 flash | 16MP front camera with f2.0 aperture</li>\r\n	<li>16.21 centimeters (6.4-inch) FHD+ multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution and 16M color support</li>\r\n	<li>Memory, Storage and SIM: 4GB RAM | 64GB internal memory expandable up to 512GB | Dual SIM (nano+nano) dual-standby (4G+4G)</li>\r\n	<li>Android Oreo v8.1 operating system with 1.8GHz Exynos 7904 octa core processor</li>\r\n	<li>5000mAH lithium-ion battery with 3x fast charge | 15W Type-C fast charger in the box</li>\r\n	<li>1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase</li>\r\n	<li>Box also includes: Handset, Travel Adapter, USB Cable, Ejection Pin and User Manual</li>\r\n</ul>', '4', 0, '1', '1', '2019-06-13 12:21:30', '2019-06-13 12:21:30', 0);
 
 -- --------------------------------------------------------
 
@@ -183,14 +221,17 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   `p_id` varchar(250) NOT NULL,
   `image` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product_images`
 --
 
 INSERT INTO `product_images` (`id`, `p_id`, `image`) VALUES
-(1, '7', 'adfb6d9879d936720ecfa940895dca27.jpg');
+(1, '7', 'adfb6d9879d936720ecfa940895dca27.jpg'),
+(2, '8', 'a3eb10700959507c5d28549527dd3884.jpg'),
+(3, '9', '400bfe8cbe5a59541ba0f82feba7765f.jpg'),
+(4, '10', '38fcf16852a141e2846efc432fbb9865.jpg');
 
 -- --------------------------------------------------------
 
@@ -207,8 +248,17 @@ CREATE TABLE IF NOT EXISTS `product_rating` (
   `rating` text NOT NULL,
   `review` longtext NOT NULL,
   `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `product_rating`
+--
+
+INSERT INTO `product_rating` (`id`, `product_id`, `hash`, `user_id`, `rating`, `review`, `created_at`, `updated_at`) VALUES
+(1, '8', '9a6a7050f40408d6c5c3c75b574bb2f2', '5', '5', 'Super, very nice', '2019-06-13 12:34:09', '2019-06-13 16:10:32'),
+(4, '8', '9a6a7050f40408d6c5c3c75b574bb2f2', '6', '2', 'B ad PRoduct', '2019-06-13 16:17:26', '2019-06-13 16:18:24');
 
 -- --------------------------------------------------------
 
@@ -248,12 +298,13 @@ CREATE TABLE IF NOT EXISTS `shop` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `shop_name` varchar(250) NOT NULL,
   `owner_name` varchar(250) NOT NULL,
-  `employee_name` varchar(250) NOT NULL,
-  `mobile` varchar(250) NOT NULL,
-  `wp_no` varchar(250) NOT NULL COMMENT 'Watsapp No',
+  `employee_name` varchar(250) DEFAULT NULL,
+  `mobile` varchar(250) DEFAULT NULL,
+  `wp_no` varchar(250) DEFAULT NULL COMMENT 'Watsapp No',
+  `dis_website` tinyint(4) DEFAULT NULL COMMENT '1 = Private, 0 = Public',
   `address` longtext NOT NULL,
   `landmark` varchar(250) NOT NULL,
-  `email` varchar(250) NOT NULL COMMENT 'Hours of Operation',
+  `email` varchar(250) DEFAULT NULL COMMENT 'Hours of Operation',
   `hour_operation` varchar(250) NOT NULL,
   `pro_or_servi` longtext NOT NULL COMMENT 'Products/Services',
   `payment_mode` varchar(250) NOT NULL,
@@ -268,19 +319,20 @@ CREATE TABLE IF NOT EXISTS `shop` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shop`
 --
 
-INSERT INTO `shop` (`id`, `shop_name`, `owner_name`, `employee_name`, `mobile`, `wp_no`, `address`, `landmark`, `email`, `hour_operation`, `pro_or_servi`, `payment_mode`, `photo`, `info`, `detail_desc`, `category`, `shop_plan`, `exp_date`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'asdasd', 'asdasd', 'asdasd l', '34234234234', '34234234234', 'asdasdasd asdasd asd asd This page didn\'t load Google Maps correctly. See the JavaScript console for technical details.', 'asdasd asdasdasda', 'asdas@gmail.com', '1212', 'sda adsd', 'aasdasd', '9e36c6a6b346ce680fa0c0b850ec714c.png', 'sadasdads', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', NULL, '2020-06-05', '1', '2019-05-29 18:07:25', NULL, '2019-05-29 18:55:49'),
-(2, 'kava developers', 'kava', 'jay', '9099998171', '9099998171', 'adasd asdasdasd asda s dasd', 'asdasd asda dasd', 'asdasd@gmail.com', '45', 'web developement,software,seo,smo,android,ios,desktop', 'dsasdasd', '148bc37cadf9d8170700c4122bbbd70b.jpg', '<p><em>Looking Good</em> <u>and nice </u><strong>Shop</strong></p>', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium\r\n\r\n, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the \r\n\r\nScrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', 'It Developement', '2', '2019-11-24', '1', '2019-05-29 18:20:48', '2019-06-12 16:59:06', NULL),
-(4, 'Gotham', 'Bruce Wayne', 'Lucius Fox', '2222222222', '2222555555', 'Gotham City', 'Wayne Towe', 'dsgsdkgjh@gmail.com', '9-5', 'application and', 'CASH', '9e36c6a6b346ce680fa0c0b850ec714c.png', 'DSMNB GKD GJHDKFGHDKF GHKD', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', NULL, '2020-06-05', '1', '2019-05-30 16:30:07', NULL, NULL),
-(5, 'food Junction ***', 'coca cola', 'jguar', '7897897822', '4564585685', 'jkl sda dasdasdsssssssssssssssssssssss', 'Darpan Six Road, Ahemdabad', '108@gmail.com', '8 to 8', '//////////////////////////////////////////////////////////', 'Paytam  6363', '9e36c6a6b346ce680fa0c0b850ec714c.png', '[][][][]][asdasssssssssssssssssssssssssssssssssss', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst\r\n                                many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', NULL, '2020-06-05', '1', '2019-05-31 14:59:50', '2019-05-31 15:39:00', NULL),
-(6, 'lenovo', 'zoo', 'park', '1234564454', '01212121211', 'sdas dasd asda', 'asd asdasd asda sd', '712@gmail.com', '08:00  AM to 9:00 PM', 'asdasdas sad asdas dasd', 'Cash', 'aa5891bf0c76a6ddafeed87830ada232.jpg', 'asd dasd asd as', 'asdasd', 'Electronic, mouse, keyboard, laptop, mobile,all items', NULL, '2020-06-05', '1', '2019-06-05 10:34:13', '2019-06-05 10:36:49', NULL),
-(7, 'umiya', 'ooo', 'adasdas', '4564525652', '1234567890', 'asdas dasd asd asdas das', 'asda sdas', 'dasdas@gmail.com', '12 to 9', 'asda as dasd', 'check', '', '', '', 'Veg', '3', '2020-06-05', '1', '2019-06-11 12:43:06', '2019-06-11 12:52:42', NULL);
+INSERT INTO `shop` (`id`, `shop_name`, `owner_name`, `employee_name`, `mobile`, `wp_no`, `dis_website`, `address`, `landmark`, `email`, `hour_operation`, `pro_or_servi`, `payment_mode`, `photo`, `info`, `detail_desc`, `category`, `shop_plan`, `exp_date`, `created_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'asdasd', 'asdasd', 'asdasd l', '34234234234', '34234234234', NULL, 'asdasdasd asdasd asd asd This page didn\'t load Google Maps correctly. See the JavaScript console for technical details.', 'asdasd asdasdasda', 'asdas@gmail.com', '1212', 'sda adsd', 'aasdasd', '9e36c6a6b346ce680fa0c0b850ec714c.png', 'sadasdads', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', NULL, '2020-06-05', '1', '2019-05-29 18:07:25', NULL, '2019-05-29 18:55:49'),
+(2, 'kava developers', 'kava', 'jay', '9099998171', '9099998171', NULL, 'adasd asdasdasd asda s dasd', 'asdasd asda dasd', 'asdasd@gmail.com', '45', 'web developement,software,seo,smo,android,ios,desktop', 'dsasdasd', '148bc37cadf9d8170700c4122bbbd70b.jpg', '<p><em>Looking Good</em> <u>and nice </u><strong>Shop</strong></p>', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium\r\n\r\n, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the \r\n\r\nScrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', 'It Developement', '2', '2019-11-24', '1', '2019-05-29 18:20:48', '2019-06-12 16:59:06', NULL),
+(4, 'Gotham', 'Bruce Wayne', 'Lucius Fox', '2222222222', '2222555555', NULL, 'Gotham City', 'Wayne Towe', 'dsgsdkgjh@gmail.com', '9-5', 'application and', 'CASH', '9e36c6a6b346ce680fa0c0b850ec714c.png', 'DSMNB GKD GJHDKFGHDKF GHKD', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', NULL, '2020-06-05', '1', '2019-05-30 16:30:07', NULL, NULL),
+(5, 'food Junction ***', 'coca cola', 'jguar', '7897897822', '4564585685', NULL, 'jkl sda dasdasdsssssssssssssssssssssss', 'Darpan Six Road, Ahemdabad', '108@gmail.com', '8 to 8', '//////////////////////////////////////////////////////////', 'Paytam  6363', '9e36c6a6b346ce680fa0c0b850ec714c.png', '[][][][]][asdasssssssssssssssssssssssssssssssssss', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst\r\n                                many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', NULL, '2020-06-05', '1', '2019-05-31 14:59:50', '2019-05-31 15:39:00', NULL),
+(6, 'lenovo', 'zoo', 'park', '1234564454', '01212121211', NULL, 'sdas dasd asda', 'asd asdasd asda sd', '712@gmail.com', '08:00  AM to 9:00 PM', 'asdasdas sad asdas dasd', 'Cash', 'aa5891bf0c76a6ddafeed87830ada232.jpg', 'asd dasd asd as', 'asdasd', 'Electronic, mouse, keyboard, laptop, mobile,all items', NULL, '2020-06-05', '1', '2019-06-05 10:34:13', '2019-06-05 10:36:49', NULL),
+(7, 'umiya', 'ooo', 'adasdas', '4564525652', '1234567890', NULL, 'asdas dasd asd asdas das', 'asda sdas', 'dasdas@gmail.com', '12 to 9', 'asda as dasd', 'check', '', '', '', 'Veg', '3', '2020-06-05', '1', '2019-06-11 12:43:06', '2019-06-11 12:52:42', NULL),
+(8, 'new Deluxe', 'nayan', '', '4564523023', '1201232032', 0, 'adas aS Ad,\r\nasdasdasdasd', 'ahmedabad', '', '10 to 5', 'dasda asd asd', 'cash', 'f430ee5c5567b9466c40d7b1c11bc066.jpg', '<p>asd asd asd asd asd asd</p>', 'aasdasd', 'dasdasdasd', '2', '2019-11-26', '1', '2019-06-14 13:47:03', '2019-06-14 14:16:19', NULL);
 
 -- --------------------------------------------------------
 
@@ -322,7 +374,7 @@ CREATE TABLE IF NOT EXISTS `shop_rating` (
   `rating` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shop_rating`
@@ -330,11 +382,9 @@ CREATE TABLE IF NOT EXISTS `shop_rating` (
 
 INSERT INTO `shop_rating` (`id`, `user_id`, `shop_id`, `subject`, `review`, `rating`, `created_at`) VALUES
 (5, '6', '2', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the\r\n                                hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great\r\n                                dipped in their chili sauce.', 3, '2019-06-04 19:41:40'),
-(6, '6', '2', '', 'This is good', 4, '2019-06-04 20:32:53'),
 (14, '8', '2', 'Foods', 'Good Service & Food', 5, '2019-06-12 16:23:53'),
 (15, '9', '2', 'Service', 'Bad Service', 2, '2019-06-12 16:27:36'),
-(11, '6', '2', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the\r\n                                hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great\r\n                                dipped in their chili sauce.', 3, '2019-06-04 19:41:40'),
-(12, '6', '2', '', 'This is good', 4, '2019-06-04 20:32:53');
+(16, '5', '2', 'shop', 'nice', 4, '2019-06-13 13:10:16');
 
 -- --------------------------------------------------------
 
@@ -415,7 +465,7 @@ CREATE TABLE IF NOT EXISTS `social_user` (
 --
 
 INSERT INTO `social_user` (`id`, `first_name`, `last_name`, `email`, `mobile`, `password`, `image`, `delete_flag`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(5, 'rrrr', 'ers', 'sdfs@gmail.com', '12012121211', '5690d363233fab288d51e9b4b4c70edb', '483391b37a55a7e84ba56af8dbba8572.png', 0, '2019-06-04 12:31:27', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 'rrrr', 'ers', 'sdfs@gmail.com', '12012121211', '0e7517141fb53f21ee439b355b5a1d0a', '483391b37a55a7e84ba56af8dbba8572.png', 0, '2019-06-04 12:31:27', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (4, 'asdasdasd', 'dasda', 'dasd@gmail.com', '1201212121', '456456456', '580b0399f62f5ca36a1b3443aec578a0.jpg', 0, '2019-06-04 12:24:31', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (6, 'asdasd', 'asdasd', '12@gmail.com', '12121212121', '0e7517141fb53f21ee439b355b5a1d0a', '1f4d40181b795f2c1a35d95750f8fb13.jpg', 0, '2019-06-04 12:37:32', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (7, 'elephant', 'jungle', 'nayan@gmail.com', '4564589789', '0e7517141fb53f21ee439b355b5a1d0a', '0f5a364c7a9f21305b97bea45c3d456d.jpg', 0, '2019-06-04 12:56:22', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
