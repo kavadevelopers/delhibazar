@@ -7,8 +7,7 @@ class Products extends CI_Controller {
         parent::__construct(); 
     	$this->load->model('product_model');   
     	$this->load->model('rating_model');   
-
-    	$this->load->library('pagination');
+		$this->load->library('pagination');
     	$this->perPage = 9;
     }
 
@@ -167,5 +166,5 @@ class Products extends CI_Controller {
 				redirect(base_url('products/product_detail/'.$this->input->post('edit_hash')));
 			}
 	}
-	
+
 }

@@ -91,15 +91,26 @@
 						<li><a href="#"><span>Availibility</span> : In Stock</a></li>
 					</ul>
 					<p><?=  nl2br($product[0]['short_desc']) ?></p>
-					<div class="product_count">
-						<label for="qty">Quantity:</label>
-						<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty" readonly>
-						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-					</div>
-					<div class="card_area">
-						<a class="main_btn" href="#">Add to Cart</a>
-					</div>
+					
+					<form method="post" id="add_to_cart" action="<?= base_url() ?>cart/add_to_cart">
+						<div class="product_count" style="margin: 5px;">
+							<label for="qty">Quantity:</label>
+							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty" readonly>
+							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+						</div><br>
+						<span class="color-red" id="qty_span"></span>
+						<div class="card_area">
+							<?php if($this->session->userdata('id')) { ?>
+								<button type="submit" class="main_btn btn btn-sm">Add to Cart</button>
+							<?php } else { ?>
+								<button type="submit" class="main_btn btn btn-sm" onclick="return guest_click()">Add to Cart</button>
+							<?php } ?>
+						</div>
+						<input type="hidden" name="user_id" value="<?= $this->session->userdata('id') ?>">
+						<input type="hidden" name="product_hash" value="<?= $this->uri->segment('3') ?>">
+
+					</form>
 				</div>
 			</div>
 		</div>
@@ -344,6 +355,21 @@ $(document).ready(function(){
         $("input[name=edit_rating][value=" + $(this).data('rating') + "]").prop('checked', true);
         $('#edit_hash').val($(this).data('hash'));
         $('#edit_id').val($(this).data('id'));
+    });
+
+    // ADD TO CART PRODUCT VALIDATION
+    
+	$("#add_to_cart").submit(function(){
+		var qty    	  = $('#sst').val();
+	
+		if(qty == '' || qty == 0){
+			$('#qty_span').html("Quantity is required");
+        	$('#qty_span').fadeIn();
+        	return false;
+        }
+        else{
+            $('#qty_span').fadeOut();
+        }
     });
 
     $("#ReviewForm").submit(function(){

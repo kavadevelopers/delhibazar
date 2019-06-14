@@ -58,9 +58,9 @@
         
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
-        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+        <link rel="stylesheet" href="<?= base_url() ?>temp_1/css/jquery_validation.css">
+        <script src="<?= base_url() ?>temp_1/js/validate.min.js"></script>
+        <script src="<?= base_url() ?>temp_1/js/validate-additional-methods.min.js"></script>
         
         
 

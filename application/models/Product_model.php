@@ -21,6 +21,11 @@ class Product_model extends CI_Model
 		return $this->db->get_where('product',['hash' => $hash])->result_array();
 	}
 
+	public function product_id_where($id)
+	{
+		return $this->db->get_where('product',['id' => $id])->result_array();
+	}
+
 	public function product_image_where($product_id)
 	{
 		return $this->db->get_where('product_images',['p_id' => $product_id])->result_array();
