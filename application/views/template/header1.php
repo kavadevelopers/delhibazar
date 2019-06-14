@@ -93,7 +93,7 @@ function JSalert(){
                                 </li>
                                 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listings
+                                    <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shopping
                                     <span class="icon-arrow-down"></span>
                                     </a>
                                     

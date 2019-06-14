@@ -82,7 +82,7 @@ $CI->load->model('cart_model');
 								<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>pages/about">About</a></li>
 								
 								<li class="nav-item submenu dropdown">
-									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listings</a>
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shopping</a>
 									
 									<ul class="dropdown-menu">
 										
