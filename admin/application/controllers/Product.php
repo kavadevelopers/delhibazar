@@ -72,8 +72,8 @@ class Product extends CI_Controller {
                             'hash'          =>  md5(microtime(true)),
                             'name'          =>  ucfirst($this->input->post('name')),
                             'amount'        =>  $this->input->post('price'),
-                            'short_desc'    =>  $this->input->post('short_desc'),
-                            'desc'          =>  $this->input->post('editor1'),
+                            'short_desc'    =>  trim($this->input->post('short_desc')),
+                            'desc'          =>  trim($this->input->post('editor1')),
                             'category'      =>  $this->input->post('category'),
                             'created_by'    =>  $this->session->userdata('id'),
                             'updated_by'    =>  $this->session->userdata('id'),
@@ -160,8 +160,8 @@ class Product extends CI_Controller {
             $product =  [
                             'name'          =>  ucfirst($this->input->post('name')),
                             'amount'        =>  $this->input->post('price'),
-                            'short_desc'    =>  $this->input->post('short_desc'),
-                            'desc'          =>  $this->input->post('editor1'),
+                            'short_desc'    =>  trim($this->input->post('short_desc')),
+                            'desc'          =>  trim($this->input->post('editor1')),
                             'category'      =>  $this->input->post('category'),
                             'updated_by'    =>  $this->session->userdata('id'),
                             'updated_at'    =>  _now_dt()

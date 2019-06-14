@@ -91,15 +91,26 @@
 						<li><a href="#"><span>Availibility</span> : In Stock</a></li>
 					</ul>
 					<p><?=  nl2br($product[0]['short_desc']) ?></p>
-					<div class="product_count">
-						<label for="qty">Quantity:</label>
-						<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty" readonly>
-						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-					</div>
-					<div class="card_area">
-						<a class="main_btn" href="#">Add to Cart</a>
-					</div>
+					
+					<form method="post" id="add_to_cart" action="<?= base_url() ?>cart/add_to_cart">
+						<div class="product_count" style="margin: 5px;">
+							<label for="qty">Quantity:</label>
+							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty" readonly>
+							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+						</div><br>
+						<span class="color-red" id="qty_span"></span>
+						<div class="card_area">
+							<?php if($this->session->userdata('id')) { ?>
+								<button type="submit" class="main_btn btn btn-sm">Add to Cart</button>
+							<?php } else { ?>
+								<button type="submit" class="main_btn btn btn-sm" onclick="return guest_click()">Add to Cart</button>
+							<?php } ?>
+						</div>
+						<input type="hidden" name="user_id" value="<?= $this->session->userdata('id') ?>">
+						<input type="hidden" name="product_hash" value="<?= $this->uri->segment('3') ?>">
+
+					</form>
 				</div>
 			</div>
 		</div>
@@ -163,7 +174,16 @@
 												<img src="<?= base_url() ?>image/social_user_uploads/<?= $user['image'] ?>" alt="" style="height: 50px;width: 50px;border-radius: 25px;">
 											</div>
 											<div class="media-body">
-												<h4><?= $user['first_name'].' '.$user['last_name'] ?></h4>
+												<h4><?= $user['first_name'].' '.$user['last_name']; ?>
+
+													<?php if($this->session->userdata('id')){ ?>
+	                                					<?php if($this->session->userdata('id') == $value['user_id']){ ?>
+													
+														<a class="pull-right" id="edit_button" href="javascript:;" data-review="<?= $value['review'] ?>" data-rating="<?= $value['rating'] ?>" data-hash="<?= $value['hash'] ?>" data-id="<?= $value['id'] ?>"><i class="fa fa-pencil text-dark"></i></a>
+
+													<?php } } ?>
+
+												</h4>
 												<?= product_rating_star($value['rating']) ?>
 											</div>
 										</div>
@@ -261,6 +281,54 @@
 	</div>
 </section>
 
+<form class="row contact_form" action="<?= base_url() ?>products/edit_review" method="post" id="edit_ReviewForm" novalidate="novalidate">
+	<div class="modal fade" id="edit_review" data-keyboard="false" data-backdrop="static" role="dialog">
+        <div class="modal-dialog">
+          	<div class="modal-content">
+          		<!-- Modal Header -->
+	            <div class="modal-header">
+		            <h2 class="text-dark">Edit a Review</h2>
+		            <button type="button" class="close" data-dismiss="modal" style="cursor: pointer;">&times;</button>
+	            </div>
+
+	            <!-- Modal body -->
+	            <div class="container text-dark">
+                	<p class="font-weight-bold" style="margin:5px;">Rating</p>
+					<div class="rate">
+						<input type="radio" id="edit_star5" name="edit_rating" value="5" />
+				        <label for="edit_star5" title="rating">5 stars</label>
+				        <input type="radio" id="edit_star4" name="edit_rating" value="4" />
+				        <label for="edit_star4" title="rating">4 stars</label>
+				        <input type="radio" id="edit_star3" name="edit_rating" value="3" />
+				        <label for="edit_star3" title="rating">3 stars</label>
+				        <input type="radio" id="edit_star2" name="edit_rating" value="2" />
+				        <label for="edit_star2" title="rating">2 stars</label>
+				        <input type="radio" id="edit_star1" name="edit_rating" value="1" />
+				        <label for="edit_star1" title="rating">1 star</label>
+					</div>
+				</div><br>
+                <p class="color-red" id="edit_rating_span"></p>
+
+                <div class="modal-body">
+	                <div class="form-group">
+	                    <label class="font-weight-bold text-dark">Review</label>
+	                    <textarea class="form-control" type="text" name="edit_review" id="edit_product_review" placeholder="Review" style="height: unset;resize: vertical !important;"></textarea>
+						<span class="color-red" id="edit_review_span"></span>
+	                </div>
+	            </div>
+
+	            <!-- Modal footer -->
+	            <div class="modal-footer">
+	            	<button type="submit" class="btn btn-success" style="cursor: pointer;">Save</button>
+	            </div>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="edit_hash" name="edit_hash">
+	<input type="hidden" id="edit_id" name="edit_id">
+	
+</form>
+
 <input type="hidden" id="load_more_record" value="5">
 <!--================End Product Description Area =================-->
 
@@ -279,6 +347,31 @@ function allready_click()
 }
 
 $(document).ready(function(){
+
+	// Put value in edit rating modal
+    $(document).delegate('#edit_button','click',function(){
+		$('#edit_review').modal('show');
+        $('#edit_product_review').val($(this).data('review'));
+        $("input[name=edit_rating][value=" + $(this).data('rating') + "]").prop('checked', true);
+        $('#edit_hash').val($(this).data('hash'));
+        $('#edit_id').val($(this).data('id'));
+    });
+
+    // ADD TO CART PRODUCT VALIDATION
+    
+	$("#add_to_cart").submit(function(){
+		var qty    	  = $('#sst').val();
+	
+		if(qty == '' || qty == 0){
+			$('#qty_span').html("Quantity is required");
+        	$('#qty_span').fadeIn();
+        	return false;
+        }
+        else{
+            $('#qty_span').fadeOut();
+        }
+    });
+
     $("#ReviewForm").submit(function(){
     	var review    = $('#product_review').val();
         var rating    = $("input[name='rating']:checked").val();
@@ -308,6 +401,39 @@ $(document).ready(function(){
             return false;
         }
     });
+
+
+	$("#edit_ReviewForm").submit(function(){
+    	var review    = $('#edit_product_review').val();
+        var rating    = $("input[name='edit_rating']:checked").val();
+        var blank     = 0;
+        
+        // Review Validation
+        if(review == ''){
+            $('#edit_review_span').html("Review is required");
+            blank = 1;
+            $('#edit_review_span').fadeIn();
+        }
+        else{
+            $('#edit_review_span').fadeOut();
+        }
+
+        // Rating Validation
+        if(!rating){
+            $('#edit_rating_span').html("Rating is required");
+            blank = 1;
+            $('#edit_rating_span').fadeIn();
+        }
+        else{
+            $('#edit_rating_span').fadeOut();
+        }
+
+        if(blank == 1){
+            return false;
+        }
+    });
+
+    
 });
 
 

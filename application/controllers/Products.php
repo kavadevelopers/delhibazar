@@ -7,9 +7,8 @@ class Products extends CI_Controller {
         parent::__construct(); 
     	$this->load->model('product_model');   
     	$this->load->model('rating_model');   
-
-    	$this->load->library('pagination');
-    	$this->perPage = 2;
+		$this->load->library('pagination');
+    	$this->perPage = 9;
     }
 
 	public function list()
@@ -127,8 +126,6 @@ class Products extends CI_Controller {
 
 	public function review()
 	{
-		
-
 		$data =	[
 					'product_id'=> $this->input->post('product_id'),
 					'hash'		=> $this->input->post('product_hash'),
@@ -150,5 +147,24 @@ class Products extends CI_Controller {
 			}
 	}
 
-	
+	public function edit_review()
+	{
+		$data =	[	'rating'	=> $this->input->post('edit_rating'),
+					'review'	=> ucfirst($this->input->post('edit_review')),
+					'updated_at'=> date('Y-m-d H:i:s')
+				]; 
+
+				$this->db->where('id',$this->input->post('edit_id'));
+			if($this->db->update('product_rating',$data))
+			{
+				$this->session->set_flashdata('msg', 'Rating Updated Thankyou');
+				redirect(base_url('products/product_detail/'.$this->input->post('edit_hash')));
+			}
+			else
+			{
+				$this->session->set_flashdata('error', 'Something went wrong try again');
+				redirect(base_url('products/product_detail/'.$this->input->post('edit_hash')));
+			}
+	}
+
 }
