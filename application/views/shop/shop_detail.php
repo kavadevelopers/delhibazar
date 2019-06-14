@@ -209,18 +209,16 @@
                             <span class="icon-location-pin"></span>
                             <p><?= $shop[0]['address'] ?></p>
                         </div>
-                        <div class="address" title="Email">
-                            <span class="ti-email"></span>
-                            <p><?= $shop[0]['email'] ?></p>
-                        </div>
-                        <div class="address" title="Mobile">
-                            <span class="icon-screen-smartphone"></span>
-                            <p><?= $shop[0]['mobile'] ?></p>
-                        </div>
-                        <div class="address" title="Watsapp No.">
-                            <span class="fa fa-whatsapp"></span>
-                            <p><?= $shop[0]['wp_no'] ?></p>
-                        </div>
+                        <?php if($shop[0]['dis_website'] == 0){ ?>
+                            <div class="address" title="Mobile">
+                                <span class="icon-screen-smartphone"></span>
+                                <p><?= $shop[0]['mobile'] ?></p>
+                            </div>
+                            <div class="address" title="Watsapp No.">
+                                <span class="fa fa-whatsapp"></span>
+                                <p><?= $shop[0]['wp_no'] ?></p>
+                            </div>
+                        <?php } ?>
                         <div class="address" title="Hours Of Operation">
                             <span class="icon-clock"></span>
                             <p><?= $shop[0]['hour_operation'] ?>

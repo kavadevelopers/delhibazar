@@ -69,6 +69,17 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            <label>Display(mobile / whastapp no.) in Website</label>
+                                            <select class="form-control form-control-sm" name="dis_website">
+                                                <option value="0" <?php if(0 == set_value('dis_website',$shop[0]['dis_website'])){ echo "selected"; } ?>>Public</option>
+                                                <option value="1" <?php if(1 == set_value('dis_website',$shop[0]['dis_website'])){ echo "selected"; } ?>>Private</option>
+                                            </select>
+                                            <?= form_error('dis_website'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <label>Address <span class="astrick">*</span></label>
                                             <textarea class="form-control form-control-sm" type="text" name="address" placeholder="Address" autocomplete="off"><?= set_value('address',$shop[0]['address']); ?></textarea>
                                             <?php echo form_error('address'); ?>

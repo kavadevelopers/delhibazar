@@ -85,7 +85,7 @@
                     <div class="col-md-12">
                         <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12">
                             
-                            <p id="MydateDisplay"></p>
+                            <p id="MydateDisplay" style="font-size: 12px;color: #fff;text-align: center;background-color: #34495e;margin: 0 0 10px;padding: 12px 0px;font-family: calibri"></p>
 
                         </div>
                         <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12" style="margin-top: 5px; height: 90px !important;">

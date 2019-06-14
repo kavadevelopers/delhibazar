@@ -53,6 +53,7 @@
 						</div>
 						<div class="col-md-12 form-group">
 							<input type="file" class="form-control" id="image" name="image">
+							<span><i><span class="astrick">Note</span> : Max size & Max Resoluion(2MB, 720 X 1080) </i></span>
 						</div>
 						<div class="col-md-12 form-group">
 							<button type="submit" value="submit" class="btn submit_btn">Register</button>
@@ -65,6 +66,7 @@
 </section>
 
 <style type="text/css">
+	.astrick{ color: red; }
 	input{ height: 40px !important; }
 	
 </style>

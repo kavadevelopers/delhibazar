@@ -13,7 +13,8 @@
     }
     $CI =& get_instance();
     $CI->load->model('user_model');
-    $user = $CI->user_model->ses_user()[0];
+    $id   = $this->session->userdata('id');
+    $user = $CI->user_model->ses_user($id)[0];
 ?> 
 
     <style type="text/css">
@@ -58,6 +59,101 @@
                         </a>
                     </li>
                     
+                     <li class="nav-item">
+                        <a href="<?php echo base_url('agent'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("agent"))[0]; ?>">
+                            <i class="nav-icon fa fa-users"></i>
+                            <p>Agent</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('social_user'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("social_user"))[0]; ?>">
+                            <i class="nav-icon fa fa-users"></i>
+                            <p>Users</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("packages"))[1]; ?>">
+                
+                        <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("packages"))[0]; ?>">
+                            <i class="nav-icon fa fa-th-large"></i>
+                            <p>Package
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                       
+                        <ul class="nav nav-treeview">
+                            
+                            <li class="nav-item">
+                                <a href="<?= base_url('packages/ad_index'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("ad_index","ad"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Ads Packages</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('packages/shop_index'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("shop_index","shop"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Shop Packages</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('shop'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("shop"))[0]; ?>">
+                            <i class="nav-icon fa fa-shopping-basket"></i>
+                            <p>Listings</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('advertising'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("advertising"))[0]; ?>">
+                            <i class="nav-icon fa fa-audio-description"></i>
+                            <p>Advertising</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('product'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("product"))[0]; ?>">
+                            <i class="nav-icon fa fa-product-hunt"></i>
+                            <p>Products</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("pages"))[1]; ?>">
+                
+                        <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("pages"))[0]; ?>">
+                            <i class="nav-icon fa fa-window-restore"></i>
+                            <p>Pages
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                       
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= base_url('pages/about'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("about"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>About</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('pages/terms'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("terms"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Terms</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('pages/privacy'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("privacy"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Privacy</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <?php if($this->session->userdata('id') == '1'){ ?>
 
                         <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("category","social_icon","setting"))[1]; ?>">
@@ -90,113 +186,9 @@
                                         <p>Social Icon</p>
                                     </a>
                                 </li>
-
                             </ul>
-
                         </li>
-
-
-                        <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("packages"))[1]; ?>">
-                
-                            <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("packages"))[0]; ?>">
-                                <i class="nav-icon fa fa-th-large"></i>
-                                <p>Package
-                                    <i class="fa fa-angle-left right"></i>
-                                </p>
-                            </a>
-                           
-                            <ul class="nav nav-treeview">
-                                
-                                <li class="nav-item">
-                                    <a href="<?= base_url('packages/ad_index'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("ad_index","ad"))[0]; ?>">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>Ads Packages</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="<?= base_url('packages/shop_index'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("shop_index","shop"))[0]; ?>">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>Shop Packages</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a href="<?php echo base_url('agent'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("agent"))[0]; ?>">
-                                <i class="nav-icon fa fa-users"></i>
-                                <p>Agent</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("pages"))[1]; ?>">
-                
-                            <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("pages"))[0]; ?>">
-                                <i class="nav-icon fa fa-window-restore"></i>
-                                <p>Pages
-                                    <i class="fa fa-angle-left right"></i>
-                                </p>
-                            </a>
-                           
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?= base_url('pages/about'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("about"))[0]; ?>">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>About</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="<?= base_url('pages/terms'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("terms"))[0]; ?>">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>Terms</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="<?= base_url('pages/privacy'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("privacy"))[0]; ?>">
-                                        <i class="fa fa-circle-o nav-icon"></i>
-                                        <p>Privacy</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-
-                        </li>
-
                     <?php } ?>
-
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('product'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("product"))[0]; ?>">
-                            <i class="nav-icon fa fa-product-hunt"></i>
-                            <p>Products</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('shop'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("shop"))[0]; ?>">
-                            <i class="nav-icon fa fa-shopping-basket"></i>
-                            <p>Shops</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('social_user'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("social_user"))[0]; ?>">
-                            <i class="nav-icon fa fa-users"></i>
-                            <p>Users</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('advertising'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("advertising"))[0]; ?>">
-                            <i class="nav-icon fa fa-audio-description"></i>
-                            <p>Advertising</p>
-                        </a>
-                    </li>
 
                     <li class="nav-item">
                         <a href="<?php echo base_url('dashboard/logout'); ?>" class="nav-link">

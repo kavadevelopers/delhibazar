@@ -73,6 +73,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Image <span class="astrick">*</span></label>
+                                            <br>
+                                            <span><i><span class="astrick">Note</span> : Max size & Max Resoluion(2MB, 720 X 1080) </i></span>
                                             <input type="file" class="form-control form-control-sm" name="image" placeholder="Image" value="">
                                         </div>
                                     </div>

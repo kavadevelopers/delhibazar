@@ -42,17 +42,17 @@
 									</div>
 								</td>
 								<td>
-									<input class="border-unset" type="text" id="amount<?= $val ?>" name="amount" value="<?= $product['amount'] ?>" readonly>
+									<input class="border-unset amount" type="text" id="amount<?= $val ?>" name="amount" value="<?= $product['amount'] ?>" readonly>
 								</td>
 								<td>
 									<div class="product_count">
-										<input type="text" class="qty" name="qty" id="sst<?= $val ?>" maxlength="12" value="<?= $value['qty'] ?>" title="Quantity:" class="input-text qty">
-										<button onclick="total(this.id); var result = document.getElementById('sst<?= $val ?>'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-										<button onclick="total(this.id); var result = document.getElementById('sst<?= $val ?>'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+										<input type="text" name="qty" id="sst<?= $val ?>" maxlength="12" value="<?= $value['qty'] ?>" title="Quantity:" class="input-text qty">
+										<button onclick="var result = document.getElementById('sst<?= $val ?>'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="lnr lnr-chevron-up qty"></i></button>
+										<button onclick="var result = document.getElementById('sst<?= $val ?>'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count qty" type="button"><i class="lnr lnr-chevron-down"></i></button>
 									</div>
 								</td>
 								<td>
-									<input class="border-unset" type="text" id="total<?= $val ?>" name="total" value="<?= floatval($product['amount'] * $value['qty']) ?>" readonly>
+									<input class="border-unset total" type="text" id="total<?= $val ?>" name="total" value="<?= floatval($product['amount'] * $value['qty']) ?>" readonly>
 								</td>
 							</tr>	
 
@@ -123,16 +123,32 @@
 <!--================End Cart Area =================-->
 
 <script type="text/javascript">
-	function total(id) {
+	// function total(id) {
 		
-		var length = $('.qty').length;
-		for(i = 1; i <= length; i++)
-		{	
-			var qty    = $('#sst'+i).val();
-			var amount = parseFloat($('#amount'+i).val());
-			var total  =  qty * amount;
-			$('#total'+i).val(total);
-		}
+	// 	var length = $('.qty').length;
+	// 	var sum    = 0.0;
+	// 	for(i = 1; i <= length; i++)
+	// 	{	
+	// 		var qty    = $('#sst'+i).val();
+	// 		var amount = parseFloat($('#amount'+i).val());
+	// 		var total  =  (qty * amount);
+			
+	// 		$('#total'+i).val(sum);
+	// 	}
 
+	// }
+
+	function update_amounts()
+	{
+	    var sum = 0.0;
+	    $('.table > tbody  > tr').each(function() {
+	        var qty 	= parseFloat($(this).find('.qty').val());
+	        var price 	= parseFloat($(this).find('.amount').val());
+	        var amount 	= (qty*price)
+	        sum+=amount;
+	        
+	        $(this).find('.total').val(''+amount);
+	    });
+	    //just update the total to sum    
 	}
 </script>

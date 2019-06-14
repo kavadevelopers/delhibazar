@@ -1,6 +1,7 @@
 <?php 
 $CI=&get_instance();
 $CI->load->model('product_model');
+$CI->load->model('cart_model');
 ?>
 
 <!doctype html>
@@ -81,7 +82,7 @@ $CI->load->model('product_model');
 								<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>pages/about">About</a></li>
 								
 								<li class="nav-item submenu dropdown">
-									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listings</a>
 									
 									<ul class="dropdown-menu">
 										
@@ -119,7 +120,9 @@ $CI->load->model('product_model');
 
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
-								<li class="nav-item"><a href="#" class="cart"><i class="lnr lnr lnr-cart"></i></a></li>
+								<li class="nav-item"><a href="<?= base_url() ?>cart" class="cart"><i class="lnr lnr lnr-cart"></i>
+								<?php if($this->session->userdata('id')){ $product = $CI->cart_model->user_cart_where($this->session->userdata('id')); echo count($product); } ?>
+								</a></li>
 							</ul>
 						</div> 
 					</div>

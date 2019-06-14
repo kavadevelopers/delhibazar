@@ -45,7 +45,7 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Employee Name <span class="astrick">*</span></label>
+                                            <label>Employee Name</label>
                                             <input class="form-control form-control-sm" value="<?= set_value('employee_name',$shop[0]['employee_name']); ?>" type="text" name="employee_name" placeholder="Employee Name" autocomplete="off">
                                              <?= form_error('employee_name'); ?>
                                         </div>
@@ -53,7 +53,7 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Mobile <span class="astrick">*</span></label>
+                                            <label>Mobile</label>
                                             <input class="form-control form-control-sm" value="<?= set_value('mobile',$shop[0]['mobile']); ?>" type="text" name="mobile" placeholder="Mobile" step="0" min="0" autocomplete="off">
                                             <?= form_error('mobile'); ?>
                                         </div>
@@ -61,9 +61,20 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Watsapp No. <span class="astrick">*</span></label>
+                                            <label>Watsapp No.</label>
                                             <input class="form-control form-control-sm" value="<?= set_value('wp_no',$shop[0]['wp_no']); ?>" type="text" name="wp_no" placeholder="Watsapp No." step="0" min="0" autocomplete="off">
                                             <?= form_error('wp_no'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Display(mobile / whastapp no.) in Website</label>
+                                            <select class="form-control form-control-sm" name="dis_website">
+                                                <option value="0" <?php if(0 == set_value('dis_website',$shop[0]['dis_website'])){ echo "selected"; } ?>>Public</option>
+                                                <option value="1" <?php if(1 == set_value('dis_website',$shop[0]['dis_website'])){ echo "selected"; } ?>>Private</option>
+                                            </select>
+                                            <?= form_error('dis_website'); ?>
                                         </div>
                                     </div>
 
@@ -85,7 +96,7 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Email <span class="astrick">*</span></label>
+                                            <label>Email</label>
                                             <input class="form-control form-control-sm" value="<?= set_value('email',$shop[0]['email']); ?>" type="email" name="email" placeholder="Email" autocomplete="off">
                                             <?= form_error('email'); ?>
                                         </div>
@@ -161,7 +172,8 @@
                                             <?php } else{ ?>
                                                 <img src="<?= base_url() ?>uploads/shop/<?= $shop[0]['photo'] ?>" height="150px" width="150px" style="margin-bottom: 5px;"/>
                                             <?php } ?>
-
+                                            
+                                            <p><i><span class="astrick">Note</span> : Max size & Max Resoluion(2MB, 720 X 1080) </i></p>
                                             <input class="form-control form-control-sm" value="<?= set_value('photo',$shop[0]['photo']); ?>" type="file" name="photo" placeholder="Photo" autocomplete="off" >
                                             <?= form_error('photo'); ?>
                                         </div>

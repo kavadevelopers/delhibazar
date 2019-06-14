@@ -141,7 +141,8 @@
                                             <div class="row"><label>Photo</label></div>
                                                 
                                             <img src="<?= base_url() ?>uploads/add/<?= $advertise[0]['photo'] ?>" style="width: 150px;padding-bottom: 5px;">
-
+                                            <br>
+                                            <span><i><span class="astrick">Note</span> : Max size & Max Resoluion(2MB, 720 X 1080) </i></span>
                                             <input class="form-control form-control-sm" value="<?= set_value('photo'); ?>" type="file" name="photo" placeholder="Photo" autocomplete="off">
                                             <?= form_error('photo'); ?>
                                         </div>
@@ -156,7 +157,7 @@
                             <div class="card-footer">
                                 <div class="float-right">
                                   <a href="<?= base_url(); ?>shop" class="btn btn-danger">Cancel</a>
-                                  <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Sava</button>
+                                  <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Save</button>
                                 </div>
                             </div>
                         </div>
