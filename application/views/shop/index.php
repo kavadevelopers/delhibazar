@@ -3,6 +3,10 @@
         width: 100%;
         height: 150px;
     }
+    .padding-5
+    {
+        padding-bottom: 10px;
+    }
 </style>
 
 <section>
@@ -17,12 +21,14 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-2 d-xl-none">
+        <div class="row">
+            <div class="col-md-2">
                 
                 <div class="row" style="padding: 10px 0;">
                     <?php if($this->shop_model->listing_ad('1')){ $hash_one = $this->shop_model->listing_ad('1')[0]; ?>
-                        <div class="col-md-12">
+                        <div class="col-md-12 padding-5">
                             <a href="<?= $hash_one['link'] ?>" target="_blank">
                                 <div class="col-md-12 add_div">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image img-responsive" style="margin-bottom: 2px;">
@@ -45,7 +51,7 @@
                         </div>
                     <?php } ?>
                     <?php if($this->shop_model->listing_ad('2')){ $hash_one = $this->shop_model->listing_ad('2')[0]; ?>
-                        <div class="col-md-12">
+                        <div class="col-md-12 padding-5">
                             <a href="<?= $hash_one['link'] ?>" target="_blank">
                                 <div class="col-md-12 add_div">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
@@ -68,7 +74,53 @@
                         </div>
                     <?php } ?>
                     <?php if($this->shop_model->listing_ad('3')){ $hash_one = $this->shop_model->listing_ad('3')[0]; ?>
-                        <div class="col-md-12">
+                        <div class="col-md-12 padding-5">
+                            <a href="<?= $hash_one['link'] ?>" target="_blank">
+                                <div class="col-md-12 add_div">
+                                    <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
+                                    </h6>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-info-circle"></i> 
+                                        <?= cut_string($hash_one['intro'],22,'...') ?>  
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-map-marker"></i> 
+                                        <?= cut_string($hash_one['address'],22,'...') ?>  
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    <?php } ?>
+                    <?php if($this->shop_model->listing_ad('4')){ $hash_one = $this->shop_model->listing_ad('4')[0]; ?>
+                        <div class="col-md-12 padding-5">
+                            <a href="<?= $hash_one['link'] ?>" target="_blank">
+                                <div class="col-md-12 add_div">
+                                    <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
+                                    </h6>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-info-circle"></i> 
+                                        <?= cut_string($hash_one['intro'],22,'...') ?>  
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-map-marker"></i> 
+                                        <?= cut_string($hash_one['address'],22,'...') ?>  
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    <?php } ?>
+                    <?php if($this->shop_model->listing_ad('5')){ $hash_one = $this->shop_model->listing_ad('5')[0]; ?>
+                        <div class="col-md-12 padding-5">
                             <a href="<?= $hash_one['link'] ?>" target="_blank">
                                 <div class="col-md-12 add_div">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
@@ -94,44 +146,162 @@
 
             </div>
 
-            <div class="col-sm-8">
+            <div class="col-md-8">
                 <div class="row light-bg detail-options-wrap" style="min-height: 500px;">
-                <?php foreach ($shop as $key => $value) { ?>
-                    <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
-                        <div class="featured-place-wrap">
-                            <a href="<?= base_url() ?>shop/shop_detail/<?= $value['id'] ?>">
-                                <img src="<?= $this->config->config['admin_url'] ?>uploads/shop/<?= $value['photo'] ?>" class="img-fluid" alt="#">
-                                <span class="featured-rating-orange" style="padding: 13px 5px;"><?= round($this->rating_model->get_avarage_rating($value['id'])[0]['average'],1) ?></span>
-                                <div class="featured-title-box">
-                                    <h6><?= $value['shop_name'] ?></h6>
+                    <?php foreach ($shop as $key => $value) { ?>
+                        <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
+                            <div class="featured-place-wrap">
+                                <a href="<?= base_url() ?>shop/shop_detail/<?= $value['id'] ?>">
+                                    <img src="<?= $this->config->config['admin_url'] ?>uploads/shop/<?= $value['photo'] ?>" class="img-fluid" alt="#">
+                                    <span class="featured-rating-orange" style="padding: 13px 5px;"><?= round($this->rating_model->get_avarage_rating($value['id'])[0]['average'],1) ?></span>
+                                    <div class="featured-title-box">
+                                        <h6><?= $value['shop_name'] ?></h6>
 
-                                    <p><?= cut_string($value['category'],15,'...') ?></p> <span>• </span>
-                                    <p><?= $this->rating_model->count_review($value['id']) ?> Reviews</p><span>• </span>
-                                    <p><?= rating_dollar(round($this->rating_model->get_avarage_rating($value['id'])[0]['average'],1)) ?></p>
-                                    <ul>
-                                        <li><span class="icon-location-pin"></span>
-                                            <p><?= cut_string($value['address'],35,'...') ?>  </p>
-                                        </li>
-                                        <li><span class="ti-view-grid"></span>
-                                            <p><?= cut_string($value['pro_or_servi'],35,'...') ?>  </p>
-                                        </li>
-                                        <?php if($value['dis_website'] == 0){ ?>
-                                            <li><span class="icon-screen-smartphone"></span>
-                                                <p><?= $value['mobile'] ?></p>
+                                        <p><?= cut_string($value['category'],15,'...') ?></p> <span>• </span>
+                                        <p><?= $this->rating_model->count_review($value['id']) ?> Reviews</p><span>• </span>
+                                        <p><?= rating_dollar(round($this->rating_model->get_avarage_rating($value['id'])[0]['average'],1)) ?></p>
+                                        <ul>
+                                            <li><span class="icon-location-pin"></span>
+                                                <p><?= cut_string($value['address'],35,'...') ?>  </p>
                                             </li>
-                                        <?php } ?>
-                                    </ul>
-                                    <div class="bottom-icons">
-                                        <div class="closed-now"></div>
+                                            <li><span class="ti-view-grid"></span>
+                                                <p><?= cut_string($value['pro_or_servi'],35,'...') ?>  </p>
+                                            </li>
+                                            <?php if($value['dis_website'] == 0){ ?>
+                                                <li><span class="icon-screen-smartphone"></span>
+                                                    <p><?= $value['mobile'] ?></p>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
+                                        <div class="bottom-icons">
+                                            <div class="closed-now"></div>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                <?php } ?>
+                    <?php } ?>
+                </div>
             </div>    
                 
             <div class="col-md-2">
+                
+                <div class="row" style="padding: 10px 0;">
+                    <?php if($this->shop_model->listing_ad('6')){ $hash_one = $this->shop_model->listing_ad('6')[0]; ?>
+                        <div class="col-md-12 padding-5">
+                            <a href="<?= $hash_one['link'] ?>" target="_blank">
+                                <div class="col-md-12 add_div">
+                                    <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image img-responsive" style="margin-bottom: 2px;">
+                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
+                                    </h6>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-info-circle"></i> 
+                                        <?= cut_string($hash_one['intro'],22,'...') ?>  
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-map-marker"></i> 
+                                        <?= cut_string($hash_one['address'],22,'...') ?>  
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    <?php } ?>
+                    <?php if($this->shop_model->listing_ad('7')){ $hash_one = $this->shop_model->listing_ad('7')[0]; ?>
+                        <div class="col-md-12 padding-5">
+                            <a href="<?= $hash_one['link'] ?>" target="_blank">
+                                <div class="col-md-12 add_div">
+                                    <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
+                                    </h6>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-info-circle"></i> 
+                                        <?= cut_string($hash_one['intro'],22,'...') ?>  
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-map-marker"></i> 
+                                        <?= cut_string($hash_one['address'],22,'...') ?>  
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    <?php } ?>
+                    <?php if($this->shop_model->listing_ad('8')){ $hash_one = $this->shop_model->listing_ad('8')[0]; ?>
+                        <div class="col-md-12 padding-5">
+                            <a href="<?= $hash_one['link'] ?>" target="_blank">
+                                <div class="col-md-12 add_div">
+                                    <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
+                                    </h6>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-info-circle"></i> 
+                                        <?= cut_string($hash_one['intro'],22,'...') ?>  
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-map-marker"></i> 
+                                        <?= cut_string($hash_one['address'],22,'...') ?>  
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    <?php } ?>
+                    <?php if($this->shop_model->listing_ad('9')){ $hash_one = $this->shop_model->listing_ad('9')[0]; ?>
+                        <div class="col-md-12 padding-5">
+                            <a href="<?= $hash_one['link'] ?>" target="_blank">
+                                <div class="col-md-12 add_div">
+                                    <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
+                                    </h6>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-info-circle"></i> 
+                                        <?= cut_string($hash_one['intro'],22,'...') ?>  
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-map-marker"></i> 
+                                        <?= cut_string($hash_one['address'],22,'...') ?>  
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    <?php } ?>
+                    <?php if($this->shop_model->listing_ad('10')){ $hash_one = $this->shop_model->listing_ad('10')[0]; ?>
+                        <div class="col-md-12 padding-5">
+                            <a href="<?= $hash_one['link'] ?>" target="_blank">
+                                <div class="col-md-12 add_div">
+                                    <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
+                                    </h6>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-info-circle"></i> 
+                                        <?= cut_string($hash_one['intro'],22,'...') ?>  
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                        <i class="fa fa-map-marker"></i> 
+                                        <?= cut_string($hash_one['address'],22,'...') ?>  
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    <?php } ?>
 
             </div>
                 

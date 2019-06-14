@@ -98,7 +98,7 @@
                                                 <option value="">-- Select Page --</option>
                                                 <option value="Home" <?php if('Home' == set_value('page')){ echo "selected"; } ?>>Home</option>
                                                 <option value="Listing" <?php if('Listing' == set_value('page')){ echo "selected"; } ?>>Listing</option>
-                                                <!-- <option value="Business Detail" <?php if('Business Detail' == set_value('page')){ echo "selected"; } ?>>Business Detail</option> -->
+                                                <option value="Business Detail" <?php if('Business Detail' == set_value('page')){ echo "selected"; } ?>>Business Detail</option>
                                             </select>
                                             <?= form_error('page'); ?>
                                         </div>
@@ -119,7 +119,15 @@
 
                                                 <?php }else if(set_value('page') == 'Listing'){ ?>
                                                     <option value="">-- Select Position --</option>
-                                                    <?php for($i = 1;$i <= 3;$i++){ ?>
+                                                    <?php for($i = 1;$i <= 10;$i++){ ?>
+
+                                                        <option value="<?= $i ?>" <?php if($i == set_value('position')){ echo "selected"; } ?>>#<?= $i ?></option>
+
+                                                    <?php } ?>
+
+                                                <?php }else if(set_value('page') == 'Business Detail'){ ?>
+                                                    <option value="">-- Select Position --</option>
+                                                    <?php for($i = 1;$i <= 10;$i++){ ?>
 
                                                         <option value="<?= $i ?>" <?php if($i == set_value('position')){ echo "selected"; } ?>>#<?= $i ?></option>
 
@@ -175,7 +183,15 @@
                 else if($(this).val()  == 'Listing'){
                     $('#positions').html('');
                     var str = '<option value="">-- Select Position --</option>';
-                    for(var i = 1;i <= 3;i++){
+                    for(var i = 1;i <= 10;i++){
+                        str += '<option value="'+i+'">#'+i+'</option>';
+                    }
+                    $('#positions').html(str);
+                }
+                else if($(this).val()  == 'Business Detail'){
+                    $('#positions').html('');
+                    var str = '<option value="">-- Select Position --</option>';
+                    for(var i = 1;i <= 10;i++){
                         str += '<option value="'+i+'">#'+i+'</option>';
                     }
                     $('#positions').html(str);
