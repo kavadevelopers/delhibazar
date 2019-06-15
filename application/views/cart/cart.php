@@ -34,7 +34,7 @@
 								<td>
 									<div class="media">
 										<div class="d-flex">
-											<img src="<?= $this->config->config['admin_url'] ?>uploads/product/<?= $product_img['image'] ?>" alt="" height="170px">
+											<img src="<?= $this->config->config['admin_url'] ?>uploads/product/<?= $product_img['image'] ?>" alt="" height="70px">
 										</div>
 										<div class="media-body">
 											<p><?= $product['name'] ?></p>
@@ -46,9 +46,9 @@
 								</td>
 								<td>
 									<div class="product_count">
-										<input type="text" name="qty" id="sst<?= $val ?>" maxlength="12" value="<?= $value['qty'] ?>" title="Quantity:" class="input-text qty">
-										<button onclick="var result = document.getElementById('sst<?= $val ?>'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="lnr lnr-chevron-up qty"></i></button>
-										<button onclick="var result = document.getElementById('sst<?= $val ?>'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count qty" type="button"><i class="lnr lnr-chevron-down"></i></button>
+										<input type="text" name="qty" id="sst<?= $val ?>" maxlength="12" value="<?= $value['qty'] ?>" title="Quantity:" class="input-text qty" readonly>
+										<button onclick="var result = document.getElementById('sst<?= $val ?>'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="qty increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+										<button onclick="var result = document.getElementById('sst<?= $val ?>'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="qty reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
 									</div>
 								</td>
 								<td>
@@ -61,7 +61,7 @@
 						
 						<tr class="bottom_button">
 							<td>
-								<a class="gray_btn" href="#">Update Cart</a>
+								<a class="gray_btn" href="<?= base_url() ?>cart/update_cart">Update Cart</a>
 							</td>
 							<td>
 								
@@ -88,7 +88,7 @@
 								<h5>Subtotal</h5>
 							</td>
 							<td>
-								<h5>$2160.00</h5>
+								<input type="text" class="subtotal border-unset form-control form-control-sm" name="subtotal" value="" readonly>
 							</td>
 						</tr>
 						<tr class="out_button_area">
@@ -123,20 +123,13 @@
 <!--================End Cart Area =================-->
 
 <script type="text/javascript">
-	// function total(id) {
-		
-	// 	var length = $('.qty').length;
-	// 	var sum    = 0.0;
-	// 	for(i = 1; i <= length; i++)
-	// 	{	
-	// 		var qty    = $('#sst'+i).val();
-	// 		var amount = parseFloat($('#amount'+i).val());
-	// 		var total  =  (qty * amount);
-			
-	// 		$('#total'+i).val(sum);
-	// 	}
+	$( document ).ready(function() {
+		update_amounts();
+	});
 
-	// }
+	$('.qty').click(function(){
+		update_amounts();
+	})
 
 	function update_amounts()
 	{
@@ -144,11 +137,11 @@
 	    $('.table > tbody  > tr').each(function() {
 	        var qty 	= parseFloat($(this).find('.qty').val());
 	        var price 	= parseFloat($(this).find('.amount').val());
-	        var amount 	= (qty*price)
+	        var amount 	= (qty*price);
 	        sum+=amount;
-	        
 	        $(this).find('.total').val(''+amount);
+	        $('.subtotal').val(sum);
 	    });
-	    //just update the total to sum    
+	    
 	}
 </script>

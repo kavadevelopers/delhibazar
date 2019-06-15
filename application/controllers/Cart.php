@@ -18,7 +18,6 @@ class Cart extends CI_Controller {
 
 	public function add_to_cart()
 	{
-		pre_print($_POST);
 		$product_id = $this->product_model->product_where($this->input->post('product_hash'))[0]['id'];
 		
 		$data = [
@@ -38,7 +37,11 @@ class Cart extends CI_Controller {
 				$this->session->set_flashdata('error', 'Something went wrong try again');
 				redirect(base_url('products/product_detail/'.$this->input->post('product_hash')));
 			}
+	}
 
+	public function update_cart()
+	{
+		
 	}
 
 }
