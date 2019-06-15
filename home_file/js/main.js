@@ -23,7 +23,6 @@
 
 		document.getElementById('MydateDisplay').innerHTML = dd + '/' + mm + '/' + yyyy +' <br>'+ h + ":" + m + " " + session;
 	}
-	startTime();
 	function checkTime(i) {
 	  if (i < 10) {i = "0" + i}; 
 	  return i;

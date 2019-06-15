@@ -40,6 +40,7 @@
     <script src="<?= base_url() ?>user_login/alert/sweetalert.min.js"></script>
     <script type="text/javascript" src="<?= base_url() ?>home_file/kava.js"></script>
     <script async src="<?= base_url() ?>temp_1/js/sharethis.js"></script>
+    <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5cfd1d9d4351e9001264fde8&product=sticky-share-buttons"></script>
 
     <style type="text/css">
         body {
@@ -93,7 +94,7 @@ function JSalert(){
                                 </li>
                                 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listings
+                                    <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shopping
                                     <span class="icon-arrow-down"></span>
                                     </a>
                                     
