@@ -21,7 +21,7 @@
 			<a class="tp_btn" href="#">Apply Coupon</a>
 		</div> -->
 
-		<form class="contact_form" id="checkout_form" action="#" method="post" novalidate="novalidate">
+		<form class="contact_form" id="checkout_form" action="<?= base_url() ?>pay" method="post">
 
 			<div class="billing_details">
 				<div class="row">
@@ -87,29 +87,34 @@
 								<li><a href="#">Product <span>Total</span></a></li>
 								<?php $val = 0; foreach ($user_product as $key => $value) { 
 									$val++;
-									$product 	 = $this->product_model->product_id_where($value['product_id'])[0];
+									$product  = $this->product_model->product_id_where($value['product_id'])[0];
 								?>
 									<li><a href="#"><?= $product['name'] ?> <span class="middle">x <?= $value['qty'] ?></span><span class="last"><?= ($product['amount'] * $value['qty']) ?></span></a></li>
 									
+									<input type="hidden" name="product_id[]" value="<?= $product['id']  ?>">
+									<input type="hidden" name="product_name[]" value="<?= $product['name']  ?>">
 									<input class="quantity" type="hidden" id="qty<?= $val ?>" value="<?= $value['qty']  ?>">
 									<input type="hidden" id="amount<?= $val ?>" value="<?=  $product['amount'] ?>">
 								<?php } ?>
 							</ul>
 							<ul class="list list_2">
-								<li>Subtotal <span class="pull-right"><input class="border-unset" type="text" id="sub_total" name="subtotal"></span></li>
-								<li>Shipping <span>Flat rate: ₹50.00</span></a></li>
-								<li>Total <span><input class="border-unset" type="text" id="grand_total" ></span></a></li>
+								<li><a href="#">Subtotal <span class="pull-right sub_total_text"></span></a></li>
+								<!-- <li><a href="#">Shipping <span>Flat rate: ₹50.00</span></a></li> -->
+								<li><a href="#">Total <span class="grand_total_text"></span></a></li>
 							</ul>
 							
-							<div class="creat_account">
-								<input type="checkbox" id="f-option4" name="selector">
-								<label for="f-option4">I’ve read and accept the </label>
+							<div class="form-group">
+								<input type="checkbox" id="f-option4" name="selector" required>
+								<label for="f-option4" style="padding-right: 5px;">I’ve read and accept the </label>
 								<a href="#">terms & conditions*</a>
 							</div>
 							<div class="text-center">
-								<button class="main_btn" type="submit" style="display: inline;">Proceed to PayUmoney</button>
+								<button class="main_btn" type="submit" style="display: inline;">Proceed to Pay</button>
 							</div>
 						</div>
+						<input type="hidden" name="user_id" value="<?= $this->session->userdata('id') ?>">
+						<input class="sub_total_hidd" type="hidden" name="subtotal">
+						<input type="hidden" id="grand_total" name="grand_total" >
 					</div>
 				</div>
 			</div>
@@ -145,8 +150,10 @@ function update_amounts()
         
         sum += parseFloat(amount);
     }
-    $('#sub_total').val(amount.toFixed(2));
-    $('#grand_total').val((sum+50).toFixed(2));
+    $('#sub_total_hidd').val(amount.toFixed(2));
+    $('#grand_total').val((sum).toFixed(2));
+    $('.sub_total_text').html(amount.toFixed(2));
+    $('.grand_total_text').html((sum).toFixed(2));
 }
 
 $(document).ready(function(){
@@ -198,6 +205,7 @@ $(document).ready(function(){
 		      	maxlength: 30,
 		      	required: true,
 		    }
+			
 	  }
 		  
 	});

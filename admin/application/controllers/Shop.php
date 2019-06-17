@@ -80,7 +80,10 @@ class Shop extends CI_Controller {
         $this->form_validation->set_rules('employee_name', 'Employee Name', 'trim|min_length[3]|max_length[200]');
         $this->form_validation->set_rules('mobile', 'Mobile', 'trim|is_natural|min_length[10]|max_length[12]');
         $this->form_validation->set_rules('wp_no', 'Watsapp No', 'trim|is_natural|min_length[10]|max_length[12]');
-        $this->form_validation->set_rules('dis_website', 'Display in Website', 'trim');
+        
+        $this->form_validation->set_rules('mobile_in_website', 'Display Mobile in Website', 'trim');
+        $this->form_validation->set_rules('whats_in_website', 'Display Whastapp no. in Website', 'trim');
+
         $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[10]|max_length[250]');
         $this->form_validation->set_rules('landmark', 'Landmark', 'trim|required|min_length[3]|max_length[100]');
         $this->form_validation->set_rules('email', 'Email', 'trim|valid_email|xss_clean|max_length[100]');
@@ -114,7 +117,8 @@ class Shop extends CI_Controller {
                         'employee_name'  =>  $this->input->post('employee_name'),
                         'mobile'         =>  $this->input->post('mobile'),
                         'wp_no'          =>  $this->input->post('wp_no'),
-                        'dis_website'    =>  $this->input->post('dis_website'),
+                        'mobile_in_website' =>  $this->input->post('mobile_in_website'),
+                        'whats_in_website'  =>  $this->input->post('whats_in_website'),
                         'address'        =>  $this->input->post('address'),
                         'landmark'       =>  $this->input->post('landmark'),
                         'email'          =>  $this->input->post('email'),
@@ -197,7 +201,10 @@ class Shop extends CI_Controller {
         $this->form_validation->set_rules('employee_name', 'Employee Name', 'trim|min_length[3]|max_length[200]');
         $this->form_validation->set_rules('mobile', 'Mobile', 'trim|is_natural|min_length[10]|max_length[12]');
         $this->form_validation->set_rules('wp_no', 'Watsapp No', 'trim|is_natural|min_length[10]|max_length[12]');
-        $this->form_validation->set_rules('dis_website', 'Display in Website', 'trim');
+        
+        $this->form_validation->set_rules('mobile_in_website', 'Display Mobile in Website', 'trim');
+        $this->form_validation->set_rules('whats_in_website', 'Display Whastapp no. in Website', 'trim');
+
         $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[10]|max_length[250]');
         $this->form_validation->set_rules('landmark', 'Landmark', 'trim|required|min_length[3]|max_length[100]');
         $this->form_validation->set_rules('email', 'Email', 'trim|valid_email|xss_clean|max_length[100]');
@@ -231,7 +238,8 @@ class Shop extends CI_Controller {
                         'employee_name'  =>  $this->input->post('employee_name'),
                         'mobile'         =>  $this->input->post('mobile'),
                         'wp_no'          =>  $this->input->post('wp_no'),
-                        'dis_website'    =>  $this->input->post('dis_website'),
+                        'mobile_in_website' =>  $this->input->post('mobile_in_website'),
+                        'whats_in_website'  =>  $this->input->post('whats_in_website'),
                         'address'        =>  $this->input->post('address'),
                         'landmark'       =>  $this->input->post('landmark'),
                         'email'          =>  $this->input->post('email'),

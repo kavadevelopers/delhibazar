@@ -131,6 +131,7 @@ $CI->load->model('cart_model');
         </header>
         <!--================Header Menu Area =================-->
         
+        
 <script type="text/javascript">
 <?php if(!empty($this->session->flashdata('error'))){ ?>
 	JSalert();

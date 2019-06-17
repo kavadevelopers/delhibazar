@@ -1,11 +1,15 @@
 <style type="text/css">
     .add_image {
         width: 100%;
-        height: 150px;
+        height: 120px;
     }
     .padding-5
     {
         padding-bottom: 10px;
+    }
+
+    .padding-5 > a{
+        text-decoration: none;
     }
 </style>
 
@@ -16,7 +20,7 @@
                 <div class="row detail-filter-wrap">
                     <div class="col-md-4 featured-responsive">
                         <div class="detail-filter-text">
-                            <p><?= count($shop); ?> Results For <span>Shops</span></p>
+                            <p><?= count($shop); ?> Results For <span>"<?= $_GET['search'] ?>"</span></p>
                         </div>
                     </div>
                 </div>
@@ -25,24 +29,22 @@
 
         <div class="row">
             <div class="col-md-2">
-                
-                <div class="row" style="padding: 10px 0;">
                     <?php if($this->shop_model->listing_ad('1')){ $hash_one = $this->shop_model->listing_ad('1')[0]; ?>
                         <div class="col-md-12 padding-5">
                             <a href="<?= $hash_one['link'] ?>" target="_blank">
                                 <div class="col-md-12 add_div">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image img-responsive" style="margin-bottom: 2px;">
-                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
-                                    </h6>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],17,'...') ?>        
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-info-circle"></i> 
                                         <?= cut_string($hash_one['intro'],22,'...') ?>  
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-map-marker"></i> 
                                         <?= cut_string($hash_one['address'],22,'...') ?>  
                                     </p>
@@ -55,17 +57,17 @@
                             <a href="<?= $hash_one['link'] ?>" target="_blank">
                                 <div class="col-md-12 add_div">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
-                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
-                                    </h6>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],17,'...') ?>        
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-info-circle"></i> 
                                         <?= cut_string($hash_one['intro'],22,'...') ?>  
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-map-marker"></i> 
                                         <?= cut_string($hash_one['address'],22,'...') ?>  
                                     </p>
@@ -78,17 +80,17 @@
                             <a href="<?= $hash_one['link'] ?>" target="_blank">
                                 <div class="col-md-12 add_div">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
-                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
-                                    </h6>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],17,'...') ?>        
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-info-circle"></i> 
                                         <?= cut_string($hash_one['intro'],22,'...') ?>  
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-map-marker"></i> 
                                         <?= cut_string($hash_one['address'],22,'...') ?>  
                                     </p>
@@ -101,17 +103,17 @@
                             <a href="<?= $hash_one['link'] ?>" target="_blank">
                                 <div class="col-md-12 add_div">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
-                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
-                                    </h6>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],17,'...') ?>        
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-info-circle"></i> 
                                         <?= cut_string($hash_one['intro'],22,'...') ?>  
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-map-marker"></i> 
                                         <?= cut_string($hash_one['address'],22,'...') ?>  
                                     </p>
@@ -124,17 +126,17 @@
                             <a href="<?= $hash_one['link'] ?>" target="_blank">
                                 <div class="col-md-12 add_div">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
-                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
-                                    </h6>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],17,'...') ?>        
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-info-circle"></i> 
                                         <?= cut_string($hash_one['intro'],22,'...') ?>  
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-map-marker"></i> 
                                         <?= cut_string($hash_one['address'],22,'...') ?>  
                                     </p>
@@ -142,7 +144,6 @@
                             </a>
                         </div>
                     <?php } ?>
-                </div>
 
             </div>
 
@@ -167,7 +168,7 @@
                                             <li><span class="ti-view-grid"></span>
                                                 <p><?= cut_string($value['pro_or_servi'],35,'...') ?>  </p>
                                             </li>
-                                            <?php if($value['dis_website'] == 0){ ?>
+                                            <?php if($value['mobile_in_website'] == 0){ ?>
                                                 <li><span class="icon-screen-smartphone"></span>
                                                     <p><?= $value['mobile'] ?></p>
                                                 </li>
@@ -192,17 +193,17 @@
                             <a href="<?= $hash_one['link'] ?>" target="_blank">
                                 <div class="col-md-12 add_div">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image img-responsive" style="margin-bottom: 2px;">
-                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
-                                    </h6>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],17,'...') ?>        
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-info-circle"></i> 
                                         <?= cut_string($hash_one['intro'],22,'...') ?>  
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-map-marker"></i> 
                                         <?= cut_string($hash_one['address'],22,'...') ?>  
                                     </p>
@@ -215,17 +216,17 @@
                             <a href="<?= $hash_one['link'] ?>" target="_blank">
                                 <div class="col-md-12 add_div">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
-                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
-                                    </h6>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],17,'...') ?>        
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-info-circle"></i> 
                                         <?= cut_string($hash_one['intro'],22,'...') ?>  
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-map-marker"></i> 
                                         <?= cut_string($hash_one['address'],22,'...') ?>  
                                     </p>
@@ -238,17 +239,17 @@
                             <a href="<?= $hash_one['link'] ?>" target="_blank">
                                 <div class="col-md-12 add_div">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
-                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
-                                    </h6>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],17,'...') ?>        
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-info-circle"></i> 
                                         <?= cut_string($hash_one['intro'],22,'...') ?>  
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-map-marker"></i> 
                                         <?= cut_string($hash_one['address'],22,'...') ?>  
                                     </p>
@@ -261,17 +262,17 @@
                             <a href="<?= $hash_one['link'] ?>" target="_blank">
                                 <div class="col-md-12 add_div">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
-                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
-                                    </h6>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],17,'...') ?>        
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-info-circle"></i> 
                                         <?= cut_string($hash_one['intro'],22,'...') ?>  
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-map-marker"></i> 
                                         <?= cut_string($hash_one['address'],22,'...') ?>  
                                     </p>
@@ -284,17 +285,17 @@
                             <a href="<?= $hash_one['link'] ?>" target="_blank">
                                 <div class="col-md-12 add_div">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
-                                    <h6 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                        <?= cut_string($hash_one['business_name'],16,'...') ?>        
-                                    </h6>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                        <?= cut_string($hash_one['business_name'],17,'...') ?>        
+                                    </p>
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-info-circle"></i> 
                                         <?= cut_string($hash_one['intro'],22,'...') ?>  
                                     </p>
-                                    <p style="text-align: left; margin: 0 2px; font-size: 15px;">
+                                    <p style="text-align: left; margin: 0 2px; font-size: 12px;">
                                         <i class="fa fa-map-marker"></i> 
                                         <?= cut_string($hash_one['address'],22,'...') ?>  
                                     </p>

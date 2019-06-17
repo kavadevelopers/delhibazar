@@ -61,6 +61,18 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            <label>Display Mobile No. in Website</label>
+                                            <select class="form-control form-control-sm" name="mobile_in_website">
+                                                
+                                                <option value="0" <?php if(0 == set_value('mobile_in_website')){ echo "selected"; } ?>>Public</option>
+                                                <option value="1" <?php if(1 == set_value('mobile_in_website')){ echo "selected"; } ?>>Private</option>
+                                            </select>
+                                            <?= form_error('mobile_in_website'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <label>Watsapp No.</label>
                                             <input class="form-control form-control-sm" value="<?php echo set_value('wp_no'); ?>" type="text" name="wp_no" placeholder="Watsapp No." step="0" min="0" autocomplete="off">
                                             <?php echo form_error('wp_no'); ?>
@@ -69,13 +81,13 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Display(mobile / whastapp no.) in Website</label>
-                                            <select class="form-control form-control-sm" name="dis_website">
+                                            <label>Display Whastapp No. in Website</label>
+                                            <select class="form-control form-control-sm" name="whats_in_website">
                                                 
-                                                <option value="0" <?php if(0 == set_value('dis_website')){ echo "selected"; } ?>>Public</option>
-                                                <option value="1" <?php if(1 == set_value('dis_website')){ echo "selected"; } ?>>Private</option>
+                                                <option value="0" <?php if(0 == set_value('whats_in_website')){ echo "selected"; } ?>>Public</option>
+                                                <option value="1" <?php if(1 == set_value('whats_in_website')){ echo "selected"; } ?>>Private</option>
                                             </select>
-                                            <?= form_error('dis_website'); ?>
+                                            <?= form_error('whats_in_website'); ?>
                                         </div>
                                     </div>
 
@@ -145,15 +157,6 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Photo</label><br>
-                                            <span><i><span class="astrick">Note</span> : Max size & Max Resoluion(2MB, 720 X 1080) </i></span>
-                                            <input class="form-control form-control-sm" value="<?= set_value('photo'); ?>" type="file" name="photo" placeholder="Photo" autocomplete="off">
-                                            <?= form_error('photo'); ?>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-4">
-                                        <div class="form-group">
                                             <label>Plan<span class="astrick">*</span></label>
                                             <select class="form-control form-control-sm select2" name="shop_plan">
                                                 
@@ -174,6 +177,14 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Photo</label><br>
+                                            <span><i><span class="astrick">Note</span> : Max size & Max Resoluion(2MB, 720 X 1080) </i></span>
+                                            <input class="form-control form-control-sm" value="<?= set_value('photo'); ?>" type="file" name="photo" placeholder="Photo" autocomplete="off">
+                                            <?= form_error('photo'); ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

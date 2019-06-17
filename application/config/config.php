@@ -32,6 +32,10 @@ $config['logoFile'] = 'image/logo.png';
 $config['companyWebLink'] = '#';
 $config['admin_url'] = $config['base_url'].'admin/';
 
+$config['merchant_key'] = 'rjQUPktU';
+$config['salt'] 		= 'e5iIg1jwi8';
+
+
 /*
 |--------------------------------------------------------------------------
 | Index File

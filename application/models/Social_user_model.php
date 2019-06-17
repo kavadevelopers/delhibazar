@@ -14,6 +14,11 @@ class Social_user_model extends CI_Model
 		return $this->db->get_where('social_user')->result_array();
 	}
 
+	public function user_id_where($id)
+	{			
+		return $this->db->get_where('social_user',['id' => $id])->result_array();
+	}
+
 	public function user_where($email,$password)
 	{
 		return $this->db->get_where('social_user',['email' => $email,'password' => $password])->result_array();

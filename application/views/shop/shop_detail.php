@@ -348,11 +348,13 @@
                             <span class="icon-location-pin"></span>
                             <p><?= $shop[0]['address'] ?></p>
                         </div>
-                        <?php if($shop[0]['dis_website'] == 0){ ?>
+                        <?php if($shop[0]['mobile_in_website'] == 0){ ?>
                             <div class="address" title="Mobile">
                                 <span class="icon-screen-smartphone"></span>
                                 <p><?= $shop[0]['mobile'] ?></p>
                             </div>
+                        <?php } ?>
+                        <?php if($shop[0]['whats_in_website'] == 0){ ?>
                             <div class="address" title="Watsapp No.">
                                 <span class="fa fa-whatsapp"></span>
                                 <p><?= $shop[0]['wp_no'] ?></p>

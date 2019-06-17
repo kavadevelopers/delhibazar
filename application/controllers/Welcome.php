@@ -64,7 +64,7 @@ class Welcome extends CI_Controller {
 	public function list()
 	{
 		$data['_title']				= "DELHIBAZAR";
-		$data['shop']				= $this->shop_model->shop_search(trim($this->input->post('search')));
+		$data['shop']				= $this->shop_model->shop_search(trim($this->input->get('search')));
         $this->load->template('shop/index',$data);
 	}
 

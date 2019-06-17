@@ -31,7 +31,9 @@
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
 </script>
 
-    
+    <style type="text/css">
+        .col-md-12 > .col-md-2 { padding: 0 30px; }
+    </style>
 
     </head>
     <body>
@@ -140,7 +142,7 @@
             </div>
             <div class="container">
                 <div class="row justify-content-md-center">
-                        <div class="col-md-10 text-center center-fource justify-content-md-center">
+                        <div class="col-md-12 text-center center-fource justify-content-md-center">
                             <div class="col-md-1"></div>
                             <?php if($this->shop_model->hash_dynamic_add('1')){ $hash_one = $this->shop_model->hash_dynamic_add('1')[0]; ?>
                                 <div class="col-md-2">
@@ -148,7 +150,7 @@
                                         <div class="col-md-12 add_div">
                                             <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_one['business_name'],16,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
@@ -162,6 +164,7 @@
                                                 <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
+
                                     </a>
                                 </div>
                             <?php } ?>
@@ -171,7 +174,7 @@
                                         <div class="col-md-12 add_div">
                                             <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_two['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_two['business_name'],16,'...') ?>        
+                                                <?= cut_string($hash_two['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-phone"></i> <?= $hash_two['mobile'] ?>
@@ -194,7 +197,7 @@
                                         <div class="col-md-12 add_div">
                                             <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_three['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_three['business_name'],16,'...') ?>        
+                                                <?= cut_string($hash_three['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-phone"></i> <?= $hash_three['mobile'] ?>
@@ -217,7 +220,7 @@
                                         <div class="col-md-12 add_div">
                                             <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_four['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_four['business_name'],16,'...') ?>        
+                                                <?= cut_string($hash_four['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-phone"></i> <?= $hash_four['mobile'] ?>
@@ -240,7 +243,7 @@
                                         <div class="col-md-12 add_div">
                                             <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],16,'...') ?>        
+                                                <?= cut_string($hash_five['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
@@ -263,7 +266,7 @@
                     <div class="row">
                             <div class="col-md-12 col-xs-12 col-lg-12 col-md-12 col-sm-12" style="margin-bottom: 20px; margin-top: 15px;">
                                 <img class="center-block" src="<?= base_url() ?>image/logo.png" width="270" alt="DELHIBAZAR" id="logo">
-                                <form method="post" action="<?= base_url() ?>welcome/list">
+                                <form method="get" action="<?= base_url() ?>welcome/list">
                                     <div class="row text-center center_new_f">
                                         <div class="col-12 col-xs-12 col-lg-6 col-md-6 col-sm-12">
                                             <div class="input-group">
@@ -280,7 +283,7 @@
                             </div>
                         </div>
                     <div class="row"> 
-                        <div class="col-md-10 text-center center-fource justify-content-md-center">
+                        <div class="col-md-12 text-center center-fource justify-content-md-center">
                             <div class="col-md-1"></div>
                                 
                                 <?php if($this->shop_model->hash_dynamic_add('6')){ $hash_one = $this->shop_model->hash_dynamic_add('6')[0]; ?>
@@ -289,7 +292,7 @@
                                         <div class="col-md-12 add_div">
                                             <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_one['business_name'],16,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
@@ -312,7 +315,7 @@
                                         <div class="col-md-12 add_div">
                                             <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_two['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_two['business_name'],16,'...') ?>        
+                                                <?= cut_string($hash_two['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-phone"></i> <?= $hash_two['mobile'] ?>
@@ -335,7 +338,7 @@
                                         <div class="col-md-12 add_div">
                                             <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_three['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_three['business_name'],16,'...') ?>        
+                                                <?= cut_string($hash_three['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-phone"></i> <?= $hash_three['mobile'] ?>
@@ -358,7 +361,7 @@
                                         <div class="col-md-12 add_div">
                                             <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_four['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_four['business_name'],16,'...') ?>        
+                                                <?= cut_string($hash_four['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-phone"></i> <?= $hash_four['mobile'] ?>
@@ -381,7 +384,7 @@
                                         <div class="col-md-12 add_div">
                                             <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],16,'...') ?>        
+                                                <?= cut_string($hash_five['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
@@ -507,12 +510,12 @@
 
                   });
 
-                  $( "#search").autocomplete({
-                      source: "<?= base_url('welcome/shop_autocomplete/?');?>",
-                      select: function (event, ui) {
-                          $("#search").val(ui.item.label);
-                        }
-                  });
+                  // $( "#search").autocomplete({
+                  //     source: "<?= base_url('welcome/shop_autocomplete/?');?>",
+                  //     select: function (event, ui) {
+                  //         $("#search").val(ui.item.label);
+                  //       }
+                  // });
 
                    $( "#search").addClass('search');
 
