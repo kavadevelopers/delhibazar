@@ -179,6 +179,18 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            <label>Display in Listing <span class="astrick">*</span></label>
+                                            <select class="form-control form-control-sm" name="dis_in_listing">
+                                                
+                                                <option value="0" <?php if(0 == set_value('dis_in_listing',$shop[0]['dis_in_listing'])){ echo "selected"; } ?>>Yes</option>
+                                                <option value="1" <?php if(1 == set_value('dis_in_listing',$shop[0]['dis_in_listing'])){ echo "selected"; } ?>>No</option>
+                                            </select>
+                                            <?= form_error('dis_in_listing'); ?>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <div class="row"><label>Photo</label></div>
                                             <?php if($shop[0]['photo'] == ''){ ?>
                                                 <img src="<?= base_url() ?>uploads/product/no-image.png" class="img-height img-fluid" alt="No Image" height="150px" width="150px" style="margin-bottom: 5px;">

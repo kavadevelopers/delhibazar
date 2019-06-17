@@ -179,6 +179,18 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            <label>Display in Listing <span class="astrick">*</span></label>
+                                            <select class="form-control form-control-sm" name="dis_in_listing">
+                                                
+                                                <option value="0" <?php if(0 == set_value('dis_in_listing')){ echo "selected"; } ?>>Yes</option>
+                                                <option value="1" <?php if(1 == set_value('dis_in_listing')){ echo "selected"; } ?>>No</option>
+                                            </select>
+                                            <?= form_error('dis_in_listing'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <label>Photo</label><br>
                                             <span><i><span class="astrick">Note</span> : Max size & Max Resoluion(2MB, 720 X 1080) </i></span>
                                             <input class="form-control form-control-sm" value="<?= set_value('photo'); ?>" type="file" name="photo" placeholder="Photo" autocomplete="off">

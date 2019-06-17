@@ -71,19 +71,22 @@ class Shop_model extends CI_Model
 	}
 
 	public function shop_search($search)
-	{
-				$this->db->like('shop_name',$search);
-    			$this->db->or_like('owner_name',$search);
-    			$this->db->or_like('mobile',$search);
-    			$this->db->or_like('wp_no',$search);
-    			$this->db->or_like('address',$search);
-    			$this->db->or_like('landmark',$search);
-    			$this->db->or_like('hour_operation',$search);
-    			$this->db->or_like('pro_or_servi',$search);
-    			$this->db->or_like('info',$search);
-    			$this->db->or_like('hour_operation',$search);
-    			$this->db->or_like('detail_desc',$search);
-		return	$this->db->get_Where('shop')->result_array();
+	{	
+			$this->db->where('dis_in_listing','0');
+			$this->db->group_start();
+			$this->db->like('shop_name',$search);
+			$this->db->or_like('owner_name',$search);
+			$this->db->or_like('mobile',$search);
+			$this->db->or_like('wp_no',$search);
+			$this->db->or_like('address',$search);
+			$this->db->or_like('landmark',$search);
+			$this->db->or_like('hour_operation',$search);
+			$this->db->or_like('pro_or_servi',$search);
+			$this->db->or_like('info',$search);
+			$this->db->or_like('hour_operation',$search);
+			$this->db->or_like('detail_desc',$search);
+			$this->db->group_end();
+		return	$this->db->get('shop')->result_array();
 
 
 	}
