@@ -68,7 +68,6 @@
 <style type="text/css">
 	.astrick{ color: red; }
 	input{ height: 40px !important; }
-	
 </style>
 
 <script type="text/javascript">

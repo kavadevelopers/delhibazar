@@ -27,6 +27,7 @@ class Product_model extends CI_Model
 		return $this->db->get_where('product',['id' => $id,'df' => '0'])->result_array();
 	}
 
+	
 
 
 

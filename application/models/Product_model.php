@@ -27,8 +27,10 @@ class Product_model extends CI_Model
 	}
 
 	public function product_image_where($product_id)
-	{
-		return $this->db->get_where('product_images',['p_id' => $product_id])->result_array();
+	{	
+		$data = $this->db->get_where('product_images',['p_id' => $product_id])->result_array();
+		if($data){ return $data; }else{ return $data = [0]; }
+		
 	}
 
 	public function product_category_where($category_id)
