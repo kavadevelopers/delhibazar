@@ -81,12 +81,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					          
 					        </div>
 					    </form>
-
-				    
-				     
-					<p class="mb-1">
-				        <a href="#">I forgot my password</a>
-				    </p>
+					    	
 				</div>
 			
 

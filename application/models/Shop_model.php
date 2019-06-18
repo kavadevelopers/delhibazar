@@ -71,7 +71,8 @@ class Shop_model extends CI_Model
 	}
 
 	public function shop_search($search)
-	{	
+	{		
+			$this->db->where('exp_date >=',date('Y-m-d'));
 			$this->db->where('dis_in_listing','0');
 			$this->db->group_start();
 			$this->db->like('shop_name',$search);

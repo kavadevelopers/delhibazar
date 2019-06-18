@@ -167,7 +167,7 @@
                            
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= base_url('setting'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("setting"))[0]; ?>">
+                                    <a href="<?= base_url('setting/site_setting'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("site_setting"))[0]; ?>">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Site Setting</p>
                                     </a>
@@ -186,6 +186,14 @@
                                         <p>Social Icon</p>
                                     </a>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a href="<?= base_url('setting/change_password'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("change_password"))[0]; ?>">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Change Admin Password</p>
+                                    </a>
+                                </li>
+
                             </ul>
                         </li>
                     <?php } ?>

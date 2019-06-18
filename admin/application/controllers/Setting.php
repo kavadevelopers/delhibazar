@@ -9,7 +9,7 @@ class Setting extends CI_Controller {
     }
 
 
-    public function index()
+    public function site_setting()
     {
     	$data['page_title']	=  'Setting';
         $data['setting']    =   $this->db->get_where('setting',['id' => '1'])->result_array()[0];
@@ -55,11 +55,51 @@ class Setting extends CI_Controller {
             $this->db->update('setting',$data);
 
             $this->session->set_flashdata('msg', 'Setting Successfully Saved');
-            redirect(base_url().'setting');
+            redirect(base_url().'setting/site_setting');
 
 
         }
     }
 
+
+    /*****************************************************
+                    CHANGE PASSWORD
+    *****************************************************/
+    public function change_password()
+    {
+        $data['page_title']        =  'Change Password';
+        $data['change_pass']       =   $this->db->get_where('user',['id' => '1'])->result_array()[0];
+        $this->load->template('change_password/index',$data);
+    }
+
+    public function update_password()
+    {
+
+        $this->form_validation->set_error_delimiters('<div class="my_text_error">', '</div>');
+        $this->form_validation->set_rules('pass', 'Password', 'required|trim|min_length[8]|max_length[100]');
+        $this->form_validation->set_rules('con_pass', 'Confirm Password', 'required|trim|min_length[8]|matches[pass]|max_length[100]');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            $data['page_title']        =  'Change Password';
+            $data['change_pass']       =   $this->db->get_where('user',['id' => '1'])->result_array()[0];
+            $this->load->template('change_password/index',$data);
+        }
+        else
+        {
+
+            $data  = [
+                        'pass'           =>  md5($this->input->post('pass')),
+                        'updated_by'     =>  $this->session->userdata('id'),
+                        'updated_at'     =>  date('Y-m-d H:i:s'),
+                     ];
+
+            $this->db->where('id',$this->input->post('id'));
+            $this->db->update('user',$data);
+
+            $this->session->set_flashdata('msg', 'Password Successfully Saved');
+            redirect(base_url().'setting/change_password');
+        }
+    }
 
 }
