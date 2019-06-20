@@ -11,9 +11,9 @@
         <div class="row">
    
             <?php  foreach ($category as $key => $value) { ?>
-                <div class="col-md-3 category-responsive">
-                    <a href="#" class="category-wrap">
-                        <div class="category-block">
+                <div onclick="location.href='<?= base_url('products/list/').$value['id'] ?>'" class="col-md-3 category-responsive" style="cursor:pointer">
+                    <a href="<?= base_url('products/list/').$value['id'] ?>" class="category-wrap">
+                        <div class="category-block add_div" style="padding: 30px !important;">
                             
                                 <a href="<?= base_url('products/list/').$value['id'] ?>"><?= $value['name'] ?></a>
                         
@@ -25,3 +25,8 @@
     </div>
 </section>
 <!--//END CATEGORIES -->
+<script type="text/javascript">
+    $("div").click(function(){
+       window.location=$(this).find("a").attr("href"); return false;
+    });
+</script>
