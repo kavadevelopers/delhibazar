@@ -9,21 +9,18 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 category-responsive">
-                <a href="#" class="category-wrap">
-                    <div class="category-block">
+   
+            <?php  foreach ($category as $key => $value) { ?>
+                <div class="col-md-3 category-responsive">
+                    <a href="#" class="category-wrap">
+                        <div class="category-block">
+                            
+                                <a href="<?= base_url('products/list/').$value['id'] ?>"><?= $value['name'] ?></a>
                         
-                        <?php  foreach ($CI->product_model->get_category() as $key => $value) { ?>
-                                            
-                            <a class="dropdown-item" href="<?= base_url('products/list/').$value['id'] ?>"><?= $value['name'] ?></a>
-                    
-                        <?php } ?>
-                        
-                        <h6>Automotive</h6>
-
-                    </div>
-                </a>
-            </div>
+                        </div>
+                    </a>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </section>
