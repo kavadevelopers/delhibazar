@@ -61,7 +61,7 @@
                     </li>
 
                     <li>
-                        <a href="<?= base_url(); ?>#">Shopping</a>
+                        <a href="<?= base_url(); ?>category">Shopping</a>
                     </li>
                     
                     <li>
