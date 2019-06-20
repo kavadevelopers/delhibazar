@@ -7,6 +7,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="keywords" content="<?= get_setting()['meta_keywords'] ?>">
+        <meta name="description" content="<?= get_setting()['meta_description'] ?>">
         <link href="<?= base_url() ?>home_file/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>home_file/css/home_style.css">
         <link rel="shortcut icon" href="<?= base_url() ?>image/favicon.png">

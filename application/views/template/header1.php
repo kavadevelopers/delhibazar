@@ -10,8 +10,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="#">
-    <meta name="keywords" content="#">
+    <meta name="keywords" content="<?= get_setting()['meta_keywords'] ?>">
+    <meta name="description" content="<?= get_setting()['meta_description'] ?>">
     <link rel="shortcut icon" href="<?= base_url() ?>image/favicon.png">
     <title>DELHIBAZAR</title>
     <link rel="stylesheet" href="<?= base_url() ?>temp_1/css/bootstrap.min.css">

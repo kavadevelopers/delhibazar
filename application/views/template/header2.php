@@ -10,6 +10,8 @@ $CI->load->model('cart_model');
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="keywords" content="<?= get_setting()['meta_keywords'] ?>">
+    	<meta name="description" content="<?= get_setting()['meta_description'] ?>">
         <link rel="icon" href="<?= base_url() ?>image/favicon.png" type="image/png">
         <title>DELHIBAZAR</title>
         <!-- Bootstrap CSS -->

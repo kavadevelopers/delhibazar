@@ -89,6 +89,22 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Meta Keywords <span class="astrick">*</span></label>
+                                            <textarea class="form-control form-control-sm" value="" type="text" name="meta_keywords" placeholder="Meta Keywords" ><?php echo set_value('meta_keywords',$setting['meta_keywords']); ?></textarea>
+                                            <?php echo form_error('meta_keywords'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Meta Description <span class="astrick">*</span></label>
+                                            <textarea class="form-control form-control-sm" value="" type="text" name="meta_description" placeholder="Meta Description" ><?php echo set_value('meta_description',$setting['meta_description']); ?></textarea>
+                                            <?php echo form_error('meta_description'); ?>
+                                        </div>
+                                    </div>
+
                                     
                                    
                                 </div>
