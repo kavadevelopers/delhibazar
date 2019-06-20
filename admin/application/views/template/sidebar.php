@@ -181,6 +181,13 @@
                                 </li>
 
                                 <li class="nav-item">
+                                    <a href="<?= base_url('setting/shop_commission'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("shop_commission"))[0]; ?>">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Shop Commission</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a href="<?= base_url('social_icon'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("social_icon"))[0]; ?>">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Social Icon</p>

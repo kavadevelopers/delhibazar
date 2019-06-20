@@ -106,4 +106,43 @@ class Setting extends CI_Controller {
         }
     }
 
+    /*****************************************************
+                    PER SHOP COMMISSSION
+    *****************************************************/
+    public function shop_commission()
+    {
+        $data['page_title']        =  'Change Commission';
+        $data['commission']        =   $this->db->get_where('setting',['id' => '1'])->result_array()[0];
+        $this->load->template('shop_commission/index',$data);
+    }
+
+    public function shop_commission_save()
+    {
+
+        $this->form_validation->set_error_delimiters('<div class="my_text_error">', '</div>');
+        $this->form_validation->set_rules('shop_commission', 'Per Shop Commission', 'required|trim|decimal|max_length[40]');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            $data['page_title']        =  'Change Commission';
+            $data['commission']        =   $this->db->get_where('setting',['id' => '1'])->result_array()[0];
+            $this->load->template('shop_commission/index',$data);
+        }
+        else
+        {
+
+            $data  =    ['shop_commission'  => $this->input->post('shop_commission')];
+
+
+            $this->db->where('id',$this->input->post('id'));
+            $this->db->update('setting',$data);
+
+            $this->session->set_flashdata('msg', 'Shop Commission Successfully Saved');
+            redirect(base_url().'setting/shop_commission');
+        }
+
+
+
+    }
+
 }
