@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 20, 2019 at 11:52 AM
+-- Generation Time: Jun 21, 2019 at 09:37 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -104,14 +104,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`id`, `qty`, `product_id`, `user_id`, `delivered`, `created_at`, `updated_at`) VALUES
-(53, 1, '8', '8', 0, '2019-06-15 15:50:57', NULL);
+) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -174,6 +167,45 @@ INSERT INTO `pages` (`id`, `name`, `content`) VALUES
 (1, 'about', '<p>This Is data <u><em><strong>123456</strong></em></u></p>\r\n'),
 (2, 'terms', '<p>This is <u><em><strong>terms</strong></em></u></p>\r\n'),
 (3, 'privacy', '<h1>This i<strong>s privacy</strong></h1>\r\n');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+DROP TABLE IF EXISTS `payment`;
+CREATE TABLE IF NOT EXISTS `payment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` text NOT NULL,
+  `txnid` text NOT NULL,
+  `product_id` text NOT NULL,
+  `cart_tbl_id` text NOT NULL,
+  `quantity` text NOT NULL,
+  `amount` decimal(40,2) NOT NULL,
+  `productinfo` text NOT NULL,
+  `name` text NOT NULL,
+  `address1` text NOT NULL,
+  `address2` text NOT NULL,
+  `city` varchar(250) NOT NULL,
+  `district` varchar(250) NOT NULL,
+  `country` varchar(250) NOT NULL,
+  `zipcode` varchar(250) NOT NULL,
+  `email` varchar(250) NOT NULL,
+  `phone` varchar(250) NOT NULL,
+  `delivered` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 = not delivered, 1 = delivered',
+  `delete_flag` tinyint(4) NOT NULL DEFAULT '0',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`id`, `user_id`, `txnid`, `product_id`, `cart_tbl_id`, `quantity`, `amount`, `productinfo`, `name`, `address1`, `address2`, `city`, `district`, `country`, `zipcode`, `email`, `phone`, `delivered`, `delete_flag`, `created_at`, `updated_at`) VALUES
+(5, '8', '3156d2ae020e48436750', '8,8', '53,54', '1,2', '3.00', 'One Plus 7,One Plus 7', 'Asdasd Asdasd', 'B - 7  gitanjali shopping center  dapran six road - 380013', '', 'Ahmedabad', 'Ahmedabad', 'Asdasdasd', '380013', 'test@gmail.com', '9898878720', 0, 0, '2019-06-21 14:39:34', NULL);
 
 -- --------------------------------------------------------
 

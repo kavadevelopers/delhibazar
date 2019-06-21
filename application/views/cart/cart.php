@@ -23,7 +23,7 @@
 								<th scope="col">Price</th>
 								<th scope="col">Quantity</th>
 								<th scope="col">Total</th>
-								<th scope="col"><a href="">Delte</a></th>
+								<th scope="col"><a href="">Delete</a></th>
 							</tr>
 						</thead>
 						<tbody>

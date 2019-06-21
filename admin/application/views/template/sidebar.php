@@ -121,6 +121,13 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('order'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("order"))[0]; ?>">
+                            <i class="nav-icon fa fa-file-o"></i>
+                            <p>Order</p>
+                        </a>
+                    </li>
+
                     <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("pages"))[1]; ?>">
                 
                         <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("pages"))[0]; ?>">
