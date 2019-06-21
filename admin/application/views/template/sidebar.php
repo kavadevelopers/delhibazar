@@ -25,7 +25,7 @@
     </style>
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
     
-        <a href="<?php echo base_url('dashboard'); ?>" class="brand-link">
+        <a href="<?php echo base_url('dashboard'); ?>" class="brand-link" style="padding:0;">
           
           <span class="brand-text font-weight-light"><img src="<?php echo base_url(); ?><?=$this->config->config["logoFile"]?>" alt="<?=$this->config->config["projectName"]?> logo" class=""
                style="width: 100%;"></span>
