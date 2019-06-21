@@ -121,11 +121,37 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('order'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("order"))[0]; ?>">
+                    <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("order"))[1]; ?>">
+                
+                        <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("order"))[0]; ?>">
                             <i class="nav-icon fa fa-file-o"></i>
-                            <p>Order</p>
+                            <p>Order
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
                         </a>
+                       
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= base_url('order/pending_order'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("pending_order"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Pending Order</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('order/delivered_order'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("delivered_order"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Delivered Order</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('order/deleted_order'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("deleted_order"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Deleted Order</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("pages"))[1]; ?>">

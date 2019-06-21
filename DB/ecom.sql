@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 21, 2019 at 09:37 AM
+-- Generation Time: Jun 21, 2019 at 01:38 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -177,9 +177,10 @@ INSERT INTO `pages` (`id`, `name`, `content`) VALUES
 DROP TABLE IF EXISTS `payment`;
 CREATE TABLE IF NOT EXISTS `payment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `orderid` varchar(250) DEFAULT NULL,
   `user_id` text NOT NULL,
   `txnid` text NOT NULL,
-  `product_id` text NOT NULL,
+  `product_id` text NOT NULL COMMENT 'product id ^~^ product amount',
   `cart_tbl_id` text NOT NULL,
   `quantity` text NOT NULL,
   `amount` decimal(40,2) NOT NULL,
@@ -197,15 +198,16 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `delete_flag` tinyint(4) NOT NULL DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `payment`
 --
 
-INSERT INTO `payment` (`id`, `user_id`, `txnid`, `product_id`, `cart_tbl_id`, `quantity`, `amount`, `productinfo`, `name`, `address1`, `address2`, `city`, `district`, `country`, `zipcode`, `email`, `phone`, `delivered`, `delete_flag`, `created_at`, `updated_at`) VALUES
-(5, '8', '3156d2ae020e48436750', '8,8', '53,54', '1,2', '3.00', 'One Plus 7,One Plus 7', 'Asdasd Asdasd', 'B - 7  gitanjali shopping center  dapran six road - 380013', '', 'Ahmedabad', 'Ahmedabad', 'Asdasdasd', '380013', 'test@gmail.com', '9898878720', 0, 0, '2019-06-21 14:39:34', NULL);
+INSERT INTO `payment` (`id`, `orderid`, `user_id`, `txnid`, `product_id`, `cart_tbl_id`, `quantity`, `amount`, `productinfo`, `name`, `address1`, `address2`, `city`, `district`, `country`, `zipcode`, `email`, `phone`, `delivered`, `delete_flag`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'DB-001', '8', 'c7c7c4bfaf2ab5a208f2', '8,9^~^11.00,1444.00', '57,58', '1,1', '1455.00', 'One Plus 7,Redmi Y3', 'Nayan Ramani', 'Adasd asd asd asd asd asda sd', '', 'Ahmedabad', 'Ahmedabad', 'Asdasdasd', '380013', 'mehul9921@gmail.com', '9898878720', 1, 1, '2019-06-21 18:42:54', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -243,9 +245,9 @@ INSERT INTO `product` (`id`, `hash`, `name`, `amount`, `short_desc`, `desc`, `ca
 (5, '1ccdcca89fbe346071ed3c4f6c370621', 'redmi 7', '14999.00', 'asdasdasdasd', '<p>asdasdasd<em>as asd asdasasd</em></p>', '4', 1, '1', '1', '2019-06-07 17:18:03', '2019-06-07 17:18:03', 0),
 (6, 'ffa0eddb2f3f73dda1fac27ff6b0b1ea', 'redmi 7 pro', '15999.00', 'asda sda', '<p>asdasdasd<strong>asdas asd asd</strong></p>', '4', 1, '1', '1', '2019-06-07 17:18:26', '2019-06-07 17:18:26', 0),
 (7, 'b14c983e834525d2cc1ab48c5559282f', 'Redmi 7 pro..', '15999.00', 'rrrrrrrrrrrrrrrrrrrrrrrrr\r\ndasdas dasd asdas a\r\nasdasdasd', '<p><strong>Camera&nbsp;</strong></p>\r\n\r\n<p><em>fornt Camera : 12px</em></p>\r\n\r\n<p><em>Seconad Camera : 48px;</em></p>\r\n\r\n<p><strong>Display</strong></p>\r\n\r\n<p><em>6.2 display..</em></p>', '4', 0, '1', '1', '2019-06-08 14:41:04', '2019-06-08 15:16:45', 0),
-(8, '9a6a7050f40408d6c5c3c75b574bb2f2', 'One Plus 7', '1.00', 'Rear Camera - 48MP (Primary) + 5 MP (Tele-photo) | Front Camera - 16MP\r\n16.2814 centimeters (6.41-inch) multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution\r\nMemory, Storage and SIM: 6GB RAM | 128GB internal memory | Dual SIM dual-standby (4G+4G)\r\nAndroid Oxygen operating system with 2.84GHz Snapdragon 855 octa core processor\r\n3700mAH lithium-ion battery\r\n1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase\r\nBox also includes: Power Adapter, Type-C Cable (Support USB 2.0), Quick Start Guide, Welcome Letter, Safety Information and Warranty Card, Logo Sticker, Case, Screen Protector (pre-applied) and SIM Tray Ejector', 'Rear Camera - 48MP (Primary) + 5 MP (Tele-photo) | Front Camera - 16MP\r\n16.2814 centimeters (6.41-inch) multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution\r\nMemory, Storage and SIM: 6GB RAM | 128GB internal memory | Dual SIM dual-standby (4G+4G)\r\nAndroid Oxygen operating system with 2.84GHz Snapdragon 855 octa core processor\r\n3700mAH lithium-ion battery\r\n1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase\r\nBox also includes: Power Adapter, Type-C Cable (Support USB 2.0), Quick Start Guide, Welcome Letter, Safety Information and Warranty Card, Logo Sticker, Case, Screen Protector (pre-applied) and SIM Tray Ejector', '4', 0, '1', '1', '2019-06-13 12:08:48', '2019-06-13 12:11:24', 0),
-(9, '2418871f1f523aad556195529c9d9831', 'Redmi Y3', '9999.00', '12MP+2MP dual rear camera | 32MP front facing camera\r\n15.9004 centimeters (6.26-inch) with 1520 x 720 pixels resolution, 269 ppi pixel density\r\nMemory, Storage and SIM: 3GB RAM | 32GB internal memory expandable up to 512GB | Dual SIM (nano+nano) dual-standby (4G+4G)', '<ul>\r\n	<li>12MP+2MP dual rear camera | 32MP front facing camera</li>\r\n	<li>15.9004 centimeters (6.26-inch) with 1520 x 720 pixels resolution, 269 ppi pixel density</li>\r\n	<li>Memory, Storage and SIM: 3GB RAM | 32GB internal memory expandable up to 512GB | Dual SIM (nano+nano) dual-standby (4G+4G)</li>\r\n	<li>Android Pie v9.0 operating system with 1.8GHz Qualcomm Snapdragon 632 octa core processor, Adreno 506</li>\r\n	<li>4000mAH lithium-ion battery</li>\r\n	<li>1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase</li>\r\n	<li>Box also includes: Adapter, USB cable, warranty card, user guide, SIM insertion tool, back cover</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', '4', 0, '1', '1', '2019-06-13 12:19:06', '2019-06-13 12:31:49', 0),
-(10, 'c607f715947347d69fb29fbddd2d9ed2', 'Samsung m30', '15999.00', '13+5+5MP Triple rear camera with f1.9 aperture, 2.2 wide angle, 2.2 flash | 16MP front camera with f2.0 aperture\r\n16.21 centimeters (6.4-inch) FHD+ multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution and 16M color support', '<ul>\r\n	<li>13+5+5MP Triple rear camera with f1.9 aperture, 2.2 wide angle, 2.2 flash | 16MP front camera with f2.0 aperture</li>\r\n	<li>16.21 centimeters (6.4-inch) FHD+ multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution and 16M color support</li>\r\n	<li>Memory, Storage and SIM: 4GB RAM | 64GB internal memory expandable up to 512GB | Dual SIM (nano+nano) dual-standby (4G+4G)</li>\r\n	<li>Android Oreo v8.1 operating system with 1.8GHz Exynos 7904 octa core processor</li>\r\n	<li>5000mAH lithium-ion battery with 3x fast charge | 15W Type-C fast charger in the box</li>\r\n	<li>1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase</li>\r\n	<li>Box also includes: Handset, Travel Adapter, USB Cable, Ejection Pin and User Manual</li>\r\n</ul>', '4', 0, '1', '1', '2019-06-13 12:21:30', '2019-06-13 12:21:30', 0);
+(8, '9a6a7050f40408d6c5c3c75b574bb2f2', 'One Plus 7', '11.00', 'Rear Camera - 48MP (Primary) + 5 MP (Tele-photo) | Front Camera - 16MP\r\n16.2814 centimeters (6.41-inch) multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution\r\nMemory, Storage and SIM: 6GB RAM | 128GB internal memory | Dual SIM dual-standby (4G+4G)\r\nAndroid Oxygen operating system with 2.84GHz Snapdragon 855 octa core processor\r\n3700mAH lithium-ion battery\r\n1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase\r\nBox also includes: Power Adapter, Type-C Cable (Support USB 2.0), Quick Start Guide, Welcome Letter, Safety Information and Warranty Card, Logo Sticker, Case, Screen Protector (pre-applied) and SIM Tray Ejector', 'Rear Camera - 48MP (Primary) + 5 MP (Tele-photo) | Front Camera - 16MP\r\n16.2814 centimeters (6.41-inch) multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution\r\nMemory, Storage and SIM: 6GB RAM | 128GB internal memory | Dual SIM dual-standby (4G+4G)\r\nAndroid Oxygen operating system with 2.84GHz Snapdragon 855 octa core processor\r\n3700mAH lithium-ion battery\r\n1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase\r\nBox also includes: Power Adapter, Type-C Cable (Support USB 2.0), Quick Start Guide, Welcome Letter, Safety Information and Warranty Card, Logo Sticker, Case, Screen Protector (pre-applied) and SIM Tray Ejector', '4', 0, '1', '1', '2019-06-13 12:08:48', '2019-06-13 12:11:24', 0),
+(9, '2418871f1f523aad556195529c9d9831', 'Redmi Y3', '1444.00', '12MP+2MP dual rear camera | 32MP front facing camera\r\n15.9004 centimeters (6.26-inch) with 1520 x 720 pixels resolution, 269 ppi pixel density\r\nMemory, Storage and SIM: 3GB RAM | 32GB internal memory expandable up to 512GB | Dual SIM (nano+nano) dual-standby (4G+4G)', '<ul>\r\n	<li>12MP+2MP dual rear camera | 32MP front facing camera</li>\r\n	<li>15.9004 centimeters (6.26-inch) with 1520 x 720 pixels resolution, 269 ppi pixel density</li>\r\n	<li>Memory, Storage and SIM: 3GB RAM | 32GB internal memory expandable up to 512GB | Dual SIM (nano+nano) dual-standby (4G+4G)</li>\r\n	<li>Android Pie v9.0 operating system with 1.8GHz Qualcomm Snapdragon 632 octa core processor, Adreno 506</li>\r\n	<li>4000mAH lithium-ion battery</li>\r\n	<li>1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase</li>\r\n	<li>Box also includes: Adapter, USB cable, warranty card, user guide, SIM insertion tool, back cover</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', '4', 0, '1', '1', '2019-06-13 12:19:06', '2019-06-13 12:31:49', 0),
+(10, 'c607f715947347d69fb29fbddd2d9ed2', 'Samsung m30', '11.00', '13+5+5MP Triple rear camera with f1.9 aperture, 2.2 wide angle, 2.2 flash | 16MP front camera with f2.0 aperture\r\n16.21 centimeters (6.4-inch) FHD+ multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution and 16M color support', '<ul>\r\n	<li>13+5+5MP Triple rear camera with f1.9 aperture, 2.2 wide angle, 2.2 flash | 16MP front camera with f2.0 aperture</li>\r\n	<li>16.21 centimeters (6.4-inch) FHD+ multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution and 16M color support</li>\r\n	<li>Memory, Storage and SIM: 4GB RAM | 64GB internal memory expandable up to 512GB | Dual SIM (nano+nano) dual-standby (4G+4G)</li>\r\n	<li>Android Oreo v8.1 operating system with 1.8GHz Exynos 7904 octa core processor</li>\r\n	<li>5000mAH lithium-ion battery with 3x fast charge | 15W Type-C fast charger in the box</li>\r\n	<li>1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase</li>\r\n	<li>Box also includes: Handset, Travel Adapter, USB Cable, Ejection Pin and User Manual</li>\r\n</ul>', '4', 0, '1', '1', '2019-06-13 12:21:30', '2019-06-13 12:21:30', 0);
 
 -- --------------------------------------------------------
 

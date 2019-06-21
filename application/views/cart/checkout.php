@@ -96,6 +96,7 @@
 									<input class="quantity" type="hidden" id="qty<?= $val ?>" name="qty[]" value="<?= $value['qty']  ?>">
 									<input type="hidden" id="amount<?= $val ?>" value="<?= $product['amount'] ?>">
 									<input type="hidden" name="cart_tbl_id[]" value="<?= $value['id'] ?>">
+									<input type="hidden" name="product_amount[]" value="<?= $product['amount'] ?>">
 								<?php } ?>
 							</ul>
 							<ul class="list list_2">

@@ -29,18 +29,17 @@ class Pay extends CI_Controller {
             
             $udf1               = $this->input->post('user_id');
             $udf2               = ucfirst($this->input->post('district'));
-            $udf3               = implode(',',$this->input->post('product_id'));
+            $udf3               = implode(',',$this->input->post('product_id')).'^~^'.implode(',',$this->input->post('product_amount'));
             $udf4               = implode(',',$this->input->post('qty'));          //Product Quantity
-            $udf5               = implode(',',$this->input->post('cart_tbl_id')); // Cart Table Auto Increment Id
-                
+            $udf5               = implode(',',$this->input->post('cart_tbl_id'));  // Cart Table Auto Increment Id
 
 
-            $hashstring = $MERCHANT_KEY . '|' . $txnid . '|' . $amount . '|' . $product_info . '|' . $customer_name . '|' . $customer_email . '|' . $udf1 . '|' . $udf2 . '|' . $udf3 . '|' . $udf4 . '|' . $udf5 . '||||||' . $SALT;
+            $hashstring = $MERCHANT_KEY . '|' . $txnid . '|' . $amount . '|' . $product_info . '|' . $customer_name . '|' . $customer_email . '|' . $udf1 . '|' . $udf2 . '|' . $udf3 . '|' . $udf4 . '|' . $udf5 .'||||||' . $SALT;
             $hash = strtolower(hash('sha512', $hashstring));
                 
             $success    = base_url() . 'pay/status';  
             $fail       = base_url() . 'pay/status';  
-            $cancel = base_url() . 'pay/status';  
+            $cancel     = base_url() . 'pay/status';  
                 
                 
             $data = array(
@@ -73,13 +72,17 @@ class Pay extends CI_Controller {
             $this->load->template1('pay/index',$data);
         
     }
-
     
     /**********************************************
                     Payment Status
     **********************************************/
     public function status()
     {
+       
+
+                    $this->db->order_by('id','DESC');
+        $orderid = $this->db->get('payment',1)->result_array();
+        if($orderid){  $new_order_id = 'DB-00'.$orderid[0]['id']+1; }else{ $new_order_id = 'DB-001'; }
 
         $status = $this->input->post('status');
             if($this->input->post('status')){
@@ -113,6 +116,7 @@ class Pay extends CI_Controller {
                     if($status == 'success')
                     {
                         $data = [
+                                    'orderid'       => $new_order_id,
                                     'user_id'       => $this->input->post('udf1'),
                                     'txnid'         => $this->input->post('txnid'),
                                     'product_id'    => $this->input->post('udf3'),
