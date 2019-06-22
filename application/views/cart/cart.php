@@ -14,6 +14,8 @@
 <section class="cart_area">
 	<div class="container">
 		<div class="cart_inner">
+
+			<?php if($user_product) {?>
 			<div class="table-responsive">
 				<form method="post" id="cart_form" action="<?= base_url() ?>cart/update_cart">
 					<table class="table">
@@ -23,7 +25,7 @@
 								<th scope="col">Price</th>
 								<th scope="col">Quantity</th>
 								<th scope="col">Total</th>
-								<th scope="col"><a href="">Delete</a></th>
+								<th scope="col"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -122,6 +124,13 @@
 
 				</form>
 			</div>
+			<?php } else { ?>
+				<div class="col-md-12 text-center">
+					<div class="f_p_item" style="background-color: #e8f0f2;padding: 25px;font-style: oblique;box-shadow: 3px 2px;">
+						<h5>Your Cart is Empty</h5>
+					</div>
+				</div>
+			<?php } ?>
 		</div>
 	</div>
 </section>
@@ -130,6 +139,9 @@
 	{
 		border: none  !important;
 		outline: none !important;
+	}
+	.cart_inner .table tbody tr td .product_count .reduced {
+    	bottom: 0;
 	}
 </style>
 <!--================End Cart Area =================-->
