@@ -10,6 +10,20 @@ class General_model extends CI_Model
 		$this->load->database();
 	}
 
+	/******************  NEWLETTER  ********************/
+	
+	public function newsletter()
+	{
+		return  $this->db->get('newsletter')->result_array();
+	}
+
+	public function newsletter_where($id)
+	{
+		return  $this->db->get('newsletter',['id' => $id])->result_array();
+	}
+
+	/******************  NEWLETTER  ********************/
+	
 
 	public function count_agents()
 	{

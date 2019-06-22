@@ -50,6 +50,14 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            <label>Newsletter Email <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('newsletter_email',$setting['newsletter_email']); ?>" type="text" name="newsletter_email" placeholder="Newsletter Email" >
+                                            <?php echo form_error('newsletter_email'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <label>Mobile <span class="astrick">*</span></label>
                                             <input class="form-control form-control-sm" value="<?php echo set_value('mobile',$setting['mobile']); ?>" type="text" name="mobile" placeholder="Mobile" >
                                             <?php echo form_error('mobile'); ?>

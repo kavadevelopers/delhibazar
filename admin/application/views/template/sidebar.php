@@ -236,6 +236,13 @@
 
                             </ul>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="<?php echo base_url('newsletter'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("newsletter"))[0]; ?>">
+                                <i class="nav-icon fa fa-envelope-o"></i>
+                                <p>Newsletter</p>
+                            </a>
+                        </li>
                     <?php } ?>
 
                     <li class="nav-item">
