@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 22, 2019 at 09:12 AM
+-- Generation Time: Jun 22, 2019 at 01:32 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -143,14 +143,21 @@ CREATE TABLE IF NOT EXISTS `newsletter` (
   `active` int(1) NOT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `newsletter`
 --
 
 INSERT INTO `newsletter` (`id`, `email`, `active`, `created_at`) VALUES
-(1, 'mehul9921@Gamil.com', 1, '2019-06-22 12:25:39');
+(1, 'mehul9921@gmail.com', 0, '2019-06-22 12:25:39'),
+(3, 'nayan19896@gmail.com', 0, '2019-06-22 18:32:03'),
+(4, 'mehul2081@gmail.com', 0, '2019-06-22 18:48:01'),
+(5, 'kavadevelopers@gmail.com', 0, '2019-06-22 18:48:10'),
+(6, 'ramaninayanrn@gmail.com', 0, '2019-06-22 18:48:22'),
+(7, 'nayanpatel807@gmail.com', 0, '2019-06-22 18:48:35'),
+(8, 'rajesh.chauhan1010@gmail.com', 0, '2019-06-22 18:49:37'),
+(9, 'mehulpkava@gmail.com', 0, '2019-06-22 18:50:07');
 
 -- --------------------------------------------------------
 
@@ -328,6 +335,10 @@ CREATE TABLE IF NOT EXISTS `setting` (
   `meta_keywords` longtext NOT NULL,
   `meta_description` longtext NOT NULL,
   `shop_commission` decimal(40,2) DEFAULT NULL COMMENT 'Per shop commission',
+  `smtp_host` text,
+  `smtp_port` text,
+  `smtp_user` text,
+  `smtp_pass` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -335,8 +346,8 @@ CREATE TABLE IF NOT EXISTS `setting` (
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`id`, `email`, `support_email`, `contact_email`, `newsletter_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`, `meta_keywords`, `meta_description`, `shop_commission`) VALUES
-(1, 'kavadev@gmail.com', 'support.kava@gmail.com', 'nayanpatel807@gmail.com', 'nayanpatel807@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown', 'home', 'description', '50.00');
+INSERT INTO `setting` (`id`, `email`, `support_email`, `contact_email`, `newsletter_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`, `meta_keywords`, `meta_description`, `shop_commission`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`) VALUES
+(1, 'kavadev@gmail.com', 'support.kava@gmail.com', 'nayanpatel807@gmail.com', 'nayanpatel807@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown', 'home', 'description', '50.00', 'mail.kavadevelopers.com', '587', 'nayan@kavadevelopers.com', '//Star@123');
 
 -- --------------------------------------------------------
 
