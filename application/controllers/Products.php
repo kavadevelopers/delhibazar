@@ -167,4 +167,26 @@ class Products extends CI_Controller {
 			}
 	}
 
+	public function add_to_cart()
+	{
+		$product_id = $this->product_model->product_where($this->input->get('hash'))[0]['id'];
+		
+			$data = [
+					'qty' 			=> '1',
+					'product_id' 	=> $product_id,
+					'user_id' 		=> $this->session->userdata('id'),
+					'created_at' 	=> date('Y-m-d H:i:s')
+				];
+
+			if($this->db->insert('cart',$data))
+			{
+				$this->session->set_flashdata('msg', 'Product Added to Cart');
+				redirect($this->input->get('uri'));	
+			}
+			else
+			{
+				$this->session->set_flashdata('error', 'Something went wrong try again');
+				redirect($this->input->get('uri'));	
+			}
+	}
 }

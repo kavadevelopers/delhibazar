@@ -53,7 +53,13 @@
 										<?php } ?>
 
 										<div class="p_icon">
-											<a href="#"><i class="lnr lnr-cart"></i></a>
+											<?php if($this->session->userdata('id')){ ?>
+												<a href="<?= base_url().'products/add_to_cart/?hash='.$value['hash'].'&uri='.base_url(uri_string()) ?>">
+													<i class="lnr lnr-cart"></i>
+												</a>
+											<?php }else{ ?>
+												<a href="#" onclick="return guest_click()"><i class="lnr lnr-cart"></i></a>
+											<?php } ?>
 										</div>
 									</div>
 									<a href="<?= base_url() ?>products/product_detail/<?= $value['hash'] ?>"><h4><?= $value['name'] ?></h4></a>
@@ -126,6 +132,11 @@
 </style>
 
 <script type="text/javascript">
+	function guest_click()
+	{
+	    swal("Cancelled", "Please Login First", "error");
+	    return false;
+	}
 	$(function(){
 		$('#filter').click(function(){
 			$.ajax({
