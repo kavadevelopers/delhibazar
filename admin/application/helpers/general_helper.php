@@ -19,4 +19,10 @@ function _now_dt()
 	return date('Y-m-d H:i:s');
 }
 
+
+function get_setting()
+{
+	$CI=&get_instance();
+	return $CI->db->get_where('setting',['id' => '1'])->result_array()[0];
+}
 ?>

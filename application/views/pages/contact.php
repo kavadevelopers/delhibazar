@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="col-lg-9">
-                <form class="row contact_form" action="<?= base_url() ?>pages/sendmail" method="post" id="contactForm" novalidate="novalidate">
+                <form class="row contact_form" action="<?= base_url() ?>pages/contact_email" method="post" id="contactForm" novalidate="novalidate">
                     <div class="col-md-6">
                         <div class="form-group">
                             <input type="text" class="form-control contact-design" id="name" name="name" placeholder="Enter your name" required>

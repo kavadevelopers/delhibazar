@@ -28,31 +28,36 @@ class Newsletter extends CI_Controller {
 					SEND MAIL
 	****************************************/
 	public function send()
-	{
-		$email	= $this->db->get_where('setting',['id' => 1])->result_array();		
+	{	
+		$this->load->library('email');
+		$config['protocol']     = 'smtp';
+        $config['smtp_host']    = get_setting()['smtp_host'];
+        $config['smtp_port']    = get_setting()['smtp_port'];
+        $config['smtp_timeout'] = '7';
+        $config['smtp_user']    = get_setting()['smtp_user'];
+        $config['smtp_pass']    = get_setting()['smtp_pass'];
+        $config['charset']      = 'utf-8';
+        $config['newline']      = "\r\n";
+        $config['mailtype']     = 'html';
+        $config['validation']   = TRUE; 
+        
+        $this->email->initialize($config);
+
+
 		$data 	= $this->db->get_where('newsletter',['active' => 0])->result_array();
 
 		foreach ($data as $key => $value) {
 			
-			$this->email->from($email[0]['newsletter']);
-	        $this->email->to($value['email']);
-	        $this->email->reply_to('no-reply@example.com', 'No Reply');
+			$this->email->from(get_setting()['smtp_user'], 'DELHIBAZAR');
+	        $this->email->to($value['email']); 
 	        $this->email->subject(ucfirst($this->input->post('subject')));
-	        $this->email->set_mailtype('html');
-	        $this->email->message(ucfirst($this->input->post('msg')));
-        
+	        $this->email->message(ucfirst($this->input->post('msg'))); 
+        	$this->email->send();
         }
 
-        if($this->email->send())
-        {
-            $this->session->set_flashdata('msg', 'Message Successfully Sent');
-            redirect(base_url('newsletter'));
-        }
-        else
-        {
-            $this->session->set_flashdata('error', 'Message Not Sent !');
-            redirect(base_url('newsletter/sendmail'));
-        }
+        
+        $this->session->set_flashdata('msg', 'Message Successfully Sent');
+        redirect(base_url('newsletter'));
     
 
 	}

@@ -34,7 +34,7 @@ class Pages extends CI_Controller {
 
 
 
-    public function sendmail()
+    public function contact_email()
     {
         $this->load->library('email');
 

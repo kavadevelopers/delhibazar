@@ -30,23 +30,31 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Subject <span class="astrick">*</span></label>
-                                            <textarea class="form-control form-control-sm" type="text" name="subject" placeholder="Subject" rows="3" autocomplete="off" required><?php echo set_value('subject'); ?></textarea>
+                                            <textarea class="form-control form-control-sm" type="text" name="subject" placeholder="Subject" rows="3" autocomplete="off" required></textarea>
                                             <?php echo form_error('subject'); ?>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-secondary">
+                            <div class="card-header">
+                                <h3 class="card-title">Message</h3>
+                            </div>
 
-                                    <div class="col-md-8">
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Message <span class="astrick">*</span></label>
-                                            <textarea class="form-control form-control-sm" type="text" name="msg" placeholder="Message" rows="3" autocomplete="off" required><?php echo set_value('msg'); ?></textarea>
+                                            <textarea class="ckeditor" type="text" id="editor1" name="msg" required></textarea>
                                             <?php echo form_error('msg'); ?>
                                         </div>
                                     </div>
-
-                                    
-                                   
                                 </div>
                             </div>
+                        </div>
+                        <div class="card">
                             <div class="card-footer">
                                 <div class="float-right">
                                   <a href="<?= base_url(); ?>newsletter" class="btn btn-danger">Cancel</a>
@@ -54,7 +62,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </form>    
@@ -62,3 +69,4 @@
     </section>
 
 
+    <script src="<?= base_url(); ?>plugins/ckeditor/ckeditor.js"></script>
