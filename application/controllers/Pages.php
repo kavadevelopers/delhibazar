@@ -36,23 +36,21 @@ class Pages extends CI_Controller {
 
     public function sendmail()
     {
-        $contact_email = get_setting()['contact_email'];
+        $this->load->library('email');
 
         $this->email->from($this->input->post('email'),ucfirst($this->input->post('name')));
-        $this->email->to($contact_email);
+        $this->email->to(get_setting()['contact_email']);
         $this->email->reply_to('no-reply@example.com', 'No Reply');
         $this->email->subject(ucfirst($this->input->post('subject')));
         $this->email->set_mailtype('html');
         $this->email->message(ucfirst($this->input->post('message')));
         
-        if($this->email->send())
-        {
+        if($this->email->send()){
             $this->session->set_flashdata('msg', 'Message Successfully Sent');
             redirect(base_url('pages/contact'));
         }
         else
         {
-            // echo $this->email->print_debugger();die;
             $this->session->set_flashdata('error', 'Message Not Sent !');
             redirect(base_url('pages/contact'));
         }
