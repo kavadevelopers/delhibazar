@@ -22,6 +22,7 @@
 		var yyyy = today.getFullYear();
 
 		document.getElementById('MydateDisplay').innerHTML = dd + '/' + mm + '/' + yyyy +' <br>'+ h + ":" + m + " " + session;
+		document.getElementById('MydateDisplay1').innerHTML = dd + '/' + mm + '/' + yyyy +' <br>'+ h + ":" + m + " " + session;
 	}
 	function checkTime(i) {
 	  if (i < 10) {i = "0" + i}; 

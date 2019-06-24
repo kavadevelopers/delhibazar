@@ -20,6 +20,12 @@ class Setting extends CI_Controller {
     public function save()
     {
         $this->form_validation->set_error_delimiters('<div class="my_text_error">', '</div>');
+        
+        $this->form_validation->set_rules('smtp_host', 'Smtp Host', 'trim|required|max_length[240]');
+        $this->form_validation->set_rules('smtp_port', 'Smtp Port', 'trim|required|max_length[240]');
+        $this->form_validation->set_rules('smtp_user', 'Smtp User', 'trim|required|max_length[240]');
+        $this->form_validation->set_rules('smtp_pass', 'Smtp Password', 'trim|required|max_length[240]');
+        
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|xss_clean|max_length[100]');
         $this->form_validation->set_rules('support_email', 'Support Email', 'required|trim|valid_email|xss_clean|max_length[100]');
         $this->form_validation->set_rules('contact_email', 'Contact Form Email', 'required|trim|valid_email|xss_clean|max_length[100]');
@@ -47,6 +53,10 @@ class Setting extends CI_Controller {
 
 
             $data = [
+                        'smtp_host'         =>     $this->input->post('smtp_host'),
+                        'smtp_port'         =>     $this->input->post('smtp_port'),
+                        'smtp_user'         =>     $this->input->post('smtp_user'),
+                        'smtp_pass'         =>     $this->input->post('smtp_pass'),
                         'email'             =>     $this->input->post('email'),
                         'support_email'     =>     $this->input->post('support_email'),
                         'contact_email'     =>     $this->input->post('contact_email'),

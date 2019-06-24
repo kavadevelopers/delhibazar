@@ -24,6 +24,41 @@
                             <div class="card-body">
                                 <div class="row">
                                     
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Smtp Host <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('smtp_host',$setting['smtp_host']); ?>" type="text" name="smtp_host" placeholder="Smtp Host" >
+                                            <?php echo form_error('smtp_host'); ?>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Smtp Port <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('smtp_port',$setting['smtp_port']); ?>" type="text" name="smtp_port" placeholder="Smtp Port" >
+                                            <?php echo form_error('smtp_port'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Smtp User <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('smtp_user',$setting['smtp_user']); ?>" type="text" name="smtp_user" placeholder="Smtp User" >
+                                            <?php echo form_error('smtp_user'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Smtp Password <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('smtp_pass',$setting['smtp_pass']); ?>" type="text" name="smtp_pass" placeholder="Smtp Password" >
+                                            <?php echo form_error('smtp_pass'); ?>
+                                        </div>
+                                    </div>
+
+
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Email <span class="astrick">*</span></label>
