@@ -212,7 +212,7 @@
             <div class="col-md-8 col-xs-12 col-sm-12">
                 <div class="row light-bg detail-options-wrap" style="min-height: 500px;">
                     <?php foreach ($shop as $key => $value) { ?>
-                        <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive col-xs-6 col-sm-6">
+                        <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive col-xs-12">
                             <div class="featured-place-wrap">
                                 <a href="<?= base_url() ?>shop/shop_detail/<?= $value['id'] ?>">
                                     <img src="<?= $this->config->config['admin_url'] ?>uploads/shop/<?= $value['photo'] ?>" class="img-fluid" alt="#">

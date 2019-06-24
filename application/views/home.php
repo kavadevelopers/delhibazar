@@ -195,7 +195,7 @@
                             <?php }else{ ?>
                                 <div class="col-md-2">
                                     <div class="add_div">
-                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
                                         <p style="margin-bottom: 3px;">Contact For Ad</p>
                                         <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
                                     </div>
@@ -227,7 +227,7 @@
                             <?php }else{ ?>
                                 <div class="col-md-2">
                                     <div class="add_div">
-                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
                                         <p style="margin-bottom: 3px;">Contact For Ad</p>
                                         <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
                                     </div>
@@ -259,7 +259,7 @@
                              <?php }else{ ?>
                                 <div class="col-md-2">
                                     <div class="add_div">
-                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
                                         <p style="margin-bottom: 3px;">Contact For Ad</p>
                                         <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
                                     </div>
@@ -291,7 +291,7 @@
                              <?php }else{ ?>
                                 <div class="col-md-2">
                                     <div class="add_div">
-                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
                                         <p style="margin-bottom: 3px;">Contact For Ad</p>
                                         <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
                                     </div>
@@ -323,7 +323,7 @@
                              <?php }else{ ?>
                                 <div class="col-md-2">
                                     <div class="add_div">
-                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
                                         <p style="margin-bottom: 3px;">Contact For Ad</p>
                                         <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
                                     </div>
@@ -381,7 +381,7 @@
                              <?php }else{ ?>
                                 <div class="col-md-2">
                                     <div class="add_div">
-                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
                                         <p style="margin-bottom: 3px;">Contact For Ad</p>
                                         <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
                                     </div>
@@ -413,7 +413,7 @@
                             <?php }else{ ?>
                                 <div class="col-md-2">
                                     <div class="add_div">
-                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
                                         <p style="margin-bottom: 3px;">Contact For Ad</p>
                                         <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
                                     </div>
@@ -445,7 +445,7 @@
                             <?php }else{ ?>
                                 <div class="col-md-2">
                                     <div class="add_div">
-                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
                                         <p style="margin-bottom: 3px;">Contact For Ad</p>
                                         <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
                                     </div>
@@ -477,7 +477,7 @@
                              <?php }else{ ?>
                                 <div class="col-md-2">
                                     <div class="add_div">
-                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
                                         <p style="margin-bottom: 3px;">Contact For Ad</p>
                                         <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
                                     </div>
@@ -509,7 +509,7 @@
                             <?php }else{ ?>
                                 <div class="col-md-2">
                                     <div class="add_div">
-                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
                                         <p style="margin-bottom: 3px;">Contact For Ad</p>
                                         <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
                                     </div>
