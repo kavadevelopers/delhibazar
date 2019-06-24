@@ -1321,7 +1321,7 @@
             $(function(){ 
 
                 $(window).resize(function() {
-                    if ($(window).width() < 1050) {
+                    if ($(window).width() < 1366) {
                         $('#footer-fix').removeClass('navbar-fixed-bottom');
                     } else {
                         $('#footer-fix').addClass('navbar-fixed-bottom');
