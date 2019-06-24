@@ -11,6 +11,9 @@
     .padding-5 > a{
         text-decoration: none;
     }
+    .featured-place-wrap{
+        border: 1px solid #00008b;
+    }
 </style>
 
 <section>

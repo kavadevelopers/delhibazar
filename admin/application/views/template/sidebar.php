@@ -94,7 +94,7 @@
                             <li class="nav-item">
                                 <a href="<?= base_url('packages/shop_index'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("shop_index","shop"))[0]; ?>">
                                     <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Shop Packages</p>
+                                    <p>Listing Packages</p>
                                 </a>
                             </li>
                         </ul>

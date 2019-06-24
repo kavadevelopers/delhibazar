@@ -92,7 +92,7 @@ function JSalert(){
             <div class="row">
                 <div class="col-md-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="<?= base_url(); ?>" style="width: 250px;" ><img src="<?= base_url(); ?>image/logo.png" style="width: 100%;"></a>
+                        <a class="navbar-brand" href="<?= base_url(); ?>" style="width: 300px;" ><img src="<?= base_url(); ?>image/logo.png" style="width: 100%;"></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="icon-menu"></span>
             </button>

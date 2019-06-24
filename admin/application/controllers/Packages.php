@@ -20,7 +20,7 @@ class Packages extends CI_Controller {
 
 	public function shop_index()
 	{
-		$data['page_title']	= 'Manage Shop Packages';
+		$data['page_title']	= 'Manage Listing Packages';
 		$data['shop'] 		= $this->package_model->shop();
 		$this->load->template('packages/shop_index',$data);
 	}
