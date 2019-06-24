@@ -7,12 +7,14 @@ class Shop extends CI_Controller {
         parent::__construct();
     	$this->load->model('shop_model');   
     	$this->load->model('rating_model');   
+    	$this->load->model('general_model');   
     }
 
 	public function shop_detail($id)
 	{
 		$data['_title']				= "DELHIBAZAR";
 		$data['shop'] 				= $this->shop_model->shop_where($id);
+		$data['setting'] 			= $this->general_model->setting();
 		$data['total_review'] 		= $this->rating_model->count_review($id);
 		$data['ava_rating'] 		= $this->rating_model->get_avarage_rating($id);
 		$this->load->template('shop/shop_detail',$data);

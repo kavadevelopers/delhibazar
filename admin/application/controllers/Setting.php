@@ -21,6 +21,8 @@ class Setting extends CI_Controller {
     {
         $this->form_validation->set_error_delimiters('<div class="my_text_error">', '</div>');
         
+        $this->form_validation->set_rules('ad_number', 'Ad Number', 'trim|required|is_natural|min_length[10]|max_length[12]');
+        
         $this->form_validation->set_rules('smtp_host', 'Smtp Host', 'trim|required|max_length[240]');
         $this->form_validation->set_rules('smtp_port', 'Smtp Port', 'trim|required|max_length[240]');
         $this->form_validation->set_rules('smtp_user', 'Smtp User', 'trim|required|max_length[240]');
@@ -53,6 +55,7 @@ class Setting extends CI_Controller {
 
 
             $data = [
+                        'ad_number'         =>     $this->input->post('ad_number'),
                         'smtp_host'         =>     $this->input->post('smtp_host'),
                         'smtp_port'         =>     $this->input->post('smtp_port'),
                         'smtp_user'         =>     $this->input->post('smtp_user'),

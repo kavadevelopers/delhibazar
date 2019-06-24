@@ -7,6 +7,7 @@ class Welcome extends CI_Controller {
         parent::__construct();
     	$this->load->model('shop_model');   
         $this->load->model('rating_model');   
+        $this->load->model('general_model');   
     }
 
 	public function index()
@@ -64,6 +65,7 @@ class Welcome extends CI_Controller {
 	public function list()
 	{
 		$data['_title']				= "DELHIBAZAR";
+        $data['setting']            = $this->general_model->setting();
 		$data['shop']				= $this->shop_model->shop_search(trim($this->input->get('search')));
         $this->load->template('shop/index',$data);
 	}

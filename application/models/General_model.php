@@ -11,6 +11,11 @@ class General_model extends CI_Model
 	}
 
 
+	public function setting()
+	{
+		return $this->db->get_where('setting',['id' => '1'])->result_array()[0];
+	}
+
 	public function count_agents()
 	{
 		return $this->db->get_where('user',['delete_flag' => '0','id !=' => '1'])->num_rows();

@@ -27,6 +27,14 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            <label>Ad Mobile <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('ad_number',$setting['ad_number']); ?>" type="text" name="ad_number" placeholder="Ad Mobile" >
+                                            <?php echo form_error('ad_number'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <label>Smtp Host <span class="astrick">*</span></label>
                                             <input class="form-control form-control-sm" value="<?php echo set_value('smtp_host',$setting['smtp_host']); ?>" type="text" name="smtp_host" placeholder="Smtp Host" >
                                             <?php echo form_error('smtp_host'); ?>

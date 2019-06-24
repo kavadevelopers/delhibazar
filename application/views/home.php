@@ -1,6 +1,9 @@
 <?php 
     $CI=&get_instance();
     $CI->load->model('product_model');
+    $CI->load->model('general_model');
+
+    $setting = $this->general_model->setting();
 ?>
 
 
@@ -190,8 +193,15 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-md-2"></div>
+                                <div class="col-md-2">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
+                            
                             <?php if($this->shop_model->hash_dynamic_add('2')){ $hash_two = $this->shop_model->hash_dynamic_add('2')[0]; ?>
                                 <div class="col-md-2">
                                     <a href="<?= $hash_two['link'] ?>" target="_blank">
@@ -215,7 +225,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-md-2"></div>
+                                <div class="col-md-2">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                             <?php if($this->shop_model->hash_dynamic_add('3')){ $hash_three = $this->shop_model->hash_dynamic_add('3')[0]; ?>
@@ -240,8 +256,14 @@
                                         </div>
                                     </a>
                                 </div>
-                            <?php }else{ ?>
-                                <div class="col-md-2"></div>
+                             <?php }else{ ?>
+                                <div class="col-md-2">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                             <?php if($this->shop_model->hash_dynamic_add('4')){ $hash_four = $this->shop_model->hash_dynamic_add('4')[0]; ?>
@@ -266,8 +288,14 @@
                                         </div>
                                     </a>
                                 </div>
-                            <?php }else{ ?>
-                                <div class="col-md-2"></div>
+                             <?php }else{ ?>
+                                <div class="col-md-2">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                             <?php if($this->shop_model->hash_dynamic_add('5')){ $hash_five = $this->shop_model->hash_dynamic_add('5')[0]; ?>
@@ -292,8 +320,14 @@
                                         </div>
                                     </a>
                                 </div>
-                            <?php }else{ ?>
-                                <div class="col-md-2"></div>
+                             <?php }else{ ?>
+                                <div class="col-md-2">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
                             <div class="col-md-1"></div>
                         </div>
@@ -344,9 +378,16 @@
                                         </div>
                                     </a>
                                 </div>
-                            <?php }else{ ?>
-                                <div class="col-md-2"></div>
+                             <?php }else{ ?>
+                                <div class="col-md-2">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
+
                             <?php if($this->shop_model->hash_dynamic_add('7')){ $hash_two = $this->shop_model->hash_dynamic_add('7')[0]; ?>
                                 <div class="col-md-2">
                                     <a href="<?= $hash_two['link'] ?>" target="_blank">
@@ -369,8 +410,14 @@
                                         </div>
                                     </a>
                                 </div>
-                           <?php }else{ ?>
-                                <div class="col-md-2"></div>
+                            <?php }else{ ?>
+                                <div class="col-md-2">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                             <?php if($this->shop_model->hash_dynamic_add('8')){ $hash_three = $this->shop_model->hash_dynamic_add('8')[0]; ?>
@@ -396,8 +443,15 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-md-2"></div>
+                                <div class="col-md-2">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
+
                             <?php if($this->shop_model->hash_dynamic_add('9')){ $hash_four = $this->shop_model->hash_dynamic_add('9')[0]; ?>
                                 <div class="col-md-2">
                                     <a href="<?= $hash_four['link'] ?>" target="_blank">
@@ -420,9 +474,16 @@
                                         </div>
                                     </a>
                                 </div>
-                            <?php }else{ ?>
-                                <div class="col-md-2"></div>
+                             <?php }else{ ?>
+                                <div class="col-md-2">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
+
                             <?php if($this->shop_model->hash_dynamic_add('10')){ $hash_five = $this->shop_model->hash_dynamic_add('10')[0]; ?>
                                 <div class="col-md-2">
                                     <a href="<?= $hash_five['link'] ?>" target="_blank">
@@ -446,7 +507,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-md-2"></div>
+                                <div class="col-md-2">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                             <div class="col-md-1"></div>
@@ -488,8 +555,15 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
+
                             <?php if($this->shop_model->hash_dynamic_add('2')){ $hash_five = $this->shop_model->hash_dynamic_add('2')[0]; ?>
                                 <div class="col-xs-3">
                                     <a href="<?= $hash_five['link'] ?>" target="_blank">
@@ -513,8 +587,15 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
+
                              <?php if($this->shop_model->hash_dynamic_add('3')){ $hash_five = $this->shop_model->hash_dynamic_add('3')[0]; ?>
                                 <div class="col-xs-3">
                                     <a href="<?= $hash_five['link'] ?>" target="_blank">
@@ -538,7 +619,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                              <?php if($this->shop_model->hash_dynamic_add('4')){ $hash_five = $this->shop_model->hash_dynamic_add('4')[0]; ?>
@@ -564,7 +651,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                              <?php if($this->shop_model->hash_dynamic_add('5')){ $hash_five = $this->shop_model->hash_dynamic_add('5')[0]; ?>
@@ -590,7 +683,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                              <?php if($this->shop_model->hash_dynamic_add('6')){ $hash_five = $this->shop_model->hash_dynamic_add('6')[0]; ?>
@@ -616,7 +715,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                              <?php if($this->shop_model->hash_dynamic_add('7')){ $hash_five = $this->shop_model->hash_dynamic_add('7')[0]; ?>
@@ -642,7 +747,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                              <?php if($this->shop_model->hash_dynamic_add('8')){ $hash_five = $this->shop_model->hash_dynamic_add('8')[0]; ?>
@@ -668,7 +779,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                             <div class="col-xs-3"></div>
@@ -697,7 +814,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                             <?php if($this->shop_model->hash_dynamic_add('10')){ $hash_five = $this->shop_model->hash_dynamic_add('10')[0]; ?>
@@ -723,7 +846,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
                         </div>
 
@@ -761,9 +890,16 @@
                                         </div>
                                     </a>
                                 </div>
-                            <?php }else{ ?>
-                                <div class="col-xs-4"></div>
+                           <?php }else{ ?>
+                                <div class="col-xs-4">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
+
                             <?php if($this->shop_model->hash_dynamic_add('2')){ $hash_five = $this->shop_model->hash_dynamic_add('2')[0]; ?>
                                 <div class="col-xs-4">
                                     <a href="<?= $hash_five['link'] ?>" target="_blank">
@@ -787,7 +923,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-4"></div>
+                                <div class="col-xs-4">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
                              
                             <?php if($this->shop_model->hash_dynamic_add('3')){ $hash_five = $this->shop_model->hash_dynamic_add('3')[0]; ?>
@@ -813,7 +955,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-4"></div>
+                                <div class="col-xs-4">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                             <?php if($this->shop_model->hash_dynamic_add('4')){ $hash_five = $this->shop_model->hash_dynamic_add('4')[0]; ?>
@@ -839,7 +987,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-4"></div>
+                                <div class="col-xs-4">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                             <?php if($this->shop_model->hash_dynamic_add('5')){ $hash_five = $this->shop_model->hash_dynamic_add('5')[0]; ?>
@@ -865,7 +1019,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-4"></div>
+                                <div class="col-xs-4">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                             <?php if($this->shop_model->hash_dynamic_add('6')){ $hash_five = $this->shop_model->hash_dynamic_add('6')[0]; ?>
@@ -890,8 +1050,14 @@
                                         </div>
                                     </a>
                                 </div>
-                            <?php }else{ ?>
-                                <div class="col-xs-4"></div>
+                             <?php }else{ ?>
+                                <div class="col-xs-4">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                             <?php if($this->shop_model->hash_dynamic_add('7')){ $hash_five = $this->shop_model->hash_dynamic_add('7')[0]; ?>
@@ -917,7 +1083,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-4"></div>
+                                <div class="col-xs-4">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                             <?php if($this->shop_model->hash_dynamic_add('8')){ $hash_five = $this->shop_model->hash_dynamic_add('8')[0]; ?>
@@ -943,7 +1115,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-4"></div>
+                                <div class="col-xs-4">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                             <?php if($this->shop_model->hash_dynamic_add('9')){ $hash_five = $this->shop_model->hash_dynamic_add('9')[0]; ?>
@@ -969,7 +1147,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-4"></div>
+                                <div class="col-xs-4">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
 
                             <div class="col-xs-4"></div>
@@ -998,7 +1182,13 @@
                                     </a>
                                 </div>
                             <?php }else{ ?>
-                                <div class="col-xs-4"></div>
+                                <div class="col-xs-4">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
                             <?php } ?>
                         </div>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 22, 2019 at 01:32 PM
+-- Generation Time: Jun 24, 2019 at 11:27 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -54,16 +54,16 @@ CREATE TABLE IF NOT EXISTS `advertising` (
 --
 
 INSERT INTO `advertising` (`id`, `business_name`, `intro`, `mobile`, `address`, `link`, `photo`, `plan_name`, `exp_date`, `page`, `position`, `created_by`, `updated_by`, `created_at`, `updated_at`, `df`) VALUES
-(1, 'new Shoppppppp eeess dsd sd sds', 'adsa sa asd', '4504565065', 'asda sda', '#', '540f5a0e8327161886e8444231efbcbb.png', '2', '2019-07-14', 'Home', '4', '1', '1', '2019-06-14 14:05:37', '2019-06-14 16:14:30', '0'),
-(2, 'Shop 2', 'asdasd', '7898745645', 'adsadasd', '#', 'f83a1832f6c51797bed6de412d4358ce.jpg', '2', '2019-07-14', 'Home', '3', '1', '1', '2019-06-14 16:06:11', '2019-06-14 16:31:28', '0'),
-(3, 'Shop', 'sdas', '1201232032', 'dasdas', '#', '0fa462ca006753b0554feb32d8cdefcd.png', '2', '2019-07-14', 'Home', '2', '1', '1', '2019-06-14 16:57:22', '2019-06-14 16:57:22', '0'),
-(4, 'sadas', 'dasd', '7897865465', 'asdas', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home', '1', '1', '1', '2019-06-14 16:57:52', '2019-06-14 16:57:52', '0'),
-(5, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home', '5', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
-(6, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home', '6', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
-(7, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home', '7', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
-(8, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home', '8', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
-(9, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home', '9', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
-(10, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home', '10', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0');
+(1, 'new Shoppppppp eeess dsd sd sds', 'adsa sa asd', '4504565065', 'asda sda', '#', '540f5a0e8327161886e8444231efbcbb.png', '2', '2019-07-14', 'Home', '3', '1', '1', '2019-06-14 14:05:37', '2019-06-14 16:14:30', '0'),
+(2, 'Shop 2', 'asdasd', '7898745645', 'adsadasd', '#', 'f83a1832f6c51797bed6de412d4358ce.jpg', '2', '2019-07-14', 'Home\r\n', '2', '1', '1', '2019-06-14 16:06:11', '2019-06-14 16:31:28', '0'),
+(3, 'Shop', 'sdas', '1201232032', 'dasdas', '#', '0fa462ca006753b0554feb32d8cdefcd.png', '2', '2019-07-14', 'Home\r\n', '4', '1', '1', '2019-06-14 16:57:22', '2019-06-14 16:57:22', '0'),
+(4, 'sadas', 'dasd', '7897865465', 'asdas', '#', '148bc37cadf9d8170700c4122bbbd70b.jpg', '2', '2019-07-14', 'Business Detail', '1', '1', '1', '2019-06-14 16:57:52', '2019-06-14 16:57:52', '0'),
+(5, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'no-image.png', '2', '2019-07-14', 'Listing', '5', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
+(6, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home\r\n', '6', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
+(7, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home\r\n', '7', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
+(8, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home\r\n', '8', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
+(9, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home\r\n', '9', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
+(10, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home\r\n', '10', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0');
 
 -- --------------------------------------------------------
 
@@ -335,6 +335,7 @@ CREATE TABLE IF NOT EXISTS `setting` (
   `meta_keywords` longtext NOT NULL,
   `meta_description` longtext NOT NULL,
   `shop_commission` decimal(40,2) DEFAULT NULL COMMENT 'Per shop commission',
+  `ad_number` varchar(250) DEFAULT NULL,
   `smtp_host` text,
   `smtp_port` text,
   `smtp_user` text,
@@ -346,8 +347,8 @@ CREATE TABLE IF NOT EXISTS `setting` (
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`id`, `email`, `support_email`, `contact_email`, `newsletter_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`, `meta_keywords`, `meta_description`, `shop_commission`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`) VALUES
-(1, 'kavadev@gmail.com', 'support.kava@gmail.com', 'nayanpatel807@gmail.com', 'nayanpatel807@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown', 'home', 'description', '50.00', 'mail.kavadevelopers.com', '587', 'nayan@kavadevelopers.com', '//Star@123');
+INSERT INTO `setting` (`id`, `email`, `support_email`, `contact_email`, `newsletter_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`, `meta_keywords`, `meta_description`, `shop_commission`, `ad_number`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`) VALUES
+(1, 'kavadev@gmail.com', 'support.kava@gmail.com', 'nayanpatel807@gmail.com', 'nayanpatel807@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown', 'home', 'description', '50.00', '1234567890', 'mail.kavadevelopers.com', '587', 'nayan@kavadevelopers.com', '//Star@123');
 
 -- --------------------------------------------------------
 
