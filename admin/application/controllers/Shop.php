@@ -95,6 +95,7 @@ class Shop extends CI_Controller {
         $this->form_validation->set_rules('category', 'Category', 'required|trim|min_length[2]|max_length[3000]');
         $this->form_validation->set_rules('shop_plan', 'Plan', 'required|trim');
         $this->form_validation->set_rules('dis_in_listing', 'Display in Listing', 'required|trim');
+        $this->form_validation->set_rules('keywords', 'Search Keywords', 'trim');
 
         
 
@@ -133,7 +134,8 @@ class Shop extends CI_Controller {
                         'dis_in_listing' =>  $this->input->post('dis_in_listing'),
                         'exp_date'       =>  $exp_date,
                         'created_by'     =>  $this->session->userdata('id'),
-                        'created_at'     =>  date('Y-m-d H:i:s')
+                        'created_at'     =>  date('Y-m-d H:i:s'),
+                        'keywords'       =>  $this->input->post('keywords')
                     ];
 
     
@@ -218,6 +220,7 @@ class Shop extends CI_Controller {
         $this->form_validation->set_rules('category', 'Category', 'required|trim|min_length[2]|max_length[3000]');
         $this->form_validation->set_rules('shop_plan', 'Plan', 'required|trim');
         $this->form_validation->set_rules('dis_in_listing', 'Display in Listing', 'required|trim');
+        $this->form_validation->set_rules('keywords', 'Search Keywords', 'trim');
         
 
         if ($this->form_validation->run() == FALSE)
@@ -255,7 +258,8 @@ class Shop extends CI_Controller {
                         'dis_in_listing' =>  $this->input->post('dis_in_listing'),
                         'exp_date'       =>  $exp_date,
                         'detail_desc'    =>  $this->input->post('detail_desc'),
-                        'updated_at'     =>  date('Y-m-d H:i:s')
+                        'updated_at'     =>  date('Y-m-d H:i:s'),
+                        'keywords'       =>  $this->input->post('keywords')
                     ];
                         
 

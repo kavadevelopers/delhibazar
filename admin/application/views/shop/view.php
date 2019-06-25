@@ -196,6 +196,14 @@
                                             <?= form_error('photo'); ?>
                                         </div>
                                     </div> 
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Search Keywords <small>(Note : Please enter comma-separated values)</small></label>
+                                            <textarea class="form-control form-control-sm" type="text" name="keywords" placeholder="Search Keywords" autocomplete="off"><?= set_value('keywords',$shop[0]['keywords']); ?></textarea>
+                                            <?= form_error('keywords'); ?>
+                                        </div>
+                                    </div>
                                     
                                 </div>
                             </div>

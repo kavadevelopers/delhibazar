@@ -3,10 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="copyright">
-                    
-                    <p>Copyright &copy; 2019 DELHIBAZAR | Powered By : <a href="http://kavadevelopers.com" target="_blank">Kava Developers</a></p>
-                    
-                    <ul>
+                    <ul style="margin:0 0 25px;">
                         <?php foreach (social_icons() as $key => $value) { ?>
                             
                             <li><a href="<?= $value['link'] ?>" target="_blank"><span class="fa <?= $value['class'] ?>"></span></a></li>
@@ -14,6 +11,9 @@
                         <?php } ?>
                         
                     </ul>
+                    <p>Copyright &copy; 2019 DELHIBAZAR | Powered By : <a href="http://kavadevelopers.com" target="_blank">Kava Developers</a></p>
+                    
+                    
                 </div>
             </div>
         </div>

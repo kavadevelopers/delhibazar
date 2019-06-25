@@ -100,7 +100,7 @@
                             <div class="col-xs-1 col-sm-1"></div>
                             <div class="col-xs-5 col-sm-5 hidden-md hidden-lg">
                                 
-                                <p id="MydateDisplay" style="font-size: 14px;color: #fff;text-align: center;background-color: #34495e;margin: 0 auto;padding: 12px 0px;font-family: calibri;width: 120px;"></p>
+                                <p id="MydateDisplay" style="font-size: 14px;color: #fff;text-align: center;background-color: #34495e;margin: 0 auto;padding: 12px 0px;font-family: calibri;width: 120px; height: 60px;"></p>
 
                             </div>
                             <div class="col-xs-5 col-sm-5 hidden-md hidden-lg">
@@ -111,7 +111,7 @@
                         </div>
                         <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12 hidden-sm hidden-xs">
                             
-                            <p id="MydateDisplay1" style="font-size: 14px;color: #fff;text-align: center;background-color: #34495e;margin: 0 0 10px;padding: 12px 0px;font-family: calibri;width: 120px;"></p>
+                            <p id="MydateDisplay1" style="font-size: 14px;color: #fff;text-align: center;background-color: #34495e;margin: 0 0 10px;padding: 12px 0px;font-family: calibri;width: 120px; height: 60px;"></p>
 
                         </div>
                         <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12" style="margin-top: 5px; height: 90px !important;">

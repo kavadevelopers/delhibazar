@@ -62,6 +62,9 @@
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
+.add_div > p,.add_div > div > p{
+    color: #000;
+}
 </style>
 
 <div>
@@ -409,7 +412,7 @@
             </div>
             <div class="col-md-3 responsive-wrap">
                 <div class="contact-info">
-                    <img src="<?= $this->config->config['admin_url'] ?>uploads/shop/<?= $shop[0]['photo'] ?>" class="img-fluid" alt="#">
+                    <img src="<?= _get_shop_img($shop[0]['photo']) ?>" class="img-fluid" alt="#">
                         <div class="address" title="Landmark">
                             <span class="ti-pin-alt"></span>
                             <p><?= $shop[0]['landmark'] ?></p>

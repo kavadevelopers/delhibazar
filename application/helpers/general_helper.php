@@ -144,4 +144,31 @@ function product_rating_star($rating){
 }
 
 
+function _get_shop_img($name)
+{
+	$CI=&get_instance();
+	$url = $CI->config->config['admin_url']."uploads/shop/".$name;
+	if($name == ''){
+        return $CI->config->config['admin_url']."uploads/no-image.png";
+    }
+    else{
+    	$header_response = get_headers($url);
+
+
+    	if($header_response)
+    	{	
+    		if (!array_key_exists("8",$header_response))
+    		{
+		      	return $CI->config->config['admin_url']."uploads/no-image.png";
+		    }else
+		    {
+		      	return $CI->config->config['admin_url']."uploads/shop/".$name; 
+		    }
+    	}
+    	else{
+    		return $CI->config->config['admin_url']."uploads/no-image.png";
+    	}
+    }
+}
+
 ?>

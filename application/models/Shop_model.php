@@ -72,8 +72,7 @@ class Shop_model extends CI_Model
 
 	public function shop_search($search)
 	{		
-			$this->db->where('exp_date >=',date('Y-m-d'));
-			$this->db->where('dis_in_listing','0');
+			
 			$this->db->group_start();
 			$this->db->like('shop_name',$search);
 			$this->db->or_like('owner_name',$search);
@@ -86,10 +85,10 @@ class Shop_model extends CI_Model
 			$this->db->or_like('info',$search);
 			$this->db->or_like('hour_operation',$search);
 			$this->db->or_like('detail_desc',$search);
+			$this->db->or_like('keywords',$search);
 			$this->db->group_end();
-		return	$this->db->get('shop')->result_array();
 
-
+		return	$this->db->get_where('shop',[ 'exp_date >=' => date('Y-m-d'),'dis_in_listing' => '0'])->result_array();
 	}
 
 

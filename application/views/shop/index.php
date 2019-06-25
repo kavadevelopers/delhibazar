@@ -12,9 +12,15 @@
         text-decoration: none;
     }
     .featured-place-wrap{
-        border: 1px solid #00008b;
+        border: 2px solid #d63a3a;
     }
-    
+    .featured-title-box > ul > li > p,.featured-title-box > ul > li > span{
+        color: #92140c !important;
+    } 
+
+    .featured-title-box > p{
+        color: #000;
+    }
 
 </style>
 
@@ -215,7 +221,7 @@
                         <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive col-xs-12">
                             <div class="featured-place-wrap">
                                 <a href="<?= base_url() ?>shop/shop_detail/<?= $value['id'] ?>">
-                                    <img src="<?= $this->config->config['admin_url'] ?>uploads/shop/<?= $value['photo'] ?>" class="img-fluid" alt="#">
+                                    <img src="<?= _get_shop_img($value['photo']) ?>" class="img-fluid" alt="#">
                                     <span class="featured-rating-orange" style="padding: 13px 5px;"><?= round($this->rating_model->get_avarage_rating($value['id'])[0]['average'],1) ?></span>
                                     <div class="featured-title-box">
                                         <h6><?= $value['shop_name'] ?></h6>
