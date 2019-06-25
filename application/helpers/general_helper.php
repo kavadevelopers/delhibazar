@@ -146,29 +146,31 @@ function product_rating_star($rating){
 
 function _get_shop_img($name)
 {
-	$CI=&get_instance();
-	$url = $CI->config->config['admin_url']."uploads/shop/".$name;
-	if($name == ''){
-        return $CI->config->config['admin_url']."uploads/no-image.png";
+    $CI     =&  get_instance();
+    if($name == '')
+    {
+         return $CI->config->config['admin_url']."uploads/no-image.png";
     }
-    else{
-    	$header_response = get_headers($url);
-
-
-    	if($header_response)
-    	{	
-    		if (!array_key_exists("8",$header_response))
-    		{
-		      	return $CI->config->config['admin_url']."uploads/no-image.png";
-		    }else
-		    {
-		      	return $CI->config->config['admin_url']."uploads/shop/".$name; 
-		    }
-    	}
-    	else{
-    		return $CI->config->config['admin_url']."uploads/no-image.png";
-    	}
+    else
+    {
+        $url    =   $CI->config->config['admin_url']."uploads/shop/".$name;
+        
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$url);
+        curl_setopt($ch, CURLOPT_NOBODY, 1);
+        curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        if(curl_exec($ch)!==FALSE)
+        {
+            return $CI->config->config['admin_url']."uploads/shop/".$name;
+        }
+        else
+        {
+            return $CI->config->config['admin_url']."uploads/no-image.png";
+        }
     }
+    
+
 }
 
 ?>
