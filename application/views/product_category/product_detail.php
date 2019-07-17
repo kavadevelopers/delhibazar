@@ -37,7 +37,20 @@
     color: #c59b08;
 }
 </style>
+<link rel="stylesheet" href="<?= base_url() ?>zoom/css/normalize.css" />
+<script src="<?= base_url() ?>zoom/js/vendor/modernizr.js"></script>
+<script src="<?= base_url() ?>zoom/js/vendor/jquery.js"></script>
+<!-- xzoom plugin here -->
+<script type="text/javascript" src="<?= base_url() ?>zoom/xzoom.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>zoom/css/xzoom.css" media="all" /> 
+<script type="text/javascript" src="<?= base_url() ?>zoom/hammer.js/1.0.5/jquery.hammer.min.js"></script>  
+<link type="text/css" rel="stylesheet" media="all" href="<?= base_url() ?>zoom/fancybox/source/jquery.fancybox.css" />
+<link type="text/css" rel="stylesheet" media="all" href="<?= base_url() ?>zoom/magnific-popup/css/magnific-popup.css" />
+<script type="text/javascript" src="<?= base_url() ?>zoom/fancybox/source/jquery.fancybox.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>zoom/magnific-popup/js/magnific-popup.js"></script>  
 
+<script src="<?= base_url() ?>zoom/js/foundation.min.js"></script>
+<script src="<?= base_url() ?>zoom/js/setup.js"></script>
 <!--================Home Banner Area =================-->
 <section class="banner_area">
     <div class="banner_inner d-flex align-items-center">
@@ -64,17 +77,42 @@
 								$product_image = $this->product_model->product_image_where($product[0]['id']);
 								if($product_image) { ?> 
 
-								<div class="carousel-item active">
+								<!-- <div class="carousel-item active">
 									<img class="d-block w-100" src="<?= base_url() ?>admin/uploads/product/<?= $product_image[0]['image'] ?>" alt="First slide">
-								</div>
+								</div> -->
+
+								<div class="xzoom-container">
+						          <img class="xzoom5" id="xzoom-magnific" src="<?= base_url() ?>admin/uploads/product/no-image.png" xoriginal="<?= base_url() ?>admin/uploads/product/no-image.png" />
+						          <div class="xzoom-thumbs">
+						            <a href="<?= base_url() ?>admin/uploads/product/no-image.png">
+						            	<img class="xzoom-gallery5" width="80" src="<?= base_url() ?>admin/uploads/product/no-image.png"  xpreview="<?= base_url() ?>admin/uploads/product/no-image.png" title="">
+						            </a>
+						          </div>
+						        </div>
 
 							<?php } else { ?>
 
-								<div class="carousel-item">
-									<img class="d-block w-100" src="<?= base_url() ?>admin/uploads/product/no-image.png" alt="Second slide">
-								</div>
+								
+
+								<div class="xzoom-container">
+						          <img class="xzoom5" id="xzoom-magnific" src="<?= base_url() ?>admin/uploads/product/no-image.png" xoriginal="<?= base_url() ?>admin/uploads/product/no-image.png" />
+						          <div class="xzoom-thumbs">
+						            <a href="<?= base_url() ?>admin/uploads/product/no-image.png">
+						            	<img class="xzoom-gallery5" width="80" src="<?= base_url() ?>admin/uploads/product/no-image.png"  xpreview="<?= base_url() ?>admin/uploads/product/no-image.png" title="">
+						            </a>
+						          </div>
+						        </div>
 
 							<?php } ?>
+
+							<div class="xzoom-container">
+					          <img class="xzoom5" id="xzoom-magnific" src="images/gallery/preview/01_b_car.jpg" xoriginal="images/gallery/original/01_b_car.jpg" />
+					          <div class="xzoom-thumbs">
+					            <a href="images/gallery/original/01_b_car.jpg">
+					            	<img class="xzoom-gallery5" width="80" src="images/gallery/thumbs/01_b_car.jpg"  xpreview="images/gallery/preview/01_b_car.jpg" title="">
+					            </a>
+					          </div>
+					        </div> 
 
 							
 						</div>

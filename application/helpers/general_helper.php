@@ -173,4 +173,10 @@ function _get_shop_img($name)
 
 }
 
+function get_product_images($product_id)
+{
+	$CI     =&  get_instance();
+	return $this->CI->get_where('product_images',['p_id' => $product_id])->result_array();
+}
+
 ?>

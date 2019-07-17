@@ -84,7 +84,7 @@ class Product extends CI_Controller {
                 if($this->db->insert('product', $product)){
                     $insert_id = $this->db->insert_id();
 
-                    if(!empty($_FILES['image']['name']))
+                    if(!empty($_FILES['image']['name'][0]))
                     {
                         $filesCount = count($_FILES['image']['name']);
                         for($i = 0; $i < $filesCount; $i++){
