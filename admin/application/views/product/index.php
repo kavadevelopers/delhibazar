@@ -53,9 +53,9 @@
                                                     <i class="fa fa-edit"></i>
                                                 </a>
 
-                                                <a class="btn btn-sm btn-warning" href="<?= base_url();?>product/change_image/<?= $product['id'];?>" title="Change Images">
+                                               <!--  <a class="btn btn-sm btn-warning" href="<?= base_url();?>product/change_image/<?= $product['id'];?>" title="Change Images">
                                                     <i class="fa fa-image"></i>
-                                                </a>
+                                                </a> -->
 
                                                 <a class="btn btn-sm btn-danger" href="<?= base_url();?>product/delete/<?= $product['id'];?>" onclick="return confirm('Are you Sure You Want to Delete this Product ?');" title="Delete">
                                                     <i class="fa fa-trash"></i>

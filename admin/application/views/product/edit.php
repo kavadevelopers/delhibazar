@@ -72,11 +72,21 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Image <span class="astrick">*</span></label>
+                                            <label>Image(Select mutiple image) <span class="astrick">*</span></label>
                                             <br>
                                             <span><i><span class="astrick">Note</span> : Max size & Max Resoluion(2MB, 720 X 1080) </i></span>
-                                            <input type="file" class="form-control form-control-sm" name="image" placeholder="Image" value="" >
-                                            <img src="<?= base_url() ?>uploads/product/<?= $this->product_model->product_image_where($product['id'])[0]['image'] ?>" alt="Product Image" style="max-width:150px;padding-top: 10px;">
+                                            <input type="file" class="form-control form-control-sm" name="image[]" placeholder="Image" multiple="multiple">
+                                            
+                                            <?php 
+                                                $get_image = $this->db->get_where('product_images',['p_id' => $product['id']])->result_array();
+                                                foreach ($get_image as $key => $value) { 
+                                            ?>
+                                                    
+                                                
+                                            
+                                                <img src="<?= base_url() ?>uploads/product/<?= $value['image'] ?>" alt="Product Image" style="max-width:150px;padding-top: 10px;">
+
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     

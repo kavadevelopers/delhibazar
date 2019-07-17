@@ -1,3 +1,7 @@
+.banner_area .banner_inner {
+    min-height: 285px !important
+}
+
 /*font Variables*/
 /*Color Variables*/
 /*=================== fonts ====================*/
@@ -5918,3 +5922,5 @@ h6 {
 /*---------------------------------------------------- */
 
 /*# sourceMappingURL=style.css.map */
+
+

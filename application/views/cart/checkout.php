@@ -45,22 +45,7 @@
 								<input type="text" class="form-control" id="email" name="email" placeholder="Email">
 							</div>
 							
-							<div class="col-md-5 form-group p_star">
-								<label>Country</label>
-								<input type="text" class="form-control" id="country" name="country" placeholder="Country">
-							</div>
-							<div class="col-md-5 form-group p_star">
-								<label>City</label>
-								<input type="text" class="form-control" id="city" name="city" placeholder="City">
-							</div>
-							<div class="col-md-5 form-group p_star">
-								<label>District</label>
-								<input type="text" class="form-control" id="district" name="district" placeholder="District">
-							</div>
-							<div class="col-md-5 form-group p_star">
-								<label>Postcode/ZIP</label>
-								<input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP">
-							</div>
+
 							<div class="col-md-12 form-group p_star">
 								<label>Address1</label>
 								<input type="text" class="form-control" id="add1" name="add1" placeholder="Address1">
@@ -68,6 +53,24 @@
 							<div class="col-md-12 form-group p_star">
 								<label>Address2</label>
 								<input type="text" class="form-control" id="add2" name="add2" placeholder="Address2">
+							</div>
+
+							<div class="col-md-5 form-group p_star">
+								<label>City</label>
+								<input type="text" class="form-control" id="city" name="city" placeholder="City">
+							</div>
+							<div class="col-md-5 form-group p_star">
+								<label>Postcode/ZIP</label>
+								<input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP">
+							</div>
+                            
+							<div class="col-md-5 form-group p_star">
+								<label>District</label>
+								<input type="text" class="form-control" id="district" name="district" placeholder="District">
+							</div>
+							<div class="col-md-5 form-group p_star">
+								<label>Country</label>
+								<input type="text" class="form-control" id="country" name="country" placeholder="Country">
 							</div>
 							<!-- <div class="col-md-12 form-group">
 								<div class="creat_account">

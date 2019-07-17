@@ -86,40 +86,43 @@ class Product extends CI_Controller {
 
                     if(!empty($_FILES['image']['name']))
                     {
-                        $path = $_FILES['image']['name'];
-                        $newName = md5(microtime(true)).".".pathinfo($path, PATHINFO_EXTENSION); 
-                        $config['upload_path']      = './uploads/product';
-                        $config['allowed_types']    = 'gif|jpg|png|jpeg';
-                        $config['max_size']         = 2000000;
-                        
-                        $config['file_name']        = $newName;
-                        $this->load->library('upload', $config);
+                        $filesCount = count($_FILES['image']['name']);
+                        for($i = 0; $i < $filesCount; $i++){
+                            $_FILES['file']['name']     = $_FILES['image']['name'][$i];
+                            $_FILES['file']['type']     = $_FILES['image']['type'][$i];
+                            $_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
+                            $_FILES['file']['error']    = $_FILES['image']['error'][$i];
+                            $_FILES['file']['size']     = $_FILES['image']['size'][$i];
+                            
+                            // File upload configuration
+                            $config['file_name']        = md5(microtime(true)).".".pathinfo($_FILES['image']['name'][$i], PATHINFO_EXTENSION);
+                            $uploadPath = './uploads/product';
+                            $config['upload_path'] = $uploadPath;
+                            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+                            
+                            // Load and initialize upload library
+                            $this->load->library('upload', $config);
+                            $this->upload->initialize($config);
+                            
+                            // Upload file to server
+                            if($this->upload->do_upload('file')){
+                             
+                                $image = [ 
+                                            'p_id'        =>  $insert_id, 
+                                            'image'       =>  $config['file_name'] 
+                                          ];
 
-                        $image = [ 'image'       =>    $newName ];
-
-                        if($this->upload->do_upload('image'))
-                        {
-                            $image = [ 
-                                        'p_id'        =>  $insert_id, 
-                                        'image'       =>  $newName 
-                                      ];
-
-                            if($this->db->insert('product_images', $image))
-                            {
-                                $this->session->set_flashdata('msg', 'Product Successfully Added');
-                                redirect(base_url().'product');
+                                $this->db->insert('product_images', $image);
+                                
                             }
                             else
                             {
-                                $this->session->set_flashdata('error', 'Problem In Upload Image');
+                                $this->session->set_flashdata('error', $this->upload->display_errors());
                                 redirect(base_url().'product/add');
                             }
                         }
-                        else
-                        {
-                            $this->session->set_flashdata('error', $this->upload->display_errors());
-                            redirect(base_url().'product/add');
-                        }
+                        $this->session->set_flashdata('msg', 'Product Successfully Added');
+                        redirect(base_url().'product');
                     }
 
                     $this->session->set_flashdata('msg', 'Product Successfully Added');
@@ -170,50 +173,69 @@ class Product extends CI_Controller {
                 if($this->db->update('product', $product)){
                     
 
-                    if(!empty($_FILES['image']['name']))
+                    if(!empty($_FILES['image']['name'][0]))
                     {
-                        $path       = $_FILES['image']['name'];
-                        $newName    = md5(microtime(true)).".".pathinfo($path, PATHINFO_EXTENSION); 
-                        $config['upload_path']      = './uploads/product';
-                        $config['allowed_types']    = 'gif|jpg|png|jpeg';
-                        $config['max_size']         = 2000000;
+
+                        $product    = $this->product_model->product_image_where($this->input->post('product_id'));
+
+                        foreach ($product as $key => $value) {
                         
-                        $config['file_name']        = $newName;
-                        $this->load->library('upload', $config);
-
-                        $image = [ 'image'       =>    $newName ];
-
-                        if($this->upload->do_upload('image'))
-                        {
-                            $product    = $this->product_model->product_image_where($this->input->post('product_id'));
-
-                            if($product[0]['image'] != '')
+                            if($value['image'] != '')
                             {
-                                unlink('./uploads/product/'.$product[0]['image']);
+                                if(file_exists('./uploads/product/'.$value['image']))
+                                {
+                                    
+                                    $this->db->where('id',$value['id']);
+                                    $this->db->delete('product_images');
+                                    
+                                    unlink('./uploads/product/'.$value['image']);
+                                }
+                                else
+                                {
+                                    $this->db->where('id',$value['id']);
+                                    $this->db->delete('product_images');
+                                }
                             }
+                        }
 
-                            $image = [
-                                        'p_id'        =>    $this->input->post('product_id'),
-                                        'image'       =>    $newName 
-                                      ];
+                        $filesCount = count($_FILES['image']['name']);
+                        for($i = 0; $i < $filesCount; $i++){
+                            $_FILES['file']['name']     = $_FILES['image']['name'][$i];
+                            $_FILES['file']['type']     = $_FILES['image']['type'][$i];
+                            $_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
+                            $_FILES['file']['error']    = $_FILES['image']['error'][$i];
+                            $_FILES['file']['size']     = $_FILES['image']['size'][$i];
+                            
+                            // File upload configuration
+                            $config['file_name']        = md5(microtime(true)).".".pathinfo($_FILES['image']['name'][$i], PATHINFO_EXTENSION);
+                            $uploadPath = './uploads/product';
+                            $config['upload_path'] = $uploadPath;
+                            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+                            
+                            // Load and initialize upload library
+                            $this->load->library('upload', $config);
+                            $this->upload->initialize($config);
+                            
+                            // Upload file to server
+                            if($this->upload->do_upload('file')){
+                             
+                                $image = [ 
+                                            'p_id'        =>  $this->input->post('product_id'), 
+                                            'image'       =>  $config['file_name'] 
+                                          ];
 
-                                $this->db->where('p_id',$this->input->post('product_id'));
-                            if($this->db->update('product_images', $image))
-                            {
-                                $this->session->set_flashdata('msg', 'Product Successfully Saved');
-                                redirect(base_url().'product');
+                                $this->db->insert('product_images', $image);
+                                
                             }
                             else
                             {
-                                $this->session->set_flashdata('error', 'Problem In Upload Image');
-                                redirect(base_url().'product/add');
+                                $this->session->set_flashdata('error', $this->upload->display_errors());
+                                redirect(base_url().'product/edit/'.$this->input->post('product_id'));
                             }
                         }
-                        else
-                        {
-                            $this->session->set_flashdata('error', $this->upload->display_errors());
-                            redirect(base_url().'product/add');
-                        }
+                    
+                        $this->session->set_flashdata('msg', 'Product Successfully Saved');
+                        redirect(base_url().'product');
                     }
 
 
@@ -224,17 +246,42 @@ class Product extends CI_Controller {
                 else
                 {
                     $this->session->set_flashdata('error', 'Problem In Save Product Try Again');
-                    redirect(base_url().'product');
+                    redirect(base_url().'product/'.$this->input->post('product_id'));
                 }
 
         }
 
     }
 
+    public function delete($id = false)
+    { 
+        if($id)
+        { 
+            if($this->product_model->check_product_by_id($id))
+            {
 
-    public function change_image($id = false)
-    {
-        
+                $data   =   ['df' => '1', 'deleted_at' => date('Y-m-d H:i:s')];
+
+                    $this->db->where('id',$id);
+                if($this->db->update('product',$data))
+                { 
+                    $this->session->set_flashdata('msg', 'Product Successfully Deleted');
+                    redirect(base_url().'product');
+                }   
+            }
+            else
+            {
+
+                $this->session->set_flashdata('error', 'Product Not Found');
+                redirect(base_url().'product');
+            }
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'Product Not Found');
+            redirect(base_url().'product');
+        }
     }
+
 }
 ?>
