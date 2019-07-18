@@ -46,8 +46,13 @@
         body {
             font-family: 'Nunito', sans-serif !important;
         }
+        .add_image{
+            border-radius: 8px 8px 0px 0px;
+        }
         .add_div{
-            box-shadow: 0px 0px 0px 1px;
+            border: 1px solid black;
+            border-radius: 10px;
+            /*box-shadow: 0px 0px 0px 1px;*/
             color: black;
             padding: 0px;
             background: #fff;
