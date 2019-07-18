@@ -176,7 +176,20 @@ function _get_shop_img($name)
 function get_product_images($product_id)
 {
 	$CI     =&  get_instance();
-	return $this->CI->get_where('product_images',['p_id' => $product_id])->result_array();
+	$image =  $CI->db->get_where('product_images',['p_id' => $product_id])->result_array();
+    $url = [];
+    if($image)
+    {
+        foreach ($image as $key => $value) {
+            $url[] = $CI->config->config['admin_url']."uploads/product/".$value['image'];
+        }
+
+        return $url;
+    }
+    else
+    {
+        return $url[] = $CI->config->config['admin_url']."uploads/no-image.png";
+    }
 }
 
 ?>

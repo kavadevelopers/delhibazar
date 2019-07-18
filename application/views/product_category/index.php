@@ -98,6 +98,42 @@
 						</div>
 					</aside>
 					<aside class="left_widgets p_filter_widgets">
+                        <div class="l_w_title">
+                            <h3>Product Filters</h3>
+                        </div>
+                        <div class="widgets_inner">
+                            <h4>Order By</h4>
+                            <div class="switch-wrap d-flex justify-content-between">
+                                <label class="radio_pro">
+                                    <input type="radio" name="order" value="id_desc">
+                                    Newest
+                                </label>
+                            </div>
+                            <div class="switch-wrap d-flex justify-content-between">
+                                <label class="radio_pro">
+                                    <input type="radio" name="order" value="id_asc">
+                                    Oldest
+                                </label>
+                            </div>
+                            <div class="switch-wrap d-flex justify-content-between">
+                                <label class="radio_pro">
+                                    <input type="radio" name="order" value="price_low">
+                                    Low Price
+                                </label>
+                            </div>
+                            <div class="switch-wrap d-flex justify-content-between" >
+                                <label class="radio_pro">
+                                    <input type="radio" name="order" value="price_high">
+                                    High Price
+                                </label>
+                            </div>
+                            <div class="switch-wrap d-flex justify-content-between" >
+                                <label class="radio_pro">
+                                    <input type="radio" name="order" value="rating">
+                                    Rating
+                                </label>
+                            </div>
+                        </div>
 						<div class="widgets_inner">
 							<h4>Price</h4>
 							<div class="range_item">
@@ -122,12 +158,19 @@
 <!--================End Category Product Area =================-->
 
 <style type="text/css">
+    .primary-radio input:checked + label {
+        background: url(<?= base_url() ?>temp_1/img/primary-radio.png) no-repeat center center/cover;
+        border: none;
+    }
 	.pagination li a
 	{
 		position: relative;
     	display: block;
     	border: 1px solid #ddd;
 	}
+    .radio_pro{
+        cursor: pointer;
+    }
 
 </style>
 
@@ -142,7 +185,7 @@
 			$.ajax({
                 type : "post",
                 url : "<?= base_url() ?>products/set_filter",
-                data : "min="+$('#min').val()+"&max="+$('#max').val(),
+                data : "min="+$('#min').val()+"&max="+$('#max').val()+"&order="+$('input[name=order]:checked').val(),
                 cache : false,
                 success:function( out ){
                 	window.location = '<?= base_url(uri_string()); ?>';
@@ -175,5 +218,15 @@
 
 	    $('#min').val($( "#slider-range" ).slider( "values", 0 ));
 	    $('#max').val($( "#slider-range" ).slider( "values", 1 ));
+
+
+
+
+        <?php if($this->session->userdata('order')){ ?>
+            $("input[name=order][value='<?= $this->session->userdata("order") ?>']").prop("checked",true);
+            alert(<?= $this->session->userdata("order") ?>);
+        <?php }else{ ?>
+            $("input[name=order][value='id_desc']").prop("checked",true);
+        <?php } ?>
 	})
 </script>

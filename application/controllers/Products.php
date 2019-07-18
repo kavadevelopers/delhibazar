@@ -22,6 +22,12 @@ class Products extends CI_Controller {
 			$max = 50000;
 		 }
 
+        if($this->session->userdata('order')){
+            $order =  $this->session->userdata('order'); 
+        }else{ 
+            $order = 10;
+        }
+
 
 		$id = $this->uri->segment(3);
 		
@@ -35,7 +41,7 @@ class Products extends CI_Controller {
         
 		        //get rows count
 		        $conditions['returnType']   = 'count';
-		        $totalRec = $this->product_model->getRows($conditions,$id,$min,$max);
+		        $totalRec = $this->product_model->getRows($conditions,$id,$min,$max,$order);
 		        
 		        //pagination config
 		        $config['base_url']    		= base_url().'products/list/'.$id;
@@ -70,7 +76,7 @@ class Products extends CI_Controller {
 		        $conditions['returnType'] = '';
 		        $conditions['start'] 	  = $offset;
 		        $conditions['limit'] 	  = $this->perPage;
-		        $data['products'] 			  = $this->product_model->getRows($conditions,$id,$min,$max);
+		        $data['products'] 			  = $this->product_model->getRows($conditions,$id,$min,$max,$order);
 
 
 
@@ -121,6 +127,7 @@ class Products extends CI_Controller {
 	public function set_filter()
 	{
 		$this->session->set_userdata('filter',['min' => $_POST['min'],'max' => $_POST['max']]);
+        $this->session->set_userdata('order',$_POST['order']);
 	}
 
 
@@ -137,6 +144,12 @@ class Products extends CI_Controller {
 
 			if($this->db->insert('product_rating',$data))
 			{
+
+                $rating = $this->rating_model->get_product_avarage_rating($this->input->post('product_hash'))[0]['average'];
+                
+                $this->db->where('id',$this->input->post('product_id'));
+                $this->db->update('product',['rating' => round($rating,1)]);
+
 				$this->session->set_flashdata('msg', 'Thank you for rating');
 				redirect(base_url('products/product_detail/'.$this->input->post('product_hash')));
 			}
@@ -157,6 +170,12 @@ class Products extends CI_Controller {
 				$this->db->where('id',$this->input->post('edit_id'));
 			if($this->db->update('product_rating',$data))
 			{
+
+                $rating = $this->rating_model->get_product_avarage_rating($this->input->post('product_hash'))[0]['average'];
+                
+                $this->db->where('id',$this->input->post('product_id'));
+                $this->db->update('product',['rating' => round($rating,1)]);
+                
 				$this->session->set_flashdata('msg', 'Rating Updated Thankyou');
 				redirect(base_url('products/product_detail/'.$this->input->post('edit_hash')));
 			}

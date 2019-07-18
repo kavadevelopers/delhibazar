@@ -49,11 +49,30 @@ class Product_model extends CI_Model
 	}
 
 
-	function getRows($params = array(),$id,$min,$max){
+	function getRows($params = array(),$id,$min,$max,$order){
         $this->db->select('*');
-        $this->db->where('category',$id);
-        $this->db->where('amount >=',$min);
-        $this->db->where('amount <=',$max);
+
+        if($order == 'id_desc'){
+            $this->db->order_by('id','desc');
+        }else if($order == 'id_asc'){
+            $this->db->order_by('id','asc');
+        }else if($order == 'price_low'){
+            $this->db->order_by('amount','asc');
+        }else if($order == 'price_high'){
+            $this->db->order_by('amount','desc');
+        }else if($order == 'rating'){
+            $this->db->order_by('rating','desc');
+        }else{
+            $this->db->order_by('id','desc');
+        }
+
+
+
+        $this->db->group_start();
+            $this->db->where('category',$id);
+            $this->db->where('amount >=',$min);
+            $this->db->where('amount <=',$max);
+        $this->db->group_end();
         $this->db->from('product');
         if(array_key_exists("id",$params)){
             $this->db->where('id',$params['id']);
