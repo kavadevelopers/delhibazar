@@ -29,4 +29,14 @@ class shop_model extends CI_Model
 		return $this->db->get_where('shop_slider',['id' => $id])->result_array();
 	}
 
+    public function shop_rating_where($shop_id)
+    {
+        return $this->db->get_where('shop_rating',['shop_id' => $shop_id])->result_array();
+    }
+
+    public function shop_rating_id_where($id)
+    {
+        return $this->db->get_where('shop_rating',['id' => $id])->result_array();
+    }    
+
 }	

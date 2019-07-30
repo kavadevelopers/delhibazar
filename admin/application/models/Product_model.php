@@ -9,6 +9,7 @@ class Product_model extends CI_Model
 	{
 		parent::__construct();
 		$this->load->database();
+        $this->load->model('social_user_model');
 	}
 
 
@@ -33,8 +34,17 @@ class Product_model extends CI_Model
 	}
 
 	
+    public function product_rating_where($id)
+    {
+        return $this->db->get_where('product_rating',['product_id' => $id])->result_array();
+    }
 
+    
+    public function rating_where($id)
+    {
+        return $this->db->get_where('product_rating',['id' => $id])->result_array();
 
+    }
 
 }
 ?>
