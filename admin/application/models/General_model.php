@@ -40,6 +40,11 @@ class General_model extends CI_Model
 		return $this->db->get_where('category',['df' => '0'])->result_array();
 	}
 
+    public function get_categories_where($id)
+    {
+        return $this->db->get_where('category',['id' => $id])->result_array();
+    }
+
 	public function category_byid($id)
 	{
 		return $this->db->get_where('category',['id' => $id])->result_array()[0]['name'];

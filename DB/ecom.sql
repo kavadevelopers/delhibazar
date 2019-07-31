@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 25, 2019 at 07:58 AM
--- Server version: 5.7.21
--- PHP Version: 7.2.4
+-- Generation Time: Jul 31, 2019 at 06:28 AM
+-- Server version: 5.7.23
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -61,9 +61,9 @@ INSERT INTO `advertising` (`id`, `business_name`, `intro`, `mobile`, `address`, 
 (5, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'no-image.png', '2', '2019-07-14', 'Listing', '5', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
 (6, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home\r\n', '6', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
 (7, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home\r\n', '7', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
-(8, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home\r\n', '8', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
-(9, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home\r\n', '9', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
-(10, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home\r\n', '10', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0');
+(8, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-08-17', 'Business Detail', '3', '1', '1', '2019-06-14 14:06:52', '2019-07-18 17:01:18', '0'),
+(9, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-08-17', 'Listing', '2', '1', '1', '2019-06-14 14:06:52', '2019-07-18 17:00:46', '0'),
+(10, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-08-17', 'Home', '1', '1', '1', '2019-06-14 14:06:52', '2019-07-18 17:00:16', '0');
 
 -- --------------------------------------------------------
 
@@ -104,7 +104,15 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `qty`, `product_id`, `user_id`, `delivered`, `created_at`, `updated_at`) VALUES
+(60, 1, '8', '8', 0, '2019-07-17 18:48:14', NULL),
+(61, 1, '8', '8', 0, '2019-07-17 19:18:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -221,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
 --
 
 INSERT INTO `payment` (`id`, `orderid`, `user_id`, `txnid`, `product_id`, `cart_tbl_id`, `quantity`, `amount`, `productinfo`, `name`, `address1`, `address2`, `city`, `district`, `country`, `zipcode`, `email`, `phone`, `delivered`, `delete_flag`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'DB-001', '8', 'c7c7c4bfaf2ab5a208f2', '8,9^~^11.00,1444.00', '57,58', '1,1', '1455.00', 'One Plus 7,Redmi Y3', 'Nayan Ramani', 'Adasd asd asd asd asd asda sd', '', 'Ahmedabad', 'Ahmedabad', 'Asdasdasd', '380013', 'mehul9921@gmail.com', '9898878720', 1, 1, '2019-06-21 18:42:54', NULL, NULL);
+(1, 'DB-001', '8', 'c7c7c4bfaf2ab5a208f2', '8,9^~^11.00,1444.00', '57,58', '1,1', '1455.00', 'One Plus 7,Redmi Y3', 'Nayan Ramani', 'Adasd asd asd asd asd asda sd', '', 'Ahmedabad', 'Ahmedabad', 'Asdasdasd', '380013', 'mehul9921@gmail.com', '9898878720', 1, 0, '2019-06-21 18:42:54', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -236,32 +244,36 @@ CREATE TABLE IF NOT EXISTS `product` (
   `name` varchar(250) NOT NULL,
   `amount` decimal(40,2) NOT NULL,
   `short_desc` text NOT NULL,
-  `desc` longtext NOT NULL,
+  `desc` longtext CHARACTER SET utf8mb4 NOT NULL,
   `category` varchar(50) NOT NULL,
   `status` int(1) NOT NULL DEFAULT '0',
   `created_by` varchar(20) NOT NULL,
   `updated_by` varchar(20) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
+  `deleted_at` datetime DEFAULT NULL,
   `df` int(1) NOT NULL DEFAULT '0',
+  `rating` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `hash`, `name`, `amount`, `short_desc`, `desc`, `category`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `df`) VALUES
-(1, '02d97bed230cb3255b908f51699e33bd', 'Moto Z play', '25000.00', '25000.00', '25000.00', '4', 1, '1', '1', '2019-05-06 09:46:09', '2019-05-06 09:46:09', 0),
-(2, '4366a1f0469f990d530a3e2b6219f79e', 'Samsung Galaxy s10a', '12001.00', 'Samsung Branda', '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h3><strong><em><u>Specification</u></em></strong></h3>\r\n\r\n<ul>\r\n	<li>5.5 inch display</li>\r\n	<li>full displays</li>\r\n	<li>123</li>\r\n</ul>', '4', 1, '1', '1', '2019-05-06 09:48:37', '2019-05-06 11:05:16', 0),
-(3, '79f3c79fbbdce0cebb18027dc0812610', 'Redmi 6 Pro', '12999.00', 'asdasd asd asdasdasdasdasdsad', '<p>asda sdasd asdasd</p>', '4', 1, '1', '1', '2019-06-07 17:17:02', '2019-06-07 17:17:02', 0),
-(4, '0cd155e84b4266c63337a02303551499', 'Redmi 6', '11999.00', 'asdasdasd asd', '<p>asdasdasdsad</p>', '4', 1, '1', '1', '2019-06-07 17:17:36', '2019-06-07 17:17:36', 0),
-(5, '1ccdcca89fbe346071ed3c4f6c370621', 'redmi 7', '14999.00', 'asdasdasdasd', '<p>asdasdasd<em>as asd asdasasd</em></p>', '4', 1, '1', '1', '2019-06-07 17:18:03', '2019-06-07 17:18:03', 0),
-(6, 'ffa0eddb2f3f73dda1fac27ff6b0b1ea', 'redmi 7 pro', '15999.00', 'asda sda', '<p>asdasdasd<strong>asdas asd asd</strong></p>', '4', 1, '1', '1', '2019-06-07 17:18:26', '2019-06-07 17:18:26', 0),
-(7, 'b14c983e834525d2cc1ab48c5559282f', 'Redmi 7 pro..', '15999.00', 'rrrrrrrrrrrrrrrrrrrrrrrrr\r\ndasdas dasd asdas a\r\nasdasdasd', '<p><strong>Camera&nbsp;</strong></p>\r\n\r\n<p><em>fornt Camera : 12px</em></p>\r\n\r\n<p><em>Seconad Camera : 48px;</em></p>\r\n\r\n<p><strong>Display</strong></p>\r\n\r\n<p><em>6.2 display..</em></p>', '4', 0, '1', '1', '2019-06-08 14:41:04', '2019-06-08 15:16:45', 0),
-(8, '9a6a7050f40408d6c5c3c75b574bb2f2', 'One Plus 7', '11.00', 'Rear Camera - 48MP (Primary) + 5 MP (Tele-photo) | Front Camera - 16MP\r\n16.2814 centimeters (6.41-inch) multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution\r\nMemory, Storage and SIM: 6GB RAM | 128GB internal memory | Dual SIM dual-standby (4G+4G)\r\nAndroid Oxygen operating system with 2.84GHz Snapdragon 855 octa core processor\r\n3700mAH lithium-ion battery\r\n1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase\r\nBox also includes: Power Adapter, Type-C Cable (Support USB 2.0), Quick Start Guide, Welcome Letter, Safety Information and Warranty Card, Logo Sticker, Case, Screen Protector (pre-applied) and SIM Tray Ejector', 'Rear Camera - 48MP (Primary) + 5 MP (Tele-photo) | Front Camera - 16MP\r\n16.2814 centimeters (6.41-inch) multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution\r\nMemory, Storage and SIM: 6GB RAM | 128GB internal memory | Dual SIM dual-standby (4G+4G)\r\nAndroid Oxygen operating system with 2.84GHz Snapdragon 855 octa core processor\r\n3700mAH lithium-ion battery\r\n1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase\r\nBox also includes: Power Adapter, Type-C Cable (Support USB 2.0), Quick Start Guide, Welcome Letter, Safety Information and Warranty Card, Logo Sticker, Case, Screen Protector (pre-applied) and SIM Tray Ejector', '4', 0, '1', '1', '2019-06-13 12:08:48', '2019-06-13 12:11:24', 0),
-(9, '2418871f1f523aad556195529c9d9831', 'Redmi Y3', '1444.00', '12MP+2MP dual rear camera | 32MP front facing camera\r\n15.9004 centimeters (6.26-inch) with 1520 x 720 pixels resolution, 269 ppi pixel density\r\nMemory, Storage and SIM: 3GB RAM | 32GB internal memory expandable up to 512GB | Dual SIM (nano+nano) dual-standby (4G+4G)', '<ul>\r\n	<li>12MP+2MP dual rear camera | 32MP front facing camera</li>\r\n	<li>15.9004 centimeters (6.26-inch) with 1520 x 720 pixels resolution, 269 ppi pixel density</li>\r\n	<li>Memory, Storage and SIM: 3GB RAM | 32GB internal memory expandable up to 512GB | Dual SIM (nano+nano) dual-standby (4G+4G)</li>\r\n	<li>Android Pie v9.0 operating system with 1.8GHz Qualcomm Snapdragon 632 octa core processor, Adreno 506</li>\r\n	<li>4000mAH lithium-ion battery</li>\r\n	<li>1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase</li>\r\n	<li>Box also includes: Adapter, USB cable, warranty card, user guide, SIM insertion tool, back cover</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', '4', 0, '1', '1', '2019-06-13 12:19:06', '2019-06-13 12:31:49', 0),
-(10, 'c607f715947347d69fb29fbddd2d9ed2', 'Samsung m30', '11.00', '13+5+5MP Triple rear camera with f1.9 aperture, 2.2 wide angle, 2.2 flash | 16MP front camera with f2.0 aperture\r\n16.21 centimeters (6.4-inch) FHD+ multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution and 16M color support', '<ul>\r\n	<li>13+5+5MP Triple rear camera with f1.9 aperture, 2.2 wide angle, 2.2 flash | 16MP front camera with f2.0 aperture</li>\r\n	<li>16.21 centimeters (6.4-inch) FHD+ multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution and 16M color support</li>\r\n	<li>Memory, Storage and SIM: 4GB RAM | 64GB internal memory expandable up to 512GB | Dual SIM (nano+nano) dual-standby (4G+4G)</li>\r\n	<li>Android Oreo v8.1 operating system with 1.8GHz Exynos 7904 octa core processor</li>\r\n	<li>5000mAH lithium-ion battery with 3x fast charge | 15W Type-C fast charger in the box</li>\r\n	<li>1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase</li>\r\n	<li>Box also includes: Handset, Travel Adapter, USB Cable, Ejection Pin and User Manual</li>\r\n</ul>', '4', 0, '1', '1', '2019-06-13 12:21:30', '2019-06-13 12:21:30', 0);
+INSERT INTO `product` (`id`, `hash`, `name`, `amount`, `short_desc`, `desc`, `category`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`, `df`, `rating`) VALUES
+(1, '02d97bed230cb3255b908f51699e33bd', 'Moto Z play', '25000.00', '25000.00', '25000.00', '4', 1, '1', '1', '2019-05-06 09:46:09', '2019-05-06 09:46:09', NULL, 0, '3'),
+(2, '4366a1f0469f990d530a3e2b6219f79e', 'Samsung Galaxy s10a', '12001.00', 'Samsung Branda', '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h3><strong><em><u>Specification</u></em></strong></h3>\r\n\r\n<ul>\r\n	<li>5.5 inch display</li>\r\n	<li>full displays</li>\r\n	<li>123</li>\r\n</ul>', '4', 1, '1', '1', '2019-05-06 09:48:37', '2019-05-06 11:05:16', NULL, 0, ''),
+(3, '79f3c79fbbdce0cebb18027dc0812610', 'Redmi 6 Pro', '12999.00', 'asdasd asd asdasdasdasdasdsad', '<p>asda sdasd asdasd</p>', '4', 1, '1', '1', '2019-06-07 17:17:02', '2019-06-07 17:17:02', NULL, 0, ''),
+(4, '0cd155e84b4266c63337a02303551499', 'Redmi 6', '11999.00', 'asdasdasd asd', '<p>asdasdasdsad</p>', '4', 1, '1', '1', '2019-06-07 17:17:36', '2019-06-07 17:17:36', NULL, 0, ''),
+(5, '1ccdcca89fbe346071ed3c4f6c370621', 'redmi 7', '14999.00', 'asdasdasdasd', '<p>asdasdasd<em>as asd asdasasd</em></p>', '4', 1, '1', '1', '2019-06-07 17:18:03', '2019-06-07 17:18:03', NULL, 0, ''),
+(6, 'ffa0eddb2f3f73dda1fac27ff6b0b1ea', 'redmi 7 pro', '15999.00', 'asda sda', '<p>asdasdasd<strong>asdas asd asd</strong></p>', '4', 1, '1', '1', '2019-06-07 17:18:26', '2019-06-07 17:18:26', NULL, 0, '2'),
+(7, 'b14c983e834525d2cc1ab48c5559282f', 'Redmi 7 pro..', '15999.00', 'rrrrrrrrrrrrrrrrrrrrrrrrr\r\ndasdas dasd asdas a\r\nasdasdasd', '<p><strong>Camera&nbsp;</strong></p>\r\n\r\n<p><em>fornt Camera : 12px</em></p>\r\n\r\n<p><em>Seconad Camera : 48px;</em></p>\r\n\r\n<p><strong>Display</strong></p>\r\n\r\n<p><em>6.2 display..</em></p>', '4', 0, '1', '1', '2019-06-08 14:41:04', '2019-06-08 15:16:45', NULL, 0, '3'),
+(8, '9a6a7050f40408d6c5c3c75b574bb2f2', 'One Plus 7', '11.00', 'Rear Camera - 48MP (Primary) + 5 MP (Tele-photo) | Front Camera - 16MP\r\n16.2814 centimeters (6.41-inch) multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution\r\nMemory, Storage and SIM: 6GB RAM | 128GB internal memory | Dual SIM dual-standby (4G+4G)\r\nAndroid Oxygen operating system with 2.84GHz Snapdragon 855 octa core processor\r\n3700mAH lithium-ion battery\r\n1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase\r\nBox also includes: Power Adapter, Type-C Cable (Support USB 2.0), Quick Start Guide, Welcome Letter, Safety Information and Warranty Card, Logo Sticker, Case, Screen Protector (pre-applied) and SIM Tray Ejector', 'Rear Camera - 48MP (Primary) + 5 MP (Tele-photo) | Front Camera - 16MP\r\n16.2814 centimeters (6.41-inch) multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution\r\nMemory, Storage and SIM: 6GB RAM | 128GB internal memory | Dual SIM dual-standby (4G+4G)\r\nAndroid Oxygen operating system with 2.84GHz Snapdragon 855 octa core processor\r\n3700mAH lithium-ion battery\r\n1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase\r\nBox also includes: Power Adapter, Type-C Cable (Support USB 2.0), Quick Start Guide, Welcome Letter, Safety Information and Warranty Card, Logo Sticker, Case, Screen Protector (pre-applied) and SIM Tray Ejector', '4', 0, '1', '1', '2019-06-13 12:08:48', '2019-06-13 12:11:24', NULL, 0, ''),
+(9, '2418871f1f523aad556195529c9d9831', 'Redmi Y3', '1444.00', '12MP+2MP dual rear camera | 32MP front facing camera\r\n15.9004 centimeters (6.26-inch) with 1520 x 720 pixels resolution, 269 ppi pixel density\r\nMemory, Storage and SIM: 3GB RAM | 32GB internal memory expandable up to 512GB | Dual SIM (nano+nano) dual-standby (4G+4G)', '<ul>\r\n	<li>12MP+2MP dual rear camera | 32MP front facing camera</li>\r\n	<li>15.9004 centimeters (6.26-inch) with 1520 x 720 pixels resolution, 269 ppi pixel density</li>\r\n	<li>Memory, Storage and SIM: 3GB RAM | 32GB internal memory expandable up to 512GB | Dual SIM (nano+nano) dual-standby (4G+4G)</li>\r\n	<li>Android Pie v9.0 operating system with 1.8GHz Qualcomm Snapdragon 632 octa core processor, Adreno 506</li>\r\n	<li>4000mAH lithium-ion battery</li>\r\n	<li>1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase</li>\r\n	<li>Box also includes: Adapter, USB cable, warranty card, user guide, SIM insertion tool, back cover</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>', '4', 0, '1', '1', '2019-06-13 12:19:06', '2019-06-13 12:31:49', NULL, 0, ''),
+(10, 'c607f715947347d69fb29fbddd2d9ed2', 'Samsung m30', '11.00', '13+5+5MP Triple rear camera with f1.9 aperture, 2.2 wide angle, 2.2 flash | 16MP front camera with f2.0 aperture\r\n16.21 centimeters (6.4-inch) FHD+ multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution and 16M color support', '<ul>\r\n	<li>13+5+5MP Triple rear camera with f1.9 aperture, 2.2 wide angle, 2.2 flash | 16MP front camera with f2.0 aperture</li>\r\n	<li>16.21 centimeters (6.4-inch) FHD+ multi-touch capacitive touchscreen with 2340 x 1080 pixels resolution and 16M color support</li>\r\n	<li>Memory, Storage and SIM: 4GB RAM | 64GB internal memory expandable up to 512GB | Dual SIM (nano+nano) dual-standby (4G+4G)</li>\r\n	<li>Android Oreo v8.1 operating system with 1.8GHz Exynos 7904 octa core processor</li>\r\n	<li>5000mAH lithium-ion battery with 3x fast charge | 15W Type-C fast charger in the box</li>\r\n	<li>1 year manufacturer warranty for device and 6 months manufacturer warranty for in-box accessories including batteries from the date of purchase</li>\r\n	<li>Box also includes: Handset, Travel Adapter, USB Cable, Ejection Pin and User Manual</li>\r\n</ul>', '4', 0, '1', '1', '2019-06-13 12:21:30', '2019-06-13 12:21:30', NULL, 0, ''),
+(14, '00ec61c4001cca6ceec202ca5bdee4cd', 'Eee', '12999.00', 'asdasda', '<p>asdasdsadasd</p>', '2', 0, '1', '1', '2019-07-17 15:13:34', '2019-07-17 15:13:34', NULL, 0, ''),
+(16, 'e8ca4a765012f06a2ebb744248b0916c', 'Fountain Pen', '150.00', 'asdas das asd', '<p><strong><em><u>सुपर उत्पाद</u></em></strong></p>', '4', 0, '1', '1', '2019-07-17 16:16:04', '2019-07-18 10:55:32', '2019-07-17 17:22:51', 0, '');
 
 -- --------------------------------------------------------
 
@@ -275,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   `p_id` varchar(250) NOT NULL,
   `image` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=193 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product_images`
@@ -285,7 +297,11 @@ INSERT INTO `product_images` (`id`, `p_id`, `image`) VALUES
 (1, '7', 'adfb6d9879d936720ecfa940895dca27.jpg'),
 (2, '8', 'a3eb10700959507c5d28549527dd3884.jpg'),
 (3, '9', '400bfe8cbe5a59541ba0f82feba7765f.jpg'),
-(4, '10', '38fcf16852a141e2846efc432fbb9865.jpg');
+(4, '10', '38fcf16852a141e2846efc432fbb9865.jpg'),
+(192, '16', 'f4f12b18416319a0e5d4d86a2ea1a243.jpg'),
+(191, '16', 'b2a99be878d504dc4e604099642e041d.jpg'),
+(190, '16', '08e9f134a85b4eeb79551083d6426861.jpg'),
+(189, '16', '2ebb0e92856dfb3f1a685c10033a8679.jpg');
 
 -- --------------------------------------------------------
 
@@ -304,7 +320,7 @@ CREATE TABLE IF NOT EXISTS `product_rating` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product_rating`
@@ -312,7 +328,9 @@ CREATE TABLE IF NOT EXISTS `product_rating` (
 
 INSERT INTO `product_rating` (`id`, `product_id`, `hash`, `user_id`, `rating`, `review`, `created_at`, `updated_at`) VALUES
 (1, '8', '9a6a7050f40408d6c5c3c75b574bb2f2', '5', '5', 'Super, very nice', '2019-06-13 12:34:09', '2019-06-13 16:10:32'),
-(4, '8', '9a6a7050f40408d6c5c3c75b574bb2f2', '6', '2', 'B ad PRoduct', '2019-06-13 16:17:26', '2019-06-13 16:18:24');
+(17, '1', '02d97bed230cb3255b908f51699e33bd', '8', '3', 'Adasdasd', '2019-07-18 13:46:25', NULL),
+(14, '7', 'b14c983e834525d2cc1ab48c5559282f', '5', '3', 'Asdasdasd', '2019-07-18 13:43:08', NULL),
+(13, '7', 'b14c983e834525d2cc1ab48c5559282f', '5', '3', 'Asdasdasd', '2019-07-18 13:42:04', NULL);
 
 -- --------------------------------------------------------
 
@@ -392,13 +410,13 @@ CREATE TABLE IF NOT EXISTS `shop` (
 --
 
 INSERT INTO `shop` (`id`, `shop_name`, `owner_name`, `employee_name`, `mobile`, `wp_no`, `mobile_in_website`, `whats_in_website`, `address`, `landmark`, `email`, `hour_operation`, `pro_or_servi`, `payment_mode`, `photo`, `info`, `detail_desc`, `category`, `shop_plan`, `dis_in_listing`, `exp_date`, `created_by`, `created_at`, `updated_at`, `deleted_at`, `keywords`) VALUES
-(1, 'first', 'asdasd', 'asdasd l', '34234234234', '34234234234', 0, 0, 'asdasdasd asdasd asd asd This page didn\'t load Google Maps correctly. See the JavaScript console for technical details.', 'asdasd asdasdasda', 'asdas@gmail.com', '1212', 'sda adsd', 'aasdasd', '9e36c6a6b346ce680fa0c0b850ec714c.png', 'sadasdads', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', NULL, 0, '2020-06-05', '1', '2019-05-29 18:07:25', NULL, '2019-05-29 18:55:49', ''),
-(2, 'kava developers', 'kava', 'jay', '9099998171', '9099998171', 0, 1, 'adasd asdasdasd asda s dasd', 'asdasd asda dasd', 'asdasd@gmail.com', '45', 'web developement,software,seo,smo,android,ios,desktop', 'dsasdasd', '148bc37cadf9d8170700c4122bbbd70b.jpg', '<p><em>Looking Good</em> <u>and nice </u><strong>Shop</strong></p>', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium\r\n\r\n, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the \r\n\r\nScrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', 'It Developement', '2', 0, '2020-06-18', '1', '2019-05-29 18:20:48', '2019-06-12 16:59:06', NULL, ''),
-(4, 'Gotham', 'Bruce Wayne', 'Lucius Fox', '2222222222', '2222555555', 0, 0, 'Gotham City', 'Wayne Towe', 'dsgsdkgjh@gmail.com', '9-5', 'application and', 'CASH', '9e36c6a6b346ce680fa0c0b850ec714c.png', 'DSMNB GKD GJHDKFGHDKF GHKD', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', NULL, 0, '2020-06-05', '1', '2019-05-30 16:30:07', NULL, NULL, ''),
-(5, 'food Junction ***', 'coca cola', 'jguar', '7897897822', '4564585685', 0, 0, 'jkl sda dasdasdsssssssssssssssssssssss', 'Darpan Six Road, Ahemdabad', '108@gmail.com', '8 to 8', '//////////////////////////////////////////////////////////', 'Paytam  6363', '9e36c6a6b346ce680fa0c0b850ec714c.png', '[][][][]][asdasssssssssssssssssssssssssssssssssss', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst\r\n                                many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', NULL, 0, '2020-06-05', '1', '2019-05-31 14:59:50', '2019-05-31 15:39:00', NULL, ''),
-(6, 'lenovo', 'zoo', 'park', '1234564454', '01212121211', 0, 0, 'sdas dasd asda', 'asd asdasd asda sd', '712@gmail.com', '08:00  AM to 9:00 PM', 'asdasdas sad asdas dasd', 'Cash', 'aa5891bf0c76a6ddafeed87830ada232.jpg', 'asd dasd asd as', 'asdasd', 'Electronic, mouse, keyboard, laptop, mobile,all items', NULL, 1, '2020-06-05', '1', '2019-06-05 10:34:13', '2019-06-05 10:36:49', NULL, ''),
-(7, 'umiya', 'ooo', 'adasdas', '4564525652', '1234567890', 0, 1, 'asdas dasd asd asdas das', 'asda sdas', 'dasdas@gmail.com', '12 to 9', 'asda as dasd', 'check', '', '', '', 'Veg', '3', 0, '2019-06-05', '1', '2019-06-11 12:43:06', '2019-06-11 12:52:42', NULL, ''),
-(8, 'new Deluxea', 'Kava Developers', '', '4564523023', '1201232032', 0, 1, 'adas aS Ad,\r\nasdasdasdasd', 'ahmedabad', '', '10 to 5', 'dasda asd asd', 'cash', 'f430ee5c5567b9466c40d7b1c11bc066.jpg', '<p>asd asd asd asd asd asd</p>', 'aasdasd', 'dasdasdasd', '2', 1, '2019-11-29', '1', '2019-06-14 13:47:03', '2019-06-17 17:38:57', NULL, ''),
+(1, 'first', 'asdasd', 'asdasd l', '34234234234', '34234234234', 0, 0, 'asdasdasd asdasd asd asd This page didn\'t load Google Maps correctly. See the JavaScript console for technical details.', 'asdasd asdasdasda', 'asdas@gmail.com', '1212', 'sda adsd', 'aasdasd', '9e36c6a6b346ce680fa0c0b850ec714c.png', 'sadasdads', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', NULL, 0, '2020-06-05', '1', '2019-05-29 18:07:25', NULL, '2019-05-29 18:55:49', 'ahmedabad'),
+(2, 'kava developers', 'kava', 'jay', '9099998171', '9099998171', 0, 1, 'adasd asdasdasd asda s dasd', 'asdasd asda dasd', 'asdasd@gmail.com', '45', 'web developement,software,seo,smo,android,ios,desktop', 'dsasdasd', '148bc37cadf9d8170700c4122bbbd70b.jpg', '<p><em>Looking Good</em> <u>and nice </u><strong>Shop</strong></p>', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium\r\n\r\n, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the \r\n\r\nScrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', 'It Developement', '2', 0, '2020-06-18', '1', '2019-05-29 18:20:48', '2019-06-12 16:59:06', NULL, 'ahmedabad'),
+(4, 'Gotham', 'Bruce Wayne', 'Lucius Fox', '2222222222', '2222555555', 0, 0, 'Gotham City', 'Wayne Towe', 'dsgsdkgjh@gmail.com', '9-5', 'application and', 'CASH', '9e36c6a6b346ce680fa0c0b850ec714c.png', 'DSMNB GKD GJHDKFGHDKF GHKD', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', NULL, 0, '2020-06-05', '1', '2019-05-30 16:30:07', NULL, NULL, 'ahmedabad'),
+(5, 'food Junction ***', 'coca cola', 'jguar', '7897897822', '4564585685', 0, 0, 'jkl sda dasdasdsssssssssssssssssssssss', 'Darpan Six Road, Ahemdabad', '108@gmail.com', '8 to 8', '//////////////////////////////////////////////////////////', 'Paytam  6363', '9e36c6a6b346ce680fa0c0b850ec714c.png', '[][][][]][asdasssssssssssssssssssssssssssssssssss', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst\r\n                                many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', '', NULL, 0, '2020-06-05', '1', '2019-05-31 14:59:50', '2019-05-31 15:39:00', NULL, 'ahmedabad'),
+(6, 'lenovo', 'zoo', 'park', '1234564454', '01212121211', 0, 0, 'sdas dasd asda', 'asd asdasd asda sd', '712@gmail.com', '08:00  AM to 9:00 PM', 'asdasdas sad asdas dasd', 'Cash', 'aa5891bf0c76a6ddafeed87830ada232.jpg', 'asd dasd asd as', 'asdasd', 'Electronic, mouse, keyboard, laptop, mobile,all items', NULL, 1, '2020-06-05', '1', '2019-06-05 10:34:13', '2019-06-05 10:36:49', NULL, 'ahmedabad'),
+(7, 'umiya', 'ooo', 'adasdas', '4564525652', '1234567890', 0, 1, 'asdas dasd asd asdas das', 'asda sdas', 'dasdas@gmail.com', '12 to 9', 'asda as dasd', 'check', '', '', '', 'Veg', '3', 0, '2020-06-05', '1', '2019-06-11 12:43:06', '2019-06-11 12:52:42', NULL, 'ahmedabad'),
+(8, 'new Deluxea', 'Kava Developers', '', '4564523023', '1201232032', 0, 1, 'adas aS Ad,\r\nasdasdasdasd', 'ahmedabad', '', '10 to 5', 'dasda asd asd', 'cash', 'f430ee5c5567b9466c40d7b1c11bc066.jpg', '<p>asd asd asd asd asd asd</p>', 'aasdasd', 'dasdasdasd', '2', 1, '2019-11-29', '1', '2019-06-14 13:47:03', '2019-06-17 17:38:57', NULL, 'ahmedabad'),
 (9, 'admin kava', 'admin', '', '1234567890', '1234567890', 0, 0, 'six road abc def gfh', 'Darpan', '', '12 to 05', '123', 'cash', '', '', '', 'sample', '2', 0, '2019-12-07', '1', '2019-06-25 12:37:38', '2019-06-25 12:39:50', NULL, 'book Shop near Ahmedabad');
 
 -- --------------------------------------------------------
@@ -451,7 +469,6 @@ INSERT INTO `shop_rating` (`id`, `user_id`, `shop_id`, `subject`, `review`, `rat
 (5, '6', '2', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly', 'I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the\r\n                                hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great\r\n                                dipped in their chili sauce.', 3, '2019-06-04 19:41:40'),
 (14, '8', '2', 'Foods', 'Good Service & Food', 5, '2019-06-12 16:23:53'),
 (15, '9', '2', 'Service', 'Bad Service', 2, '2019-06-12 16:27:36'),
-(16, '5', '2', 'shop', 'nice', 4, '2019-06-13 13:10:16'),
 (17, '8', '6', 'asdasd', 'asdsad', 5, '2019-06-25 12:05:31');
 
 -- --------------------------------------------------------
@@ -534,7 +551,7 @@ CREATE TABLE IF NOT EXISTS `social_user` (
 
 INSERT INTO `social_user` (`id`, `first_name`, `last_name`, `email`, `mobile`, `password`, `image`, `delete_flag`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (5, 'rrrr', 'ers', 'sdfs@gmail.com', '12012121211', '0e7517141fb53f21ee439b355b5a1d0a', '483391b37a55a7e84ba56af8dbba8572.png', 0, '2019-06-04 12:31:27', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 'asdasdasd', 'dasda', 'dasd@gmail.com', '1201212121', '456456456', '580b0399f62f5ca36a1b3443aec578a0.jpg', 0, '2019-06-04 12:24:31', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 'asdasdasd', 'dasda', 'dasd@gmail.com', '1201212121', '456456456', '580b0399f62f5ca36a1b3443aec578a0.jpg', 1, '2019-06-04 12:24:31', '0000-00-00 00:00:00', '2019-07-30 12:53:36'),
 (6, 'asdasd', 'asdasd', '12@gmail.com', '12121212121', '0e7517141fb53f21ee439b355b5a1d0a', '1f4d40181b795f2c1a35d95750f8fb13.jpg', 0, '2019-06-04 12:37:32', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (7, 'elephant', 'jungle', 'nayan@gmail.com', '4564589789', '0e7517141fb53f21ee439b355b5a1d0a', '0f5a364c7a9f21305b97bea45c3d456d.jpg', 0, '2019-06-04 12:56:22', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (8, 'test', 'user', 'test@gmail.com', '4564512312', '0e7517141fb53f21ee439b355b5a1d0a', '3aef2dce48775707a9bb6119bc97f74c.jpg', 0, '2019-06-12 16:20:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),

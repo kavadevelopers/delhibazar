@@ -69,7 +69,7 @@
                     <li class="nav-item">
                         <a href="<?php echo base_url('social_user'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("social_user"))[0]; ?>">
                             <i class="nav-icon fa fa-users"></i>
-                            <p>Coustmers</p>
+                            <p>Customers</p>
                         </a>
                     </li>
 
