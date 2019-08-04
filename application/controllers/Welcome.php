@@ -67,6 +67,7 @@ class Welcome extends CI_Controller {
 		$data['_title']				= "DELHIBAZAR";
         $data['setting']            = $this->general_model->setting();
 		$data['shop']				= $this->shop_model->shop_search(trim($this->input->get('search')));
+        $this->db->insert('search_keywords',['keyword' => trim($this->input->get('search')),'created' => _now_dt()]);
         $this->load->template('shop/index',$data);
 	}
 

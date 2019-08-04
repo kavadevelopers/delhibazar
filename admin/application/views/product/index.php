@@ -40,11 +40,9 @@
                                             <td><?= $this->general_model->category_byid($product['category']); ?></td>
                                             <td class="text-center">
                                                 <?php if($product['status'] == '0'){ ?>
-                                                    <span class="badge badge-warning">Pending Approval</span>
+                                                    <span class="badge badge-danger">In Active</span>
                                                 <?php }else if($product['status'] == '1'){ ?>
-                                                    <span class="badge badge-success">Approved</span>
-                                                <?php }else{ ?>
-                                                    <span class="badge badge-danger">Rejected</span>
+                                                    <span class="badge badge-success">Active</span>
                                                 <?php } ?>
                                             </td>
                                             <td class="text-center">

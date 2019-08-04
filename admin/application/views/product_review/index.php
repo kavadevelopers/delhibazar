@@ -23,38 +23,27 @@
                                 <thead>
                                     <tr>
                                         <th>Product Name</th>
-                                        <th>Price</th>
-                                        <th>Category</th>
-                                        <th class="text-center">Total Review</th>
+                                        <th>User Name</th>
+                                        <th class="text-center">Rating</th>
+                                        <th>Description</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    <?php foreach($product as $key => $value){ 
-
-                                        $category = $this->db->get_where('category',['id' => $value['category']])->result_array()[0];
-                                        $product_rating_count = $this->product_model->product_rating_where($value['id']);
-                                    ?>
+                                    <?php $this->db->order_by('id','desc'); ?>
+                                    <?php foreach($this->db->get('product_rating')->result_array() as $key => $value){ ?>
                                         <tr>
-                                            <td><?= $value['name']; ?></td>
-                                            <td><?= $value['amount']; ?></td>
-                                            <td><?= $category['name'] ?></td>
-                                            <td class="text-center"><?= count($product_rating_count); ?></td>
+                                            <td><?= $this->product_model->product_id_where($value['product_id'])[0]['name']; ?></td>
+                                            <td><?= $this->social_user_model->customer_where($value['user_id'])[0]['first_name'].' '.$this->social_user_model->customer_where($value['user_id'])[0]['last_name']; ?></td>
+                                            <td class="text-center"><?= $value['rating'] ?></td>
+                                            <td><?= nl2br($value['review']) ?></td>
 
                                             <td class="text-center">
 
-                                                 <a class="btn btn-sm btn-secondary" href="<?= base_url();?>review/product_review_subindex/<?= $value['id'];?>" title="View">
-                                                    <i class="fa fa-eye"></i>
+                                                <a class="btn btn-sm btn-danger" href="<?= base_url();?>review/delete_product_review/<?= $value['id'];?>" onclick="return confirm('Are you Sure You Want to Delete this Review ?');" title="Delete">
+                                                    <i class="fa fa-trash"></i>
                                                 </a>
 
-                                                <!-- <a class="btn btn-sm btn-success" href="<?= base_url();?>product/edit/<?= $product['id'];?>" title="Edit">
-                                                    <i class="fa fa-edit"></i>
-                                                </a> -->
-
-                                                <!-- <a class="btn btn-sm btn-danger" href="<?= base_url();?>product/delete/<?= $value['id'];?>" onclick="return confirm('Are you Sure You Want to Delete this Product ?');" title="Delete">
-                                                    <i class="fa fa-trash"></i>
-                                                </a> -->
                                             </td>
                                         </tr>
                                     <?php } ?>

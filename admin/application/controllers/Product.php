@@ -54,9 +54,12 @@ class Product extends CI_Controller {
 
         $this->form_validation->set_rules('name', 'Product Name', 'trim|required|min_length[2]|max_length[50]');
         $this->form_validation->set_rules('price', 'Price', 'trim|required|max_length[10]|decimal');
+        $this->form_validation->set_rules('list_price', 'List Price', 'trim|max_length[10]|decimal');
         $this->form_validation->set_rules('category', 'Category', 'trim|required');
         $this->form_validation->set_rules('short_desc', 'Short Description', 'trim|required');
         $this->form_validation->set_rules('editor1', 'Description', 'trim|required');
+        $this->form_validation->set_rules('keywords', 'Description', 'trim');
+        $this->form_validation->set_rules('description', 'Description', 'trim');
 
 
         if ($this->form_validation->run() == FALSE)
@@ -72,9 +75,12 @@ class Product extends CI_Controller {
                             'hash'          =>  md5(microtime(true)),
                             'name'          =>  ucfirst($this->input->post('name')),
                             'amount'        =>  $this->input->post('price'),
+                            'list_price'    =>  $this->input->post('list_price'),
                             'short_desc'    =>  trim($this->input->post('short_desc')),
                             'desc'          =>  trim($this->input->post('editor1')),
                             'category'      =>  $this->input->post('category'),
+                            'description'   =>  $this->input->post('description'),
+                            'keyword'       =>  $this->input->post('keywords'),
                             'created_by'    =>  $this->session->userdata('id'),
                             'updated_by'    =>  $this->session->userdata('id'),
                             'created_at'    =>  _now_dt(),
@@ -145,9 +151,12 @@ class Product extends CI_Controller {
 
         $this->form_validation->set_rules('name', 'Product Name', 'trim|required|min_length[2]|max_length[50]');
         $this->form_validation->set_rules('price', 'Price', 'trim|required|max_length[10]|decimal');
+        $this->form_validation->set_rules('list_price', 'List Price', 'trim|max_length[10]|decimal');
         $this->form_validation->set_rules('category', 'Category', 'trim|required');
         $this->form_validation->set_rules('short_desc', 'Short Description', 'trim|required');
         $this->form_validation->set_rules('editor1', 'Description', 'trim|required');
+        $this->form_validation->set_rules('keywords', 'Description', 'trim');
+        $this->form_validation->set_rules('description', 'Description', 'trim');
 
 
         if ($this->form_validation->run() == FALSE)
@@ -163,9 +172,12 @@ class Product extends CI_Controller {
             $product =  [
                             'name'          =>  ucfirst($this->input->post('name')),
                             'amount'        =>  $this->input->post('price'),
+                            'list_price'    =>  $this->input->post('list_price'),
                             'short_desc'    =>  trim($this->input->post('short_desc')),
                             'desc'          =>  trim($this->input->post('editor1')),
                             'category'      =>  $this->input->post('category'),
+                            'description'   =>  $this->input->post('description'),
+                            'keyword'       =>  $this->input->post('keywords'),
                             'updated_by'    =>  $this->session->userdata('id'),
                             'updated_at'    =>  _now_dt()
                         ];

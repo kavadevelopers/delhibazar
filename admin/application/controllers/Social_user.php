@@ -9,6 +9,8 @@ class Social_user extends CI_Controller {
         $this->load->model('social_user_model');
         $this->load->model('product_model');
         $this->load->model('general_model');
+        $this->load->model('shop_model');
+        $this->load->model('order_model');
     }
 
 
@@ -19,25 +21,49 @@ class Social_user extends CI_Controller {
         $this->load->template('social_user/index',$data);
     }
 
-    public function review($id)
+    public function product_reviews($id)
     {
         if($id)
         {
-            if($this->social_user_model->customer_review_where($id))
+            if($this->social_user_model->customer_where($id))
             {
 
                 $data['page_title'] = 'User Review';
-                $data['user']       = $this->social_user_model->customer_review_where($id);
-                $this->load->template('social_user/review_index',$data);
+                $data['customer']   = $this->social_user_model->customer_where($id)[0];
+                $this->load->template('social_user/product_review_index',$data);
             }
             else{
-                $this->session->set_flashdata('error', 'Review Not Found');
+                $this->session->set_flashdata('error', 'Customer Not Found');
                 redirect(base_url().'social_user');
             }
 
         }
         else{
-            $this->session->set_flashdata('error', 'Review Not Found');
+            $this->session->set_flashdata('error', 'Customer Not Found');
+            redirect(base_url().'social_user');
+        }
+
+    }
+
+    public function shop_reviews($id)
+    {
+        if($id)
+        {
+            if($this->social_user_model->customer_where($id))
+            {
+
+                $data['page_title'] = 'User Review';
+                $data['customer']   = $this->social_user_model->customer_where($id)[0];
+                $this->load->template('social_user/shop_review_index',$data);
+            }
+            else{
+                $this->session->set_flashdata('error', 'Customer Not Found');
+                redirect(base_url().'social_user');
+            }
+
+        }
+        else{
+            $this->session->set_flashdata('error', 'Customer Not Found');
             redirect(base_url().'social_user');
         }
 
@@ -74,14 +100,36 @@ class Social_user extends CI_Controller {
     }       
 
     public function order($id = false)
-    {   
-        if($id) 
+    {           
+        if($id)
         {
-            if($this->social_user_model->customer_order_where($id))
+            if($this->social_user_model->customer_where($id))
             {
                 $data['page_title'] = 'User Order';
-                $data['order']      = $this->social_user_model->customer_order_where($id);
+                $data['customer']   = $this->social_user_model->customer_where($id)[0];
                 $this->load->template('social_user/order_index',$data);
+            }
+            else{
+                $this->session->set_flashdata('error', 'Customer Not Found');
+                redirect(base_url().'social_user');
+            }
+
+        }
+        else{
+            $this->session->set_flashdata('error', 'Customer Not Found');
+            redirect(base_url().'social_user');
+        }
+    }       
+
+    public function order_view($id)
+    {
+        if($id)
+        {
+            if($this->order_model->order_where($id))
+            {
+                $data['page_title'] = 'Order View';
+                $data['order']      = $this->order_model->order_where($id);
+                $this->load->template('order/order_view',$data);
             }
             else{
                 $this->session->set_flashdata('error', 'Order Not Found');
@@ -93,13 +141,6 @@ class Social_user extends CI_Controller {
             $this->session->set_flashdata('error', 'Order Not Found');
             redirect(base_url().'social_user');
         }
-    }       
-
-    public function order_view($id)
-    {
-        $data['page_title'] = 'Order View';
-        $data['order']      = $this->db->get_where('payment',['id' => $id])->result_array();
-        $this->load->template('social_user/order_view',$data);
     }
 
 }

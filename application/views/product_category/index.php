@@ -63,7 +63,10 @@
 										</div>
 									</div>
 									<a href="<?= base_url() ?>products/product_detail/<?= $value['hash'] ?>"><h4><?= $value['name'] ?></h4></a>
-									<h5><?= $value['amount'] ?></h5>
+									<?php if(!empty($value['list_price'])){ ?>
+										<h5 style="text-decoration: line-through; font-size: 12px;">₹<?= $value['list_price'] ?><h5>
+									<?php } ?>
+									<h5>₹<?= $value['amount'] ?></h5>
 								</div>
 							</div>
 
@@ -71,7 +74,7 @@
 							
 							<div class="col-md-12 text-center">
 								<div class="f_p_item" style="background-color: #e8f0f2;padding: 25px;font-style: oblique;box-shadow: 3px 2px;">
-									<h5>Product not available visit few hour again </h5>
+									<h5>Product not available</h5>
 								</div>
 							</div>
 

@@ -8,24 +8,44 @@ class Order extends CI_Controller {
         $this->auth->check_session();
         $this->load->model('order_model');
         $this->load->model('product_model');
+        $this->load->model('social_user_model');
     }
 
 
     public function pending_order(){
-    	$data['page_title']		= 'Manage Order';
-    	$data['order']	        = $this->order_model->order();
+    	$data['page_title']		= 'Manage Pending Orders';
     	$this->load->template('order/pending_order',$data);
     } 
 
+    public function order_view($id)
+    {
+        if($id)
+        {
+            if($this->order_model->order_where($id))
+            {
+                $data['page_title'] = 'Order View';
+                $data['order']      = $this->order_model->order_where($id);
+                $this->load->template('order/order_view',$data);
+            }
+            else{
+                $this->session->set_flashdata('error', 'Order Not Found');
+                redirect(base_url().'social_user');
+            }
+
+        }
+        else{
+            $this->session->set_flashdata('error', 'Order Not Found');
+            redirect(base_url().'social_user');
+        }
+    }
+
     public function delivered_order(){
-        $data['page_title']     = 'Delivered Order';
-        $data['order']          = $this->order_model->delivered_order();
+        $data['page_title']     = 'Manage Delivered Orders';
         $this->load->template('order/delivered_order',$data);
     } 
 
     public function deleted_order(){
-        $data['page_title']     = 'Deleted Order';
-        $data['order']          = $this->order_model->deleted_order();
+        $data['page_title']     = 'Deleted Orders';
         $this->load->template('order/deleted_order',$data);
     } 
 
@@ -34,13 +54,6 @@ class Order extends CI_Controller {
         $data['page_title']     = 'Edit Order';
         $data['order']          = $this->order_model->order_where($id);
         $this->load->template('order/pending_order_edit',$data);
-    }
-
-    public function pending_order_view($id)
-    {
-        $data['page_title']     = 'View Order';
-        $data['order']          = $this->order_model->order_where($id);
-        $this->load->template('order/pending_order_view',$data);
     }
     /********************************************
                 PENDING ORDER UPDATE

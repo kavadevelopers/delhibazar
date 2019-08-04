@@ -32,6 +32,17 @@ class Pages extends CI_Controller {
         $this->load->template1('pages/privacy',$data);
     }
 
+    public function return_policy()
+    {
+        $data['_title']     = "DELHIBAZAR | Return Policy";
+        $this->load->template1('pages/return_policy',$data);
+    }
+
+    public function faq()
+    {
+        $data['_title']     = "DELHIBAZAR | FAQ";
+        $this->load->template1('pages/faq',$data);
+    }
 
 
     public function contact_email()
@@ -54,5 +65,31 @@ class Pages extends CI_Controller {
             $this->session->set_flashdata('error', 'Message Not Sent !');
             redirect(base_url('pages/contact'));
         }
+    }
+
+    public function faq_load_more()
+    {
+        $this->db->limit($this->input->post('limit'),$this->input->post('record'));
+        $data = $this->db->get('faq')->result_array();
+        $record = '';
+        foreach ($data as $key => $value) {
+
+            $record .= '<div class="panel panel-default">
+                                    <div class="panel-heading p-3 mb-3" role="tab" id="heading0">
+                                        <h3 class="panel-title">
+                                            <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$value['id'].'" aria-expanded="true" aria-controls="collapse0">
+                                                '.$value['que'].'
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <div id="collapse'.$value['id'].'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
+                                        <div class="panel-body px-3 mb-4">
+                                            '.$value['ans'].'
+                                        </div>
+                                    </div>
+                                </div>';
+            
+        }
+        echo json_encode([count($data),$record,$this->db->get('faq')->num_rows()]);
     }
 }

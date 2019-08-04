@@ -50,6 +50,10 @@ class General_model extends CI_Model
 		return $this->db->get_where('category',['id' => $id])->result_array()[0]['name'];
 	}
 
+	public function get_product_review($id)
+	{
+		return $this->db->get_where('product_rating',['id',$id])->result_array();
+	}
 
 
 }

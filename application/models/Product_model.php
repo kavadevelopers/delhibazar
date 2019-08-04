@@ -72,6 +72,7 @@ class Product_model extends CI_Model
             $this->db->where('category',$id);
             $this->db->where('amount >=',$min);
             $this->db->where('amount <=',$max);
+            $this->db->where('status','1');
         $this->db->group_end();
         $this->db->from('product');
         if(array_key_exists("id",$params)){
@@ -95,5 +96,11 @@ class Product_model extends CI_Model
         }
 
         return $result;
+    }
+
+    public function related_products($category,$hash){
+        $this->db->limit('8');
+        $this->db->order_by('rand()');
+        return $this->db->get_where('product',['category' => $category,'hash !=' => $hash,'status' => '1'])->result_array();
     }
 }

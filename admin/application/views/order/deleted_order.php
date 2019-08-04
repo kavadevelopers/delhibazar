@@ -1,96 +1,106 @@
-<title><?=$this->config->config["projectTitle"]?> | <?= $page_title; ?></title>
+    <title><?=$this->config->config["projectTitle"]?> | <?php echo $page_title; ?></title>
 
 
-<div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 class="m-0 text-dark">View Order</h1>
-            </div>
-        </div>
-    </div>
-</div>
-
-<section class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-
-                <div class="card card-secondary"> 
-                    <div class="card-header">
-                        <h3 class="card-title">Order Detail</h3>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="row">
-                            
-                                
-                        <div class="col-md-4">
-                                <p><label>Order Id</label>     : <?= $order[0]['orderid'] ?></p>
-                                <p><label>Transaction Id</label>     : <?= $order[0]['txnid'] ?></p>
-                                <hr>
-                                <p><label>Name</label>     : <?= $order[0]['name'] ?></p>
-                                <p><label>Phone</label>     : <?= $order[0]['phone'] ?></p>
-                                <p><label>Email</label>     : <?= $order[0]['email'] ?></p>
-                                <p><label>Address1</label> : <?= $order[0]['address1'] ?></p>
-                                <p><label>Address2</label> : <?= $order[0]['address2'] ?></p>
-                                <p><label>Zipcode</label>  : <?= $order[0]['zipcode'] ?></p>
-                                <p><label>City</label>  : <?= $order[0]['city'] ?></p>
-                                <p><label>District</label>  : <?= $order[0]['district'] ?></p>
-                                <p><label>Country</label>  : <?= $order[0]['country'] ?></p>
-                            </div>  
-                            
-                            <div class="col-md-8">
-                                <h6 class="text-center"><u>Product Detail</u></h6>
-                                <table class="table table-bordered table-striped table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>Product Name</th>
-                                            <th>Quantity</th>
-                                            <th>Price</th>
-                                            <th>Amount</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $product_ids = explode('^~^',$order[0]['product_id'])[0];$product_amount = explode('^~^',$order[0]['product_id'])[1]; ?>
-                                        <?php $count_pro = count(explode(',',$order[0]['quantity'])); ?>
-                                        <?php for($i = 0;$i < $count_pro;$i++){  ?>
-
-                                            <tr>
-                                                <td><?= $this->product_model->product_id_where(explode(',', $product_ids)[$i])[0]['name'] ?></td>
-                                                <td><?= explode(',', $order[0]['quantity'])[$i] ?></td>
-                                                <td><?= explode(',', $product_amount)[$i] ?></td>
-                                                <td>
-                                                    <?= explode(',', $order[0]['quantity'])[$i] * explode(',', $product_amount)[$i] ?>
-                                                        
-                                                </td>
-                                            </tr>
-                                            
-                                        <?php } ?>
-                                        
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td colspan="2" class="font-weight-bold">Total : <?= $order[0]['amount'] ?></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>  
-                            
-                        </div>
-                    </div>
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark"><?php echo $page_title; ?></h1>
                 </div>
             </div>
         </div>
     </div>
-</section>
 
-<style type="text/css">
-    .col-md-4 > p {
-        margin-bottom: 0; 
-        font-size: 13px;
-    }
-</style>
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-bordered table-striped table-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Order Id</th>
+                                        <th>Customer Name</th>
+                                        <th class="text-center">Total Amount</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Created At</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($this->db->get_where('payment',['delete_flag' => '1'])->result_array() as $key => $value){ ?>
+                                        <tr>
+                                            <td class="text-center"><?= $value['orderid'] ?></td>
+                                            <td><?= $value['name'] ?></td>
+                                            <td class="text-right"><?= $value['amount'] ?></td>
+                                            <td class="text-center">
+                                                <?php if($value['delivered'] == 0){?> 
+                                                    <span class="badge badge-danger">Pending</span> 
+                                                <?php }else{ ?>
+                                                    <span class="badge badge-success">Delivered</span> 
+                                                <?php } ?>
+                                            </td>
+                                            <td class="text-center"><?= _vdatetime($value['created_at']) ?></td>
+                                            <td class="text-center">
+                                                <a class="btn btn-sm btn-secondary" href="<?= base_url();?>order/order_view/<?= $value['id'];?>" title="Order View">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+<script type="text/javascript">
+    $(function(){
+        $('.table').DataTable({
+            "dom": "<'row'<'col-md-12 my-marD'B>><'row'<'col-md-6'l><'col-md-6'f>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+            "columnDefs": [
+                
+                
+                    { "orderable": false, "targets": [5] }
+                    
+                
+            ],
+            order : [],
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            buttons: [ 
+                { 
+                    extend: 'print',
+                    title: '<?=$this->config->config["projectTitle"]?> <?php echo $page_title; ?>',
+                    exportOptions: {
+                        columns: [0,1,2,3,4]
+                    }
+                },
+                { 
+                    extend: 'pdf',
+                    title: '<?=$this->config->config["projectTitle"]?> <?php echo $page_title; ?>',
+                    exportOptions: {
+                        columns: [0,1,2,3,4]
+                    }
+                },
+                { 
+                    extend: 'excel',
+                    title: '<?=$this->config->config["projectTitle"]?> <?php echo $page_title; ?>',
+                    exportOptions: {
+                        columns: [0,1,2,3,4]
+                    }
+                }
+            ]
+            
+        });
+    })
+</script>
+

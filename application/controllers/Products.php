@@ -110,6 +110,7 @@ class Products extends CI_Controller {
 				$data['star_3']			= $this->rating_model->star_rating_3($hash);
 				$data['star_4']			= $this->rating_model->star_rating_4($hash);
 				$data['star_5']			= $this->rating_model->star_rating_5($hash);
+				$data['related'] 		= $this->product_model->related_products($data['product'][0]['category'],$hash);
 				$this->load->template1('product_category/product_detail',$data);
 			}
 			else

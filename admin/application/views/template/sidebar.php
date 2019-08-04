@@ -184,6 +184,20 @@
                                     <p>Privacy</p>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('pages/return_policy'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("return_policy"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Return Policy</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('pages/faq'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("faq","faq_add"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>FAQ's</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
@@ -240,31 +254,31 @@
 
                         <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("review"))[1]; ?>">
                 
-                        <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("review"))[0]; ?>">
-                            <i class="nav-icon fa fa-pencil-square-o"></i>
-                            <p>Review
-                                <i class="fa fa-angle-left right"></i>
-                            </p>
-                        </a>
-                       
-                        <ul class="nav nav-treeview">
-                            
-                            <li class="nav-item">
-                                <a href="<?= base_url('review/product_review'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("product_review","product_review_subindex"))[0]; ?>">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Product Review</p>
-                                </a>
-                            </li>
+                            <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("review"))[0]; ?>">
+                                <i class="nav-icon fa fa-pencil-square-o"></i>
+                                <p>Review
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                           
+                            <ul class="nav nav-treeview">
+                                
+                                <li class="nav-item">
+                                    <a href="<?= base_url('review/product_review'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("product_review","product_review_subindex"))[0]; ?>">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Product Review</p>
+                                    </a>
+                                </li>
 
-                            <li class="nav-item">
-                                <a href="<?= base_url('review/listing_review'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("listing_review","listing_review_subindex"))[0]; ?>">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Listing Review</p>
-                                </a>
-                            </li>
-                                                        
-                        </ul>
-                    </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url('review/listing_review'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("listing_review","listing_review_subindex"))[0]; ?>">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Listing Review</p>
+                                    </a>
+                                </li>
+                                                            
+                            </ul>
+                        </li>
 
 
 
@@ -276,7 +290,26 @@
                             </a>
                         </li>
 
+                        <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("other"))[1]; ?>">
+                
+                            <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("other"))[0]; ?>">
+                                <i class="nav-icon fa fa-superpowers"></i>
+                                <p>Others
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                           
+                            <ul class="nav nav-treeview">
 
+                                <li class="nav-item">
+                                    <a href="<?= base_url('other/search_keywords'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("search_keywords"))[0]; ?>">
+                                        <i class="fa fa-search nav-icon"></i>
+                                        <p>Search Keywords</p>
+                                    </a>
+                                </li>
+                                                            
+                            </ul>
+                        </li>
 
 
 

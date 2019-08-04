@@ -99,6 +99,11 @@
             <div class="col-lg-5 offset-lg-1">
                 <div class="s_product_text">
                     <h3><?= $product[0]['name'] ?></h3>
+                    <?php if(!empty($product[0]['list_price'])){ ?>
+                        <h2 style="margin: 0; text-decoration: line-through; font-size: 14px; color: #cccccc;">
+                            ₹<?= $product[0]['list_price'] ?>        
+                        </h2>
+                    <?php } ?>
                     <h2>₹<?= $product[0]['amount'] ?></h2>
                     <ul class="list">
                         <li><a class="active" href="#"><span>Category</span> : <?= $this->product_model->category_where($product[0]['category'])[0]['name'] ?></a></li>
@@ -118,7 +123,7 @@
                             <?php if($this->session->userdata('id')) { ?>
                                 <button type="submit" class="main_btn btn btn-sm">Add to Cart</button>
                             <?php } else { ?>
-                                <button type="submit" class="main_btn btn btn-sm" onclick="return guest_click()">Add to Cart</button>
+                                <a href="#myModal" type="submit" class="main_btn btn btn-sm" data-toggle="modal">Add to Cart</a>
                             <?php } ?>
                         </div>
                         <input type="hidden" name="user_id" value="<?= $this->session->userdata('id') ?>">
@@ -295,6 +300,44 @@
     </div>
 </section>
 
+<!--================related Products =================-->
+    <?php if($related){ ?>
+        <section class="most_product_area most_p_withoutbox">
+            <div class="container">
+                <div class="main_title">
+                    <h2>Related Products</h2>
+                </div>
+                <div class="row most_product_inner">
+
+                <?php foreach ($related as $key => $value) { ?>
+                
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="most_p_list">
+                            <div class="media">
+                                <div class="d-flex">
+                                    <img src="img/product/most-product/m-product-1.jpg" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <a href="<?= base_url() ?>products/product_detail/<?= $value['hash'] ?>">
+                                        <h4><?= $value['name'] ?></h4>
+                                    </a>
+                                    <?php if(!empty($value['list_price'])){ ?>
+                                        <h3 style="font-size: 10px; text-decoration: line-through;">₹<?= $value['list_price'] ?></h3>
+                                    <?php } ?>
+                                    <h3>₹<?= $value['amount'] ?></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <?php } ?>
+                    
+                </div>
+            </div>
+        </section>
+    <?php } ?>
+    <!--================End related Products =================-->
+
 <form class="row contact_form" action="<?= base_url() ?>products/edit_review" method="post" id="edit_ReviewForm" novalidate="novalidate">
     <div class="modal fade" id="edit_review" data-keyboard="false" data-backdrop="static" role="dialog">
         <div class="modal-dialog">
@@ -346,6 +389,7 @@
 
 <input type="hidden" id="load_more_record" value="5">
 <!--================End Product Description Area =================-->
+
 
 <script type="text/javascript">
 

@@ -3,15 +3,22 @@ $CI=&get_instance();
 $CI->load->model('product_model');
 $CI->load->model('cart_model');
 ?>
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="keywords" content="<?= get_setting()['meta_keywords'] ?>">
-    	<meta name="description" content="<?= get_setting()['meta_description'] ?>">
+
+        <?php if($this->uri->segment(2) == 'product_detail'){ ?>
+	        <?php $_product = $CI->product_model->product_where($this->uri->segment(3)); ?>
+	    	<meta name="keywords" content="<?= $_product[0]['keyword'] ?>">
+	    	<meta name="description" content="<?= $_product[0]['description'] ?>">
+	    <?php }else{ ?>
+	    	<meta name="keywords" content="<?= get_setting()['meta_keywords'] ?>">
+	    	<meta name="description" content="<?= get_setting()['meta_description'] ?>">	
+	    <?php } ?>
+
         <link rel="icon" href="<?= base_url() ?>image/favicon.png" type="image/png">
         <title>DELHIBAZAR</title>
         <!-- Bootstrap CSS -->
@@ -98,8 +105,33 @@ $CI->load->model('cart_model');
 									
 									</ul>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>pages/terms">Terms</a></li>
-								<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>pages/privacy">Privacy</a></li>
+								<li class="nav-item submenu dropdown">
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
+									
+									<ul class="dropdown-menu">
+										
+										
+											
+										<li class="nav-item">
+											<a class="nav-link" href="<?= base_url(); ?>pages/terms">
+												Terms
+											</a>
+										</li>
+
+										<li class="nav-item">
+											<a class="nav-link" href="<?= base_url(); ?>pages/privacy">
+												Privacy
+											</a>
+										</li>
+
+										<li class="nav-item">
+											<a class="nav-link" href="<?= base_url(); ?>pages/return_policy">
+												Return Policy
+											</a>
+										</li>
+									
+									</ul>
+								</li>
 
 								<li class="nav-item submenu dropdown">
 									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User</a>

@@ -17,7 +17,7 @@ class Login extends CI_Controller {
 
 	public function check_login()
 	{
-		$user = $this->social_user_model->user_where($this->input->post('email'),md5($this->input->post('password')));
+		$user = $this->social_user_model->login($this->input->post('email'),md5($this->input->post('password')));
 
 		if($user)
 		{
@@ -29,6 +29,21 @@ class Login extends CI_Controller {
 		{
 			$this->session->set_flashdata('error', 'Invalid Login Details Please try again.');
             redirect(base_url().'login');
+		}
+	}
+
+	public function modal_login()
+	{
+		$user = $this->social_user_model->login($this->input->post('email'),md5($this->input->post('password')));
+
+		if($user)
+		{
+			$this->session->set_userdata('id',$user[0]['id']);
+			echo json_encode(['true']);	
+		}
+		else
+		{
+            echo json_encode(['false','Invalid Login Details']);
 		}
 	}
 

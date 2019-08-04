@@ -35,7 +35,15 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>List Price </label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('list_price',$product['list_price']); ?>" type="text" name="list_price" placeholder="List Price" >
+                                            <?php echo form_error('list_price'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
                                         <div class="form-group">
                                             <label>Price <span class="astrick">*</span></label>
                                             <input class="form-control form-control-sm" value="<?php echo set_value('price',$product['amount']); ?>" type="text" name="price" placeholder="Price" >
@@ -108,6 +116,33 @@
                                         <textarea class="ckeditor" cols="80" id="editor1" name="editor1" rows="10"><?php echo set_value('editor1',$product['desc']); ?></textarea>
                                     </div>
                                     <?php echo form_error('editor1'); ?>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-secondary"> 
+                            <div class="card-header">
+                                <h3 class="card-title">Meta Description</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Keywords </label>
+                                            <textarea class="form-control form-control-sm" value="" type="text" name="keywords" placeholder="Keywords" ><?php echo set_value('keywords',$product['keyword']); ?></textarea>
+                                            <?php echo form_error('keywords'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Description </label>
+                                            <textarea class="form-control form-control-sm" value="" type="text" name="description" placeholder="Description" ><?php echo set_value('description',$product['description']); ?></textarea>
+                                            <?php echo form_error('description'); ?>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
