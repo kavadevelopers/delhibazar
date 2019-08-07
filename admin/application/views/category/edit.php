@@ -35,6 +35,17 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <select class="form-control form-control-sm" name="status">
+                                                <option value="0" <?php if(set_value('status',$category['status']) == '0'){ echo "selected"; } ?>>Active</option>
+                                                <option value="1" <?php if(set_value('status',$category['status']) == '1'){ echo "selected"; } ?>>In Active</option>
+                                            </select>
+                                            <?php echo form_error('status'); ?>
+                                        </div>
+                                    </div>
+
                                     <input type="hidden" name="main_id" value="<?= set_value('main_id',$category['id']); ?>">
                                     
                                    

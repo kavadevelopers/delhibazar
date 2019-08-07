@@ -2,7 +2,18 @@
     <div class="banner_inner d-flex align-items-center">
         <div class="container">
 
-            <form action="<?= $action; ?>/_payment" method="post" id="payuForm" name="payuForm">
+            <div class="banner_content text-center">
+                <h2 style="padding: 50px 0;">Payment Checkout</h2>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="sample-text-area">
+    <div class="container">
+    
+        <form action="<?= $action; ?>/_payment" method="post" id="payuForm" name="payuForm">
 
                 <div class="banner_content text-center">
                     <h2 style="padding: 50px 0;">Payment Checkout</h2>
@@ -59,7 +70,7 @@
                 </div>
 
             </form>
-        </div>
+
     </div>
 </section>
 

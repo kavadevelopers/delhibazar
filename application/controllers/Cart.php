@@ -12,7 +12,7 @@ class Cart extends CI_Controller {
 
 	public function index()
 	{
-		$data['_title']				= "DELHIBAZAR";
+		$data['_title']				= "DELHIBAZAR | Cart";
 		$data['user_product']		= $this->cart_model->user_cart_where($this->session->userdata('id'));
 		$this->load->template1('cart/cart',$data);
 	}
@@ -85,25 +85,109 @@ class Cart extends CI_Controller {
 
 	public function delete_product($id)
 	{
-		if($this->cart_model->cart_where($id))
+		if($id)
 		{
-			if($this->db->delete('cart',['id' => $id]))
+			if($this->cart_model->cart_where($id))
 			{
-				$this->session->set_flashdata('msg', 'Successfully Deleted');
-				redirect(base_url('cart'));	
+				if($this->db->delete('cart',['id' => $id]))
+				{
+					$this->session->set_flashdata('msg', 'Successfully Deleted');
+					redirect(base_url('cart'));	
+				}
+				else
+				{
+					$this->session->set_flashdata('error', 'Product Not Deleted Please Try Again');
+					redirect(base_url('cart'));
+				}
+
 			}
 			else
 			{
-				$this->session->set_flashdata('error', 'Product Not Deleted Please Try Again');
+				$this->session->set_flashdata('error', 'Something went wrong try again');
 				redirect(base_url('cart'));
 			}
-
 		}
-		else
-		{
+		else{
 			$this->session->set_flashdata('error', 'Something went wrong try again');
 			redirect(base_url('cart'));
 		}
 	}
 
+
+	public function wishlist()
+	{
+		$data['_title']				= "DELHIBAZAR | Wishlist";
+		$data['user_product']		= $this->cart_model->get_wishlists($this->session->userdata('id'));
+		$this->load->template1('cart/wishlist',$data);
+	} 
+
+	public function transferToCart($id = false)
+	{
+		if($id)
+		{
+			if($this->cart_model->wishlist_id($id))
+			{
+				
+				$data = $this->cart_model->wishlist_id($id)[0];
+				$cart = [
+							'qty' 			=> '1',
+							'product_id'	=> $data['product_id'],
+							'user_id'		=> $data['user_id'],
+							'created_at'	=> date('Y-m-d H:i:s')
+						];
+				$this->db->insert('cart',$cart);
+
+				$this->db->delete('wishlist',['id' => $id]);
+				redirect(base_url('cart'));	
+
+			}
+			else
+			{
+				$this->session->set_flashdata('error', 'Something went wrong try again');
+				redirect(base_url('cart/wishlist'));
+			}
+		}
+		else{
+			$this->session->set_flashdata('error', 'Something went wrong try again');
+			redirect(base_url('cart/wishlist'));
+		}
+	}
+
+
+	public function delete_product_wishlist($id)
+	{
+		if($id)
+		{
+			if($this->cart_model->wishlist_id($id))
+			{
+				if($this->db->delete('wishlist',['id' => $id]))
+				{
+					$this->session->set_flashdata('msg', 'Successfully Deleted');
+					redirect(base_url('cart/wishlist'));	
+				}
+				else
+				{
+					$this->session->set_flashdata('error', 'Product Not Deleted Please Try Again');
+					redirect(base_url('cart/wishlist'));
+				}
+
+			}
+			else
+			{
+				$this->session->set_flashdata('error', 'Something went wrong try again');
+				redirect(base_url('cart/wishlist'));
+			}
+		}
+		else{
+			$this->session->set_flashdata('error', 'Something went wrong try again');
+			redirect(base_url('cart/wishlist'));
+		}
+	}
+
+	public function clear_wishlist()
+	{
+		$this->db->delete('wishlist',['user_id' => $this->session->userdata('id')]);
+		$this->session->set_flashdata('msg', 'Successfully Cleared');
+		redirect(base_url('cart/wishlist'));	
+	}
 }

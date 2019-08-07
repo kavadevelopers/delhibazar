@@ -36,12 +36,21 @@ class Products extends CI_Controller {
 			$data['category']		= $this->product_model->category_where($id);
 			if($this->product_model->category_where($id))
 			{
+
+
+				$products_or = [];
+
+				foreach ($this->db->get_where('product' ,['df' => '0'])->result_array() as $key => $value) {
+					if(in_array($id,explode(',', $value['category']))){
+						$products_or[] = $value['id'];						
+					}
+				}
 				
 				$data['dynamic_category']		= $this->product_model->dynamic_category_data();
         
 		        //get rows count
 		        $conditions['returnType']   = 'count';
-		        $totalRec = $this->product_model->getRows($conditions,$id,$min,$max,$order);
+		        $totalRec = $this->product_model->getRows($conditions,$id,$min,$max,$order,$products_or);
 		        
 		        //pagination config
 		        $config['base_url']    		= base_url().'products/list/'.$id;
@@ -76,7 +85,7 @@ class Products extends CI_Controller {
 		        $conditions['returnType'] = '';
 		        $conditions['start'] 	  = $offset;
 		        $conditions['limit'] 	  = $this->perPage;
-		        $data['products'] 			  = $this->product_model->getRows($conditions,$id,$min,$max,$order);
+		        $data['products'] 			  = $this->product_model->getRows($conditions,$id,$min,$max,$order,$products_or);
 
 
 
@@ -110,7 +119,7 @@ class Products extends CI_Controller {
 				$data['star_3']			= $this->rating_model->star_rating_3($hash);
 				$data['star_4']			= $this->rating_model->star_rating_4($hash);
 				$data['star_5']			= $this->rating_model->star_rating_5($hash);
-				$data['related'] 		= $this->product_model->related_products($data['product'][0]['category'],$hash);
+				$data['related'] 		= $this->product_model->related_products($data['product'][0]['category'],$hash,$data['product'][0]['amount']);
 				$this->load->template1('product_category/product_detail',$data);
 			}
 			else
@@ -201,6 +210,28 @@ class Products extends CI_Controller {
 			if($this->db->insert('cart',$data))
 			{
 				$this->session->set_flashdata('msg', 'Product Added to Cart');
+				redirect($this->input->get('uri'));	
+			}
+			else
+			{
+				$this->session->set_flashdata('error', 'Something went wrong try again');
+				redirect($this->input->get('uri'));	
+			}
+	}
+
+	public function add_to_wishlist()
+	{
+		$product_id = $this->product_model->product_where($this->input->get('hash'))[0]['id'];
+		
+			$data = [
+					'product_id' 	=> $product_id,
+					'user_id' 		=> $this->session->userdata('id'),
+					'created_at' 	=> date('Y-m-d H:i:s')
+				];
+
+			if($this->db->insert('wishlist',$data))
+			{
+				$this->session->set_flashdata('msg', 'Product Added to Wishlist');
 				redirect($this->input->get('uri'));	
 			}
 			else

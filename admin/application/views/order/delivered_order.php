@@ -25,6 +25,7 @@
                                         <th>Customer Name</th>
                                         <th class="text-center">Total Amount</th>
                                         <th class="text-center">Status</th>
+                                        <th class="text-center">Order Type</th>
                                         <th class="text-center">Created At</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -40,6 +41,13 @@
                                                     <span class="badge badge-danger">Pending</span> 
                                                 <?php }else{ ?>
                                                     <span class="badge badge-success">Delivered</span> 
+                                                <?php } ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php if($value['cod'] == 0){?> 
+                                                    <span class="badge badge-primary">COD</span> 
+                                                <?php }else{ ?>
+                                                    <span class="badge badge-secondary">ONLINE</span> 
                                                 <?php } ?>
                                             </td>
                                             <td class="text-center"><?= _vdatetime($value['created_at']) ?></td>
@@ -69,7 +77,7 @@
             "columnDefs": [
                 
                 
-                    { "orderable": false, "targets": [5] }
+                    { "orderable": false, "targets": [6] }
                     
                 
             ],
@@ -80,21 +88,21 @@
                     extend: 'print',
                     title: '<?=$this->config->config["projectTitle"]?> <?php echo $page_title; ?>',
                     exportOptions: {
-                        columns: [0,1,2,3,4]
+                        columns: [0,1,2,3,4,5]
                     }
                 },
                 { 
                     extend: 'pdf',
                     title: '<?=$this->config->config["projectTitle"]?> <?php echo $page_title; ?>',
                     exportOptions: {
-                        columns: [0,1,2,3,4]
+                        columns: [0,1,2,3,4,5]
                     }
                 },
                 { 
                     extend: 'excel',
                     title: '<?=$this->config->config["projectTitle"]?> <?php echo $page_title; ?>',
                     exportOptions: {
-                        columns: [0,1,2,3,4]
+                        columns: [0,1,2,3,4,5]
                     }
                 }
             ]

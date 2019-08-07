@@ -27,8 +27,7 @@ class Social_user extends CI_Controller {
         {
             if($this->social_user_model->customer_where($id))
             {
-
-                $data['page_title'] = 'User Review';
+                $data['page_title'] = 'Product Reviews';
                 $data['customer']   = $this->social_user_model->customer_where($id)[0];
                 $this->load->template('social_user/product_review_index',$data);
             }
@@ -52,7 +51,7 @@ class Social_user extends CI_Controller {
             if($this->social_user_model->customer_where($id))
             {
 
-                $data['page_title'] = 'User Review';
+                $data['page_title'] = 'Shop Reviews';
                 $data['customer']   = $this->social_user_model->customer_where($id)[0];
                 $this->load->template('social_user/shop_review_index',$data);
             }
@@ -142,5 +141,38 @@ class Social_user extends CI_Controller {
             redirect(base_url().'social_user');
         }
     }
+
+
+    public function listing_review_delete()
+    {   
+        $this->db->where('id',$this->input->get('r_id'));
+        if($this->db->delete('shop_rating'))
+        {
+            $this->session->set_flashdata('msg', 'Review Successfully Deleted');
+            redirect(base_url().'social_user/shop_reviews/'.$this->input->get('u_id'));
+        }
+        else{
+            $this->session->set_flashdata('error', 'Review Not Deleted Try Again');
+            redirect(base_url().'social_user/shop_reviews/'.$this->input->get('u_id'));
+        }
+
+    }
+
+    public function delete_product_review()
+    {   
+        
+
+        $this->db->where('id',$this->input->get('r_id'));
+        if($this->db->delete('product_rating'))
+        {
+            $this->session->set_flashdata('msg', 'Product Review Successfully Deleted');
+            redirect(base_url().'social_user/product_reviews/'.$this->input->get('u_id'));
+        }
+        else{
+            $this->session->set_flashdata('error', 'Product Review Not Deleted Try Again');
+            redirect(base_url().'social_user/product_reviews/'.$this->input->get('u_id'));
+        }
+            
+    }    
 
 }

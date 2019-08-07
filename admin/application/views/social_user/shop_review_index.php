@@ -28,6 +28,7 @@
                                         <th class="text-center">Rating</th>
                                         <th>Subject</th>
                                         <th>Description</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,6 +39,14 @@
                                             <td class="text-center"><?= $value['rating'] ?></td>
                                             <td><?= $value['subject'] ?></td>
                                             <td><?= $value['review'] ?></td>
+                                            <td class="text-center">
+
+                                                <a class="btn btn-sm btn-danger" href="<?= base_url();?>social_user/listing_review_delete/?r_id=<?= $value['id'];?>&u_id=<?= $customer['id'];?>" onclick="return confirm('Are you Sure You Want to Delete this Review ?');" title="Delete">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+
+                                            </td>
+
                                         </tr>
                                     <?php } ?>
 
@@ -56,6 +65,13 @@
     $(function(){
         $('.table').DataTable({
             "dom": "<'row'<'col-md-6'l><'col-md-6'f>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+            "columnDefs": [
+                
+                
+                    { "orderable": false, "targets": [4] }
+                    
+                
+            ],
             order : [],
             "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
             

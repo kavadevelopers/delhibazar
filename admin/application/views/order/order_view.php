@@ -39,9 +39,22 @@
                                         <th>Status </th>
                                         <td>
                                             <?php if($order[0]['delivered'] == 0){?> 
-                                                <span class="badge badge-danger">Pending</span> 
+                                                    <span class="badge badge-danger">Pending</span> 
+                                                <?php }else if($order[0]['delivered'] == 2){ ?>
+                                                    <span class="badge badge-warning">Shipped</span> 
+                                                <?php }else{ ?>
+                                                    <span class="badge badge-success">Delivered</span> 
+                                                <?php } ?>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Order Type</th>
+                                        <td>
+                                            <?php if($order[0]['cod'] == 0){?> 
+                                                <span class="badge badge-primary">COD</span> 
                                             <?php }else{ ?>
-                                                <span class="badge badge-success">Delivered</span> 
+                                                <span class="badge badge-secondary">ONLINE</span> 
                                             <?php } ?>
                                         </td>
                                     </tr>
@@ -88,6 +101,10 @@
                                     <tr>
                                         <th>Country </th>
                                         <td> <?= $order[0]['country'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Order Notes </th>
+                                        <td> <?= nl2br($order[0]['message']) ?></td>
                                     </tr>
                                 </table>
                             </div>

@@ -23,8 +23,11 @@
 					<div class="right_page ml-auto">
 						<nav class="cat_page" aria-label="Page navigation example">
 							<ul class="pagination">
-								<?= $this->pagination->create_links(); ?>
-								
+								<?php if(!empty($this->pagination->create_links())){ ?>
+									<?= $this->pagination->create_links(); ?>
+								<?php }else{ ?>
+									<li style="padding: 20px;"></li>
+								<?php } ?>
 							</ul>
 						</nav>
 					</div>
@@ -38,21 +41,15 @@
 							
 
 							<div class="col-lg-4 col-md-4 col-sm-6">
-								<div class="f_p_item">
+								<div class="f_p_item" onclick="location.href='<?= base_url() ?>products/product_detail/<?= $value['hash'] ?>'">
 									<div class="f_p_img">
 										
-										<?php if(!empty($product_image)) { ?> 
 
 											
-												<img class="img-fluid" src="<?= base_url() ?>admin/uploads/product/<?= $this->product_model->product_image_where($value['id'])[0]['image'] ?>" alt="Product Image">
+										<img class="img-fluid" src="<?= _product_banner($value['id']) ?>" alt="Product Image">
 											
-										<?php } else { ?>
-
-											<img class="img-fluid" src="<?= base_url() ?>admin/uploads/product/no-image.png" alt="Product Image">
-
-										<?php } ?>
-
-										<div class="p_icon">
+										
+										<!-- <div class="p_icon">
 											<?php if($this->session->userdata('id')){ ?>
 												<a href="<?= base_url().'products/add_to_cart/?hash='.$value['hash'].'&uri='.base_url(uri_string()) ?>">
 													<i class="lnr lnr-cart"></i>
@@ -60,9 +57,9 @@
 											<?php }else{ ?>
 												<a href="#" onclick="return guest_click()"><i class="lnr lnr-cart"></i></a>
 											<?php } ?>
-										</div>
+										</div> -->
 									</div>
-									<a href="<?= base_url() ?>products/product_detail/<?= $value['hash'] ?>"><h4><?= $value['name'] ?></h4></a>
+									<a href="javascript:;"><h4><?= $value['name'] ?></h4></a>
 									<?php if(!empty($value['list_price'])){ ?>
 										<h5 style="text-decoration: line-through; font-size: 12px;">₹<?= $value['list_price'] ?><h5>
 									<?php } ?>
@@ -173,6 +170,9 @@
 	}
     .radio_pro{
         cursor: pointer;
+    }
+    .f_p_item{
+    	cursor: pointer;	
     }
 
 </style>

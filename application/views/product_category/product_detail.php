@@ -36,6 +36,10 @@
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
+
+.most_p_list{
+    cursor: pointer;
+}
 </style>
     
     <script src="<?= base_url(); ?>zoom/jquery.exzoom.js"></script>
@@ -68,6 +72,7 @@
                     <div class="exzoom hidden" id="exzoom">
                         <div class="exzoom_img_box">
                             <ul class='exzoom_img_ul'>
+                                <li><img src="<?= _product_banner($product[0]['id']) ?>"/></li>
                                 <?php foreach (get_product_images($product[0]['id']) as $key => $value) { ?>
                                     <li><img src="<?= $value ?>"/></li>
                                 <?php } ?>
@@ -106,8 +111,16 @@
                     <?php } ?>
                     <h2>₹<?= $product[0]['amount'] ?></h2>
                     <ul class="list">
-                        <li><a class="active" href="#"><span>Category</span> : <?= $this->product_model->category_where($product[0]['category'])[0]['name'] ?></a></li>
-                        <li><a href="#"><span>Availibility</span> : In Stock</a></li>
+                        <li>
+                            <span>Category</span> : 
+                            <?php $_cate_text = ""; ?>    
+                            <?php foreach (explode(',',$product[0]['category']) as $kate_key => $kate_value) { ?>
+                                <?php $_cate_text .=  $this->product_model->category_where($kate_value)[0]['name'].', '; ?>
+                            <?php } ?>
+                            <?= rtrim($_cate_text,', ') ?>
+                        </li>
+                        <li><span>Availibility</span> : In Stock</li>
+                        <li><span>Cash On Delivery <?php if($product[0]['cod'] == 0){ echo "Avalible"; }else{ echo "Not Avalible"; } ?></span></li>
                     </ul>
                     <p><?=  nl2br($product[0]['short_desc']) ?></p>
                     
@@ -116,7 +129,7 @@
                             <label for="qty">Quantity:</label>
                             <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty" readonly>
                             <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 1 ) result.value--;return false;" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
                         </div><br>
                         <span class="color-red" id="qty_span"></span>
                         <div class="card_area">
@@ -124,6 +137,12 @@
                                 <button type="submit" class="main_btn btn btn-sm">Add to Cart</button>
                             <?php } else { ?>
                                 <a href="#myModal" type="submit" class="main_btn btn btn-sm" data-toggle="modal">Add to Cart</a>
+                            <?php } ?>
+
+                            <?php if($this->session->userdata('id')) { ?>
+                                <button type="button" onclick="window.location='<?= base_url().'products/add_to_wishlist/?hash='.$product[0]['hash'].'&uri='.base_url(uri_string()) ?>'" class="main_btn btn btn-sm">Add to Wishlist</button>
+                            <?php } else { ?>
+                                <a href="#myModal" type="submit" class="main_btn btn btn-sm" data-toggle="modal">Add to Wishlist</a>
                             <?php } ?>
                         </div>
                         <input type="hidden" name="user_id" value="<?= $this->session->userdata('id') ?>">
@@ -312,10 +331,10 @@
                 <?php foreach ($related as $key => $value) { ?>
                 
                     <div class="col-lg-3 col-sm-6">
-                        <div class="most_p_list">
+                        <div class="most_p_list" onclick="location.href='<?= base_url() ?>products/product_detail/<?= $value['hash'] ?>'">
                             <div class="media">
                                 <div class="d-flex">
-                                    <img src="img/product/most-product/m-product-1.jpg" alt="">
+                                    <img src="<?= _product_banner($value['id']) ?>" alt="" style="width: 100px;">
                                 </div>
                                 <div class="media-body">
                                     <a href="<?= base_url() ?>products/product_detail/<?= $value['hash'] ?>">

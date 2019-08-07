@@ -24,6 +24,7 @@
                             <table class="table table-bordered table-striped table-sm">
                                 <thead>
                                     <tr>
+                                        <th class="text-center">Banner</th>
                                         <th>Product Name</th>
                                         <th>Price</th>
                                         <th>Category</th>
@@ -35,6 +36,9 @@
 
                                     <?php foreach($products as $key => $product){ ?>
                                         <tr>
+                                            <td class="text-center">
+                                                <img class="zoom-img" src="<?= base_url().'uploads/product/banner/'._p_banner_img($product['id']); ?>" style="width: 80px;">
+                                            </td>
                                             <td><?= $product['name']; ?></td>
                                             <td><?= $product['amount']; ?></td>
                                             <td><?= $this->general_model->category_byid($product['category']); ?></td>
@@ -51,9 +55,9 @@
                                                     <i class="fa fa-edit"></i>
                                                 </a>
 
-                                               <!--  <a class="btn btn-sm btn-warning" href="<?= base_url();?>product/change_image/<?= $product['id'];?>" title="Change Images">
+                                                <a class="btn btn-sm btn-warning" href="<?= base_url();?>product/change_image/<?= $product['id'];?>" title="Manage Images">
                                                     <i class="fa fa-image"></i>
-                                                </a> -->
+                                                </a>
 
                                                 <a class="btn btn-sm btn-danger" href="<?= base_url();?>product/delete/<?= $product['id'];?>" onclick="return confirm('Are you Sure You Want to Delete this Product ?');" title="Delete">
                                                     <i class="fa fa-trash"></i>
@@ -113,4 +117,10 @@
         });
     })
 </script>
+
+<style type="text/css">
+    .zoom-img:hover{
+        transform: scale(2);
+    }
+</style>
 

@@ -90,7 +90,7 @@ $CI->load->model('cart_model');
 								<li class="nav-item"><a class="nav-link" href="<?= base_url() ?>">Home</a></li> 
 								<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>pages/about">About</a></li>
 								
-								<li class="nav-item submenu dropdown">
+								<!-- <li class="nav-item submenu dropdown">
 									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shopping</a>
 									
 									<ul class="dropdown-menu">
@@ -104,7 +104,11 @@ $CI->load->model('cart_model');
 										<?php } ?>
 									
 									</ul>
-								</li>
+								</li> -->
+
+
+								<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>category">Shopping</a></li>
+
 								<li class="nav-item submenu dropdown">
 									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
 									
@@ -127,6 +131,11 @@ $CI->load->model('cart_model');
 										<li class="nav-item">
 											<a class="nav-link" href="<?= base_url(); ?>pages/return_policy">
 												Return Policy
+											</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="<?= base_url(); ?>pages/order_traking">
+												Order Traking
 											</a>
 										</li>
 									
@@ -157,6 +166,14 @@ $CI->load->model('cart_model');
 								<li class="nav-item"><a href="<?= base_url() ?>cart" class="cart"><i class="lnr lnr lnr-cart"></i>
 								<?php if($this->session->userdata('id')){ $product = $CI->cart_model->user_cart_where($this->session->userdata('id')); echo count($product); } ?>
 								</a></li>
+
+								<li class="nav-item">
+									<a href="<?= base_url() ?>cart/wishlist" class="cart"><i class="lnr lnr lnr-heart"></i>
+									<?php if($this->session->userdata('id')){ 
+										echo $CI->cart_model->count_wishlist($this->session->userdata('id'));
+									} ?>
+									</a>
+								</li>
 							</ul>
 						</div> 
 					</div>

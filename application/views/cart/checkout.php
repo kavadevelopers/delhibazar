@@ -9,6 +9,40 @@
     </div>
 </section>
 <!--================End Home Banner Area =================-->
+	
+	<?php 
+	$cod = 0;
+	foreach ($user_product as $key => $value) {
+
+		$product  = $this->product_model->product_id_where($value['product_id'])[0];
+		if($product['cod'] == '1'){
+			$cod = 1;
+		}
+	}
+
+
+	if($cod == 1){
+		$url = base_url().'pay';
+	}
+	else{
+		$url = '#'; ?>
+
+		<script type="text/javascript">
+			$(function(){
+				$('#checkout_form').submit(function(){
+					if($('#dropdown_payment_type').val() == '')
+					{
+						$('#error_required_deop').show();
+						return false;
+					}
+					else{
+						$('#error_required_deop').hide();
+					}
+				});
+			})
+		</script>
+
+<?php } ?>
 
 <!--================Checkout Area =================-->
 <section class="checkout_area p_120">
@@ -21,7 +55,7 @@
 			<a class="tp_btn" href="#">Apply Coupon</a>
 		</div> -->
 
-		<form class="contact_form" id="checkout_form" action="<?= base_url() ?>pay" method="post">
+		<form class="contact_form" id="checkout_form" action="<?= $url ?>" method="post">
 
 			<div class="billing_details">
 				<div class="row">
@@ -72,14 +106,12 @@
 								<label>Country</label>
 								<input type="text" class="form-control" id="country" name="country" placeholder="Country">
 							</div>
-							<!-- <div class="col-md-12 form-group">
-								<div class="creat_account">
-									<h3>Shipping Details</h3>
-									<input type="checkbox" id="f-option3" name="selector">
-									<label for="f-option3">Ship to a different address?</label>
-								</div>
+							<div class="col-md-12 form-group">
+								
+								<label>Order Notes</label>
+								
 								<textarea class="form-control" name="message" id="message" rows="1" placeholder="Order Notes"></textarea>
-							</div> -->
+							</div>
 						</div>
 						
 					</div>
@@ -87,7 +119,7 @@
 						<div class="order_box">
 							<h2>Your Order</h2>
 							<ul class="list">
-								<li><a href="#">Product <span>Total</span></a></li>
+								<li><a href="#">Description <span>Amount</span></a></li>
 								<?php $val = 0; foreach ($user_product as $key => $value) { 
 									$val++;
 									$product  = $this->product_model->product_id_where($value['product_id'])[0];
@@ -104,17 +136,47 @@
 							</ul>
 							<ul class="list list_2">
 								<li><a href="#">Subtotal <span class="pull-right sub_total_text"></span></a></li>
-								<!-- <li><a href="#">Shipping <span>Flat rate: ₹50.00</span></a></li> -->
 								<li><a href="#">Total <span class="grand_total_text"></span></a></li>
 							</ul>
+
+
+							<?php if($cod == 0){ ?>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="input-group-icon mt-10">
+										<div class="icon"><i class="fa fa-rupee" aria-hidden="true"></i></div>
+										<div class="form-select" id="default-select">
+											<select style="display: none;" onchange="payment_type(this.value);" name="dropdown_payment_type" id="dropdown_payment_type">
+												<option value="">-- Select Payment Option --</option>
+												<option value="1">Online Payment</option>
+												<option value="0">Cash On Delivery</option>
+											</select>
+											<div class="nice-select" tabindex="0">
+												<span class="current">-- Select Payment Option --</span>
+												<ul class="list">
+													<li data-value="" class="option selected focus">-- Select Payment Option --</li>
+													<li data-value="1" class="option">Online Payment</li>
+													<li data-value="0" class="option">Cash On Delivery</li>
+												</ul>
+											</div>
+										</div>
+										<p style="color: red; display: none;" id="error_required_deop">Please Select Payment Option</p>
+									</div>
+								</div>
+							</div>
+							<?php } ?>
+
+							<hr>
 							
 							<div class="form-group">
-								<input type="checkbox" id="f-option4" name="selector" required>
-								<label for="f-option4" style="padding-right: 5px;">I’ve read and accept the </label>
-								<a href="#">terms & conditions*</a>
+								<label for="f-option4" style="padding-right: 5px;">
+									<input type="checkbox" id="f-option4" name="selector" required>
+									I’ve read and accept the 
+								</label>
+								<a href="<?= base_url() ?>pages/terms" target="_blank">terms & conditions</a>
 							</div>
-							<div class="text-center">
-								<button class="main_btn" type="submit" style="display: inline;">Proceed to Pay</button>
+							<div class="text-center"  style="margin-top: 65px;">
+								<button class="main_btn" type="submit" style="display: inline;">Place Order</button>
 							</div>
 						</div>
 						<input type="hidden" name="user_id" value="<?= $this->session->userdata('id') ?>">
@@ -215,4 +277,31 @@ $(document).ready(function(){
 		  
 	});
 }); 
+
+
+function payment_type(val){
+	var cod = '<?= base_url() ?>pay/cod';
+	var pay = '<?= base_url() ?>pay';
+
+	if(val == '0')
+	{
+		$('#checkout_form').attr('action',cod);
+	}
+	else if(val == '1'){
+		$('#checkout_form').attr('action',pay);	
+	}
+	else{
+		$('#checkout_form').attr('action','#');	
+	}
+}
+
+
+
 </script>
+
+<style type="text/css">
+	label.error{
+		width: 100% !important;
+	}
+</style>
+

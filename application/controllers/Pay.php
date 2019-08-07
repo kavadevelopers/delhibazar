@@ -9,7 +9,6 @@ class Pay extends CI_Controller {
     	$this->load->model('cart_model');   
     }
 
-
     public function index()
     {
             $amount             = $this->input->post('grand_total');
@@ -28,7 +27,7 @@ class Pay extends CI_Controller {
             $txnid              = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
             
             $udf1               = $this->input->post('user_id');
-            $udf2               = ucfirst($this->input->post('district'));
+            $udf2               = ucfirst($this->input->post('district')).'^~^'.$this->input->post('message');
             $udf3               = implode(',',$this->input->post('product_id')).'^~^'.implode(',',$this->input->post('product_amount'));
             $udf4               = implode(',',$this->input->post('qty'));          //Product Quantity
             $udf5               = implode(',',$this->input->post('cart_tbl_id'));  // Cart Table Auto Increment Id
@@ -79,10 +78,10 @@ class Pay extends CI_Controller {
     public function status()
     {
        
-
+        if($this->input->post()){
                     $this->db->order_by('id','DESC');
         $orderid = $this->db->get('payment',1)->result_array();
-        if($orderid){  $new_order_id = 'DB-00'.$orderid[0]['id']+1; }else{ $new_order_id = 'DB-001'; }
+        if($orderid){  $new_order_id = 'DB-00'.($orderid[0]['id']+1); }else{ $new_order_id = 'DB-001'; }
 
         $status = $this->input->post('status');
             if($this->input->post('status')){
@@ -128,11 +127,13 @@ class Pay extends CI_Controller {
                                     'address1'      => $this->input->post('address1'),
                                     'address2'      => $this->input->post('address2'),
                                     'city'          => $this->input->post('city'),
-                                    'district'      => $this->input->post('udf2'),
+                                    'district'      => explode('^~^', $this->input->post('udf2'))[0],
                                     'country'       => $this->input->post('country'),
                                     'zipcode'       => $this->input->post('zipcode'),
                                     'email'         => $this->input->post('email'),
                                     'phone'         => $this->input->post('phone'),
+                                    'cod'           => '1',
+                                    'message'       => explode('^~^', $this->input->post('udf2'))[1],
                                     'created_at'    => date('Y-m-d H:i:s'),
                                                  
                                 ];
@@ -149,7 +150,11 @@ class Pay extends CI_Controller {
                                 
                                 $this->db->delete('cart',['id' => $value]);
                             }
+
+                            $this->db->insert('traking',['detail' => 'Order Placed','order_id' => $id,'date' => date('Y-m-d H:i:s')]);
                             
+                            $this->cart_model->send_order_mail($id);
+
                             $this->session->set_flashdata('msg', 'Order Successfully Placed');
                             redirect(base_url('category'));                        
                             
@@ -164,6 +169,71 @@ class Pay extends CI_Controller {
              
             }
 
-    }
+            }else{
+                redirect(base_url().'error404');
+            }
+
+        }
+
+
+        public function cod()
+        {
+
+            if($this->input->post()){
+
+            $this->db->order_by('id','DESC');
+        $orderid = $this->db->get('payment',1)->result_array();
+        if($orderid){  $new_order_id = 'DB-00'.($orderid[0]['id']+1); }else{ $new_order_id = 'DB-001'; }
+    
+                        $data = [
+                            'orderid'       => $new_order_id,
+                            'user_id'       => $this->input->post('user_id'),
+                            'txnid'         => $new_order_id,
+                            'product_id'    => implode(',',$this->input->post('product_id')).'^~^'.implode(',',$this->input->post('product_amount')),
+                            'cart_tbl_id'   => implode(',',$this->input->post('cart_tbl_id')),
+                            'quantity'      => implode(',',$this->input->post('qty')),
+                            'amount'        => $this->input->post('grand_total'),
+                            'productinfo'   => implode(',',$this->input->post('product_name')),
+                            'name'          => ucfirst($this->input->post('first_name')).' '.ucfirst($this->input->post('last_name')),
+                            'address1'      => $this->input->post('add1'),
+                            'address2'      => $this->input->post('add2'),
+                            'city'          => $this->input->post('city'),
+                            'district'      => $this->input->post('district'),
+                            'country'       => $this->input->post('country'),
+                            'zipcode'       => $this->input->post('zip'),
+                            'email'         => $this->input->post('email'),
+                            'phone'         => $this->input->post('number'),
+                            'cod'           => '0',
+                            'message'       => $this->input->post('message'),
+                            'created_at'    => date('Y-m-d H:i:s'),
+                                         
+                        ];
+                        
+                        if($this->db->insert('payment',$data))
+                        {
+                            $id     = $this->db->insert_id();
+                            $data   = $this->db->get_where('payment',['id' => $id])->result_array();
+                            
+                            $cart   = $data[0]['cart_tbl_id'];
+                            $array  = explode(',' ,$cart);
+
+                            foreach ($array as $key => $value) {
+                                
+                                $this->db->delete('cart',['id' => $value]);
+                            }
+                            
+                            $this->db->insert('traking',['detail' => 'Order Placed','order_id' => $id,'date' => date('Y-m-d H:i:s')]);
+
+                            $this->cart_model->send_order_mail($id);
+
+                            $this->session->set_flashdata('msg', 'Order Successfully Placed');
+                            redirect(base_url('category'));                        
+                            
+                        }
+
+                    }else{
+                        redirect(base_url().'error404');
+                    }
+        }
 
  }

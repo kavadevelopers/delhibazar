@@ -29,13 +29,13 @@ class Order extends CI_Controller {
             }
             else{
                 $this->session->set_flashdata('error', 'Order Not Found');
-                redirect(base_url().'social_user');
+                redirect(base_url().'error404');
             }
 
         }
         else{
             $this->session->set_flashdata('error', 'Order Not Found');
-            redirect(base_url().'social_user');
+            redirect(base_url().'error404');
         }
     }
 
@@ -48,6 +48,11 @@ class Order extends CI_Controller {
         $data['page_title']     = 'Deleted Orders';
         $this->load->template('order/deleted_order',$data);
     } 
+
+    public function shipped_order(){
+        $data['page_title']     = 'Shipped Orders';
+        $this->load->template('order/shipped_order',$data);
+    }
 
     public function pending_order_edit($id)
     {
@@ -131,13 +136,132 @@ class Order extends CI_Controller {
             {
 
                 $this->session->set_flashdata('error', 'Order Not Found');
-                redirect(base_url().'order');
+                redirect(base_url().'error404');
             }
         }
         else
         {
             $this->session->set_flashdata('error', 'Order Not Found');
-            redirect(base_url().'order');
+            redirect(base_url().'error404');
         }
+    }
+
+
+    public function traking($id = false)
+    {
+        if($id)
+        {
+            if($this->order_model->pending_order($id))
+            {
+                $data['page_title']     = 'Tracking';
+                $data['order']      = $this->order_model->order_where($id)[0];
+                $data['link']       = ['trakingsave','pending_order'];
+                $this->load->template('order/traking',$data);
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Order Not Found');
+                redirect(base_url().'order/pending_order');
+            }
+        }
+        else{
+            $this->session->set_flashdata('error', 'Order Not Found');
+            redirect(base_url().'order/pending_order');
+        }
+    }
+
+    public function trakingsave()
+    {   
+        if($this->input->post('traking'))
+        {
+            foreach ($this->input->post('traking') as $key => $value) {
+                $this->db->insert('traking',['detail' => $value,'order_id' => $this->input->post('Ord_Id'),'date' => _now_dt()]);
+            }
+        }
+
+        if($this->input->post('shipped') && $this->input->post('shipped') == '1')
+        {   
+            $this->db->where('id',$this->input->post('Ord_Id'));
+            $this->db->update('payment',['delivered' => '2']);
+        }
+        else{
+            $this->db->where('id',$this->input->post('Ord_Id'));
+            $this->db->update('payment',['delivered' => '0']);
+        }
+
+        if($this->input->post('delivered') && $this->input->post('delivered') == '1')
+        {   
+            $this->db->where('id',$this->input->post('Ord_Id'));
+            $this->db->update('payment',['delivered' => '1']);
+
+            $this->session->set_flashdata('msg', 'Order Successfully Delivered');
+            redirect(base_url().'order/delivered_order');
+        }
+
+        $this->session->set_flashdata('msg', 'Order Successfully Updated');
+        redirect(base_url().'order/traking/'.$this->input->post('Ord_Id'));
+
+    }
+
+    public function delete_traking()
+    {
+        $this->db->where('id',$this->input->post('id'));
+        $this->db->delete('traking');
+        echo "ok";
+    }
+
+
+    public function traking_shipped($id = false)
+    {
+        if($id)
+        {
+            if($this->order_model->pending_order($id))
+            {
+                $data['page_title']     = 'Tracking';
+                $data['order']      = $this->order_model->order_where($id)[0];
+                $data['link']       = ['traking_shipped_save','shipped_order'];
+                $this->load->template('order/traking',$data);
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Order Not Found');
+                redirect(base_url().'order/shipped_order');
+            }
+        }
+        else{
+            $this->session->set_flashdata('error', 'Order Not Found');
+            redirect(base_url().'order/shipped_order');
+        }
+    }
+
+    public function traking_shipped_save(){
+        if($this->input->post('traking'))
+        {
+            foreach ($this->input->post('traking') as $key => $value) {
+                $this->db->insert('traking',['detail' => $value,'order_id' => $this->input->post('Ord_Id'),'date' => _now_dt()]);
+            }
+        }
+
+        if($this->input->post('shipped') && $this->input->post('shipped') == '1')
+        {   
+            $this->db->where('id',$this->input->post('Ord_Id'));
+            $this->db->update('payment',['delivered' => '2']);
+        }
+        else{
+            $this->db->where('id',$this->input->post('Ord_Id'));
+            $this->db->update('payment',['delivered' => '0']);
+        }
+
+        if($this->input->post('delivered') && $this->input->post('delivered') == '1')
+        {   
+            $this->db->where('id',$this->input->post('Ord_Id'));
+            $this->db->update('payment',['delivered' => '1']);
+
+            $this->session->set_flashdata('msg', 'Order Successfully Delivered');
+            redirect(base_url().'order/delivered_order');
+        }
+
+        $this->session->set_flashdata('msg', 'Order Successfully Updated');
+        redirect(base_url().'order/traking_shipped/'.$this->input->post('Ord_Id'));
     }
 }

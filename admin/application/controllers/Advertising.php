@@ -266,7 +266,7 @@ class Advertising extends CI_Controller {
 
 
     function valid_url($url){
-       	if($url == '#'){
+       	if($url == 'javascript:;'){
 
        		return TRUE;
 

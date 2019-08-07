@@ -139,6 +139,13 @@
                             </li>
 
                             <li class="nav-item">
+                                <a href="<?= base_url('order/shipped_order'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("shipped_order"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Shipped Order</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a href="<?= base_url('order/delivered_order'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("delivered_order"))[0]; ?>">
                                     <i class="fa fa-circle-o nav-icon"></i>
                                     <p>Delivered Order</p>
@@ -228,6 +235,13 @@
                                 </li>
 
                                 <li class="nav-item">
+                                    <a href="<?= base_url('category/sub_category'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("sub_category","sub_category_add","sub_edit"))[0]; ?>">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Product Sub Category</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a href="<?= base_url('setting/shop_commission'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("shop_commission"))[0]; ?>">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Shop Commission</p>
@@ -305,6 +319,13 @@
                                     <a href="<?= base_url('other/search_keywords'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("search_keywords"))[0]; ?>">
                                         <i class="fa fa-search nav-icon"></i>
                                         <p>Search Keywords</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="<?= base_url('other/customer_email'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("customer_email"))[0]; ?>">
+                                        <i class="fa fa-envelope nav-icon"></i>
+                                        <p>Customer Email</p>
                                     </a>
                                 </li>
                                                             

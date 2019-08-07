@@ -6,6 +6,7 @@ function pre_print($array)
     echo count($array);
     echo "<pre>";
     print_r($array);
+    exit;
 }
 
 
@@ -27,6 +28,21 @@ function cut_string($string,$length,$replace_str)
 	}
 	else{
 		return $string;
+	}
+}
+
+function selected_filter_listing($val){
+	$CI=&get_instance();
+
+	if($CI->session->userdata('listing_filter')){
+
+		if($CI->session->userdata('listing_filter') == $val){
+			return "selected";
+		}
+
+	}
+	else{
+		return "";
 	}
 }
 
@@ -176,20 +192,99 @@ function _get_shop_img($name)
 function get_product_images($product_id)
 {
 	$CI     =&  get_instance();
-	$image =  $CI->db->get_where('product_images',['p_id' => $product_id])->result_array();
-    $url = [];
-    if($image)
-    {
-        foreach ($image as $key => $value) {
-            $url[] = $CI->config->config['admin_url']."uploads/product/".$value['image'];
+	$images =  $CI->db->get_where('product_images',['p_id' => $product_id])->result_array();
+    $photos = [];
+    
+    foreach ($images as $key => $value) {
+    	$url = $CI->config->config['admin_url']."uploads/product/".$value['image'];
+    	if(getimagesize($url)){
+        	$photos[] = $CI->config->config['admin_url']."uploads/product/".$value['image'];
+        }else{
+        	$photos[] = $CI->config->config['admin_url']."uploads/product/banner/no-image.png";
         }
 
-        return $url;
     }
-    else
-    {
-        return $url[] = $CI->config->config['admin_url']."uploads/no-image.png";
-    }
+    
+    return $photos;
+}
+
+
+function _product_banner($id){
+	$CI=&get_instance();
+	$product = $CI->db->get_where('product',['id' => $id])->result_array()[0];
+	$image = '';
+	if($product['bannner'] == 'no-image.png'){
+		$image = $CI->config->config['admin_url']."uploads/product/banner/no-image.png";
+	}
+	else{
+		if($product['bannner'] == ''){
+			$image = $CI->config->config['admin_url']."uploads/product/banner/no-image.png";
+		}
+		else{
+			$url    =   $CI->config->config['admin_url']."uploads/product/banner/".$product['bannner'];
+	       
+	        if(getimagesize($url))
+	        {
+	            $image = $CI->config->config['admin_url']."uploads/product/banner/".$product['bannner'];
+	        }
+	        else
+	        {
+	            $image = $CI->config->config['admin_url']."uploads/product/banner/no-image.png";
+	        }
+
+	      
+		}
+	}
+
+	return $image;
+}
+
+
+
+function get_category_image($id){
+	$CI=&get_instance();
+	$product = $CI->db->get_where('main_category',['id' => $id])->result_array()[0];
+	$image = '';
+	if($product['banner'] == 'no-image.png'){
+		$image = $CI->config->config['admin_url']."uploads/category/no-image.png";
+	}
+	else{
+		$url    =   $CI->config->config['admin_url']."uploads/category/".$product['banner'];
+		if($product['banner'] == ''){
+			$image = $CI->config->config['admin_url']."uploads/category/no-image.png";
+		}
+		else if(getimagesize($url)){
+			$image = $url;
+		}
+		else{
+			$image = $CI->config->config['admin_url']."uploads/category/no-image.png";
+		}
+	}
+
+	return $image;
+}
+
+function get_subcategory_image($id){
+	$CI=&get_instance();
+	$product = $CI->db->get_where('category',['id' => $id])->result_array()[0];
+	$image = '';
+	if($product['banner'] == 'no-image.png'){
+		$image = $CI->config->config['admin_url']."uploads/category/no-image.png";
+	}
+	else{
+		$url    =   $CI->config->config['admin_url']."uploads/category/".$product['banner'];
+		if($product['banner'] == ''){
+			$image = $CI->config->config['admin_url']."uploads/category/no-image.png";
+		}
+		else if(getimagesize($url)){
+			$image = $url;
+		}
+		else{
+			$image = $CI->config->config['admin_url']."uploads/category/no-image.png";
+		}
+	}
+
+	return $image;
 }
 
 ?>

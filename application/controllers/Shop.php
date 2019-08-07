@@ -20,6 +20,12 @@ class Shop extends CI_Controller {
 		$this->load->template('shop/shop_detail',$data);
 	}
 
+	public function session_ad()
+	{
+		$this->session->set_userdata('listing_filter',$_GET['val']);
+		redirect(base_url().'welcome/list?search='.$_GET['data']);
+	}
+
 	public function load_more()
     {
         echo json_encode($this->shop_model->load_more($this->input->post('record'),$this->input->post('shop_id')));
@@ -39,6 +45,15 @@ class Shop extends CI_Controller {
 
 				if($this->db->insert('shop_rating',$data))
 				{
+
+					$updata = [
+								'rating'	=> $this->rating_model->get_avarage_rating($this->input->post('shop_id')),
+								'comment'	=> $this->rating_model->count_review($this->input->post('shop_id'))
+								];
+
+					$this->db->where('id',$this->input->post('shop_id'));
+					$this->db->update('shop',$updata);
+
 					$this->session->set_flashdata('msg', 'Thank you for rating');
 					redirect(base_url('shop/shop_detail/'.$this->input->post('shop_id')));
 				}
@@ -59,6 +74,16 @@ class Shop extends CI_Controller {
 				$this->db->where('id',$this->input->post('review_id'));
 				if($this->db->update('shop_rating',$data))
 				{
+
+
+					$updata = [
+								'rating'	=> $this->rating_model->get_avarage_rating($this->input->post('shop_id')),
+								'comment'	=> $this->rating_model->count_review($this->input->post('shop_id'))
+								];
+
+					$this->db->where('id',$this->input->post('shop_id'));
+					$this->db->update('shop',$updata);
+
 					$this->session->set_flashdata('msg', 'Rating Updated Thankyou');
 					redirect(base_url('shop/shop_detail/'.$this->input->post('shop_id')));
 				}

@@ -27,6 +27,7 @@
                                         <th>Order Id</th>
                                         <th>Total Amount</th>
                                         <th>Status</th>
+                                        <th class="text-center">Order Type</th>
                                         <th>Created At</th>
                                         <th>Action</th>
                                     </tr>
@@ -39,8 +40,17 @@
                                             <td>
                                                 <?php if($value['delivered'] == 0){?> 
                                                     <span class="badge badge-danger">Pending</span> 
+                                                <?php }else if($value['delivered'] == 2){ ?>
+                                                    <span class="badge badge-warning">Shipped</span> 
                                                 <?php }else{ ?>
                                                     <span class="badge badge-success">Delivered</span> 
+                                                <?php } ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php if($value['cod'] == 0){?> 
+                                                    <span class="badge badge-primary">COD</span> 
+                                                <?php }else{ ?>
+                                                    <span class="badge badge-secondary">ONLINE</span> 
                                                 <?php } ?>
                                             </td>
                                             <td><?= _vdatetime($value['created_at']) ?></td>
@@ -70,7 +80,7 @@
             "columnDefs": [
                 
                 
-                    { "orderable": false, "targets": [4] }
+                    { "orderable": false, "targets": [5] }
                     
                 
             ],

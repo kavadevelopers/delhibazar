@@ -562,6 +562,25 @@
             </div>
 
             <div class="col-md-8 col-xs-12 col-sm-12">
+                <div class="row light-bg text-center">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4 col-sm-12 col-xs-12" style="padding:5px;">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" onchange="window.location.href='<?= base_url() ?>shop/session_ad/?data=<?= $this->input->get('search'); ?>&val='+this.value">
+
+                                <option value="">Filter Result</option>
+                                <option value="rating" <?= selected_filter_listing("rating") ?>>Rating</option>
+                                <option value="new"     <?= selected_filter_listing("new") ?>>Newest</option>
+                                <option value="old"     <?= selected_filter_listing("old") ?>>Oldest</option>
+                                <option value="comment" <?= selected_filter_listing("comment") ?>>Most Commented</option>
+
+                            </select>
+                        </div>
+                    </div>    
+                    <div class="col-md-4"></div>
+                </div>
+
+
                 <div class="row light-bg detail-options-wrap" style="min-height: 500px;">
                     <?php foreach ($shop as $key => $value) { ?>
                         <div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive col-xs-12">

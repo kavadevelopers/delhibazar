@@ -44,6 +44,12 @@ class Pages extends CI_Controller {
         $this->load->template1('pages/faq',$data);
     }
 
+    public function order_traking()
+    {
+        $data['_title']     = "DELHIBAZAR | Track Your Order";
+        $this->load->template1('pages/traking',$data);
+    }
+
 
     public function contact_email()
     {
@@ -91,5 +97,27 @@ class Pages extends CI_Controller {
             
         }
         echo json_encode([count($data),$record,$this->db->get('faq')->num_rows()]);
+    }
+
+
+    public function traking_check()
+    {
+        if($this->input->post())
+        {
+            $record = $this->db->get_where('payment',['orderid' => $this->input->post('order_id'),'email' => $this->input->post('email_id'),'delete_flag' => '0'])->result_array();
+
+            if($record){
+                $data['_title']     = "DELHIBAZAR | Track Package";
+                $this->db->order_by('id','desc');
+                $data['data']       = $this->db->get_where('traking',['order_id' => $record[0]['id']])->result_array();
+                $this->load->template1('pages/traking_data',$data);
+            }
+            else{
+                redirect(base_url().'pages/order_traking/?error=1');
+            }
+        }
+        else{
+            redirect(base_url().'pages/order_traking/?error=1');
+        }
     }
 }

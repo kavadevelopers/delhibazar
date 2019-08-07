@@ -64,7 +64,7 @@
                                             <label>Website Link <span class="astrick">*</span></label>
                                             <input class="form-control form-control-sm" value="<?= set_value('web_link',$advertise[0]['link']); ?>" type="text" name="web_link" placeholder="Website Link" autocomplete="off">
                                             <?= form_error('web_link'); ?>
-                                            <small><b>Note : </b>If You Put This Blank Please Add (#)</small>
+                                            <small><b>Note : </b>If You Put This Blank Please Add (javascript:;)</small>
                                         </div>
                                     </div>
 

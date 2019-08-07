@@ -74,19 +74,22 @@ class Shop_model extends CI_Model
 	{		
 			
 			$this->db->group_start();
-			// $this->db->like('shop_name',$search);
-			// $this->db->or_like('owner_name',$search);
-			// $this->db->or_like('mobile',$search);
-			// $this->db->or_like('wp_no',$search);
-			// $this->db->or_like('address',$search);
-			// $this->db->or_like('landmark',$search);
-			// $this->db->or_like('hour_operation',$search);
-			// $this->db->or_like('pro_or_servi',$search);
-			// $this->db->or_like('info',$search);
-			// $this->db->or_like('hour_operation',$search);
-			// $this->db->or_like('detail_desc',$search);
 			$this->db->like('keywords',$search);
 			$this->db->group_end();
+
+
+			if($this->session->userdata('listing_filter')){
+				if($this->session->userdata('listing_filter') == 'new'){
+					$this->db->order_by('id','DESC');
+				}else if($this->session->userdata('listing_filter') == 'old'){
+					$this->db->order_by('id','ASC');
+				}else if($this->session->userdata('listing_filter') == 'rating'){
+					$this->db->order_by('rating','DESC');
+				}else if($this->session->userdata('listing_filter') == 'comment'){
+					$this->db->order_by('comment','DESC');
+				}
+			}
+
 
 		return	$this->db->get_where('shop',[ 'exp_date >=' => date('Y-m-d'),'dis_in_listing' => '0'])->result_array();
 	}

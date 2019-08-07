@@ -38,7 +38,7 @@
 									<td>
 										<div class="media">
 											<div class="d-flex">
-												<img src="<?= $this->config->config['admin_url'] ?>uploads/product/<?= $product_img['image'] ?>" alt="" height="70px">
+												<img src="<?= _product_banner($product['id']) ?>" alt="" height="70px">
 											</div>
 											<div class="media-body">
 												<p><?= $product['name'] ?></p>

@@ -23,7 +23,7 @@ class General_model extends CI_Model
 
 	public function count_categories()
 	{
-		return $this->db->get_where('category',['df' => '0'])->num_rows();
+		return $this->db->get_where('main_category',['df' => '0','status' => '0'])->num_rows();
 	}
 
 	public function get_categories()

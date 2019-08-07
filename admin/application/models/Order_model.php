@@ -36,4 +36,15 @@ class Order_model extends CI_Model
 		return $this->db->get_where('payment',['delete_flag' => 1])->result_array();
 	}
 
+	public function pending_order($id)
+	{	
+		$this->db->or_where('delivered','0'); 
+		$this->db->or_where('delivered','2'); 
+		return $this->db->get_where("payment",['delete_flag' => '0','id' => $id])->result_array();
+	}
+
+	public function get_traking($id)
+	{
+		return $this->db->get_where('traking',['order_id' => $id])->result_array();
+	}
 }

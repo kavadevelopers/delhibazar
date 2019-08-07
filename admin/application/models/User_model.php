@@ -28,4 +28,18 @@ class User_model extends CI_Model
 	}
 
 
+	public function get_category($id)
+	{
+		return $this->db->get_where('main_category',['id' => $id,'status' => '0	'])->result_array();	
+	}
+
+	public function get_category_all($id)
+	{
+		return $this->db->get_where('main_category',['id' => $id])->result_array();	
+	}
+
+	public function get_subcategory($id)
+	{
+		return $this->db->get_where('category',['id' => $id])->result_array();	
+	}
 }

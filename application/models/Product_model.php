@@ -13,8 +13,13 @@ class Product_model extends CI_Model
 
 	public function get_category()
 	{
-		return $this->db->get_where('category',['df' => '0'])->result_array();
+		return $this->db->get_where('main_category',['df' => '0','status' => '0'])->result_array();
 	}
+
+    public function get_sub_category($id)
+    {
+        return $this->db->get_where('category',['category' => $id,'df' => '0','status' => '0'])->result_array();
+    }
 
 	public function product_where($hash)
 	{
@@ -49,7 +54,7 @@ class Product_model extends CI_Model
 	}
 
 
-	function getRows($params = array(),$id,$min,$max,$order){
+	function getRows($params = array(),$id,$min,$max,$order,$products_or){
         $this->db->select('*');
 
         if($order == 'id_desc'){
@@ -66,14 +71,24 @@ class Product_model extends CI_Model
             $this->db->order_by('id','desc');
         }
 
-
+        $this->db->group_start();
+            if(count($products_or) > 0){
+                $this->db->where('id','0');
+                foreach ($products_or as $_key => $_value) {
+                    $this->db->or_where('id',$_value);
+                }
+            }
+            else{
+                $this->db->where('id','0');
+            }
+        $this->db->group_end();
 
         $this->db->group_start();
-            $this->db->where('category',$id);
             $this->db->where('amount >=',$min);
             $this->db->where('amount <=',$max);
             $this->db->where('status','1');
         $this->db->group_end();
+
         $this->db->from('product');
         if(array_key_exists("id",$params)){
             $this->db->where('id',$params['id']);
@@ -98,9 +113,40 @@ class Product_model extends CI_Model
         return $result;
     }
 
-    public function related_products($category,$hash){
+    public function related_products($category,$hash,$price){
+        
+        $percentage = 30;
+
+        $min = $price - ($price * $percentage / 100);
+        $max = $price + ($price * $percentage / 100);
+
+        $array = [];
+        foreach ($this->db->get_where('product' ,['df' => '0','status' => '1'])->result_array() as $key => $value) {
+            
+            foreach (explode(',', $category) as $_key => $_value) {
+
+                if(in_array($_value,explode(',', $value['category']))){ 
+                    $array[] = $value['id'];          
+                }
+
+            }
+            
+        }
+
+        $this->db->group_start();
+        if(count($array) > 0){
+            foreach ($array as $key => $value) {
+                $this->db->or_where('id',$value);       
+            }
+        }
+        else{
+            $this->db->or_where('id','0'); 
+        }
+        $this->db->group_end();
+        $this->db->where('amount >=',$min);
+        $this->db->where('amount <=',$max);
         $this->db->limit('8');
-        $this->db->order_by('rand()');
-        return $this->db->get_where('product',['category' => $category,'hash !=' => $hash,'status' => '1'])->result_array();
+        $this->db->order_by('id','asc');
+        return $this->db->get_where('product',['hash !=' => $hash])->result_array();
     }
 }

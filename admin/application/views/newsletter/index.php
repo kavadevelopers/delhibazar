@@ -8,7 +8,10 @@
         		<h1 class="m-0 text-dark"><?php echo $page_title; ?></h1>
       		</div>
             <div class="col-sm-6">
-                <a href="<?= base_url('newsletter/sendmail'); ?>" class="float-sm-right btn btn-primary btn-sm"> <i class="fa fa-paper-plane-o"></i> &nbsp;&nbsp;&nbsp;Send Mail</a>
+
+                <a href="<?= base_url('newsletter/sendmail'); ?>" class="float-sm-right btn btn-primary btn-sm" style="margin-right: 5px;margin-left: 5px;"> <i class="fa fa-paper-plane-o"></i> &nbsp;&nbsp;&nbsp;Send Mail</a>
+
+                <a href="<?= base_url('newsletter/import'); ?>" class="float-sm-right btn btn-primary btn-sm"> <i class="fa fa-upload"></i> &nbsp;&nbsp;&nbsp;Import</a>
             </div>
     	</div>
   	</div>

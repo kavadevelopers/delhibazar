@@ -8,6 +8,7 @@ class Newsletter extends CI_Controller {
         $this->auth->check_session();
         $this->load->model('user_model');
         $this->load->model('general_model');
+        $this->load->library('csvimport');
 	}
 
 
@@ -92,5 +93,31 @@ class Newsletter extends CI_Controller {
 	        redirect(base_url().'newsletter');
 		}
 	}		
+
+	public function import()
+	{
+		$data['page_title']		= 'Import Newsletter';
+		$this->load->template('newsletter/import',$data);
+	}
+
+	public function import_file()
+	{
+		$file_data = $this->csvimport->get_array($_FILES["file"]["tmp_name"]);
+		foreach ($file_data as $key => $value) {
+			if(count($value) > 0)
+			{
+				if (array_key_exists("Email",$value)){
+					if(filter_var($value['Email'], FILTER_VALIDATE_EMAIL)) {
+						$this->db->insert('newsletter',['email' => $value['Email'],'active' => '0','created_at' => _now_dt()]);
+					}
+				}
+			}
+		}
+
+		$this->session->set_flashdata('msg', 'Newsletter Successfully Imported');
+	    redirect(base_url().'newsletter');
+	}
+
+
 
 }

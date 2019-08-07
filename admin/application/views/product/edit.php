@@ -45,8 +45,24 @@
 
                                     <div class="col-md-2">
                                         <div class="form-group">
+                                            <label>Tax <small>Note : (In %)</small><span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" onkeyup="total_amt();" value="<?php echo set_value('tax',$product['tax']); ?>" type="text" name="tax" id="tax" placeholder="Tax" >
+                                            <?php echo form_error('tax'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Amount without tax <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" onkeyup="total_amt();" value="<?php echo set_value('amount_without_tax',$product['amount_without_tax']); ?>" type="text" id="amount_without_tax" name="amount_without_tax" placeholder="Amount without tax" >
+                                            <?php echo form_error('amount_without_tax'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
                                             <label>Price <span class="astrick">*</span></label>
-                                            <input class="form-control form-control-sm" value="<?php echo set_value('price',$product['amount']); ?>" type="text" name="price" placeholder="Price" >
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('price',$product['amount']); ?>" type="text" name="price" id="amount" placeholder="Price" readonly>
                                             <?php echo form_error('price'); ?>
                                         </div>
                                     </div>
@@ -54,19 +70,50 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Category <span class="astrick">*</span></label>
-                                            <select name="category" class="form-control form-control-sm select2" >
-                                                <option value="">-- Select Category --</option>
+                                            <select id="multiselect" name="category[]" multiple="multiple" class="form-control" style="display: none;">
 
+
+                                            <?php if(!empty(validation_errors())){ ?>        
                                                 <?php foreach ($categories as $key => $category) { ?>
                                                         
-                                                        <option value="<?= $category['id'];?>" <?php if($category['id'] == set_value('category',$product['category'])) { echo "selected"; } ?>>
-                                                        <?= $category['name'];?>
+                                                        <option value="<?= $category['id'];?>" 
+                                                            <?php if(set_value('category')){ foreach (set_value('category') as $c_key => $set_val) {
+                                                                if($set_val == $category['id']){
+                                                                    echo "selected";
+                                                                }
+                                                        } }?>>
+                                                            <?= $category['name'];?>
                                                         </option>
                                                   
                                                 <?php } ?>
+                                            <?php }else{ ?>
+                                                <?php foreach ($categories as $key => $category) { ?>
+
+                                                        <option value="<?= $category['id'];?>" 
+                                                            <?php if(set_value('category[]',explode(',',$product['category']))){ foreach (set_value('category[]',explode(',',$product['category'])) as $c_key => $set_val) {
+                                                                if($set_val == $category['id']){
+                                                                    echo "selected";
+                                                                }
+                                                        } }?>>
+                                                            <?= $category['name'];?>
+                                                        </option>
+                                                  
+                                                <?php } ?>
+                                            <?php } ?>
 
                                             </select>
-                                            <?php echo form_error('category'); ?>
+                                            <?php echo form_error('category[]'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Cash On Delivery <span class="astrick">*</span></label>
+                                            <select name="cash_on_delivery" class="form-control form-control-sm" >
+                                                <option value="0" <?php if(0 == set_value('cash_on_delivery',$product['cod'])) { echo "selected"; } ?>>Avalible</option>
+                                                <option value="1" <?php if(1 == set_value('cash_on_delivery',$product['cod'])) { echo "selected"; } ?>>Not Avalible</option>
+                                            </select>
+                                            <?php echo form_error('cash_on_delivery'); ?>
                                         </div>
                                     </div>
 
@@ -77,27 +124,6 @@
                                             <?php echo form_error('short_desc'); ?>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Image(Select mutiple image) <span class="astrick">*</span></label>
-                                            <br>
-                                            <span><i><span class="astrick">Note</span> : Max size & Max Resoluion(2MB, 720 X 1080) </i></span>
-                                            <input type="file" class="form-control form-control-sm" name="image[]" placeholder="Image" multiple="multiple">
-                                            
-                                            <?php 
-                                                $get_image = $this->db->get_where('product_images',['p_id' => $product['id']])->result_array();
-                                                foreach ($get_image as $key => $value) { 
-                                            ?>
-                                                    
-                                                
-                                            
-                                                <img src="<?= base_url() ?>uploads/product/<?= $value['image'] ?>" alt="Product Image" style="max-width:150px;padding-top: 10px;">
-
-                                            <?php } ?>
-                                        </div>
-                                    </div>
-                                    
                                    
                                 </div>
                             </div>
@@ -144,6 +170,17 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Status </label>
+                                            <select class="form-control" name="status">
+                                                <option value="1" <?php if(set_value('status',$product['status']) == '1'){ echo "selected"; } ?>>Active</option>
+                                                <option value="0" <?php if(set_value('status',$product['status']) == '0'){ echo "selected"; } ?>>In Active</option>
+                                            </select>
+                                            
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -171,3 +208,40 @@
     
 
     <script src="<?= base_url(); ?>plugins/ckeditor/ckeditor.js"></script>
+
+    <script type="text/javascript">
+        function total_amt(){
+            tax = $('#tax').val();
+            amount = $('#amount_without_tax').val();
+
+            if(tax != '' && amount != '')
+            {
+                var total = tax * amount / 100;
+                total = total + parseFloat(amount);
+                $('#amount').val(parseFloat(total).toFixed(2));
+            }
+        }
+
+        $(document).ready(function(){
+            total_amt();
+        })
+
+        $(document).ready(function() {
+            $('#multiselect').multiselect({
+                buttonWidth : '160px',
+                includeSelectAllOption : true,
+                nonSelectedText: 'Select Category'
+            });
+        });
+    </script>
+
+
+    <style type="text/css">
+        .multiselect-container li{
+            padding-left: 5px;
+        }
+
+        .btn-group{
+            width: 100% !important;
+        }
+    </style>

@@ -78,6 +78,14 @@
 <!-- Bootstrap Validator -->
 <script src="<?php echo base_url(); ?>plugins/bootstrap_validator/bootstrapValidator.js"></script>
 
+<!-- Bootstrap Multi select -->
+<link href="<?php echo base_url(); ?>plugins/bootstrap-multiselect/style.css">
+<script src="<?php echo base_url(); ?>plugins/bootstrap-multiselect/script.js"></script>
+
+
+<script src="<?= base_url('plugins/cropie/') ?>croppie.js"></script>
+<link rel="stylesheet" type="text/css" href="<?= base_url('plugins/cropie/') ?>croppie.css"> 
+
 
 </body>
 </html>

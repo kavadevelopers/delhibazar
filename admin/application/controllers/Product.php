@@ -55,12 +55,14 @@ class Product extends CI_Controller {
         $this->form_validation->set_rules('name', 'Product Name', 'trim|required|min_length[2]|max_length[50]');
         $this->form_validation->set_rules('price', 'Price', 'trim|required|max_length[10]|decimal');
         $this->form_validation->set_rules('list_price', 'List Price', 'trim|max_length[10]|decimal');
-        $this->form_validation->set_rules('category', 'Category', 'trim|required');
+        $this->form_validation->set_rules('category[]', 'Category', 'trim|required');
         $this->form_validation->set_rules('short_desc', 'Short Description', 'trim|required');
         $this->form_validation->set_rules('editor1', 'Description', 'trim|required');
         $this->form_validation->set_rules('keywords', 'Description', 'trim');
         $this->form_validation->set_rules('description', 'Description', 'trim');
-
+        $this->form_validation->set_rules('tax', 'Tax', 'trim|required|max_length[2]|numeric');
+        $this->form_validation->set_rules('amount_without_tax', 'Amount without tax', 'trim|required|max_length[10]|decimal');
+        $this->form_validation->set_rules('cash_on_delivery', 'Cash On Delivery', 'trim|required');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -78,61 +80,23 @@ class Product extends CI_Controller {
                             'list_price'    =>  $this->input->post('list_price'),
                             'short_desc'    =>  trim($this->input->post('short_desc')),
                             'desc'          =>  trim($this->input->post('editor1')),
-                            'category'      =>  $this->input->post('category'),
+                            'category'      =>  implode(',', $this->input->post('category')),
                             'description'   =>  $this->input->post('description'),
+                            'tax'           =>  $this->input->post('tax'),
+                            'amount_without_tax'   =>  $this->input->post('amount_without_tax'),
                             'keyword'       =>  $this->input->post('keywords'),
                             'created_by'    =>  $this->session->userdata('id'),
                             'updated_by'    =>  $this->session->userdata('id'),
                             'created_at'    =>  _now_dt(),
-                            'updated_at'    =>  _now_dt()
+                            'updated_at'    =>  _now_dt(),
+                            'cod'           =>  $this->input->post('cash_on_delivery')
                         ];
 
                 if($this->db->insert('product', $product)){
-                    $insert_id = $this->db->insert_id();
-
-                    if(!empty($_FILES['image']['name'][0]))
-                    {
-                        $filesCount = count($_FILES['image']['name']);
-                        for($i = 0; $i < $filesCount; $i++){
-                            $_FILES['file']['name']     = $_FILES['image']['name'][$i];
-                            $_FILES['file']['type']     = $_FILES['image']['type'][$i];
-                            $_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
-                            $_FILES['file']['error']    = $_FILES['image']['error'][$i];
-                            $_FILES['file']['size']     = $_FILES['image']['size'][$i];
-                            
-                            // File upload configuration
-                            $config['file_name']        = md5(microtime(true)).".".pathinfo($_FILES['image']['name'][$i], PATHINFO_EXTENSION);
-                            $uploadPath = './uploads/product';
-                            $config['upload_path'] = $uploadPath;
-                            $config['allowed_types'] = 'jpg|jpeg|png|gif';
-                            
-                            // Load and initialize upload library
-                            $this->load->library('upload', $config);
-                            $this->upload->initialize($config);
-                            
-                            // Upload file to server
-                            if($this->upload->do_upload('file')){
-                             
-                                $image = [ 
-                                            'p_id'        =>  $insert_id, 
-                                            'image'       =>  $config['file_name'] 
-                                          ];
-
-                                $this->db->insert('product_images', $image);
-                                
-                            }
-                            else
-                            {
-                                $this->session->set_flashdata('error', $this->upload->display_errors());
-                                redirect(base_url().'product/add');
-                            }
-                        }
-                        $this->session->set_flashdata('msg', 'Product Successfully Added');
-                        redirect(base_url().'product');
-                    }
 
                     $this->session->set_flashdata('msg', 'Product Successfully Added');
                     redirect(base_url().'product');
+
                 }
                 else
                 {
@@ -152,12 +116,15 @@ class Product extends CI_Controller {
         $this->form_validation->set_rules('name', 'Product Name', 'trim|required|min_length[2]|max_length[50]');
         $this->form_validation->set_rules('price', 'Price', 'trim|required|max_length[10]|decimal');
         $this->form_validation->set_rules('list_price', 'List Price', 'trim|max_length[10]|decimal');
-        $this->form_validation->set_rules('category', 'Category', 'trim|required');
+        $this->form_validation->set_rules('category[]', 'Category', 'trim|required');
         $this->form_validation->set_rules('short_desc', 'Short Description', 'trim|required');
         $this->form_validation->set_rules('editor1', 'Description', 'trim|required');
         $this->form_validation->set_rules('keywords', 'Description', 'trim');
         $this->form_validation->set_rules('description', 'Description', 'trim');
-
+        $this->form_validation->set_rules('status', 'Description', 'trim');
+        $this->form_validation->set_rules('tax', 'Tax', 'trim|required|max_length[2]|numeric');
+        $this->form_validation->set_rules('amount_without_tax', 'Amount without tax', 'trim|required|max_length[10]|decimal');
+        $this->form_validation->set_rules('cash_on_delivery', 'Cash On Delivery', 'trim|required');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -172,83 +139,21 @@ class Product extends CI_Controller {
             $product =  [
                             'name'          =>  ucfirst($this->input->post('name')),
                             'amount'        =>  $this->input->post('price'),
+                            'status'        =>  $this->input->post('status'),
                             'list_price'    =>  $this->input->post('list_price'),
                             'short_desc'    =>  trim($this->input->post('short_desc')),
                             'desc'          =>  trim($this->input->post('editor1')),
-                            'category'      =>  $this->input->post('category'),
+                            'tax'           =>  $this->input->post('tax'),
+                            'amount_without_tax'   =>  $this->input->post('amount_without_tax'),
+                            'category'      =>  implode(',', $this->input->post('category')),
                             'description'   =>  $this->input->post('description'),
                             'keyword'       =>  $this->input->post('keywords'),
                             'updated_by'    =>  $this->session->userdata('id'),
-                            'updated_at'    =>  _now_dt()
+                            'updated_at'    =>  _now_dt(),
+                            'cod'           =>  $this->input->post('cash_on_delivery')
                         ];
                 $this->db->where('id',$this->input->post('product_id'));
                 if($this->db->update('product', $product)){
-                    
-
-                    if(!empty($_FILES['image']['name'][0]))
-                    {
-
-                        $product    = $this->product_model->product_image_where($this->input->post('product_id'));
-
-                        foreach ($product as $key => $value) {
-                        
-                            if($value['image'] != '')
-                            {
-                                if(file_exists('./uploads/product/'.$value['image']))
-                                {
-                                    
-                                    $this->db->where('id',$value['id']);
-                                    $this->db->delete('product_images');
-                                    
-                                    unlink('./uploads/product/'.$value['image']);
-                                }
-                                else
-                                {
-                                    $this->db->where('id',$value['id']);
-                                    $this->db->delete('product_images');
-                                }
-                            }
-                        }
-
-                        $filesCount = count($_FILES['image']['name']);
-                        for($i = 0; $i < $filesCount; $i++){
-                            $_FILES['file']['name']     = $_FILES['image']['name'][$i];
-                            $_FILES['file']['type']     = $_FILES['image']['type'][$i];
-                            $_FILES['file']['tmp_name'] = $_FILES['image']['tmp_name'][$i];
-                            $_FILES['file']['error']    = $_FILES['image']['error'][$i];
-                            $_FILES['file']['size']     = $_FILES['image']['size'][$i];
-                            
-                            // File upload configuration
-                            $config['file_name']        = md5(microtime(true)).".".pathinfo($_FILES['image']['name'][$i], PATHINFO_EXTENSION);
-                            $uploadPath = './uploads/product';
-                            $config['upload_path'] = $uploadPath;
-                            $config['allowed_types'] = 'jpg|jpeg|png|gif';
-                            
-                            // Load and initialize upload library
-                            $this->load->library('upload', $config);
-                            $this->upload->initialize($config);
-                            
-                            // Upload file to server
-                            if($this->upload->do_upload('file')){
-                             
-                                $image = [ 
-                                            'p_id'        =>  $this->input->post('product_id'), 
-                                            'image'       =>  $config['file_name'] 
-                                          ];
-
-                                $this->db->insert('product_images', $image);
-                                
-                            }
-                            else
-                            {
-                                $this->session->set_flashdata('error', $this->upload->display_errors());
-                                redirect(base_url().'product/edit/'.$this->input->post('product_id'));
-                            }
-                        }
-                    
-                        $this->session->set_flashdata('msg', 'Product Successfully Saved');
-                        redirect(base_url().'product');
-                    }
 
 
                     $this->session->set_flashdata('msg', 'Product Successfully Saved');
@@ -295,5 +200,102 @@ class Product extends CI_Controller {
         }
     }
 
+    public function change_image($id = false)
+    {
+        if($id)
+        { 
+            if($this->product_model->check_product_by_id($id))
+            {
+
+                $data['page_title'] = 'Manage Images';
+                $data['product']    = $this->product_model->product_id_where($id)[0];
+                $this->load->template('product/change_images',$data);
+
+            }
+            else
+            {
+
+                $this->session->set_flashdata('error', 'Product Not Found');
+                redirect(base_url().'product');
+            }
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'Product Not Found');
+            redirect(base_url().'product');
+        }
+    }
+
+
+    public function save_banner()
+    {
+        $croped_image = $_POST['image'];
+
+        list($type, $croped_image) = explode(';', $croped_image);
+        list(, $croped_image)      = explode(',', $croped_image);
+        $croped_image = base64_decode($croped_image);
+
+        $imageName = md5(microtime(true)).'.jpg';
+
+        if(!file_put_contents('./uploads/product/banner/'.$imageName, $croped_image)){
+            $this->session->set_flashdata('error', 'Banner Upload Error Please Try again.');
+            exit;
+        }
+        else{
+
+            $product = $this->product_model->product_id_where($_POST['product_id'])[0];
+
+            if($product['bannner'] != 'no-image.png'){
+                if(file_exists(FCPATH."./uploads/product/banner/".$product['bannner'])){
+                    unlink(FCPATH."./uploads/product/banner/".$product['bannner']);    
+                }
+            }
+        
+
+            $this->db->where('id' , $_POST['product_id']);
+            $this->db->update('product',['bannner' => $imageName]);
+
+            $this->session->set_flashdata('msg', 'Banner Successfully Changed');
+            
+        }
+        
+    }
+
+    public function save_image()
+    {
+        $croped_image = $_POST['image'];
+
+        list($type, $croped_image) = explode(';', $croped_image);
+        list(, $croped_image)      = explode(',', $croped_image);
+        $croped_image = base64_decode($croped_image);
+
+        $imageName = md5(microtime(true)).'.jpg';
+
+        if(!file_put_contents('./uploads/product/'.$imageName, $croped_image)){
+            $this->session->set_flashdata('error', 'Banner Upload Error Please Try again.');
+            exit;
+        }
+        else{
+        
+            $this->db->insert('product_images',['image' => $imageName , 'p_id' => $_POST['product_id']]);
+
+            $this->session->set_flashdata('msg', 'Banner Successfully Changed');
+            
+        }
+        
+    }
+
+
+    public function delete_image(){
+
+        $image = $this->db->get_where('product_images',['id' => $this->input->post('id')])->result_array()[0];
+
+        if(file_exists(FCPATH."./uploads/product/".$image['image'])){
+            unlink(FCPATH."./uploads/product/".$image['image']);    
+        }
+
+        $this->db->where('id' , $this->input->post('id'));
+        $this->db->delete('product_images');
+    }
 }
 ?>

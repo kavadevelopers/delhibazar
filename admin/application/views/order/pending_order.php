@@ -25,12 +25,16 @@
                                         <th>Customer Name</th>
                                         <th class="text-center">Total Amount</th>
                                         <th class="text-center">Status</th>
+                                        <th class="text-center">Order Type</th>
                                         <th class="text-center">Created At</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($this->db->get_where('payment',['delivered' => '0','delete_flag' => '0'])->result_array() as $key => $value){ ?>
+                                    <?php 
+                                    $this->db->or_where('delivered','0'); 
+                                    $this->db->or_where('delivered','2'); 
+                                    foreach($this->db->get_where('payment',['delete_flag' => '0'])->result_array() as $key => $value){ ?>
                                         <tr>
                                             <td class="text-center"><?= $value['orderid'] ?></td>
                                             <td><?= $value['name'] ?></td>
@@ -38,19 +42,34 @@
                                             <td class="text-center">
                                                 <?php if($value['delivered'] == 0){?> 
                                                     <span class="badge badge-danger">Pending</span> 
+                                                <?php }else if($value['delivered'] == 2){ ?>
+                                                    <span class="badge badge-warning">Shipped</span> 
                                                 <?php }else{ ?>
                                                     <span class="badge badge-success">Delivered</span> 
                                                 <?php } ?>
                                             </td>
+                                            <td class="text-center">
+                                                <?php if($value['cod'] == 0){?> 
+                                                    <span class="badge badge-primary">COD</span> 
+                                                <?php }else{ ?>
+                                                    <span class="badge badge-secondary">ONLINE</span> 
+                                                <?php } ?>
+                                            </td>
                                             <td class="text-center"><?= _vdatetime($value['created_at']) ?></td>
                                             <td class="text-center">
+
                                                 <a class="btn btn-sm btn-secondary" href="<?= base_url();?>order/order_view/<?= $value['id'];?>" title="Order View">
                                                     <i class="fa fa-eye"></i>
+                                                </a>
+
+                                                <a class="btn btn-sm btn-warning" href="<?= base_url();?>order/traking/<?= $value['id'];?>" title="Tracking">
+                                                    <i class="fa fa-truck"></i>
                                                 </a>
 
                                                 <a class="btn btn-sm btn-danger" href="<?= base_url();?>order/delete/<?= $value['id'];?>" onclick="return confirm('Are you Sure You Want to Delete this Order .?');" title="Delete">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
+
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -73,7 +92,7 @@
             "columnDefs": [
                 
                 
-                    { "orderable": false, "targets": [5] }
+                    { "orderable": false, "targets": [6] }
                     
                 
             ],
@@ -84,21 +103,21 @@
                     extend: 'print',
                     title: '<?=$this->config->config["projectTitle"]?> <?php echo $page_title; ?>',
                     exportOptions: {
-                        columns: [0,1,2,3,4]
+                        columns: [0,1,2,3,4,5]
                     }
                 },
                 { 
                     extend: 'pdf',
                     title: '<?=$this->config->config["projectTitle"]?> <?php echo $page_title; ?>',
                     exportOptions: {
-                        columns: [0,1,2,3,4]
+                        columns: [0,1,2,3,4,5]
                     }
                 },
                 { 
                     extend: 'excel',
                     title: '<?=$this->config->config["projectTitle"]?> <?php echo $page_title; ?>',
                     exportOptions: {
-                        columns: [0,1,2,3,4]
+                        columns: [0,1,2,3,4,5]
                     }
                 }
             ]

@@ -24,8 +24,9 @@
                             <table class="table table-bordered table-striped table-sm">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th class="text-center">#</th>
                                         <th>Category</th>
+                                        <th class="text-center">Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -33,13 +34,23 @@
                                     <?php $a = count($categories) + 1; foreach ($categories as $key => $category) { $a--; ?>
 
                                         <tr>
-                                            <td><?= $a ?></td>
+                                            <td class="text-center"><?= $a ?></td>
                                             <td><?= $category['name']; ?></td>
-                                                
+                                            <td class="text-center">
+                                                <?php if($category['status'] == '0'){ ?>
+                                                    <span class="badge badge-success">Active</span>
+                                                <?php }else{ ?>
+                                                    <span class="badge badge-danger">In Active</span>
+                                                <?php } ?>
+                                            </td>
                                             <td class="text-center">
                                                 
                                                 <a class="btn btn-sm btn-success" href="<?= base_url();?>category/edit/<?= $category['id'];?>" title="Edit">
                                                     <i class="fa fa-edit"></i>
+                                                </a>
+
+                                                <a class="btn btn-sm btn-warning" href="<?= base_url();?>category/change_image_category/<?= $category['id'];?>" title="Manage Images">
+                                                    <i class="fa fa-image"></i>
                                                 </a>
 
                                                 <a class="btn btn-sm btn-danger" href="<?= base_url();?>category/delete/<?= $category['id'];?>" onclick="return confirm('Are you Sure You Want to Delete this Category ?');" title="Delete">
@@ -70,7 +81,7 @@
             "columnDefs": [
                 
                 
-                    { "orderable": false, "targets": [2] }
+                    { "orderable": false, "targets": [3] }
                     
                 
             ],
