@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 07, 2019 at 02:05 PM
+-- Generation Time: Aug 08, 2019 at 08:42 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -100,22 +100,21 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `qty` bigint(250) NOT NULL,
   `product_id` varchar(250) NOT NULL,
   `user_id` varchar(250) NOT NULL,
+  `size` text NOT NULL,
   `delivered` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 = delivery done, 0 = not delivered',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=76 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`id`, `qty`, `product_id`, `user_id`, `delivered`, `created_at`, `updated_at`) VALUES
-(61, 1, '6', '', 0, '2019-08-04 16:56:16', NULL),
-(62, 1, '5', '', 0, '2019-08-04 16:56:37', NULL),
-(63, 1, '6', '', 0, '2019-08-04 16:57:48', NULL),
-(72, 1, '9', '1', 0, '2019-08-06 12:30:26', NULL),
-(73, 1, '11', '1', 0, '2019-08-07 03:20:25', NULL);
+INSERT INTO `cart` (`id`, `qty`, `product_id`, `user_id`, `size`, `delivered`, `created_at`, `updated_at`) VALUES
+(61, 1, '6', '', '', 0, '2019-08-04 16:56:16', NULL),
+(62, 1, '5', '', '', 0, '2019-08-04 16:56:37', NULL),
+(63, 1, '6', '', '', 0, '2019-08-04 16:57:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -149,6 +148,35 @@ INSERT INTO `category` (`id`, `name`, `category`, `banner`, `status`, `df`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `coupon`
+--
+
+DROP TABLE IF EXISTS `coupon`;
+CREATE TABLE IF NOT EXISTS `coupon` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `code` varchar(250) NOT NULL,
+  `expire_date` date DEFAULT NULL,
+  `off_type` varchar(250) NOT NULL,
+  `value` varchar(250) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
+  `df` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `coupon`
+--
+
+INSERT INTO `coupon` (`id`, `code`, `expire_date`, `off_type`, `value`, `status`, `df`, `created_at`, `updated_at`) VALUES
+(1, 'ABC1231', '2019-08-08', 'amount', '10.00', 0, 0, '2019-08-08 14:08:22', '2019-08-08 14:57:58'),
+(2, 'ABC124', NULL, 'percentage', '10.00', 1, 0, '2019-08-08 14:19:00', '2019-08-08 14:57:36'),
+(3, 'VCS123', NULL, 'amount', '100.00', 0, 1, '2019-08-08 14:20:59', '2019-08-08 14:42:35');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `faq`
 --
 
@@ -165,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `faq` (
 --
 
 INSERT INTO `faq` (`id`, `que`, `ans`) VALUES
-(3, 'This is', '<p>data</p>'),
+(3, 'This isa', '<p>data aa</p>'),
 (2, 'Sample Que', '<h1>Main</h1>\r\n\r\n<h1><s><u><strong><em>.add</em></strong></u></s></h1>');
 
 -- --------------------------------------------------------
@@ -189,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `main_category` (
 --
 
 INSERT INTO `main_category` (`id`, `name`, `status`, `banner`, `df`) VALUES
-(1, 'Women-12', 1, 'no-image.png', 0),
+(1, 'Women-12', 0, 'c69ad135cbdc2dd1abf9fd93f7240239.jpg', 0),
 (2, 'Men', 0, 'd5e439018d184d74cb8b55e6ea9f7ebf.jpg', 0);
 
 -- --------------------------------------------------------
@@ -205,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `newsletter` (
   `active` int(1) NOT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `newsletter`
@@ -223,7 +251,8 @@ INSERT INTO `newsletter` (`id`, `email`, `active`, `created_at`) VALUES
 (10, 'sample@gmail.com', 0, '2019-08-04 23:09:40'),
 (11, 'sample2@gmail.com', 0, '2019-08-04 23:09:40'),
 (12, 'sample@gmail.com', 0, '2019-08-04 23:10:03'),
-(13, 'sample2@gmail.com', 0, '2019-08-04 23:10:03');
+(13, 'sample2@gmail.com', 0, '2019-08-04 23:10:03'),
+(14, 'kava@gmail.com', 0, '2019-08-09 01:58:21');
 
 -- --------------------------------------------------------
 
@@ -236,6 +265,8 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
   `content` longtext NOT NULL,
+  `keyword` text NOT NULL,
+  `description` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
@@ -243,11 +274,11 @@ CREATE TABLE IF NOT EXISTS `pages` (
 -- Dumping data for table `pages`
 --
 
-INSERT INTO `pages` (`id`, `name`, `content`) VALUES
-(1, 'about', '<h2 style=\"font-style:italic\"><strong>return_policy_save</strong></h2>\r\n'),
-(2, 'terms', '<p>This is <u><em><strong>terms</strong></em></u></p>\r\n'),
-(3, 'privacy', '<h1>This i<strong>s privacy</strong></h1>\r\n'),
-(4, 'Return Policy', '<h2 style=\"font-style:italic\"><strong>return_policy_save</strong></h2>\r\n');
+INSERT INTO `pages` (`id`, `name`, `content`, `keyword`, `description`) VALUES
+(1, 'about', '<h2 style=\"font-style:italic\"><strong>return_policy_save</strong></h2>\r\n', 'a', 'ab'),
+(2, 'terms', '<p>This is <u><em><strong>terms</strong></em></u></p>\r\n', 'fa', 'asf'),
+(3, 'privacy', '<h1>This i<strong>s privacy</strong></h1>\r\n', 'sa', 'as'),
+(4, 'Return Policy', '<h2 style=\"font-style:italic\"><strong>return_policy_save</strong></h2>\r\n', 'adasd', 'asdasddddd');
 
 -- --------------------------------------------------------
 
@@ -282,19 +313,26 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
+  `coupon_id` text NOT NULL,
+  `size` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `payment`
 --
 
-INSERT INTO `payment` (`id`, `orderid`, `user_id`, `txnid`, `product_id`, `cart_tbl_id`, `quantity`, `amount`, `productinfo`, `name`, `address1`, `address2`, `city`, `district`, `country`, `zipcode`, `email`, `phone`, `delivered`, `cod`, `message`, `delete_flag`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'DB-001', '9', 'c7c7c4bfaf2ab5a208f2', '8^~^100.00', '57', '1', '1455.00', 'One Plus 7,Redmi Y3', 'Nayan Ramani', 'Adasd asd asd asd asd asda sd', '', 'Ahmedabad', 'Ahmedabad', 'Asdasdasd', '380013', 'mehul9921@gmail.com', '9898878720', 2, '1', '', 0, '2019-06-21 18:42:54', NULL, '2019-08-04 19:48:11'),
-(2, '1', '1', '2d760916ff2a22d29968', '9,8^~^1100.00,110.01', '66,67', '1,1', '1210.01', 'Sample,Hello world', 'Asdasda Dasdasd', 'Sdasd', 'Asdasd', 'Ahmedabad', 'Aaaa', 'Aaaa', '123456', 'gma@d.com', '9898989898', 0, '0', '', 0, '2019-08-05 16:52:49', NULL, NULL),
-(3, '1', '1', '1', '9,8^~^1100.00,110.01', '68,69', '1,1', '1210.01', 'Sample,Hello world', 'Asda Sdasdas', 'adasd', '', 'asdasd', 'asdasd', 'asdasd', '', 'sdadasd@f.m', '12333333333', 1, '0', '', 1, '2019-08-05 18:07:14', NULL, NULL),
-(4, 'DB-004', '1', 'DB-004', '9^~^1100.00', '70', '3', '3300.00', 'Sample', 'Hello Aaa', 'dasdsad', '', 'asdasd', 'asdas', 'dasdasd', '', 'aadsd@gg.vv', '787878787878', 0, '0', '', 0, '2019-08-05 18:16:32', NULL, NULL),
-(5, 'DB-005', '9', 'a45ebd6c9cdf0a88004b', '8^~^110.01', '71', '1', '110.01', 'Hello world', 'Sdasd Asdasd', 'Sdfsdfsdf', '', 'Fsdfsdf', 'Sdfsdf', 'Sdfsdf', '', 'dasddasd@g.com', '12212121212', 0, '1', 'Kavav dev', 0, '2019-08-05 18:36:14', NULL, NULL);
+INSERT INTO `payment` (`id`, `orderid`, `user_id`, `txnid`, `product_id`, `cart_tbl_id`, `quantity`, `amount`, `productinfo`, `name`, `address1`, `address2`, `city`, `district`, `country`, `zipcode`, `email`, `phone`, `delivered`, `cod`, `message`, `delete_flag`, `created_at`, `updated_at`, `deleted_at`, `coupon_id`, `size`) VALUES
+(1, 'DB-001', '9', 'c7c7c4bfaf2ab5a208f2', '8^~^100.00', '57', '1', '1455.00', 'One Plus 7,Redmi Y3', 'Nayan Ramani', 'Adasd asd asd asd asd asda sd', '', 'Ahmedabad', 'Ahmedabad', 'Asdasdasd', '380013', 'mehul9921@gmail.com', '9898878720', 2, '1', '', 0, '2019-06-21 18:42:54', NULL, '2019-08-04 19:48:11', '', ''),
+(2, '1', '1', '2d760916ff2a22d29968', '9,8^~^1100.00,110.01', '66,67', '1,1', '1210.01', 'Sample,Hello world', 'Asdasda Dasdasd', 'Sdasd', 'Asdasd', 'Ahmedabad', 'Aaaa', 'Aaaa', '123456', 'gma@d.com', '9898989898', 0, '0', '', 0, '2019-08-05 16:52:49', NULL, NULL, '', ''),
+(3, '1', '1', '1', '9,8^~^1100.00,110.01', '68,69', '1,1', '1210.01', 'Sample,Hello world', 'Asda Sdasdas', 'adasd', '', 'asdasd', 'asdasd', 'asdasd', '', 'sdadasd@f.m', '12333333333', 1, '0', '', 1, '2019-08-05 18:07:14', NULL, NULL, '', ''),
+(4, 'DB-004', '1', 'DB-004', '9^~^1100.00', '70', '3', '3300.00', 'Sample', 'Hello Aaa', 'dasdsad', '', 'asdasd', 'asdas', 'dasdasd', '', 'aadsd@gg.vv', '787878787878', 0, '0', '', 0, '2019-08-05 18:16:32', NULL, NULL, '', ''),
+(5, 'DB-005', '9', 'a45ebd6c9cdf0a88004b', '8^~^110.01', '71', '1', '110.01', 'Hello world', 'Sdasd Asdasd', 'Sdfsdfsdf', '', 'Fsdfsdf', 'Sdfsdf', 'Sdfsdf', '', 'dasddasd@g.com', '12212121212', 0, '1', 'Kavav dev', 0, '2019-08-05 18:36:14', NULL, NULL, '', ''),
+(6, 'DB-006', '1', 'DB-006', '9,11^~^1100.00,144.00', '72,73', '1,1', '1234.00', 'Sample,Rental', 'Sample Abcdfff', 'adasdasdasdasdsa', '', 'sadadasdas', 'dasd', 'asdsad', '123456', 'addddd@ggg.c', '989898989898', 0, '0', 'asdasdsa', 0, '2019-08-08 16:45:27', NULL, NULL, '1,10.00,amount', ''),
+(7, 'DB-007', '1', 'DB-007', '12,10^~^101.00,55.00', '76,77', '1,2', '211.00', 'Asdasd,Others', 'Adas Asdasd', 'fsfdsdf', '', 'sdfsdf', 'fsdf', 'sdfsdf', '32231', 'sdfdfsd@fff.nn', '33333333333', 0, '0', '', 0, '2019-08-08 20:50:59', NULL, NULL, ',,', ''),
+(8, 'DB-008', '1', 'DB-008', '11,10^~^144.00,55.00', '78,79', '1,2', '254.00', 'Rental,Others', 'Sdfs Dfsdf', 'sdsdsaas', '', 'dasdasda', 'fsdfs', 'dfsdfsd', 'rwerwer', 'dasds@fdf.c', '4324234234', 0, '0', '', 0, '2019-08-08 20:52:44', NULL, NULL, ',,', ''),
+(9, 'DB-009', '1', 'DB-009', '11,10^~^144.00,55.00', '80,81', '1,2', '254.00', 'Rental,Others', 'Asdas Dasd', 'asfsdfsd', '', 'fsdf', 'sfdfsd', 'fsdf', 'fsdfsd', 'sdsfsdfsdf@ggg.mm', '3123123123', 0, '0', '', 0, '2019-08-08 20:55:14', NULL, NULL, ',,', ''),
+(10, 'DB-0010', '1', 'DB-0010', '11,13^~^144.00,110.00', '82,83', '1,1', '254.00', 'Rental,Sample B', 'Ada Sdasdasd', 'sdfsdf', '', 'dsfsdf', 'sdfsdf', 'sdfsdf', 'sdf', 'sdadasd@ggg.k', '34234234324', 0, '0', '', 0, '2019-08-09 00:48:46', NULL, NULL, ',,', ',MEDIUM');
 
 -- --------------------------------------------------------
 
@@ -310,7 +348,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `amount` decimal(40,2) NOT NULL,
   `list_price` varchar(250) NOT NULL,
   `short_desc` text NOT NULL,
-  `desc` longtext NOT NULL,
+  `desc` longtext CHARACTER SET utf8mb4 NOT NULL,
   `category` text NOT NULL,
   `status` int(1) NOT NULL DEFAULT '1',
   `created_by` varchar(20) NOT NULL,
@@ -325,18 +363,23 @@ CREATE TABLE IF NOT EXISTS `product` (
   `bannner` varchar(250) NOT NULL DEFAULT 'no-image.png',
   `rating` varchar(50) NOT NULL DEFAULT '0',
   `df` int(1) NOT NULL DEFAULT '0',
+  `stock` int(11) NOT NULL,
+  `sizes` text NOT NULL,
+  `chart` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `hash`, `name`, `amount`, `list_price`, `short_desc`, `desc`, `category`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `keyword`, `description`, `tax`, `amount_without_tax`, `cod`, `bannner`, `rating`, `df`) VALUES
-(8, '77f9357abe5780e0b3e377498416c5a6', 'Hello world', '110.01', '', 'hello', '<p>sadsad</p>', '1', 1, '1', '1', '2019-08-05 15:05:29', '2019-08-05 17:51:14', '', '', '10', '100.01', '0', '077d796d23bdd2b649e56c437e8f2bbb.jpg', '0', 0),
-(9, '87ca771ee8b45ecc3628f12fc6caf82f', 'Sample', '1100.00', '1200.00', 'sdfsdf', '<p>sdfsdf</p>', '2', 1, '1', '1', '2019-08-05 16:33:33', '2019-08-05 17:46:47', '', '', '10', '1000.00', '0', '9cd329fce67c732525b110976c906fbf.jpg', '3', 0),
-(10, '61c3a690005c4d15141e217e3e11d753', 'Others', '55.00', '100.00', 'asdasdasd', '<p>asdasd</p>', '2', 1, '1', '1', '2019-08-07 00:18:55', '2019-08-07 00:19:59', '', '', '10', '50.00', '1', '2daf3344d2317563a009fc0efbf168a1.jpg', '3', 0),
-(11, '93355210a5b16ee061d6c81d4fa38e48', 'Rental', '144.00', '150.00', 'asdads', '<p>asdasd</p>', '1,2', 1, '1', '1', '2019-08-07 01:22:46', '2019-08-07 01:32:05', '', '', '20', '120.00', '0', '4c729646a2d058c5bedaa813b7323553.jpg', '4', 0);
+INSERT INTO `product` (`id`, `hash`, `name`, `amount`, `list_price`, `short_desc`, `desc`, `category`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `keyword`, `description`, `tax`, `amount_without_tax`, `cod`, `bannner`, `rating`, `df`, `stock`, `sizes`, `chart`) VALUES
+(8, '77f9357abe5780e0b3e377498416c5a6', 'Hello world', '110.01', '', 'hello', '<p>sadsad</p>', '1', 1, '1', '1', '2019-08-05 15:05:29', '2019-08-08 11:20:21', '', '', '10', '100.01', '0', '077d796d23bdd2b649e56c437e8f2bbb.jpg', '0', 1, 0, '', ''),
+(9, '87ca771ee8b45ecc3628f12fc6caf82f', 'Sample', '1100.00', '1200.00', 'sdfsdf', '<p>&nbsp;</p>\r\n\r\n<p>??????</p>', '2', 1, '1', '1', '2019-08-05 16:33:33', '2019-08-08 19:21:35', '', '', '10', '1000.00', '0', '9cd329fce67c732525b110976c906fbf.jpg', '3', 0, 0, '', ''),
+(10, '61c3a690005c4d15141e217e3e11d753', 'Others', '55.00', '100.00', 'asdasdasd', '<p>asdasd</p>', '2', 1, '1', '1', '2019-08-07 00:18:55', '2019-08-08 20:46:05', '', '', '10', '50.00', '0', '2daf3344d2317563a009fc0efbf168a1.jpg', '3', 0, 2, '', ''),
+(11, '93355210a5b16ee061d6c81d4fa38e48', 'Rental', '144.00', '150.00', 'asdads', '<p>&nbsp;</p>\r\n\r\n<p>??????</p>', '1,2', 1, '1', '1', '2019-08-07 01:22:46', '2019-08-09 00:41:40', '', '', '20', '120.00', '0', '4c729646a2d058c5bedaa813b7323553.jpg', '4', 0, 49, '', ''),
+(12, 'eb92283c125159ea8e043eb72482884f', 'Asdasd', '101.00', '12.00', 'df', '<p>sdf</p>', '1,2', 1, '1', '1', '2019-08-08 19:54:07', '2019-08-08 19:54:07', '', '', '1', '100.00', '0', 'no-image.png', '0', 0, 10, '', '4ece49da087e6d8f6654bc9b09c1169c.jpg'),
+(13, 'e2e2d2861e5b1d9bb27370f9160f7eaf', 'Sample B', '110.00', '100.00', 'Hello', '<p>मेरा नाम है&nbsp;ਮੇਰਾ ਨਾਮ ਹੈ</p>', '1,2,5,6', 1, '1', '1', '2019-08-08 23:08:40', '2019-08-09 02:11:55', '', '', '10', '100.00', '0', 'no-image.png', '0', 0, 49, 'SM,L,M,XL,XXL,MEDIUM', '');
 
 -- --------------------------------------------------------
 
@@ -350,7 +393,7 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   `p_id` varchar(250) NOT NULL,
   `image` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product_images`
@@ -358,7 +401,9 @@ CREATE TABLE IF NOT EXISTS `product_images` (
 
 INSERT INTO `product_images` (`id`, `p_id`, `image`) VALUES
 (3, '9', 'fefe832e03fe82d9c782f34c263ea97e.jpg'),
-(4, '10', '45a4d8db4ff3f9592e26cecff026cb7f.jpg');
+(4, '10', '45a4d8db4ff3f9592e26cecff026cb7f.jpg'),
+(8, '11', 'b3f91c3b84128d83980200421067770b.jpg'),
+(9, '12', 'b51de3337820d8518aa8180252da14f2.jpg');
 
 -- --------------------------------------------------------
 
@@ -454,6 +499,8 @@ CREATE TABLE IF NOT EXISTS `setting` (
   `smtp_port` text,
   `smtp_user` text,
   `smtp_pass` text,
+  `merchent_key` varchar(250) NOT NULL,
+  `salt` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -461,8 +508,8 @@ CREATE TABLE IF NOT EXISTS `setting` (
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`id`, `email`, `support_email`, `contact_email`, `newsletter_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`, `meta_keywords`, `meta_description`, `shop_commission`, `ad_number`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`) VALUES
-(1, 'kavadev@gmail.com', 'support.kava@gmail.com', 'nayanpatel807@gmail.com', 'nayanpatel807@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown', 'home', 'description', '50.00', '1234567890', 'ssl://smtp.googlemail.com', '465', 'mehul9921@gmail.com', 'KAVA@5981');
+INSERT INTO `setting` (`id`, `email`, `support_email`, `contact_email`, `newsletter_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`, `meta_keywords`, `meta_description`, `shop_commission`, `ad_number`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `merchent_key`, `salt`) VALUES
+(1, 'kavadev@gmail.com', 'support.kava@gmail.com', 'nayanpatel807@gmail.com', 'nayanpatel807@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown', 'home', 'description', '50.00', '1234567890', 'ssl://smtp.googlemail.com', '465', 'mehul9921@gmail.com', 'KAVA@5981', 'rjQUPktU', 'e5iIg1jwi8');
 
 -- --------------------------------------------------------
 
@@ -638,7 +685,7 @@ CREATE TABLE IF NOT EXISTS `social_user` (
   `updated_at` datetime NOT NULL,
   `deleted_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `social_user`
@@ -650,7 +697,8 @@ INSERT INTO `social_user` (`id`, `first_name`, `last_name`, `email`, `mobile`, `
 (6, 'asdasd', 'asdasd', '12@gmail.com', '12121212121', '0e7517141fb53f21ee439b355b5a1d0a', '1f4d40181b795f2c1a35d95750f8fb13.jpg', 1, '2019-06-04 12:37:32', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (7, 'elephant', 'jungle', 'nayan@gmail.com', '4564589789', '0e7517141fb53f21ee439b355b5a1d0a', '0f5a364c7a9f21305b97bea45c3d456d.jpg', 1, '2019-06-04 12:56:22', '0000-00-00 00:00:00', '2019-08-04 18:42:17'),
 (8, 'test', 'user', 'mehul2081@gmail.com', '4564512312', '0e7517141fb53f21ee439b355b5a1d0a', '3aef2dce48775707a9bb6119bc97f74c.jpg', 0, '2019-06-12 16:20:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(9, 'types', 'number', 'mehul9921@gmail.com', '1201232032', '0e7517141fb53f21ee439b355b5a1d0a', 'd20a3b9984f166fbbbadbafb9eb5de7d.jpg', 0, '2019-06-12 16:27:12', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(9, 'types', 'number', 'mehul9921@gmail.com', '1201232032', '0e7517141fb53f21ee439b355b5a1d0a', 'd20a3b9984f166fbbbadbafb9eb5de7d.jpg', 0, '2019-06-12 16:27:12', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10, 'Kava dev', 'deve', 'kava@gmail.com', '9898375981', 'e6e061838856bf47e1de730719fb2609', 'f56914010dad48720f91e1204829a090.png', 0, '2019-08-09 01:58:21', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -665,7 +713,7 @@ CREATE TABLE IF NOT EXISTS `traking` (
   `date` datetime DEFAULT NULL,
   `order_id` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `traking`
@@ -678,7 +726,12 @@ INSERT INTO `traking` (`id`, `detail`, `date`, `order_id`) VALUES
 (4, 'asdasd', '2019-08-05 15:37:18', '1'),
 (5, 'Order Placed', '2019-08-05 18:07:14', '3'),
 (6, 'Order Placed', '2019-08-05 18:16:32', '4'),
-(7, 'Order Placed', '2019-08-05 18:36:14', '5');
+(7, 'Order Placed', '2019-08-05 18:36:14', '5'),
+(8, 'Order Placed', '2019-08-08 16:45:27', '6'),
+(9, 'Order Placed', '2019-08-08 20:50:59', '7'),
+(10, 'Order Placed', '2019-08-08 20:52:44', '8'),
+(11, 'Order Placed', '2019-08-08 20:55:14', '9'),
+(12, 'Order Placed', '2019-08-09 00:48:46', '10');
 
 -- --------------------------------------------------------
 

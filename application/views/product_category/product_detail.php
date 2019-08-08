@@ -119,8 +119,12 @@
                             <?php } ?>
                             <?= rtrim($_cate_text,', ') ?>
                         </li>
-                        <li><span>Availibility</span> : In Stock</li>
-                        <li><span>Cash On Delivery <?php if($product[0]['cod'] == 0){ echo "Avalible"; }else{ echo "Not Avalible"; } ?></span></li>
+                        <li>
+                            <span>Availibility</span> : <?php if($product[0]['stock'] > 0){ echo $product[0]['stock']." Items Avalible"; }else{ echo "Not Avalible"; } ?>
+                        </li>
+                        <li>
+                            <span>Cash On Delivery <?php if($product[0]['cod'] == 0){ echo "Avalible"; }else{ echo "Not Avalible"; } ?></span>
+                        </li>
                     </ul>
                     <p><?=  nl2br($product[0]['short_desc']) ?></p>
                     
@@ -132,6 +136,48 @@
                             <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 1 ) result.value--;return false;" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
                         </div><br>
                         <span class="color-red" id="qty_span"></span>
+
+                        <?php if(!empty($product[0]['sizes'])){ ?>
+
+                            <div class="card_area" style="margin-bottom: 20px;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        
+                                        <?php if(!empty(SizeChart($product[0]['id']))){ ?>
+
+                                            <a href="javascript:;" data-toggle="modal" data-target=".bd-example-modal-lg">Size Chart</a>
+
+                                        <?php } ?>                                        
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group-icon mt-10">
+                                            <div class="form-select" id="default-select">
+                                                <select style="display: none;" name="size_products" id="size_products">
+                                                    <option value="">Select Size</option>
+                                                    <?php foreach (explode(',',$product[0]['sizes']) as $key => $value) { ?>
+                                                        <option value="<?= $value ?>"><?= $value ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <div class="nice-select" tabindex="0">
+                                                    <span class="current">Select Size</span>
+                                                    <ul class="list">
+                                                        <li data-value="" class="option selected focus">Select Size</li>
+                                                        <?php foreach (explode(',',$product[0]['sizes']) as $key => $value) { ?>
+                                                            <li data-value="<?= $value ?>" class="option"><?= $value ?></li>
+                                                        <?php } ?>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <p style="color: red; display: none; margin:10px 0;" id="error_required_Size">Please Select Size</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php } ?>
+
+
                         <div class="card_area">
                             <?php if($this->session->userdata('id')) { ?>
                                 <button type="submit" class="main_btn btn btn-sm">Add to Cart</button>
@@ -447,6 +493,16 @@ $(document).ready(function(){
         }
         else{
             $('#qty_span').fadeOut();
+            <?php if(!empty($product[0]['sizes'])){ ?>
+                if($('#size_products').val() == '')
+                {
+                    $('#error_required_Size').show();
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            <?php }?>
         }
     });
 
@@ -550,3 +606,32 @@ $('#load_more').click(function(e){
 });
 
 </script>
+
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+           <div class="modal-header">
+                <h3 class="text-dark">Size Chart</h3>
+                <button type="button" class="close" data-dismiss="modal" style="cursor: pointer;">&times;</button>
+            </div>     
+
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        
+                        <?php if(!empty(SizeChart($product[0]['id']))){ ?>
+                            <img src="<?= SizeChart($product[0]['id']) ?>" style="width: 100%;">
+                        <?php } ?>
+
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

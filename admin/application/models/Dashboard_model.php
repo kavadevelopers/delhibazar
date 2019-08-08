@@ -21,5 +21,9 @@ class Dashboard_model extends CI_Model
 		return $this->db->get_where('category',['df' => '0'])->num_rows();
 	}
 
+	public function notification_outStock()
+	{
+		return $this->db->get_where('product',['df' => '0','stock <' => '20'])->result_array();
+	}
 }
 ?>

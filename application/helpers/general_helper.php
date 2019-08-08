@@ -240,6 +240,32 @@ function _product_banner($id){
 }
 
 
+function SizeChart($id){
+	$CI=&get_instance();
+	$product = $CI->db->get_where('product',['id' => $id])->result_array()[0];
+	$image = '';
+	if($product['chart'] == ''){
+		$image = "";
+	}
+	else{
+		
+		$url    =   $CI->config->config['admin_url']."uploads/product/sizechart/".$product['chart'];
+       
+        if(getimagesize($url))
+        {
+            $image = $url;
+        }
+        else
+        {
+            $image = "";
+        }    
+		
+	}
+
+	return $image;
+}
+
+
 
 function get_category_image($id){
 	$CI=&get_instance();

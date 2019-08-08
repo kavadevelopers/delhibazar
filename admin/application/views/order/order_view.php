@@ -125,21 +125,27 @@
                                     </thead>
                                     <tbody>
                                         <?php 
+                                            $sub_total = 0;
                                             $count = count(explode(',', $order[0]['quantity']));
                                             $qty_array          = explode(',', $order[0]['quantity']);
                                             $pro_id_Array       = explode(',', explode('^~^', $order[0]['product_id'])[0]);
                                             $price_Array        = explode(',', explode('^~^', $order[0]['product_id'])[1]);
+                                            $size               = explode(',', $order[0]['size']);
 
                                         ?>
                                         <?php for($i = 0;$i < $count;$i++){  ?>
 
                                             <tr>
                                                 <td>
-                                                    <?= $this->product_model->product_id_where($pro_id_Array[$i])[0]['name'] ?>  
+                                                    <?= $this->product_model->product_id_where($pro_id_Array[$i])[0]['name'] ?> 
+                                                    <?php if(!empty($size[$i])){ ?>
+                                                        - <?= $size[$i] ?>
+                                                    <?php } ?>
                                                 </td>
                                                 <td><?= $qty_array[$i] ?></td>
                                                 <td><?= $price_Array[$i] ?></td>
-                                                <td>
+                                                <td class="text-right">
+                                                    <?php $sub_total += $qty_array[$i] * $price_Array[$i]; ?>
                                                     <?= $qty_array[$i] * $price_Array[$i] ?>
                                                 </td>
                                             </tr>
@@ -151,8 +157,32 @@
                                         <tr>
                                             <td></td>
                                             <td></td>
+                                            <th class="text-right">Sub Total :</th>
+                                            <td colspan="2" class="font-weight-bold text-right"> <?= $sub_total ?></td>
+                                        </tr>
+                                        <?php if($order[0]['coupon_id'] != ',,'){ ?>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <th class="text-right">Coupon : </th>
+                                                <td colspan="2" class="font-weight-bold text-right">
+                                                    
+                                                    <?php if(explode(',', $order[0]['coupon_id'])[2] == 'percentage'){ ?>        
+                                                        <?= '% '.explode(',', $order[0]['coupon_id'])[1] ?>
+                                                    <?php }else if(explode(',', $order[0]['coupon_id'])[2] == 'amount'){ ?>
+                                                        <?= '- '.explode(',', $order[0]['coupon_id'])[1] ?>
+                                                    <?php }else if(explode(',', $order[0]['coupon_id'])[2] == 'price'){ ?>
+                                                        <?= '- '.explode(',', $order[0]['coupon_id'])[1] ?>
+                                                    <?php } ?>
+
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                        <tr>
                                             <td></td>
-                                            <td colspan="2" class="font-weight-bold">Total : <?= $order[0]['amount'] ?></td>
+                                            <td></td>
+                                            <th class="text-right">Total :</th>
+                                            <td colspan="2" class="font-weight-bold text-right"> <?= $order[0]['amount'] ?></td>
                                         </tr>
                                     </tfoot>
                                 </table>

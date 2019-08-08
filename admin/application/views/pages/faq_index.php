@@ -38,6 +38,10 @@
                                             
                                             <td class="text-center">
 
+                                                <a class="btn btn-sm btn-success" href="<?= base_url();?>pages/edit_faq/<?= $value['id'];?>" title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+
                                                 <a class="btn btn-sm btn-danger" href="<?= base_url();?>pages/delete_faq/<?= $value['id'];?>" onclick="return confirm('Are you Sure You Want to Delete this FAQ ?');" title="Delete">
                                                     <i class="fa fa-trash"></i>
                                                 </a>

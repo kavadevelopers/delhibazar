@@ -7,12 +7,14 @@ class Dashboard extends CI_Controller {
         parent::__construct();
         $this->auth->check_session();
         $this->load->model('dashboard_model');
+        $this->load->model('general_model');
     }
 
 
 	public function index()
 	{	
 		$data['page_title']	= 'Dashboard';
+		$data['out_of_stock'] 	= $this->dashboard_model->notification_outStock();
 		$this->load->template('dashboard',$data);
 	}
 

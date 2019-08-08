@@ -26,25 +26,33 @@ class Cart extends CI_Controller {
 
 	public function add_to_cart()
 	{
-		$product_id = $this->product_model->product_where($this->input->post('product_hash'))[0]['id'];
+		$product_id = $this->product_model->product_where($this->input->post('product_hash'))[0];
 		
-		$data = [
-					'qty' 			=> $this->input->post('qty'),
-					'product_id' 	=> $product_id,
-					'user_id' 		=> $this->input->post('user_id'),
-					'created_at' 	=> date('Y-m-d H:i:s')
-				];
+		if($this->input->post('qty') <= $product_id['stock'])
+		{	
+			$data = [
+						'qty' 			=> $this->input->post('qty'),
+						'product_id' 	=> $product_id['id'],
+						'size' 			=> $this->input->post('size_products'),
+						'user_id' 		=> $this->input->post('user_id'),
+						'created_at' 	=> date('Y-m-d H:i:s')
+					];
 
-			if($this->db->insert('cart',$data))
-			{
-				$this->session->set_flashdata('msg', 'Successfully Added Cart');
-				redirect(base_url('cart'));	
-			}
-			else
-			{
-				$this->session->set_flashdata('error', 'Something went wrong try again');
-				redirect(base_url('products/product_detail/'.$this->input->post('product_hash')));
-			}
+				if($this->db->insert('cart',$data))
+				{
+					$this->session->set_flashdata('msg', 'Successfully Added Cart');
+					redirect(base_url('cart'));	
+				}
+				else
+				{
+					$this->session->set_flashdata('error', 'Something went wrong try again');
+					redirect(base_url('products/product_detail/'.$this->input->post('product_hash')));
+				}
+		}
+		else{
+			$this->session->set_flashdata('error', 'Stock Not Found');
+			redirect(base_url('products/product_detail/'.$this->input->post('product_hash')));
+		}
 	}
 
 	public function update_cart()
@@ -189,5 +197,19 @@ class Cart extends CI_Controller {
 		$this->db->delete('wishlist',['user_id' => $this->session->userdata('id')]);
 		$this->session->set_flashdata('msg', 'Successfully Cleared');
 		redirect(base_url('cart/wishlist'));	
+	}
+
+
+	public function apply_coupon()
+	{
+		if($this->input->post()){
+			$code = $this->db->get_where('coupon',['code' => $this->input->post('coupon_code'),'df' => '0','status' => '0'])->result_array();
+			if($code){
+				echo json_encode(['true',$code[0]]);
+			}
+			else{
+				echo json_encode(['false']);
+			}
+		}
 	}
 }

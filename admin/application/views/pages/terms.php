@@ -34,6 +34,33 @@
                             </div>
                         </div>
 
+                        <div class="card card-secondary"> 
+                            <div class="card-header">
+                                <h3 class="card-title">Meta Description</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Keywords </label>
+                                            <textarea class="form-control form-control-sm" value="" type="text" name="keywords" placeholder="Keywords" ><?php echo set_value('keywords',$content[0]['keyword']); ?></textarea>
+                                            <?php echo form_error('keywords'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Description </label>
+                                            <textarea class="form-control form-control-sm" value="" type="text" name="description" placeholder="Description" ><?php echo set_value('description',$content[0]['description']); ?></textarea>
+                                            <?php echo form_error('description'); ?>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="card">
                              <div class="card-footer">
                                 <div class="float-right">

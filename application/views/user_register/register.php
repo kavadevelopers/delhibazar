@@ -56,6 +56,12 @@
 							<span><i><span class="astrick">Note</span> : Max size & Max Resoluion(2MB, 720 X 1080) </i></span>
 						</div>
 						<div class="col-md-12 form-group">
+							<div class="creat_account">
+								<input type="checkbox" id="f-option2" name="newsletter" value="1" style="height: auto !important; float: left; margin: 5px;">
+								<label for="f-option2">Subscribe Newsletter</label>
+							</div>
+						</div>
+						<div class="col-md-12 form-group">
 							<button type="submit" value="submit" class="btn submit_btn">Register</button>
 						</div>
 					</form>
@@ -67,7 +73,12 @@
 
 <style type="text/css">
 	.astrick{ color: red; }
-	input{ height: 40px !important; }
+	input{ 
+		height: 40px !important; 
+	}
+	.form-group {
+	    margin-bottom: 9px;
+	}
 </style>
 
 <script type="text/javascript">

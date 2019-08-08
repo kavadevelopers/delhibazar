@@ -42,6 +42,8 @@ class Setting extends CI_Controller {
         $this->form_validation->set_rules('short_about', 'Short About', 'trim|required|max_length[200]');
         $this->form_validation->set_rules('meta_keywords', 'Meta Keywords', 'trim|required');
         $this->form_validation->set_rules('meta_description', 'Meta Description', 'trim|required');
+        $this->form_validation->set_rules('merchent_key', 'Payumoney Merchent Key', 'trim|required');
+        $this->form_validation->set_rules('salt', 'SALT', 'trim|required');
 
 
         if ($this->form_validation->run() == FALSE)
@@ -70,7 +72,9 @@ class Setting extends CI_Controller {
                         'opening_hours'     =>     $this->input->post('opening_hours'),
                         'short_about'       =>     $this->input->post('short_about'),
                         'meta_keywords'     =>     $this->input->post('meta_keywords'),
-                        'meta_description'  =>     $this->input->post('meta_description')
+                        'meta_description'  =>     $this->input->post('meta_description'),
+                        'merchent_key'      =>     $this->input->post('merchent_key'),
+                        'salt'              =>     $this->input->post('salt')
                     ];
 
             $this->db->where('id','1');

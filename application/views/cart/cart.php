@@ -41,7 +41,7 @@
 												<img src="<?= _product_banner($product['id']) ?>" alt="" height="70px">
 											</div>
 											<div class="media-body">
-												<p><?= $product['name'] ?></p>
+												<p><?= $product['name'] ?><?php if(!empty($value['size'])){ echo ' - '.$value['size']; } ?></p>
 											</div>
 										</div>
 									</td>

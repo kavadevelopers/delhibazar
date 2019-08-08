@@ -61,8 +61,10 @@ class Product extends CI_Controller {
         $this->form_validation->set_rules('keywords', 'Description', 'trim');
         $this->form_validation->set_rules('description', 'Description', 'trim');
         $this->form_validation->set_rules('tax', 'Tax', 'trim|required|max_length[2]|numeric');
+        $this->form_validation->set_rules('stock', 'Stock', 'trim|required|max_length[10]|numeric');
         $this->form_validation->set_rules('amount_without_tax', 'Amount without tax', 'trim|required|max_length[10]|decimal');
         $this->form_validation->set_rules('cash_on_delivery', 'Cash On Delivery', 'trim|required');
+        $this->form_validation->set_rules('sizes', 'Sizes', 'trim');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -89,7 +91,9 @@ class Product extends CI_Controller {
                             'updated_by'    =>  $this->session->userdata('id'),
                             'created_at'    =>  _now_dt(),
                             'updated_at'    =>  _now_dt(),
-                            'cod'           =>  $this->input->post('cash_on_delivery')
+                            'cod'           =>  $this->input->post('cash_on_delivery'),
+                            'stock'         =>  $this->input->post('stock'),
+                            'sizes'         =>  $this->input->post('sizes')
                         ];
 
                 if($this->db->insert('product', $product)){
@@ -125,6 +129,8 @@ class Product extends CI_Controller {
         $this->form_validation->set_rules('tax', 'Tax', 'trim|required|max_length[2]|numeric');
         $this->form_validation->set_rules('amount_without_tax', 'Amount without tax', 'trim|required|max_length[10]|decimal');
         $this->form_validation->set_rules('cash_on_delivery', 'Cash On Delivery', 'trim|required');
+        $this->form_validation->set_rules('stock', 'Stock', 'trim|required|max_length[10]|numeric');
+        $this->form_validation->set_rules('sizes', 'Sizes', 'trim');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -150,7 +156,9 @@ class Product extends CI_Controller {
                             'keyword'       =>  $this->input->post('keywords'),
                             'updated_by'    =>  $this->session->userdata('id'),
                             'updated_at'    =>  _now_dt(),
-                            'cod'           =>  $this->input->post('cash_on_delivery')
+                            'cod'           =>  $this->input->post('cash_on_delivery'),
+                            'stock'         =>  $this->input->post('stock'),
+                            'sizes'         =>  $this->input->post('sizes')
                         ];
                 $this->db->where('id',$this->input->post('product_id'));
                 if($this->db->update('product', $product)){
@@ -177,7 +185,7 @@ class Product extends CI_Controller {
             if($this->product_model->check_product_by_id($id))
             {
 
-                $data   =   ['df' => '1', 'deleted_at' => date('Y-m-d H:i:s')];
+                $data   =   ['df' => '1', 'updated_at' => date('Y-m-d H:i:s')];
 
                     $this->db->where('id',$id);
                 if($this->db->update('product',$data))
@@ -296,6 +304,75 @@ class Product extends CI_Controller {
 
         $this->db->where('id' , $this->input->post('id'));
         $this->db->delete('product_images');
+    }
+
+    public function save_Chart()
+    {
+        $croped_image = $_POST['image'];
+
+        list($type, $croped_image) = explode(';', $croped_image);
+        list(, $croped_image)      = explode(',', $croped_image);
+        $croped_image = base64_decode($croped_image);
+
+        $imageName = md5(microtime(true)).'.jpg';
+
+        if(!file_put_contents('./uploads/product/sizechart/'.$imageName, $croped_image)){
+            $this->session->set_flashdata('error', 'Banner Upload Error Please Try again.');
+            exit;
+        }
+        else{
+
+            $product = $this->product_model->product_id_where($_POST['product_id'])[0];
+
+            if($product['chart'] != ''){
+                if(file_exists(FCPATH."./uploads/product/sizechart/".$product['chart'])){
+                    unlink(FCPATH."./uploads/product/sizechart/".$product['chart']);    
+                }
+            }
+        
+
+            $this->db->where('id' , $_POST['product_id']);
+            $this->db->update('product',['chart' => $imageName]);
+
+            $this->session->set_flashdata('msg', 'Size Chart Successfully Uploaded');
+            
+        }
+        
+    }
+
+
+    public function deleteChart_Image($id = false)
+    {
+        if($id)
+        { 
+            if($this->product_model->check_product_by_id($id))
+            {
+                $product = $this->product_model->product_id_where($id)[0];
+                if($product['chart'] != ''){
+                    if(file_exists(FCPATH."./uploads/product/sizechart/".$product['chart'])){
+                        unlink(FCPATH."./uploads/product/sizechart/".$product['chart']);    
+                    }
+                }
+            
+
+                $this->db->where('id' , $product['id']);
+                $this->db->update('product',['chart' => '']);
+
+                $this->session->set_flashdata('msg', 'Size Chart Successfully Deleted');
+                redirect(base_url().'product/change_image/'.$product['id']);
+            }
+            else
+            {
+
+                $this->session->set_flashdata('error', 'Product Not Found');
+                redirect(base_url().'product');
+            }
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'Product Not Found');
+            redirect(base_url().'product');
+        }
     }
 }
 ?>

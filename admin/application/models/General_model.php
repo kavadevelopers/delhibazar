@@ -52,8 +52,16 @@ class General_model extends CI_Model
 
 	public function get_product_review($id)
 	{
-		return $this->db->get_where('product_rating',['id',$id])->result_array();
+		return $this->db->get_where('product_rating',['id' => $id])->result_array();
 	}
+
+
+	public function get_coupon($id){
+		return $this->db->get_where('coupon',['id' => $id,'df' => '0'])->result_array();	
+	}
+
+
+	
 
 
 }

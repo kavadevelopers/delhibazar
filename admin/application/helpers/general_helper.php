@@ -49,6 +49,25 @@ function _p_banner_img($id){
 	return $image;
 }
 
+function SizeChart($id){
+	$CI=&get_instance();
+	$product = $CI->db->get_where('product',['id' => $id])->result_array()[0];
+	$image = '';
+	if($product['chart'] == ''){
+		$image = "";
+	}
+	else{
+		if(file_exists(FCPATH.'uploads/product/sizechart/'.$product['chart'])){
+			$image = $product['chart'];
+		}
+		else{
+			$image = "";
+		}
+	}
+
+	return $image;
+}
+
 
 function get_product_images($id){
 	$CI=&get_instance();

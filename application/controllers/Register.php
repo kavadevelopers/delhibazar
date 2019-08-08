@@ -32,6 +32,10 @@ class Register extends CI_Controller {
 				
 					$id = $this->db->insert_id();
 
+					if($this->input->post('newsletter')){
+						$this->db->insert('newsletter',['email' => $this->input->post('email'),'created_at' => date('Y-m-d H:i:s')]);
+					}
+
 	                if(!empty($_FILES['image']['name']))
 	                {
 	                    $path    = $_FILES['image']['name'];

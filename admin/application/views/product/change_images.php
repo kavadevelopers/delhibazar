@@ -18,7 +18,7 @@
                     <div class="col-md-3">
                         <div class="card card-secondary"> 
                             <div class="card-header">
-                                <h3 class="card-title">Banner Image</h3>
+                                <h3 class="card-title">Featured Image</h3>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -40,7 +40,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-9">
+                    <div class="col-md-6">
                         <div class="card card-secondary"> 
                             <div class="card-header">
                                 <h3 class="card-title">Product Images </h3>
@@ -100,6 +100,52 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md-3">
+                        <div class="card card-secondary"> 
+                            <div class="card-header">
+                                <h3 class="card-title">Size Chart</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-12" style="text-align: center;">
+                                        
+                                        <?php if(SizeChart($product['id']) != ""){ ?>
+                                            <div class="img-bannner-div">
+                                                <img src="<?= base_url().'uploads/product/sizechart/'.SizeChart($product['id']); ?>" class="img-bannner" alt="no images" >
+                                            </div>
+
+                                            <div class="row text-center">
+                                                <a class="btn btn-sm btn-danger" href="<?= base_url();?>product/deleteChart_Image/<?= $product['id'];?>" onclick="return confirm('Are you Sure You Want to Delete this Size Chart ?');" title="Delete" style="margin: 5px auto;">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </div>
+
+                                        <?php }else{ ?>
+
+                                            <p class="text-center">No Image Found</p>
+
+                                        <?php } ?>
+
+                                        <div class="fileUpload btn btn--browse">
+                                            <span>
+                                                <?php if(SizeChart($product['id']) == ''){ ?>
+                                                    Add Image
+                                                <?php }else{ ?>
+                                                    Change Image
+                                                <?php } ?>
+                                            </span>
+                                            <input type="file" name="my_image" class="upload" id="size_chart" accept="image/*">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
         </div>
     </section>
@@ -120,7 +166,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="window.location.reload(true);">Cancel</button>
                     <button type="button" class="btn btn-primary" id="upload_banner_button">
-                        <span id="upload_banner_text">Upload Banner</span>
+                        <span id="upload_banner_text">Upload Image</span>
                         <span id="upload_banner_text_hid" style="display: none;"><i class="fa fa-refresh fa-spin"></i> Uploading... </span>
                     </button>
                 </div>
@@ -199,6 +245,7 @@
 
                 $('#upload_image').on('change', function () { readFile(this);  url = "<?= base_url('product/save_banner') ?>"; });
                 $('#product_image').on('change', function () { readFile(this);  url = "<?= base_url('product/save_image') ?>"; });
+                $('#size_chart').on('change', function () { readFile(this);  url = "<?= base_url('product/save_Chart') ?>"; });
 
                 $('#upload_banner_button').click(function(event){
                     $image_crop.croppie('result', {

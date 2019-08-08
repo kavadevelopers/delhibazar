@@ -28,6 +28,7 @@
                                         <th>Product Name</th>
                                         <th>Price</th>
                                         <th>Category</th>
+                                        <th class="text-center">Stock</th>
                                         <th class="text-center">Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -42,6 +43,7 @@
                                             <td><?= $product['name']; ?></td>
                                             <td><?= $product['amount']; ?></td>
                                             <td><?= $this->general_model->category_byid($product['category']); ?></td>
+                                            <td class="text-center"><?= $product['stock']; ?></td>
                                             <td class="text-center">
                                                 <?php if($product['status'] == '0'){ ?>
                                                     <span class="badge badge-danger">In Active</span>
@@ -84,7 +86,7 @@
             "columnDefs": [
                 
                 
-                    { "orderable": false, "targets": [4] }
+                    { "orderable": false, "targets": [6] }
                     
                 
             ],

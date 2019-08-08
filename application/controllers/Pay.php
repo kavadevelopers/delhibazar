@@ -11,6 +11,28 @@ class Pay extends CI_Controller {
 
     public function index()
     {
+        
+        $stock_check = 0;
+        $error_string = "";
+        foreach ($this->input->post('product_id') as $key => $value) {
+            $product_id = $this->product_model->product_id_where($value)[0];
+
+            if($product_id['stock'] <  $this->input->post('qty')[$key]){
+                $stock_check = 1;
+                $error_string = "Please Check Product Stock";
+            }
+        }
+
+
+        if($stock_check == 1)
+        {
+            $this->session->set_flashdata('error', $error_string);
+            redirect(base_url('cart/checkout'));
+        }
+
+
+
+
             $amount             = $this->input->post('grand_total');
             $product_info       = implode(',',$this->input->post('product_name'));
             $customer_name      = ucfirst($this->input->post('first_name')).' '.ucfirst($this->input->post('last_name'));
@@ -22,14 +44,14 @@ class Pay extends CI_Controller {
             $city               = ucfirst($this->input->post('city'));
             $zipcode            = ucfirst($this->input->post('zip'));
 
-            $MERCHANT_KEY       = $this->config->config['merchant_key'];
-            $SALT               = $this->config->config['salt']; 
+            $MERCHANT_KEY       = get_setting()['merchant_key'];
+            $SALT               = get_setting()['salt']; 
             $txnid              = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
             
-            $udf1               = $this->input->post('user_id');
+            $udf1               = $this->input->post('user_id').'^~^'.$this->input->post('coupon_id').','.$this->input->post('discount_amount').','.$this->input->post('distype');
             $udf2               = ucfirst($this->input->post('district')).'^~^'.$this->input->post('message');
             $udf3               = implode(',',$this->input->post('product_id')).'^~^'.implode(',',$this->input->post('product_amount'));
-            $udf4               = implode(',',$this->input->post('qty'));          //Product Quantity
+            $udf4               = implode(',',$this->input->post('qty')).','.implode(',', $this->input->post('size'));          //Product Quantity
             $udf5               = implode(',',$this->input->post('cart_tbl_id'));  // Cart Table Auto Increment Id
 
 
@@ -66,7 +88,7 @@ class Pay extends CI_Controller {
                     'cancel'    => $cancel            
             );
 
-            $data['_title']             = "DELHIBAZAR";
+            $data['_title']             = "DELHIBAZAR Payment";
             $data['filed']              = $this->input->post();
             $this->load->template1('pay/index',$data);
         
@@ -116,11 +138,11 @@ class Pay extends CI_Controller {
                     {
                         $data = [
                                     'orderid'       => $new_order_id,
-                                    'user_id'       => $this->input->post('udf1'),
+                                    'user_id'       => explode('^~^', $this->input->post('udf1')),
                                     'txnid'         => $this->input->post('txnid'),
                                     'product_id'    => $this->input->post('udf3'),
                                     'cart_tbl_id'   => $this->input->post('udf5'),
-                                    'quantity'      => $this->input->post('udf4'),
+                                    'quantity'      => explode(',', $this->input->post('udf4'))[0],
                                     'amount'        => $this->input->post('amount'),
                                     'productinfo'   => $this->input->post('productinfo'),
                                     'name'          => $this->input->post('firstname'),
@@ -135,6 +157,8 @@ class Pay extends CI_Controller {
                                     'cod'           => '1',
                                     'message'       => explode('^~^', $this->input->post('udf2'))[1],
                                     'created_at'    => date('Y-m-d H:i:s'),
+                                    'coupon_id'     => explode('^~^', $this->input->post('udf1'))[1],
+                                    'size'          => explode(',', $this->input->post('udf4'))[1],
                                                  
                                 ];
                         
@@ -154,6 +178,15 @@ class Pay extends CI_Controller {
                             $this->db->insert('traking',['detail' => 'Order Placed','order_id' => $id,'date' => date('Y-m-d H:i:s')]);
                             
                             $this->cart_model->send_order_mail($id);
+
+                            foreach (explode('^~^', $this->input->post('udf3'))[0] as $key => $value) {
+                                $product_id = $this->product_model->product_id_where($value)[0];
+
+                                $stock = $product_id['stock'] - $this->input->post('udf4')[$key];
+
+                                $this->db->where('id',$product_id['id']);
+                                $this->db->update('product',['stock' => $stock]);
+                            }
 
                             $this->session->set_flashdata('msg', 'Order Successfully Placed');
                             redirect(base_url('category'));                        
@@ -181,11 +214,31 @@ class Pay extends CI_Controller {
 
             if($this->input->post()){
 
+
+                $stock_check = 0;
+                $error_string = "";
+                foreach ($this->input->post('product_id') as $key => $value) {
+                    $product_id = $this->product_model->product_id_where($value)[0];
+
+                    if($product_id['stock'] <  $this->input->post('qty')[$key]){
+                        $stock_check = 1;
+                        $error_string = "Please Check Product Stock";
+                    }
+                }
+
+
+                if($stock_check == 1)
+                {
+                    $this->session->set_flashdata('error', $error_string);
+                    redirect(base_url('cart/checkout'));
+                }
+
             $this->db->order_by('id','DESC');
         $orderid = $this->db->get('payment',1)->result_array();
         if($orderid){  $new_order_id = 'DB-00'.($orderid[0]['id']+1); }else{ $new_order_id = 'DB-001'; }
     
                         $data = [
+                            
                             'orderid'       => $new_order_id,
                             'user_id'       => $this->input->post('user_id'),
                             'txnid'         => $new_order_id,
@@ -205,7 +258,9 @@ class Pay extends CI_Controller {
                             'phone'         => $this->input->post('number'),
                             'cod'           => '0',
                             'message'       => $this->input->post('message'),
+                            'size'          => implode(',', $this->input->post('size')),
                             'created_at'    => date('Y-m-d H:i:s'),
+                            'coupon_id'     => $this->input->post('coupon_id').','.$this->input->post('discount_amount').','.$this->input->post('distype')
                                          
                         ];
                         
@@ -225,6 +280,17 @@ class Pay extends CI_Controller {
                             $this->db->insert('traking',['detail' => 'Order Placed','order_id' => $id,'date' => date('Y-m-d H:i:s')]);
 
                             $this->cart_model->send_order_mail($id);
+
+
+                            foreach ($this->input->post('product_id') as $key => $value) {
+                                $product_id = $this->product_model->product_id_where($value)[0];
+
+                                $stock = $product_id['stock'] - $this->input->post('qty')[$key];
+
+                                $this->db->where('id',$product_id['id']);
+                                $this->db->update('product',['stock' => $stock]);
+                            }
+
 
                             $this->session->set_flashdata('msg', 'Order Successfully Placed');
                             redirect(base_url('category'));                        

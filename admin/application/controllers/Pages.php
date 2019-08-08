@@ -19,7 +19,7 @@ class Pages extends CI_Controller {
     public function about_save()
     {
         $this->db->where('id','1');
-        $this->db->update('pages',['content' => $this->input->post('editor1')]);
+        $this->db->update('pages',['content' => $this->input->post('editor1'),'keyword'       =>  $this->input->post('keywords'),'description'   =>  $this->input->post('description')]);
 
         $this->session->set_flashdata('msg', 'Page Successfully Saved');
         redirect(base_url().'pages/about');
@@ -36,7 +36,7 @@ class Pages extends CI_Controller {
     public function terms_save()
     {
         $this->db->where('id','2');
-        $this->db->update('pages',['content' => $this->input->post('editor1')]);
+        $this->db->update('pages',['content' => $this->input->post('editor1'),'keyword'       =>  $this->input->post('keywords'),'description'   =>  $this->input->post('description')]);
 
         $this->session->set_flashdata('msg', 'Page Successfully Saved');
         redirect(base_url().'pages/terms');
@@ -52,7 +52,7 @@ class Pages extends CI_Controller {
     public function privacy_save()
     {
         $this->db->where('id','3');
-        $this->db->update('pages',['content' => $this->input->post('editor1')]);
+        $this->db->update('pages',['content' => $this->input->post('editor1'),'keyword'       =>  $this->input->post('keywords'),'description'   =>  $this->input->post('description')]);
 
         $this->session->set_flashdata('msg', 'Page Successfully Saved');
         redirect(base_url().'pages/privacy');
@@ -68,7 +68,7 @@ class Pages extends CI_Controller {
     public function return_policy_save()
     {
         $this->db->where('id','4');
-        $this->db->update('pages',['content' => $this->input->post('editor1')]);
+        $this->db->update('pages',['content' => $this->input->post('editor1'),'keyword'       =>  $this->input->post('keywords'),'description'   =>  $this->input->post('description')]);
 
         $this->session->set_flashdata('msg', 'Page Successfully Saved');
         redirect(base_url().'pages/return_policy');
@@ -135,6 +135,62 @@ class Pages extends CI_Controller {
         else{
             $this->session->set_flashdata('error', 'Product Not Found');
             redirect(base_url().'pages/faq');
+        }
+    }
+
+
+    public function edit_faq($id = false)
+    {
+        if($id){
+            if($this->db->get_where('faq',['id' => $id])->result_array()){
+                
+                $data['page_title'] = "FAQ Edit";
+                $data['faq'] = $this->db->get_where('faq',['id' => $id])->result_array()[0];
+                $this->load->template('pages/faq_edit',$data);
+
+            }
+            else{
+                $this->session->set_flashdata('error', 'Product Not Found');
+                redirect(base_url().'pages/faq');
+            }
+        }
+        else{
+            $this->session->set_flashdata('error', 'Product Not Found');
+            redirect(base_url().'pages/faq');
+        }
+    }
+
+    public function faq_update(){
+        $this->form_validation->set_error_delimiters('<div class="my_text_error">', '</div>');
+
+        $this->form_validation->set_rules('que', 'Question', 'trim|required');
+        $this->form_validation->set_rules('editor1', 'Answer', 'trim|required');
+        $this->form_validation->set_rules('main_id', 'Answer', 'trim');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            $data['page_title'] = "FAQ Edit";
+            $data['faq'] = $this->db->get_where('faq',['id' => $id])->result_array()[0];
+            $this->load->template('pages/faq_edit',$data);
+        }
+        else
+        {
+
+            $faq =  [
+                            'que'        =>  $this->input->post('que'),
+                            'ans'        =>  $this->input->post('editor1')
+                        ];
+
+            $this->db->where('id',$this->input->post('main_id'));
+            if($this->db->update('faq', $faq)){
+                $this->session->set_flashdata('msg', 'FAQ Successfully Updated');
+                redirect(base_url().'pages/faq');
+            }
+            else{
+                $this->session->set_flashdata('error', 'Problem In Update FAQ Try Again');
+                redirect(base_url().'pages/faq');
+            }
+
         }
     }
 }

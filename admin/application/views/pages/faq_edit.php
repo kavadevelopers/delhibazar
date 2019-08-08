@@ -15,7 +15,7 @@
 
     <section class="content">
       	<div class="container-fluid">
-            <form method="post" action="<?= base_url(); ?>pages/faq_save" enctype="multipart/form-data">
+            <form method="post" action="<?= base_url(); ?>pages/faq_update" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-12">
 
@@ -28,24 +28,24 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Question <span class="astrick">*</span></label>
-                                            <input class="form-control form-control-sm" value="<?php echo set_value('que'); ?>" id="que" type="text" name="que" placeholder="Question" autocomplete="off">
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('que',$faq['que']); ?>" id="que" type="text" name="que" placeholder="Question" autocomplete="off">
                                             <?php echo form_error('que'); ?>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
-                                        <textarea class="ckeditor" cols="80" id="editor1" name="editor1" rows="10"><?php echo set_value('editor1'); ?></textarea>
+                                        <textarea class="ckeditor" cols="80" id="editor1" name="editor1" rows="10"><?php echo set_value('editor1',$faq['ans']); ?></textarea>
                                     </div>
                                     <?php echo form_error('editor1'); ?>
 
                                 </div>
                             </div>
                         </div>
-
+                        <input type="hidden" name="main_id" value="<?= $faq['id'] ?>">
                         <div class="card">
                              <div class="card-footer">
                                 <div class="float-right">
-                                  <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Add</button>
+                                  <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Save</button>
                                 </div>
                             </div>
                         </div>

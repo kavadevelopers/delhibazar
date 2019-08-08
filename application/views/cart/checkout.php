@@ -127,6 +127,7 @@
 									<li><a href="#"><?= $product['name'] ?> <span class="middle">x <?= $value['qty'] ?></span><span class="last"><?= ($product['amount'] * $value['qty']) ?></span></a></li>
 									
 									<input type="hidden" name="product_id[]" value="<?= $product['id']  ?>">
+									<input type="hidden" name="size[]" value="<?= $value['size']  ?>">
 									<input type="hidden" name="product_name[]" value="<?= $product['name']  ?>">
 									<input class="quantity" type="hidden" id="qty<?= $val ?>" name="qty[]" value="<?= $value['qty']  ?>">
 									<input type="hidden" id="amount<?= $val ?>" value="<?= $product['amount'] ?>">
@@ -134,8 +135,14 @@
 									<input type="hidden" name="product_amount[]" value="<?= $product['amount'] ?>">
 								<?php } ?>
 							</ul>
+
 							<ul class="list list_2">
 								<li><a href="#">Subtotal <span class="pull-right sub_total_text"></span></a></li>
+
+								<li id="coupon_li" style="display: none;">
+									<a href="#">Coupon <span class="pull-right" id="coupon_text_applying"></span></a>
+								</li>
+
 								<li><a href="#">Total <span class="grand_total_text"></span></a></li>
 							</ul>
 
@@ -166,6 +173,26 @@
 							</div>
 							<?php } ?>
 
+
+							<div class="row">
+								<div class="col-md-7">
+									<div class="input-group-icon mt-10">
+										<input type="text" class="form-control" id="coupon" name="coupon" placeholder="Coupon">
+									</div>
+								</div>
+								<div class="col-md-5" style="display: flex; align-items: center;">
+									<button class="genric-btn danger small" type="button" style="padding: 0 5px;" id="apply_coupon">
+										<span id="apply_btn_text">Apply</span>
+										<span id="apply_btn_spin" style="display: none;">
+											<i class='fa fa-circle-o-notch fa-spin'></i>  Please Wait
+										</span>
+									</button>
+								</div>
+								<div class="col-md-12">
+									<p style="color: red;font-weight: bold;display: none;" id="coupon_error">Please Enter Valid Coupon</p>
+								</div>
+							</div>
+
 							<hr>
 							
 							<div class="form-group">
@@ -176,7 +203,7 @@
 								<a href="<?= base_url() ?>pages/terms" target="_blank">terms & conditions</a>
 							</div>
 							<div class="text-center"  style="margin-top: 65px;">
-								<button class="main_btn" type="submit" style="display: inline;">Place Order</button>
+								<button class="main_btn" type="submit" id="place_order_button" style="display: inline;">Place Order</button>
 							</div>
 						</div>
 						<input type="hidden" name="user_id" value="<?= $this->session->userdata('id') ?>">
@@ -185,6 +212,12 @@
 					</div>
 				</div>
 			</div>
+
+
+			<input type="hidden" name="coupon_id" id="coupon_id">
+			<input type="hidden" name="discount_amount" id="discount_amount">
+			<input type="hidden" name="distype" id="distype">
+
 		</form>
 	</div>
 </section>
@@ -214,12 +247,37 @@ function update_amounts()
     	var qty 	= parseFloat($('#qty'+i).val());
         var price 	= parseFloat($('#amount'+i).val());
         var amount 	= (qty*price);
-        
         sum += parseFloat(amount);
     }
-    $('#sub_total_hidd').val(amount.toFixed(2));
+
+    $('.sub_total_text').html(sum.toFixed(2));
+    $('#sub_total_hidd').val(sum.toFixed(2));
+
+    if($('#distype').val() != ''){
+    	if($('#distype').val() == 'percentage'){
+
+    		_amount_off = $('#discount_amount').val();
+
+    		sum -= (sum * _amount_off / 100);
+    	}
+    	if($('#distype').val() == 'amount'){
+
+    		_amount_off = $('#discount_amount').val();
+
+    		sum -= _amount_off;
+    	}
+
+    	if($('#distype').val() == 'price'){
+
+    		_amount_off = $('#discount_amount').val();
+
+    		sum = _amount_off;
+    	}
+    }
+
+    
     $('#grand_total').val((sum).toFixed(2));
-    $('.sub_total_text').html(amount.toFixed(2));
+    
     $('.grand_total_text').html((sum).toFixed(2));
 }
 
@@ -295,7 +353,69 @@ function payment_type(val){
 	}
 }
 
+	$(function(){
+		$('#apply_coupon').click(function(){
+			if($('#coupon').val() != '')
+			{
+				$.ajax({
+		            type : "post",
+		            url : "<?= base_url() ?>cart/apply_coupon",
+		            data : "coupon_code="+$('#coupon').val(),
+		            dataType: "json",
+		            cache : false,
+		            beforeSend: function() {
+		                $('#apply_btn_spin').show();
+		                $('#apply_btn_text').hide();
+		                $('#place_order_button').attr('disabled',true);
+		                $('#apply_coupon').attr('disabled',true);
+		            },
+		            success:function( out ){
+		                setTimeout(function(){
+		                    
+		                    if(out[0] == 'true'){
 
+
+		                    	if(out[1]['off_type'] == 'percentage'){
+		                    		off = '% '+out[1]['value'];
+		                    	}
+		                    	else{
+		                    		off = out[1]['value'];	
+		                    	}
+
+		                    	$('#apply_btn_spin').hide();
+		                		$('#apply_btn_text').show();
+		                    	$('#place_order_button').removeAttr('disabled');
+		                		$('#apply_coupon').removeAttr('disabled');
+		                		$('#coupon_error').hide();
+		                		$('#coupon_text_applying').html(out[1]['code']+' - '+off);
+		                		$('#coupon_li').show();
+
+		                		$('#coupon_id').val(out[1]['id']);
+		                    	$('#discount_amount').val(out[1]['value']);
+		                    	$('#distype').val(out[1]['off_type']);
+		                    }
+		                    else{
+
+		                    	$('#coupon_id').val('');
+		                    	$('#discount_amount').val('');
+		                    	$('#distype').val('');
+
+		                    	$('#apply_btn_spin').hide();
+		                		$('#apply_btn_text').show();
+		                    	$('#coupon_error').show();
+		                    	$('#place_order_button').removeAttr('disabled');
+		                		$('#apply_coupon').removeAttr('disabled');
+		                		$('#coupon_li').hide();
+		                    }
+
+		                    update_amounts();
+
+		                }, 2000);
+		            }
+		        });
+			}
+		})
+	})
 
 </script>
 

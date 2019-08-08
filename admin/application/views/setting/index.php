@@ -156,6 +156,22 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Payumoney Merchent Key <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('merchent_key',$setting['merchent_key']); ?>" type="text" name="merchent_key" placeholder="Payumoney Merchent Key" >
+                                            <?php echo form_error('merchent_key'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Payumoney SALT <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('salt',$setting['salt']); ?>" type="text" name="salt" placeholder="Payumoney SALT" >
+                                            <?php echo form_error('salt'); ?>
+                                        </div>
+                                    </div>
+
                                     
                                    
                                 </div>

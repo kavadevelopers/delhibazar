@@ -61,7 +61,7 @@
                     
                      <li class="nav-item">
                         <a href="<?php echo base_url('agent'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("agent"))[0]; ?>">
-                            <i class="nav-icon fa fa-users"></i>
+                            <i class="nav-icon fa fa-user-secret"></i>
                             <p>Agent</p>
                         </a>
                     </li>
@@ -72,6 +72,8 @@
                             <p>Customers</p>
                         </a>
                     </li>
+
+                    
 
                     <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("packages"))[1]; ?>">
                 
@@ -161,6 +163,13 @@
                         </ul>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('coupon'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("coupon"))[0]; ?>">
+                            <i class="nav-icon fa fa-percent"></i>
+                            <p>Coupon Management</p>
+                        </a>
+                    </li>
+
                     <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("pages"))[1]; ?>">
                 
                         <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("pages"))[0]; ?>">
@@ -200,7 +209,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="<?= base_url('pages/faq'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("faq","faq_add"))[0]; ?>">
+                                <a href="<?= base_url('pages/faq'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("faq","faq_add","edit_faq"))[0]; ?>">
                                     <i class="fa fa-circle-o nav-icon"></i>
                                     <p>FAQ's</p>
                                 </a>

@@ -14,6 +14,27 @@ $CI->load->model('cart_model');
 	        <?php $_product = $CI->product_model->product_where($this->uri->segment(3)); ?>
 	    	<meta name="keywords" content="<?= $_product[0]['keyword'] ?>">
 	    	<meta name="description" content="<?= $_product[0]['description'] ?>">
+	    <?php }else if($this->uri->segment(2) == 'about'){ ?>
+	    	<?php $page = $CI->db->get_where('pages',['id' => '1'])->result_array(); ?>
+	    	<meta name="keywords" content="<?= $page[0]['keyword'] ?>">
+	    	<meta name="description" content="<?= $page[0]['description'] ?>">
+	    <?php }else if($this->uri->segment(2) == 'terms'){ ?>
+	    	
+	    	<?php $page = $CI->db->get_where('pages',['id' => '2'])->result_array(); ?>
+	    	<meta name="keywords" content="<?= $page[0]['keyword'] ?>">
+	    	<meta name="description" content="<?= $page[0]['description'] ?>">
+
+	    <?php }else if($this->uri->segment(2) == 'privacy'){ ?>
+	    	
+	    	<?php $page = $CI->db->get_where('pages',['id' => '3'])->result_array(); ?>
+	    	<meta name="keywords" content="<?= $page[0]['keyword'] ?>">
+	    	<meta name="description" content="<?= $page[0]['description'] ?>">
+	    <?php }else if($this->uri->segment(2) == 'return_policy'){ ?>
+	    	
+	    	<?php $page = $CI->db->get_where('pages',['id' => '4'])->result_array(); ?>
+	    	<meta name="keywords" content="<?= $page[0]['keyword'] ?>">
+	    	<meta name="description" content="<?= $page[0]['description'] ?>">
+
 	    <?php }else{ ?>
 	    	<meta name="keywords" content="<?= get_setting()['meta_keywords'] ?>">
 	    	<meta name="description" content="<?= get_setting()['meta_description'] ?>">	
