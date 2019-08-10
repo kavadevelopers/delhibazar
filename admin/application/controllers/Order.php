@@ -122,12 +122,25 @@ class Order extends CI_Controller {
         { 
             if($this->order_model->order_where($id))
             {
-
+                $order_row = $this->order_model->order_where($id);
                 $data   =   ['delete_flag' => '1', 'deleted_at' => date('Y-m-d H:i:s')];
 
                     $this->db->where('id',$id);
                 if($this->db->update('payment',$data))
                 { 
+
+                    $qty_array          = explode(',', $order_row[0]['quantity']);
+                    $pro_id_Array       = explode(',', explode('^~^', $order_row[0]['product_id'])[0]);
+
+                    foreach ($pro_id_Array as $key => $value) {
+                        $product_id = $this->product_model->product_id_where($value)[0];
+
+                        $stock = $product_id['stock'] + $qty_array[$key];
+
+                        $this->db->where('id',$product_id['id']);
+                        $this->db->update('product',['stock' => $stock]);
+                    }
+
                     $this->session->set_flashdata('msg', 'Order Successfully Deleted');
                     redirect(base_url().'order/pending_order');
                 }   

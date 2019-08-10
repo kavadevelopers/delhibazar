@@ -111,8 +111,8 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Sizes - <small><b>Note : </b>Please Add Comma(,) Seperated Values</small></label>
-                                            <textarea class="form-control form-control-sm" value="" type="text" name="sizes" placeholder="Sizes" ><?php echo set_value('sizes'); ?></textarea>
+                                            <label>Sizes and Color - <small><b>Note : </b>Please Add Comma(,) Seperated Values</small></label>
+                                            <textarea class="form-control form-control-sm" value="" type="text" name="sizes" placeholder="Sizes and Color" ><?php echo set_value('sizes'); ?></textarea>
                                             <?php echo form_error('sizes'); ?>
                                         </div>
                                     </div>

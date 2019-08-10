@@ -60,7 +60,7 @@ class Pages extends CI_Controller {
 
     public function return_policy()
     {
-        $data['page_title'] = 'Return Policy';
+        $data['page_title'] = 'Return/Exchange Policy';
         $data['content']    = $this->db->get_where('pages',['id' => '4'])->result_array();
         $this->load->template('pages/return_policy',$data);
     }

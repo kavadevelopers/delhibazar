@@ -154,15 +154,15 @@
                                         <div class="input-group-icon mt-10">
                                             <div class="form-select" id="default-select">
                                                 <select style="display: none;" name="size_products" id="size_products">
-                                                    <option value="">Select Size</option>
+                                                    <option value="">Select Sizes and Color</option>
                                                     <?php foreach (explode(',',$product[0]['sizes']) as $key => $value) { ?>
                                                         <option value="<?= $value ?>"><?= $value ?></option>
                                                     <?php } ?>
                                                 </select>
                                                 <div class="nice-select" tabindex="0">
-                                                    <span class="current">Select Size</span>
+                                                    <span class="current">Select Sizes and Color</span>
                                                     <ul class="list">
-                                                        <li data-value="" class="option selected focus">Select Size</li>
+                                                        <li data-value="" class="option selected focus">Select Sizes and Color</li>
                                                         <?php foreach (explode(',',$product[0]['sizes']) as $key => $value) { ?>
                                                             <li data-value="<?= $value ?>" class="option"><?= $value ?></li>
                                                         <?php } ?>

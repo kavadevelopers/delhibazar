@@ -4,10 +4,10 @@
             <div class="banner_inner d-flex align-items-center">
 				<div class="container">
 					<div class="banner_content text-center">
-						<h2>Return Policy </h2>
+						<h2>Return/Exchange Policy </h2>
 						<div class="page_link">
 							<a href="<?= base_url(); ?>">Home</a>
-							<a href="#">Return Policy </a>
+							<a href="#">Return/Exchange Policy </a>
 						</div>
 					</div>
 				</div>

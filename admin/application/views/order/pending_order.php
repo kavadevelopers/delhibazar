@@ -32,8 +32,10 @@
                                 </thead>
                                 <tbody>
                                     <?php 
+                                    $this->db->group_start();
                                     $this->db->or_where('delivered','0'); 
                                     $this->db->or_where('delivered','2'); 
+                                    $this->db->group_end();
                                     foreach($this->db->get_where('payment',['delete_flag' => '0'])->result_array() as $key => $value){ ?>
                                         <tr>
                                             <td class="text-center"><?= $value['orderid'] ?></td>
