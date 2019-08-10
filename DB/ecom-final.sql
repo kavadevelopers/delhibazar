@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 08, 2019 at 08:42 PM
+-- Generation Time: Aug 10, 2019 at 11:39 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -100,12 +100,12 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `qty` bigint(250) NOT NULL,
   `product_id` varchar(250) NOT NULL,
   `user_id` varchar(250) NOT NULL,
-  `size` text NOT NULL,
+  `size` text,
   `delivered` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 = delivery done, 0 = not delivered',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=86 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cart`
@@ -114,7 +114,9 @@ CREATE TABLE IF NOT EXISTS `cart` (
 INSERT INTO `cart` (`id`, `qty`, `product_id`, `user_id`, `size`, `delivered`, `created_at`, `updated_at`) VALUES
 (61, 1, '6', '', '', 0, '2019-08-04 16:56:16', NULL),
 (62, 1, '5', '', '', 0, '2019-08-04 16:56:37', NULL),
-(63, 1, '6', '', '', 0, '2019-08-04 16:57:48', NULL);
+(63, 1, '6', '', '', 0, '2019-08-04 16:57:48', NULL),
+(84, 1, '11', '1', NULL, 0, '2019-08-10 16:40:11', NULL),
+(85, 1, '11', '1', NULL, 0, '2019-08-10 16:40:17', NULL);
 
 -- --------------------------------------------------------
 
@@ -323,12 +325,12 @@ CREATE TABLE IF NOT EXISTS `payment` (
 --
 
 INSERT INTO `payment` (`id`, `orderid`, `user_id`, `txnid`, `product_id`, `cart_tbl_id`, `quantity`, `amount`, `productinfo`, `name`, `address1`, `address2`, `city`, `district`, `country`, `zipcode`, `email`, `phone`, `delivered`, `cod`, `message`, `delete_flag`, `created_at`, `updated_at`, `deleted_at`, `coupon_id`, `size`) VALUES
-(1, 'DB-001', '9', 'c7c7c4bfaf2ab5a208f2', '8^~^100.00', '57', '1', '1455.00', 'One Plus 7,Redmi Y3', 'Nayan Ramani', 'Adasd asd asd asd asd asda sd', '', 'Ahmedabad', 'Ahmedabad', 'Asdasdasd', '380013', 'mehul9921@gmail.com', '9898878720', 2, '1', '', 0, '2019-06-21 18:42:54', NULL, '2019-08-04 19:48:11', '', ''),
-(2, '1', '1', '2d760916ff2a22d29968', '9,8^~^1100.00,110.01', '66,67', '1,1', '1210.01', 'Sample,Hello world', 'Asdasda Dasdasd', 'Sdasd', 'Asdasd', 'Ahmedabad', 'Aaaa', 'Aaaa', '123456', 'gma@d.com', '9898989898', 0, '0', '', 0, '2019-08-05 16:52:49', NULL, NULL, '', ''),
-(3, '1', '1', '1', '9,8^~^1100.00,110.01', '68,69', '1,1', '1210.01', 'Sample,Hello world', 'Asda Sdasdas', 'adasd', '', 'asdasd', 'asdasd', 'asdasd', '', 'sdadasd@f.m', '12333333333', 1, '0', '', 1, '2019-08-05 18:07:14', NULL, NULL, '', ''),
-(4, 'DB-004', '1', 'DB-004', '9^~^1100.00', '70', '3', '3300.00', 'Sample', 'Hello Aaa', 'dasdsad', '', 'asdasd', 'asdas', 'dasdasd', '', 'aadsd@gg.vv', '787878787878', 0, '0', '', 0, '2019-08-05 18:16:32', NULL, NULL, '', ''),
-(5, 'DB-005', '9', 'a45ebd6c9cdf0a88004b', '8^~^110.01', '71', '1', '110.01', 'Hello world', 'Sdasd Asdasd', 'Sdfsdfsdf', '', 'Fsdfsdf', 'Sdfsdf', 'Sdfsdf', '', 'dasddasd@g.com', '12212121212', 0, '1', 'Kavav dev', 0, '2019-08-05 18:36:14', NULL, NULL, '', ''),
-(6, 'DB-006', '1', 'DB-006', '9,11^~^1100.00,144.00', '72,73', '1,1', '1234.00', 'Sample,Rental', 'Sample Abcdfff', 'adasdasdasdasdsa', '', 'sadadasdas', 'dasd', 'asdsad', '123456', 'addddd@ggg.c', '989898989898', 0, '0', 'asdasdsa', 0, '2019-08-08 16:45:27', NULL, NULL, '1,10.00,amount', ''),
+(1, 'DB-001', '9', 'c7c7c4bfaf2ab5a208f2', '8^~^100.00', '57', '1', '1455.00', 'One Plus 7,Redmi Y3', 'Nayan Ramani', 'Adasd asd asd asd asd asda sd', '', 'Ahmedabad', 'Ahmedabad', 'Asdasdasd', '380013', 'mehul9921@gmail.com', '9898878720', 2, '1', '', 1, '2019-06-21 18:42:54', NULL, '2019-08-10 16:51:38', ',,', ''),
+(2, '1', '1', '2d760916ff2a22d29968', '9,8^~^1100.00,110.01', '66,67', '1,1', '1210.01', 'Sample,Hello world', 'Asdasda Dasdasd', 'Sdasd', 'Asdasd', 'Ahmedabad', 'Aaaa', 'Aaaa', '123456', 'gma@d.com', '9898989898', 0, '0', '', 1, '2019-08-05 16:52:49', NULL, '2019-08-10 16:59:07', ',,', ''),
+(3, '1', '1', '1', '9,8^~^1100.00,110.01', '68,69', '1,1', '1210.01', 'Sample,Hello world', 'Asda Sdasdas', 'adasd', '', 'asdasd', 'asdasd', 'asdasd', '', 'sdadasd@f.m', '12333333333', 1, '0', '', 1, '2019-08-05 18:07:14', NULL, NULL, ',,', ''),
+(4, 'DB-004', '1', 'DB-004', '9^~^1100.00', '70', '3', '3300.00', 'Sample', 'Hello Aaa', 'dasdsad', '', 'asdasd', 'asdas', 'dasdasd', '', 'aadsd@gg.vv', '787878787878', 0, '0', '', 1, '2019-08-05 18:16:32', NULL, '2019-08-10 17:05:57', ',,', ''),
+(5, 'DB-005', '9', 'a45ebd6c9cdf0a88004b', '8^~^110.01', '71', '1', '110.01', 'Hello world', 'Sdasd Asdasd', 'Sdfsdfsdf', '', 'Fsdfsdf', 'Sdfsdf', 'Sdfsdf', '', 'dasddasd@g.com', '12212121212', 0, '1', 'Kavav dev', 0, '2019-08-05 18:36:14', NULL, NULL, ',,', ''),
+(6, 'DB-006', '1', 'DB-006', '9,11^~^1100.00,144.00', '72,73', '1,1', '1234.00', 'Sample,Rental', 'Sample Abcdfff', 'adasdasdasdasdsa', '', 'sadadasdas', 'dasd', 'asdsad', '123456', 'addddd@ggg.c', '989898989898', 0, '0', 'asdasdsa', 0, '2019-08-08 16:45:27', NULL, NULL, ',,', ''),
 (7, 'DB-007', '1', 'DB-007', '12,10^~^101.00,55.00', '76,77', '1,2', '211.00', 'Asdasd,Others', 'Adas Asdasd', 'fsfdsdf', '', 'sdfsdf', 'fsdf', 'sdfsdf', '32231', 'sdfdfsd@fff.nn', '33333333333', 0, '0', '', 0, '2019-08-08 20:50:59', NULL, NULL, ',,', ''),
 (8, 'DB-008', '1', 'DB-008', '11,10^~^144.00,55.00', '78,79', '1,2', '254.00', 'Rental,Others', 'Sdfs Dfsdf', 'sdsdsaas', '', 'dasdasda', 'fsdfs', 'dfsdfsd', 'rwerwer', 'dasds@fdf.c', '4324234234', 0, '0', '', 0, '2019-08-08 20:52:44', NULL, NULL, ',,', ''),
 (9, 'DB-009', '1', 'DB-009', '11,10^~^144.00,55.00', '80,81', '1,2', '254.00', 'Rental,Others', 'Asdas Dasd', 'asfsdfsd', '', 'fsdf', 'sfdfsd', 'fsdf', 'fsdfsd', 'sdsfsdfsdf@ggg.mm', '3123123123', 0, '0', '', 0, '2019-08-08 20:55:14', NULL, NULL, ',,', ''),
@@ -375,11 +377,11 @@ CREATE TABLE IF NOT EXISTS `product` (
 
 INSERT INTO `product` (`id`, `hash`, `name`, `amount`, `list_price`, `short_desc`, `desc`, `category`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `keyword`, `description`, `tax`, `amount_without_tax`, `cod`, `bannner`, `rating`, `df`, `stock`, `sizes`, `chart`) VALUES
 (8, '77f9357abe5780e0b3e377498416c5a6', 'Hello world', '110.01', '', 'hello', '<p>sadsad</p>', '1', 1, '1', '1', '2019-08-05 15:05:29', '2019-08-08 11:20:21', '', '', '10', '100.01', '0', '077d796d23bdd2b649e56c437e8f2bbb.jpg', '0', 1, 0, '', ''),
-(9, '87ca771ee8b45ecc3628f12fc6caf82f', 'Sample', '1100.00', '1200.00', 'sdfsdf', '<p>&nbsp;</p>\r\n\r\n<p>??????</p>', '2', 1, '1', '1', '2019-08-05 16:33:33', '2019-08-08 19:21:35', '', '', '10', '1000.00', '0', '9cd329fce67c732525b110976c906fbf.jpg', '3', 0, 0, '', ''),
+(9, '87ca771ee8b45ecc3628f12fc6caf82f', 'Sample', '1100.00', '1200.00', 'sdfsdf', '<p>&nbsp;</p>\r\n\r\n<p>??????</p>', '2', 1, '1', '1', '2019-08-05 16:33:33', '2019-08-08 19:21:35', '', '', '10', '1000.00', '0', '9cd329fce67c732525b110976c906fbf.jpg', '3', 0, 6, '', ''),
 (10, '61c3a690005c4d15141e217e3e11d753', 'Others', '55.00', '100.00', 'asdasdasd', '<p>asdasd</p>', '2', 1, '1', '1', '2019-08-07 00:18:55', '2019-08-08 20:46:05', '', '', '10', '50.00', '0', '2daf3344d2317563a009fc0efbf168a1.jpg', '3', 0, 2, '', ''),
 (11, '93355210a5b16ee061d6c81d4fa38e48', 'Rental', '144.00', '150.00', 'asdads', '<p>&nbsp;</p>\r\n\r\n<p>??????</p>', '1,2', 1, '1', '1', '2019-08-07 01:22:46', '2019-08-09 00:41:40', '', '', '20', '120.00', '0', '4c729646a2d058c5bedaa813b7323553.jpg', '4', 0, 49, '', ''),
 (12, 'eb92283c125159ea8e043eb72482884f', 'Asdasd', '101.00', '12.00', 'df', '<p>sdf</p>', '1,2', 1, '1', '1', '2019-08-08 19:54:07', '2019-08-08 19:54:07', '', '', '1', '100.00', '0', 'no-image.png', '0', 0, 10, '', '4ece49da087e6d8f6654bc9b09c1169c.jpg'),
-(13, 'e2e2d2861e5b1d9bb27370f9160f7eaf', 'Sample B', '110.00', '100.00', 'Hello', '<p>मेरा नाम है&nbsp;ਮੇਰਾ ਨਾਮ ਹੈ</p>', '1,2,5,6', 1, '1', '1', '2019-08-08 23:08:40', '2019-08-09 02:11:55', '', '', '10', '100.00', '0', 'no-image.png', '0', 0, 49, 'SM,L,M,XL,XXL,MEDIUM', '');
+(13, 'e2e2d2861e5b1d9bb27370f9160f7eaf', 'Sample B', '110.00', '100.00', 'Hello', '<p>मेरा नाम है&nbsp;ਮੇਰਾ ਨਾਮ ਹੈ</p>', '1,2,5,6', 1, '1', '1', '2019-08-08 23:08:40', '2019-08-10 16:42:06', '', '', '10', '100.00', '0', 'no-image.png', '0', 0, 49, 'SM,L,M,XL,XXL,MEDIUM,A', '');
 
 -- --------------------------------------------------------
 
