@@ -74,7 +74,8 @@ class Setting extends CI_Controller {
                         'meta_keywords'     =>     $this->input->post('meta_keywords'),
                         'meta_description'  =>     $this->input->post('meta_description'),
                         'merchent_key'      =>     $this->input->post('merchent_key'),
-                        'salt'              =>     $this->input->post('salt')
+                        'salt'              =>     $this->input->post('salt'),
+                        'announcements'              =>     $this->input->post('announcements')
                     ];
 
             $this->db->where('id','1');

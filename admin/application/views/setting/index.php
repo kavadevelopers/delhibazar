@@ -172,6 +172,14 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Announcements <span class="astrick">*</span></label>
+                                            <textarea class="form-control form-control-sm" value="" type="text" name="announcements" placeholder="Announcements" ><?php echo set_value('announcements',$setting['announcements']); ?></textarea>
+                                            <?php echo form_error('announcements'); ?>
+                                        </div>
+                                    </div>
+
                                     
                                    
                                 </div>
