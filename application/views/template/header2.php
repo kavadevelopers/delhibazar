@@ -9,7 +9,22 @@ $CI->load->model('cart_model');
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+        <style type="text/css">
+            body::-webkit-scrollbar {
+                width: 10px;
+            }
+         
+            body::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                border-radius: 10px;
+            }
+             
+            body::-webkit-scrollbar-thumb {
+              background-color: #ffc107;
+              border-radius: 10px;
+              outline: 1px solid slategrey;
+            }
+        </style>
         <?php if($this->uri->segment(2) == 'product_detail'){ ?>
 	        <?php $_product = $CI->product_model->product_where($this->uri->segment(3)); ?>
 	    	<meta name="keywords" content="<?= $_product[0]['keyword'] ?>">
@@ -67,6 +82,17 @@ $CI->load->model('cart_model');
         <!-- sweet alert js -->
         <script type="text/javascript" src="<?= base_url() ?>home_file/kava.js"></script>
         <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5cfd1d9d4351e9001264fde8&product=sticky-share-buttons"></script>
+
+        <style type="text/css">
+        	.banner_area {
+			    min-height: auto !important;
+			}
+			.sample-text-area {
+				padding: 30px 0 70px 0;
+			}
+        </style>
+
+       
     </head>
 
     <body>
@@ -108,7 +134,7 @@ $CI->load->model('cart_model');
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 							<ul class="nav navbar-nav menu_nav ml-auto">
-								<li class="nav-item"><a class="nav-link" href="<?= base_url() ?>">Home</a></li> 
+								<li class="nav-item"><a class="nav-link" href="<?= base_url() ?>home">Home</a></li> 
 								<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>pages/about">About</a></li>
 								
 								<!-- <li class="nav-item submenu dropdown">
@@ -128,10 +154,10 @@ $CI->load->model('cart_model');
 								</li> -->
 
 
-								<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>category">Shopping</a></li>
+								<li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>">Listing</a></li>
 
 								<li class="nav-item submenu dropdown">
-									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <i class="fa fa-chevron-down"></i></a>
 									
 									<ul class="dropdown-menu">
 										
@@ -164,7 +190,7 @@ $CI->load->model('cart_model');
 								</li>
 
 								<li class="nav-item submenu dropdown">
-									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User</a>
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <i class="fa fa-chevron-down"></i></a>
 									<ul class="dropdown-menu">
 										
 										<?php if($this->session->userdata('id')) { ?>

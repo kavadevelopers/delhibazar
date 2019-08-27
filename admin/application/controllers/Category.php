@@ -347,7 +347,7 @@ class Category extends CI_Controller {
         list(, $croped_image)      = explode(',', $croped_image);
         $croped_image = base64_decode($croped_image);
 
-        $imageName = md5(microtime(true)).'.jpg';
+        $imageName = md5(microtime(true)).'.png';
 
         if(!file_put_contents('./uploads/category/'.$imageName, $croped_image)){
             $this->session->set_flashdata('error', 'Banner Upload Error Please Try again.');
@@ -381,7 +381,7 @@ class Category extends CI_Controller {
         list(, $croped_image)      = explode(',', $croped_image);
         $croped_image = base64_decode($croped_image);
 
-        $imageName = md5(microtime(true)).'.jpg';
+        $imageName = md5(microtime(true)).'.png';
 
         if(!file_put_contents('./uploads/category/'.$imageName, $croped_image)){
             $this->session->set_flashdata('error', 'Banner Upload Error Please Try again.');

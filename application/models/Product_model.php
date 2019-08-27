@@ -16,6 +16,11 @@ class Product_model extends CI_Model
 		return $this->db->get_where('main_category',['df' => '0','status' => '0'])->result_array();
 	}
 
+    public function get_single_category($id)
+    {
+        return $this->db->get_where('main_category',['id' => $id,'df' => '0','status' => '0'])->result_array();
+    }
+
     public function get_sub_category($id)
     {
         return $this->db->get_where('category',['category' => $id,'df' => '0','status' => '0'])->result_array();
@@ -87,6 +92,7 @@ class Product_model extends CI_Model
             $this->db->where('amount >=',$min);
             $this->db->where('amount <=',$max);
             $this->db->where('status','1');
+            $this->db->where('df','0');
         $this->db->group_end();
 
         $this->db->from('product');

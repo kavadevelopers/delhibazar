@@ -69,6 +69,14 @@ if ($('.image-link2').length) {
     });
 }
 </script>
+
+            <script type="text/javascript">
+                $(function() {
+                    $(document).click(function (event) {
+                        $('.navbar-collapse').collapse('hide');
+                    });
+                })
+            </script>
 </body>
 
 </html>

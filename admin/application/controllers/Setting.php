@@ -168,4 +168,68 @@ class Setting extends CI_Controller {
 
     }
 
+
+    public function home_banner()
+    {
+        $data['page_title']        =  'Home Banners';
+        $this->load->template('setting/home_banners',$data);
+    }
+
+    public function save_image()
+    {
+        $croped_image = $_POST['image'];
+
+        list($type, $croped_image) = explode(';', $croped_image);
+        list(, $croped_image)      = explode(',', $croped_image);
+        $croped_image = base64_decode($croped_image);
+
+        $imageName = md5(microtime(true)).'.jpg';
+
+        if(!file_put_contents('./uploads/home_banners/'.$imageName, $croped_image)){
+            $this->session->set_flashdata('error', 'Banner Upload Error Please Try again.');
+            exit;
+        }
+        else{
+            
+            $this->db->limit(1);
+            $this->db->order_by('id','DESC');
+            $data = $this->db->get('home_banner')->result_array();
+
+            if($data)
+            {
+                $id = $data[0]['order'] + 1;
+            }else { $id = 1; }
+
+            $this->db->insert('home_banner',['name' => $imageName , 'order' => $id]);
+
+            $this->session->set_flashdata('msg', 'Banner Successfully Changed');
+            
+        }
+        
+    }
+
+    public function delete_image(){
+
+        $image = $this->db->get_where('home_banner',['id' => $this->input->post('id')])->result_array()[0];
+
+        if(file_exists(FCPATH."./uploads/home_banners/".$image['name'])){
+            unlink(FCPATH."./uploads/home_banners/".$image['name']);    
+        }
+
+        $this->db->where('id' , $this->input->post('id'));
+        $this->db->delete('home_banner');
+    }
+
+    public function change_banner_order()
+    {
+        $list = json_decode($this->input->post('data'));
+
+        foreach ($list as $key => $value) {
+            $this->db->where('id',$value);
+            $this->db->update('home_banner',['order' => ($key + 1)]);
+        }
+
+        $this->session->set_flashdata('msg', 'Order Changed Successfully');
+    }
+
 }

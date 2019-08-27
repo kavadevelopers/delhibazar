@@ -9,6 +9,22 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <style type="text/css">
+        body::-webkit-scrollbar {
+            width: 10px;
+        }
+     
+        body::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+         
+        body::-webkit-scrollbar-thumb {
+          background-color: #ffc107;
+          border-radius: 10px;
+          outline: 1px solid slategrey;
+        }
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="<?= get_setting()['meta_keywords'] ?>">
     <meta name="description" content="<?= get_setting()['meta_description'] ?>">
@@ -112,26 +128,15 @@ function JSalert(){
                             <ul class="navbar-nav">
                                 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= base_url(); ?>">Home</a>
+                                    <a class="nav-link" href="<?= base_url(); ?>home">Home</a>
                                 </li>
                                 
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= base_url(); ?>pages/about">About</a>
                                 </li>
-                                
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shopping
-                                    <span class="icon-arrow-down"></span>
-                                    </a>
-                                    
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        
-                                        <?php  foreach ($CI->product_model->get_category() as $key => $value) { ?>
-                                            
-                                            <a class="dropdown-item" href="<?= base_url('products/list/').$value['id'] ?>"><?= $value['name'] ?></a>
-                                    
-                                        <?php } ?>
-                                    </div>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?= base_url(); ?>">Listing</a>
                                 </li>
 
                                 <li class="nav-item">

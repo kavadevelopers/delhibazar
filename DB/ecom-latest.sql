@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 10, 2019 at 11:39 AM
+-- Generation Time: Aug 27, 2019 at 12:35 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -142,8 +142,8 @@ CREATE TABLE IF NOT EXISTS `category` (
 INSERT INTO `category` (`id`, `name`, `category`, `banner`, `status`, `df`) VALUES
 (1, 'Women', '1', 'no-image.png', 0, 0),
 (2, 'Men1', '1', 'no-image.png', 0, 0),
-(3, 'Footware', '1', 'no-image.png', 0, 1),
-(4, 'Mobile', '1', 'no-image.png', 0, 1),
+(3, 'Footware', '1', 'no-image.png', 0, 0),
+(4, 'Mobile', '1', 'no-image.png', 0, 0),
 (5, 'Sample', '1', 'no-image.png', 0, 0),
 (6, 'Shirt', '2', 'cff1a04b35c62ab343a406b5946b6083.jpg', 0, 0);
 
@@ -201,6 +201,29 @@ INSERT INTO `faq` (`id`, `que`, `ans`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `home_banner`
+--
+
+DROP TABLE IF EXISTS `home_banner`;
+CREATE TABLE IF NOT EXISTS `home_banner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `order` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `home_banner`
+--
+
+INSERT INTO `home_banner` (`id`, `name`, `order`) VALUES
+(1, '452c91b52f5f2cdc2e8f91bb3dd86f5f.jpg', 1),
+(2, 'a36ea9fbed25472e20ed341b6cb56f5a.jpg', 2),
+(3, 'dc2c218886e2e417877fc80dd206af18.jpg', 3);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `main_category`
 --
 
@@ -212,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `main_category` (
   `banner` varchar(50) NOT NULL DEFAULT 'no-image.png',
   `df` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `main_category`
@@ -220,7 +243,12 @@ CREATE TABLE IF NOT EXISTS `main_category` (
 
 INSERT INTO `main_category` (`id`, `name`, `status`, `banner`, `df`) VALUES
 (1, 'Women-12', 0, 'c69ad135cbdc2dd1abf9fd93f7240239.jpg', 0),
-(2, 'Men', 0, 'd5e439018d184d74cb8b55e6ea9f7ebf.jpg', 0);
+(2, 'Men', 0, 'd5e439018d184d74cb8b55e6ea9f7ebf.jpg', 0),
+(3, 'mobile', 0, 'no-image.png', 0),
+(4, 'electronic', 0, 'no-image.png', 0),
+(5, 'apple', 0, 'no-image.png', 0),
+(6, 'lapotps', 0, 'no-image.png', 0),
+(7, 'kitchen', 0, 'no-image.png', 0);
 
 -- --------------------------------------------------------
 
@@ -368,20 +396,22 @@ CREATE TABLE IF NOT EXISTS `product` (
   `stock` int(11) NOT NULL,
   `sizes` text NOT NULL,
   `chart` varchar(50) NOT NULL,
+  `featured` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `hash`, `name`, `amount`, `list_price`, `short_desc`, `desc`, `category`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `keyword`, `description`, `tax`, `amount_without_tax`, `cod`, `bannner`, `rating`, `df`, `stock`, `sizes`, `chart`) VALUES
-(8, '77f9357abe5780e0b3e377498416c5a6', 'Hello world', '110.01', '', 'hello', '<p>sadsad</p>', '1', 1, '1', '1', '2019-08-05 15:05:29', '2019-08-08 11:20:21', '', '', '10', '100.01', '0', '077d796d23bdd2b649e56c437e8f2bbb.jpg', '0', 1, 0, '', ''),
-(9, '87ca771ee8b45ecc3628f12fc6caf82f', 'Sample', '1100.00', '1200.00', 'sdfsdf', '<p>&nbsp;</p>\r\n\r\n<p>??????</p>', '2', 1, '1', '1', '2019-08-05 16:33:33', '2019-08-08 19:21:35', '', '', '10', '1000.00', '0', '9cd329fce67c732525b110976c906fbf.jpg', '3', 0, 6, '', ''),
-(10, '61c3a690005c4d15141e217e3e11d753', 'Others', '55.00', '100.00', 'asdasdasd', '<p>asdasd</p>', '2', 1, '1', '1', '2019-08-07 00:18:55', '2019-08-08 20:46:05', '', '', '10', '50.00', '0', '2daf3344d2317563a009fc0efbf168a1.jpg', '3', 0, 2, '', ''),
-(11, '93355210a5b16ee061d6c81d4fa38e48', 'Rental', '144.00', '150.00', 'asdads', '<p>&nbsp;</p>\r\n\r\n<p>??????</p>', '1,2', 1, '1', '1', '2019-08-07 01:22:46', '2019-08-09 00:41:40', '', '', '20', '120.00', '0', '4c729646a2d058c5bedaa813b7323553.jpg', '4', 0, 49, '', ''),
-(12, 'eb92283c125159ea8e043eb72482884f', 'Asdasd', '101.00', '12.00', 'df', '<p>sdf</p>', '1,2', 1, '1', '1', '2019-08-08 19:54:07', '2019-08-08 19:54:07', '', '', '1', '100.00', '0', 'no-image.png', '0', 0, 10, '', '4ece49da087e6d8f6654bc9b09c1169c.jpg'),
-(13, 'e2e2d2861e5b1d9bb27370f9160f7eaf', 'Sample B', '110.00', '100.00', 'Hello', '<p>मेरा नाम है&nbsp;ਮੇਰਾ ਨਾਮ ਹੈ</p>', '1,2,5,6', 1, '1', '1', '2019-08-08 23:08:40', '2019-08-10 16:42:06', '', '', '10', '100.00', '0', 'no-image.png', '0', 0, 49, 'SM,L,M,XL,XXL,MEDIUM,A', '');
+INSERT INTO `product` (`id`, `hash`, `name`, `amount`, `list_price`, `short_desc`, `desc`, `category`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `keyword`, `description`, `tax`, `amount_without_tax`, `cod`, `bannner`, `rating`, `df`, `stock`, `sizes`, `chart`, `featured`) VALUES
+(8, '77f9357abe5780e0b3e377498416c5a6', 'Hello world', '110.01', '', 'hello', '<p>sadsad</p>', '1', 1, '1', '1', '2019-08-05 15:05:29', '2019-08-08 11:20:21', '', '', '10', '100.01', '0', '077d796d23bdd2b649e56c437e8f2bbb.jpg', '0', 1, 0, '', '', 0),
+(9, '87ca771ee8b45ecc3628f12fc6caf82f', 'Sample', '1100.00', '1200.00', 'sdfsdf', '<pre>\r\nलगभग 2,53,00,00,000 परिणाम (0.53 सेकंड)</pre>', '2', 1, '1', '1', '2019-08-05 16:33:33', '2019-08-27 17:41:10', '', '', '10', '1000.00', '0', '9cd329fce67c732525b110976c906fbf.jpg', '3', 0, 6, '', '', 1),
+(10, '61c3a690005c4d15141e217e3e11d753', 'Others', '55.00', '100.00', 'asdasdasd', '<p>asdasd</p>', '2', 1, '1', '1', '2019-08-07 00:18:55', '2019-08-08 20:46:05', '', '', '10', '50.00', '0', '2daf3344d2317563a009fc0efbf168a1.jpg', '3', 0, 2, '', '', 0),
+(11, '93355210a5b16ee061d6c81d4fa38e48', 'Rental', '144.00', '150.00', 'asdads', '<p>&nbsp;</p>\r\n\r\n<p>??????</p>', '1,2', 1, '1', '1', '2019-08-07 01:22:46', '2019-08-27 17:28:44', '', '', '20', '120.00', '0', '4c729646a2d058c5bedaa813b7323553.jpg', '4', 0, 49, '', '', 1),
+(12, 'eb92283c125159ea8e043eb72482884f', 'Asdasd', '101.00', '12.00', 'df', '<p>sdf</p>', '1,2', 1, '1', '1', '2019-08-08 19:54:07', '2019-08-27 17:28:19', '', '', '1', '100.00', '0', 'b00fc47dcf7b0039ebf359460383c6b0.jpg', '0', 0, 10, '', '4ece49da087e6d8f6654bc9b09c1169c.jpg', 1),
+(13, 'e2e2d2861e5b1d9bb27370f9160f7eaf', 'Sample B', '110.00', '100.00', 'abc', '<p>मेरा नाम है&nbsp;ਮੇਰਾ ਨਾਮ ਹੈ</p>', '1,2,5,6', 1, '1', '1', '2019-08-08 23:08:40', '2019-08-27 17:06:48', '', '', '10', '100.00', '0', 'no-image.png', '0', 0, 49, 'SM,L,M,XL,XXL,MEDIUM,A', '', 1),
+(14, 'fe826de87dd96553c9180eaa340f8947', 'Featured', '110.00', '', 'hello', '<pre>\r\nलगभग 2,53,00,00,000 परिणाम (0.53 सेकंड)</pre>', '1,2,3', 1, '1', '1', '2019-08-27 17:08:33', '2019-08-27 17:40:50', '', '', '10', '100.00', '1', 'no-image.png', '0', 0, 100, '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -438,7 +468,7 @@ CREATE TABLE IF NOT EXISTS `search_keywords` (
   `keyword` text NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `search_keywords`
@@ -473,7 +503,23 @@ INSERT INTO `search_keywords` (`id`, `keyword`, `created`) VALUES
 (26, 'a', '2019-08-07 19:30:42'),
 (27, 'a', '2019-08-07 19:30:43'),
 (28, 'a', '2019-08-07 19:30:45'),
-(29, 'a', '2019-08-07 19:30:47');
+(29, 'a', '2019-08-07 19:30:47'),
+(30, 'a', '2019-08-22 13:49:38'),
+(31, 'a', '2019-08-22 13:49:47'),
+(32, 'a', '2019-08-22 13:49:49'),
+(33, 'a', '2019-08-26 18:42:00'),
+(34, 'aa', '2019-08-26 19:04:47'),
+(35, 'a', '2019-08-26 19:04:52'),
+(36, 'a', '2019-08-27 17:44:22'),
+(37, 'a', '2019-08-27 17:48:54'),
+(38, 'a', '2019-08-27 17:49:17'),
+(39, 'a', '2019-08-27 17:49:19'),
+(40, 'a', '2019-08-27 17:50:14'),
+(41, 'a', '2019-08-27 17:51:15'),
+(42, 'a', '2019-08-27 17:51:17'),
+(43, 'a', '2019-08-27 17:51:31'),
+(44, 'a', '2019-08-27 17:51:45'),
+(45, 'a', '2019-08-27 17:53:00');
 
 -- --------------------------------------------------------
 
@@ -503,6 +549,7 @@ CREATE TABLE IF NOT EXISTS `setting` (
   `smtp_pass` text,
   `merchent_key` varchar(250) NOT NULL,
   `salt` varchar(250) NOT NULL,
+  `announcements` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -510,8 +557,8 @@ CREATE TABLE IF NOT EXISTS `setting` (
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`id`, `email`, `support_email`, `contact_email`, `newsletter_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`, `meta_keywords`, `meta_description`, `shop_commission`, `ad_number`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `merchent_key`, `salt`) VALUES
-(1, 'kavadev@gmail.com', 'support.kava@gmail.com', 'nayanpatel807@gmail.com', 'nayanpatel807@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown', 'home', 'description', '50.00', '1234567890', 'ssl://smtp.googlemail.com', '465', 'mehul9921@gmail.com', 'KAVA@5981', 'rjQUPktU', 'e5iIg1jwi8');
+INSERT INTO `setting` (`id`, `email`, `support_email`, `contact_email`, `newsletter_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`, `meta_keywords`, `meta_description`, `shop_commission`, `ad_number`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `merchent_key`, `salt`, `announcements`) VALUES
+(1, 'kavadev@gmail.com', 'support.kava@gmail.com', 'nayanpatel807@gmail.com', 'nayanpatel807@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown', 'home', 'description', '50.00', '1234567890', 'ssl://smtp.googlemail.com', '465', 'mehul9921@gmail.com', 'KAVA@5981', 'rjQUPktU', 'e5iIg1jwi8', 'Sample ');
 
 -- --------------------------------------------------------
 

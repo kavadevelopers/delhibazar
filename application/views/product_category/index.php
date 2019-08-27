@@ -36,7 +36,6 @@
 					<?php if(!empty($products)) { ?>
 						<?php foreach ($products as $key => $value) { 
 
-						$product_image = $this->product_model->product_image_where($value['id']);
 						?>
 							
 

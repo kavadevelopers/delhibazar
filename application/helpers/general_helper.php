@@ -313,4 +313,21 @@ function get_subcategory_image($id){
 	return $image;
 }
 
+function get_home_banners(){
+	$CI=&get_instance();
+	$CI->db->order_by('order','ASC');
+	$banners = $CI->db->get_where('home_banner')->result_array();
+	$image = [];
+	foreach ($banners as $key => $value) {
+		$url    =   $CI->config->config['admin_url']."uploads/home_banners/".$value['name'];
+
+		if(getimagesize($url)){
+			$image[] = $url;
+		}
+	}
+
+
+	return $image;
+}
+
 ?>

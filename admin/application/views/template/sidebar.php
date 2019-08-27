@@ -237,6 +237,13 @@
                                 </li>
 
                                 <li class="nav-item">
+                                    <a href="<?= base_url('setting/home_banner'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("home_banner"))[0]; ?>">
+                                        <i class="fa fa-circle-o nav-icon"></i>
+                                        <p>Home Banners</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a href="<?= base_url('category'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("category"))[0]; ?>">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>Product Category</p>

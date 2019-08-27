@@ -140,6 +140,17 @@
                                             <?php echo form_error('short_desc'); ?>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Featured Product <span class="astrick">*</span></label>
+                                            <select name="featured" class="form-control form-control-sm" >
+                                                <option value="0" <?php if(0 == set_value('featured',$product['featured'])) { echo "selected"; } ?>>No</option>
+                                                <option value="1" <?php if(1 == set_value('featured',$product['featured'])) { echo "selected"; } ?>>Yes</option>
+                                            </select>
+                                            <?php echo form_error('featured'); ?>
+                                        </div>
+                                    </div>
                                    
                                 </div>
                             </div>

@@ -154,5 +154,16 @@
         <script src="<?= base_url() ?>user_login/vendors/counter-up/jquery.waypoints.min.js"></script>
         <script src="<?= base_url() ?>user_login/vendors/counter-up/jquery.counterup.js"></script>
         <script src="<?= base_url() ?>user_login/js/theme.js"></script>
+
+
+        <script type="text/javascript">
+            $(function() {
+                $(document).click(function (event) {
+                    $('.navbar-collapse').collapse('hide');
+                });
+            })
+        </script>
+
+        
     </body>
 </html>

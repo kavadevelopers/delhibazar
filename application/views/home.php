@@ -72,7 +72,7 @@
                     </li>
 
                     <li>
-                        <a href="<?= base_url(); ?>category">Shopping</a>
+                        <a href="<?= base_url(); ?>home">Shopping</a>
                     </li>
                     
                     <li>
@@ -1345,6 +1345,8 @@
                 }).resize();
             });
             </script>
+           
+
            
     </body>
 </html>

@@ -132,4 +132,22 @@ function get_subcategory_image($id){
 
 	return $image;
 }
+
+
+function get_home_banners()
+{
+	$CI=&get_instance();
+    $banners = $CI->db->order_by('order','ASC')->get_where('home_banner')->result_array();
+    $images = [];
+    foreach ($banners as $key => $value) {
+		if(file_exists(FCPATH.'uploads/home_banners/'.$value['name'])){
+			$images[] = [$value['name'],$value['id'],$value['order']];
+		}
+		else{
+			$images[] = ["no-image.png",$value['id'],$value['order']];
+		}
+	}
+
+	return $images;
+}
 ?>

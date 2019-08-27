@@ -65,6 +65,7 @@ class Product extends CI_Controller {
         $this->form_validation->set_rules('amount_without_tax', 'Amount without tax', 'trim|required|max_length[10]|decimal');
         $this->form_validation->set_rules('cash_on_delivery', 'Cash On Delivery', 'trim|required');
         $this->form_validation->set_rules('sizes', 'Sizes', 'trim');
+        $this->form_validation->set_rules('featured', 'Featured Product', 'trim');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -93,7 +94,8 @@ class Product extends CI_Controller {
                             'updated_at'    =>  _now_dt(),
                             'cod'           =>  $this->input->post('cash_on_delivery'),
                             'stock'         =>  $this->input->post('stock'),
-                            'sizes'         =>  $this->input->post('sizes')
+                            'sizes'         =>  $this->input->post('sizes'),
+                            'featured'      =>  $this->input->post('featured')
                         ];
 
                 if($this->db->insert('product', $product)){
@@ -131,6 +133,7 @@ class Product extends CI_Controller {
         $this->form_validation->set_rules('cash_on_delivery', 'Cash On Delivery', 'trim|required');
         $this->form_validation->set_rules('stock', 'Stock', 'trim|required|max_length[10]|numeric');
         $this->form_validation->set_rules('sizes', 'Sizes', 'trim');
+        $this->form_validation->set_rules('featured', 'Featured Product', 'trim');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -158,7 +161,8 @@ class Product extends CI_Controller {
                             'updated_at'    =>  _now_dt(),
                             'cod'           =>  $this->input->post('cash_on_delivery'),
                             'stock'         =>  $this->input->post('stock'),
-                            'sizes'         =>  $this->input->post('sizes')
+                            'sizes'         =>  $this->input->post('sizes'),
+                            'featured'      =>  $this->input->post('featured')
                         ];
                 $this->db->where('id',$this->input->post('product_id'));
                 if($this->db->update('product', $product)){

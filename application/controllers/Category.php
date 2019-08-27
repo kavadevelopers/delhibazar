@@ -8,11 +8,22 @@ class Category extends CI_Controller {
     	$this->load->model('product_model');   
     }
 
-	public function index()
+	public function index($id = false)
 	{
-		$data['_title']				= "DELHIBAZAR";
-		$data['category']			= $this->product_model->get_category();
-		$this->load->template('category/index',$data);
+		if($id){
+			if($this->product_model->get_single_category($id)){
+				$data['_title']				= "DELHIBAZAR";
+				$data['id']					= $id;
+				$data['cate']				= $this->product_model->get_single_category($id);
+				$this->load->template('category/index',$data);
+			}
+			else{
+				redirect(base_url('home'));
+			}
+		}
+		else{
+			redirect(base_url('home'));
+		}
 	}
 
 }

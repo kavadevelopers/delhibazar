@@ -50,7 +50,7 @@
 
                                     <div class="col-md-12" style="text-align: center;">
                                         
-                                        <table class="table table-bordered">
+                                        <table class="table table-bordered" id="product_images">
                                             <tbody>
                                                 
                                                 <?php if(!empty(get_product_images($product['id']))){ ?>
@@ -312,9 +312,9 @@
                     success:function( out ){
                         setTimeout(function(){  
                             $('#remove_sp'+i).closest('tr').remove();
-                            if($('#table_traking > tbody').find('tr').length == 0)
+                            if($('#product_images > tbody').find('tr').length == 0)
                             {
-                                $('#table_traking > tbody').append('<tr id="blank_tr"><td colspan="2" class="text-center">No Data Found</td></tr>');
+                                $('#product_images > tbody').append('<tr id="blank_tr"><td colspan="2" class="text-center">No Data Found</td></tr>');
                             }
                         }, 2000);
                     }
