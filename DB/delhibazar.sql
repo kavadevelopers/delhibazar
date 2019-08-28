@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 27, 2019 at 12:35 PM
+-- Generation Time: Aug 28, 2019 at 06:21 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -47,23 +47,18 @@ CREATE TABLE IF NOT EXISTS `advertising` (
   `updated_at` datetime NOT NULL,
   `df` varchar(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `advertising`
 --
 
 INSERT INTO `advertising` (`id`, `business_name`, `intro`, `mobile`, `address`, `link`, `photo`, `plan_name`, `exp_date`, `page`, `position`, `created_by`, `updated_by`, `created_at`, `updated_at`, `df`) VALUES
-(1, 'new Shoppppppp eeess dsd sd sds', 'adsa sa asd', '4504565065', 'asda sda', 'javascript:;', '540f5a0e8327161886e8444231efbcbb.png', '2', '2019-09-03', 'Home', '1', '1', '1', '2019-06-14 14:05:37', '2019-08-04 23:39:13', '0'),
-(2, 'Shop 2', 'asdasd', '7898745645', 'adsadasd', '#', 'f83a1832f6c51797bed6de412d4358ce.jpg', '2', '2019-07-14', 'Home\r\n', '2', '1', '1', '2019-06-14 16:06:11', '2019-06-14 16:31:28', '0'),
-(3, 'Shop', 'sdas', '1201232032', 'dasdas', '#', '0fa462ca006753b0554feb32d8cdefcd.png', '2', '2019-07-14', 'Home\r\n', '4', '1', '1', '2019-06-14 16:57:22', '2019-06-14 16:57:22', '0'),
-(4, 'sadas', 'dasd', '7897865465', 'asdas', '#', '148bc37cadf9d8170700c4122bbbd70b.jpg', '2', '2019-07-14', 'Business Detail', '1', '1', '1', '2019-06-14 16:57:52', '2019-06-14 16:57:52', '0'),
-(5, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'no-image.png', '2', '2019-07-14', 'Listing', '5', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
-(6, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home\r\n', '6', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
-(7, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home\r\n', '7', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
-(8, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home\r\n', '8', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
-(9, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home\r\n', '9', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0'),
-(10, 'Home', 'asdasd asd asd', '4564522112', 'asdasdd as dasd a', '#', 'eafd12ea47ef187e8054eef92da41839.jpg', '2', '2019-07-14', 'Home\r\n', '10', '1', '1', '2019-06-14 14:06:52', '2019-06-17 16:14:30', '0');
+(13, 'Adver - 1', 'h', '1237894560', 'sdadsa', '', 'no-image.png', '2', '2019-09-27', 'Home', '1', '1', '1', '2019-08-28 12:16:23', '2019-08-28 12:16:23', '0'),
+(14, 'Adver - 1 - 2', 'asdasd', '1231231230', 'fsdfsdf', '', 'no-image.png', '2', '2019-09-27', 'Home', '1', '1', '1', '2019-08-28 12:16:51', '2019-08-28 12:16:51', '0'),
+(15, 'Adver - 1 - 3', 'fsdfsdf', '1234567890', 'dsadasd', '', 'no-image.png', '2', '2019-09-27', 'Home', '1', '1', '1', '2019-08-28 12:17:15', '2019-08-28 12:17:15', '0'),
+(16, 'Adver - 2 - 1', 'dfsdf', '1324567890', 'Adver', '', 'no-image.png', '2', '2019-09-27', 'Business Detail', '4', '1', '1', '2019-08-28 12:17:37', '2019-08-28 23:16:18', '0'),
+(17, 'Adver -2 - 2', 'Adver', '1234567890', 'Adver', '', 'no-image.png', '2', '2019-09-27', 'Business Detail', '4', '1', '1', '2019-08-28 12:17:59', '2019-08-28 23:16:09', '0');
 
 -- --------------------------------------------------------
 
@@ -224,6 +219,27 @@ INSERT INTO `home_banner` (`id`, `name`, `order`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `home_categories`
+--
+
+DROP TABLE IF EXISTS `home_categories`;
+CREATE TABLE IF NOT EXISTS `home_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cate_id` varchar(50) NOT NULL,
+  `order` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `home_categories`
+--
+
+INSERT INTO `home_categories` (`id`, `cate_id`, `order`) VALUES
+(7, '3', '2');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `main_category`
 --
 
@@ -298,7 +314,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `keyword` text NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pages`
@@ -308,7 +324,8 @@ INSERT INTO `pages` (`id`, `name`, `content`, `keyword`, `description`) VALUES
 (1, 'about', '<h2 style=\"font-style:italic\"><strong>return_policy_save</strong></h2>\r\n', 'a', 'ab'),
 (2, 'terms', '<p>This is <u><em><strong>terms</strong></em></u></p>\r\n', 'fa', 'asf'),
 (3, 'privacy', '<h1>This i<strong>s privacy</strong></h1>\r\n', 'sa', 'as'),
-(4, 'Return Policy', '<h2 style=\"font-style:italic\"><strong>return_policy_save</strong></h2>\r\n', 'adasd', 'asdasddddd');
+(4, 'Return Policy', '<h2 style=\"font-style:italic\"><strong>return_policy_save</strong></h2>\r\n', 'adasd', 'asdasddddd'),
+(5, 'home', '', 'home-key', 'home-desc');
 
 -- --------------------------------------------------------
 
@@ -468,7 +485,7 @@ CREATE TABLE IF NOT EXISTS `search_keywords` (
   `keyword` text NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `search_keywords`
@@ -519,7 +536,63 @@ INSERT INTO `search_keywords` (`id`, `keyword`, `created`) VALUES
 (42, 'a', '2019-08-27 17:51:17'),
 (43, 'a', '2019-08-27 17:51:31'),
 (44, 'a', '2019-08-27 17:51:45'),
-(45, 'a', '2019-08-27 17:53:00');
+(45, 'a', '2019-08-27 17:53:00'),
+(46, 'aaaaaaa', '2019-08-28 09:58:07'),
+(47, 'a', '2019-08-28 09:58:15'),
+(48, 'a', '2019-08-28 09:59:57'),
+(49, 'a', '2019-08-28 21:45:54'),
+(50, 'a', '2019-08-28 21:58:33'),
+(51, 'a', '2019-08-28 21:59:11'),
+(52, 'a', '2019-08-28 22:02:35'),
+(53, 'a', '2019-08-28 22:03:31'),
+(54, 'a', '2019-08-28 22:05:35'),
+(55, 'a', '2019-08-28 22:06:10'),
+(56, 'a', '2019-08-28 22:07:01'),
+(57, 'a', '2019-08-28 22:09:11'),
+(58, 'a', '2019-08-28 22:09:46'),
+(59, 'a', '2019-08-28 22:11:05'),
+(60, 'a', '2019-08-28 22:11:43'),
+(61, 'a', '2019-08-28 22:14:52'),
+(62, 'a', '2019-08-28 22:15:08'),
+(63, 'a', '2019-08-28 22:15:28'),
+(64, 'a', '2019-08-28 22:15:42'),
+(65, 'a', '2019-08-28 22:15:58'),
+(66, 'a', '2019-08-28 22:16:32'),
+(67, 'a', '2019-08-28 22:17:15'),
+(68, 'a', '2019-08-28 22:18:07'),
+(69, 'a', '2019-08-28 22:18:30'),
+(70, 'a', '2019-08-28 22:19:06'),
+(71, 'a', '2019-08-28 22:20:16'),
+(72, 'a', '2019-08-28 22:20:31'),
+(73, 'a', '2019-08-28 22:20:41'),
+(74, 'a', '2019-08-28 22:24:26'),
+(75, 'a', '2019-08-28 22:34:36'),
+(76, 'a', '2019-08-28 22:34:56'),
+(77, 'a', '2019-08-28 22:36:26'),
+(78, 'a', '2019-08-28 22:37:15'),
+(79, 'a', '2019-08-28 22:37:33'),
+(80, 'a', '2019-08-28 22:37:55'),
+(81, 'a', '2019-08-28 22:38:16'),
+(82, 'a', '2019-08-28 22:39:56'),
+(83, 'a', '2019-08-28 22:40:17'),
+(84, 'a', '2019-08-28 22:41:10'),
+(85, 'a', '2019-08-28 22:43:26'),
+(86, 'a', '2019-08-28 22:43:46'),
+(87, 'a', '2019-08-28 22:44:07'),
+(88, 'a', '2019-08-28 22:44:25'),
+(89, 'a', '2019-08-28 22:44:41'),
+(90, 'a', '2019-08-28 22:45:00'),
+(91, 'a', '2019-08-28 22:45:15'),
+(92, 'a', '2019-08-28 22:47:34'),
+(93, 'a', '2019-08-28 22:52:43'),
+(94, 'a', '2019-08-28 22:53:49'),
+(95, 'a', '2019-08-28 22:54:40'),
+(96, 'a', '2019-08-28 22:54:46'),
+(97, 'a', '2019-08-28 23:01:34'),
+(98, 'a', '2019-08-28 23:01:50'),
+(99, 'a', '2019-08-28 23:02:26'),
+(100, 'a', '2019-08-28 23:02:49'),
+(101, 'a', '2019-08-28 23:03:30');
 
 -- --------------------------------------------------------
 

@@ -42,7 +42,7 @@ class Advertising extends CI_Controller {
         $this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|is_natural|min_length[10]|max_length[12]');
         $this->form_validation->set_rules('intro', 'Intro', 'trim|required');
         $this->form_validation->set_rules('address', 'Address', 'trim|required');
-        $this->form_validation->set_rules('web_link', 'Website Link', 'trim|required|callback_valid_url');
+        $this->form_validation->set_rules('web_link', 'Website Link', 'trim|callback_valid_url');
         $this->form_validation->set_rules('plan_name', 'Plan', 'required|trim');
         $this->form_validation->set_rules('page', 'Page', 'required|trim');
         $this->form_validation->set_rules('position', 'Position', 'required|trim');
@@ -142,7 +142,7 @@ class Advertising extends CI_Controller {
         $this->form_validation->set_rules('mobile', 'Mobile', 'trim|required|is_natural|min_length[10]|max_length[12]');
         $this->form_validation->set_rules('intro', 'Intro', 'trim|required');
         $this->form_validation->set_rules('address', 'Address', 'trim|required');
-        $this->form_validation->set_rules('web_link', 'Website Link', 'trim|required|callback_valid_url');
+        $this->form_validation->set_rules('web_link', 'Website Link', 'trim|callback_valid_url');
         $this->form_validation->set_rules('plan_name', 'Plan', 'required|trim');
         $this->form_validation->set_rules('page', 'Page', 'required|trim');
         $this->form_validation->set_rules('position', 'Position', 'required|trim');
@@ -266,7 +266,7 @@ class Advertising extends CI_Controller {
 
 
     function valid_url($url){
-       	if($url == 'javascript:;'){
+       	if($url == ''){
 
        		return TRUE;
 

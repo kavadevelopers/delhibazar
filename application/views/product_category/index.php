@@ -40,30 +40,32 @@
 							
 
 							<div class="col-lg-4 col-md-4 col-sm-6">
-								<div class="f_p_item" onclick="location.href='<?= base_url() ?>products/product_detail/<?= $value['hash'] ?>'">
-									<div class="f_p_img">
-										
+								<a href="<?= base_url() ?>products/product_detail/<?= $value['hash'] ?>">
+									<div class="f_p_item">
+										<div class="f_p_img">
+											
 
+												
+											<img class="img-fluid" src="<?= _product_banner($value['id']) ?>" alt="Product Image">
+												
 											
-										<img class="img-fluid" src="<?= _product_banner($value['id']) ?>" alt="Product Image">
-											
-										
-										<!-- <div class="p_icon">
-											<?php if($this->session->userdata('id')){ ?>
-												<a href="<?= base_url().'products/add_to_cart/?hash='.$value['hash'].'&uri='.base_url(uri_string()) ?>">
-													<i class="lnr lnr-cart"></i>
-												</a>
-											<?php }else{ ?>
-												<a href="#" onclick="return guest_click()"><i class="lnr lnr-cart"></i></a>
-											<?php } ?>
-										</div> -->
+											<!-- <div class="p_icon">
+												<?php if($this->session->userdata('id')){ ?>
+													<a href="<?= base_url().'products/add_to_cart/?hash='.$value['hash'].'&uri='.base_url(uri_string()) ?>">
+														<i class="lnr lnr-cart"></i>
+													</a>
+												<?php }else{ ?>
+													<a href="#" onclick="return guest_click()"><i class="lnr lnr-cart"></i></a>
+												<?php } ?>
+											</div> -->
+										</div>
+										<a href="javascript:;"><h4><?= $value['name'] ?></h4></a>
+										<?php if(!empty($value['list_price'])){ ?>
+											<h5 style="text-decoration: line-through; font-size: 12px;">₹<?= $value['list_price'] ?><h5>
+										<?php } ?>
+										<h5>₹<?= $value['amount'] ?></h5>
 									</div>
-									<a href="javascript:;"><h4><?= $value['name'] ?></h4></a>
-									<?php if(!empty($value['list_price'])){ ?>
-										<h5 style="text-decoration: line-through; font-size: 12px;">₹<?= $value['list_price'] ?><h5>
-									<?php } ?>
-									<h5>₹<?= $value['amount'] ?></h5>
-								</div>
+								</a>
 							</div>
 
 						<?php } } else { ?>

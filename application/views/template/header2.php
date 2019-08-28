@@ -50,6 +50,12 @@ $CI->load->model('cart_model');
 	    	<meta name="keywords" content="<?= $page[0]['keyword'] ?>">
 	    	<meta name="description" content="<?= $page[0]['description'] ?>">
 
+	    <?php }else if($this->uri->segment(1) == 'home'){ ?>
+	    	
+	    	<?php $page = $CI->db->get_where('pages',['id' => '5'])->result_array(); ?>
+	    	<meta name="keywords" content="<?= $page[0]['keyword'] ?>">
+	    	<meta name="description" content="<?= $page[0]['description'] ?>">
+
 	    <?php }else{ ?>
 	    	<meta name="keywords" content="<?= get_setting()['meta_keywords'] ?>">
 	    	<meta name="description" content="<?= get_setting()['meta_description'] ?>">	

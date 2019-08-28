@@ -16,8 +16,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="dist/error404/style.css" />
-  	<link rel="stylesheet" href="dist/css/adminlte.min.css">
+	<link type="text/css" rel="stylesheet" href="admin/dist/error404/style.css" />
+  	<link rel="stylesheet" href="admin/dist/css/adminlte.min.css">
 
 
 	
@@ -27,7 +27,7 @@
 			
 	<div id="notfound" style="position: inherit; height: auto;">
 			<div class="row text-center" style="margin-top: 30px;">
-					<img src="image/logo.png" style="width: 150px; height: 120px; margin: 0 auto;">
+				<img src="image/logo.png" style="margin: 0 auto;">
 			</div>
 		<div class="notfound">
 			<div class="row">

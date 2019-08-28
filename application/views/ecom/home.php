@@ -104,21 +104,21 @@
             				?>
 
 								<div class="item">
-									<div class="f_p_item">
-										<div class="f_p_img">
-											<img class="img-fluid" src="<?= _product_banner($value['id']) ?>" alt="">
-											<div class="p_icon">
-												
+									<a href="<?= base_url() ?>products/product_detail/<?= $value['hash'] ?>">
+										<div class="f_p_item">
+											<div class="f_p_img">
+												<img class="img-fluid" src="<?= _product_banner($value['id']) ?>" alt="">
+												<div class="p_icon">
+													
+												</div>
 											</div>
-										</div>
-										<a href="<?= base_url() ?>products/product_detail/<?= $value['hash'] ?>">
 											<h4><?= $value['name'] ?></h4>
-										</a>
-										<?php if(!empty($value['list_price'])){ ?>
-											<h5 style="text-decoration: line-through; font-size: 12px;">₹<?= $value['list_price'] ?><h5>
-										<?php } ?>
-										<h5>₹<?= $value['amount'] ?></h5>
-									</div>
+											<?php if(!empty($value['list_price'])){ ?>
+												<h5 style="text-decoration: line-through; font-size: 12px;">₹<?= $value['list_price'] ?><h5>
+											<?php } ?>
+											<h5>₹<?= $value['amount'] ?></h5>
+										</div>
+									</a>
 								</div>
 
 							<?php } ?>
@@ -131,63 +131,120 @@
 <!--================End Feature Product Area =================-->
 
 <!--================Deal Timer Area =================-->
-        <section class="timer_area">
+        <section class="timer_area" style="padding-top: 50px; padding-bottom: 50px;">
         	<div class="container">
         		<div class="main_title">
         			
         		</div>
-        		<div class="timer_inner">
-
-				</div>
         	</div>
         </section>
 <!--================End Deal Timer Area =================-->
 
 
 <!--================Latest Product Area =================-->
-        <section class="feature_product_area latest_product_area">
+        <section class="feature_product_area">
         	<div class="main_box">
 				<div class="container">
 					<div class="feature_product_inner">
 						<div class="main_title">
 							<h2>Latest Products</h2>
 						</div>
-						<div class="latest_product_inner row">
-							
+						<div class="feature_p_slider owl-carousel">
+
 							<?php 	
 									$this->db->order_by('id','DESC');
-									$this->db->limit(8);
+									$this->db->limit(10);
 									$this->db->where('status','1');
             						$this->db->where('df','0');
             						foreach($this->db->get('product')->result_array() as $key => $value){
             				?>
 
-								<div class="col-lg-3 col-md-4 col-sm-6">
-									<div class="f_p_item">
-										<div class="f_p_img">
-											<img class="img-fluid" src="<?= _product_banner($value['id']) ?>" alt="">
-											<div class="p_icon">
-												
+								<div class="item">
+									<a href="<?= base_url() ?>products/product_detail/<?= $value['hash'] ?>">
+										<div class="f_p_item">
+											<div class="f_p_img">
+												<img class="img-fluid" src="<?= _product_banner($value['id']) ?>" alt="">
+												<div class="p_icon">
+													
+												</div>
 											</div>
-										</div>
-										<a href="<?= base_url() ?>products/product_detail/<?= $value['hash'] ?>">
 											<h4><?= $value['name'] ?></h4>
-										</a>
-										<?php if(!empty($value['list_price'])){ ?>
-											<h5 style="text-decoration: line-through; font-size: 12px;">₹<?= $value['list_price'] ?><h5>
-										<?php } ?>
-										<h5>₹<?= $value['amount'] ?></h5>
-									</div>
+											<?php if(!empty($value['list_price'])){ ?>
+												<h5 style="text-decoration: line-through; font-size: 12px;">₹<?= $value['list_price'] ?><h5>
+											<?php } ?>
+											<h5>₹<?= $value['amount'] ?></h5>
+										</div>
+									</a>
 								</div>
 
 							<?php } ?>
-
+							
 						</div>
 					</div>
 				</div>
         	</div>
         </section>
 <!--================End Latest Product Area =================-->
+
+<!--================ Feature Categories Area =================-->
+
+	
+	<?php 
+		$this->db->order_by('order','ASC');
+		foreach($this->db->get('home_categories')->result_array() as $key => $_value){
+		$cate = $this->product_model->get_sub_category_by_id($_value['cate_id']);
+		if($cate){
+	?>
+
+		<section class="timer_area" style="padding-top: 50px; padding-bottom: 50px;">
+        	<div class="container">
+        		<div class="main_title">
+        			
+        		</div>
+        	</div>
+        </section>
+
+        <section class="feature_product_area">
+        	<div class="main_box">
+				<div class="container">
+					<div class="feature_product_inner">
+						<div class="main_title">
+							<h2><?= $cate[0]['name'] ?></h2>
+						</div>
+						<div class="feature_p_slider owl-carousel">
+
+							<?php foreach($this->product_model->get_products_by_subcategory($cate[0]['id']) as $key => $value){ ?>
+
+								<div class="item">
+									<a href="<?= base_url() ?>products/product_detail/<?= $value['hash'] ?>">
+										<div class="f_p_item">
+											<div class="f_p_img">
+												<img class="img-fluid" src="<?= _product_banner($value['id']) ?>" alt="">
+												<div class="p_icon">
+													
+												</div>
+											</div>
+											<h4><?= $value['name'] ?></h4>
+											<?php if(!empty($value['list_price'])){ ?>
+												<h5 style="text-decoration: line-through; font-size: 12px;">₹<?= $value['list_price'] ?><h5>
+											<?php } ?>
+											<h5>₹<?= $value['amount'] ?></h5>
+										</div>
+									</a>
+								</div>
+
+							<?php } ?>
+							
+						</div>
+					</div>
+				</div>
+        	</div>
+        </section>
+
+	<?php } } ?>
+	
+
+<!--================ End Feature Categories Area =================-->
 
 
 
@@ -219,5 +276,10 @@
         align-items: center;
     }
 
-    
+    .feature_p_slider .item:hover{
+    	border: solid 1px #CCC;
+        -moz-box-shadow: 1px 1px 5px #999;
+        -webkit-box-shadow: 1px 1px 5px #999;
+        box-shadow: 1px 1px 5px #999;
+    }
 </style>

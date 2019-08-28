@@ -139,7 +139,7 @@
                 margin: 30,
                 items: 4,
                 nav: false,
-                autoplay: false,
+                autoplay: true,
                 smartSpeed: 1500,
                 dots:true, 
 //				navContainer: '.testimonials_area',

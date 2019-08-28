@@ -15,7 +15,7 @@ class Category extends CI_Controller {
 				$data['_title']				= "DELHIBAZAR";
 				$data['id']					= $id;
 				$data['cate']				= $this->product_model->get_single_category($id);
-				$this->load->template('category/index',$data);
+				$this->load->template1('category/index',$data);
 			}
 			else{
 				redirect(base_url('home'));

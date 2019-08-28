@@ -48,12 +48,12 @@ function getBrowser() {
 } 
 
 // now try it
-$ua=getBrowser();
+// $ua=getBrowser();
 
-if($ua != 'Chrome' && $ua != 'Mozilla' && $ua != 'Opera'){
-	include('browser.php');
-	exit;
-}
+// if($ua != 'Chrome' && $ua != 'Mozilla' && $ua != 'Opera'){
+// 	include('browser.php');
+// 	exit;
+// }
 
 /*
  *---------------------------------------------------------------

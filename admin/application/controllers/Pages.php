@@ -6,8 +6,84 @@ class Pages extends CI_Controller {
 	function __construct(){
         parent::__construct();
         $this->auth->check_session();
+        $this->load->model('general_model');
     }
 
+    public function home()
+    {
+        $data['page_title'] = 'Home';
+        $data['content']    = $this->db->get_where('pages',['id' => '5'])->result_array();
+        $this->load->template('pages/home',$data);
+    }    
+
+    public function home_meta_save()
+    {
+        $this->db->where('id','5');
+        $this->db->update('pages',['keyword' =>  $this->input->post('keywords'),'description'   =>  $this->input->post('description')]);
+
+        $this->session->set_flashdata('msg', 'Meta Successfully Saved');
+        redirect(base_url().'pages/home');
+    }
+
+    public function home_add_save()
+    {
+        $this->form_validation->set_error_delimiters('<div class="my_text_error">', '</div>');
+        $this->form_validation->set_rules('category', 'Category', 'trim|required|callback_category_check');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            $data['page_title'] = 'Home';
+            $data['content']    = $this->db->get_where('pages',['id' => '5'])->result_array();
+            $this->load->template('pages/home',$data);
+        }
+        else
+        {
+            
+            $this->db->limit(1);
+            $this->db->order_by('id','DESC');
+            $last = $this->db->get('home_categories')->result_array();
+            if($last)
+            {
+                $order = $last[0]['order'] + 1;
+
+            }else{
+                $order = 1;
+            }
+
+            $this->db->insert('home_categories',['cate_id' => $this->input->post('category'),'order' => $order]);
+            $this->session->set_flashdata('msg', 'Category Successfully Added');
+            redirect(base_url().'pages/home');
+        }
+    }
+
+    public function change_order()
+    {
+        $list = json_decode($this->input->post('data'));
+
+        foreach ($list as $key => $value) {
+            $this->db->where('id',$value);
+            $this->db->update('home_categories',['order' => ($key + 1)]);
+        }
+
+        $this->session->set_flashdata('msg', 'Order Changed Successfully');
+    }
+
+    public function delete_category(){
+
+        $this->db->where('id' , $this->input->post('id'));
+        $this->db->delete('home_categories');
+    }
+
+    public function category_check($id)
+    {
+        if($this->db->get_where('home_categories',['cate_id' => $id])->result_array()){
+            $this->form_validation->set_message('category_check', 'Category Already Exists');
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
     public function about()
     {

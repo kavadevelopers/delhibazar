@@ -26,6 +26,11 @@ class Product_model extends CI_Model
         return $this->db->get_where('category',['category' => $id,'df' => '0','status' => '0'])->result_array();
     }
 
+    public function get_sub_category_by_id($id)
+    {
+        return $this->db->get_where('category',['id' => $id,'df' => '0','status' => '0'])->result_array();
+    }
+
 	public function product_where($hash)
 	{
 		return $this->db->get_where('product',['hash' => $hash])->result_array();
@@ -154,5 +159,33 @@ class Product_model extends CI_Model
         $this->db->limit('8');
         $this->db->order_by('id','asc');
         return $this->db->get_where('product',['hash !=' => $hash])->result_array();
+    }
+
+
+    public function get_products_by_subcategory($category_id)
+    {
+        $this->db->where('df','0');
+        $this->db->where('status','1');
+        $all_products = $this->db->get('product')->result_array();
+        $products_or = [];
+        foreach ($all_products as $key => $value) {
+            if(in_array($category_id,explode(',', $value['category']))){
+                $products_or[] = $value['id'];
+            }
+        }
+
+
+        $this->db->group_start();
+            if(count($products_or) > 0){
+                $this->db->where('id','0');
+                foreach ($products_or as $_key => $_value) {
+                    $this->db->or_where('id',$_value);
+                }
+            }
+            else{
+                $this->db->where('id','0');
+            }
+        $this->db->group_end();
+        return $this->db->get('product')->result_array();
     }
 }

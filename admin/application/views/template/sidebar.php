@@ -180,6 +180,14 @@
                         </a>
                        
                         <ul class="nav nav-treeview">
+                            
+                            <li class="nav-item">
+                                <a href="<?= base_url('pages/home'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("home","home_add_save"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Home</p>
+                                </a>
+                            </li>
+
                             <li class="nav-item">
                                 <a href="<?= base_url('pages/about'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("about"))[0]; ?>">
                                     <i class="fa fa-circle-o nav-icon"></i>

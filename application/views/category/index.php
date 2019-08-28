@@ -1,19 +1,21 @@
-<!--============================= CATEGORIES =============================-->
-<section class="main-block">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-3">
-                <div class="row  _main_div">
-                    <div class="col-md-5">
-                        <img src="<?= get_category_image($id) ?>" style="width: 100%;">
+<!--================Home Banner Area =================-->
+        <section class="banner_area">
+            <div class="banner_inner d-flex align-items-center">
+                <div class="container">
+                    <div class="banner_content text-center">
+                        <h2><?= $cate[0]['name'] ?></h2>
                     </div>
-                    <div class="col-md-7 text-center center_main">
-                        <p><?= $cate[0]['name'] ?></p>
-                    </div>
-                </div>    
+                </div>
             </div>
-        </div>
-        <br><br>
+        </section>
+<!--================End Home Banner Area =================-->
+
+
+
+
+<!--============================= CATEGORIES =============================-->
+<section class="sample-text-area">
+    <div class="container">
         <div class="row justify-content-center">
                         
             <?php  foreach ($this->product_model->get_sub_category($id) as $_key => $_value) { ?>

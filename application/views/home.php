@@ -44,6 +44,30 @@
             border-radius: .25rem;
         }
 
+        .kava_fade {  
+            -webkit-animation-name: kava_fade;  
+            -webkit-animation-duration: 1.5s;  
+            animation-name: kava_fade;  
+            animation-duration: 1.5s;  
+        }  
+        @-webkit-keyframes kava_fade {  
+            from {  
+                opacity: .4  
+            }  
+            to {  
+                opacity: 1  
+            }  
+        }  
+
+        @keyframes kava_fade {  
+            from {  
+                opacity: .4  
+            }  
+            to {  
+                opacity: 1  
+            }  
+        }
+
     </style>
 
     </head>
@@ -180,14 +204,25 @@
                     </div>
                 </div>
             <?php } ?>
+            
             <div class="container">
                 <div class="row justify-content-md-center hidden-xs hidden-sm">
                         <div class="col-md-12 text-center center-fource justify-content-md-center">
                             <p><span class="badge badge-warning">ADVERTISEMENTS</span></p>
                             <div class="col-md-1"></div>
-                            <?php if($this->shop_model->hash_dynamic_add('1')){ $hash_one = $this->shop_model->hash_dynamic_add('1')[0]; ?>
-                                <div class="col-md-2">
-                                    <a href="<?= $hash_one['link'] ?>" target="_blank">
+                            <?php if($this->shop_model->hash_dynamic_add('1')){ ?>
+                                <div class="col-md-2 sliders_ads">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('1') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    
+                                    <a <?= $href ?> class="ad_slide kava_fade">
                                         <div class="col-md-12 add_div">
                                             <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
@@ -207,6 +242,14 @@
                                         </div>
 
                                     </a>
+
+                                    <?php } ?>
+
+                                    <style type="text/css">
+                                        .ad_slide {  
+                                            display: none ; 
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-md-2">
@@ -217,28 +260,46 @@
                                     </div>
                                 </div>
                             <?php } ?>
-                            
-                            <?php if($this->shop_model->hash_dynamic_add('2')){ $hash_two = $this->shop_model->hash_dynamic_add('2')[0]; ?>
-                                <div class="col-md-2">
-                                    <a href="<?= $hash_two['link'] ?>" target="_blank">
+                            <?php if($this->shop_model->hash_dynamic_add('2')){ ?>
+                                <div class="col-md-2 sliders_ads">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('2') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    
+                                    <a <?= $href ?> class="ad_slide2 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_two['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_two['business_name'],13,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_two['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_two['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_two['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
+
                                     </a>
+
+                                    <?php } ?>
+
+                                    <style type="text/css">
+                                        .ad_slide2 {  
+                                            display: none  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-md-2">
@@ -250,29 +311,48 @@
                                 </div>
                             <?php } ?>
 
-                            <?php if($this->shop_model->hash_dynamic_add('3')){ $hash_three = $this->shop_model->hash_dynamic_add('3')[0]; ?>
-                                <div class="col-md-2">
-                                    <a href="<?= $hash_three['link'] ?>" target="_blank">
+                            <?php if($this->shop_model->hash_dynamic_add('3')){ ?>
+                                <div class="col-md-2 sliders_ads">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('3') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    
+                                    <a <?= $href ?> class="ad_slide3 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_three['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_three['business_name'],13,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_three['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_three['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_three['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
+
                                     </a>
+
+                                    <?php } ?>
+
+                                    <style type="text/css">
+                                        .ad_slide3 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
-                             <?php }else{ ?>
+                            <?php }else{ ?>
                                 <div class="col-md-2">
                                     <div class="add_div">
                                         <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
@@ -282,29 +362,48 @@
                                 </div>
                             <?php } ?>
 
-                            <?php if($this->shop_model->hash_dynamic_add('4')){ $hash_four = $this->shop_model->hash_dynamic_add('4')[0]; ?>
-                                <div class="col-md-2">
-                                    <a href="<?= $hash_four['link'] ?>" target="_blank">
+                            <?php if($this->shop_model->hash_dynamic_add('4')){ ?>
+                                <div class="col-md-2 sliders_ads">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('4') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    
+                                    <a <?= $href ?> class="ad_slide4 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_four['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_four['business_name'],13,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_four['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_four['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_four['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
+
                                     </a>
+
+                                    <?php } ?>
+
+                                    <style type="text/css">
+                                        .ad_slide4 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
-                             <?php }else{ ?>
+                            <?php }else{ ?>
                                 <div class="col-md-2">
                                     <div class="add_div">
                                         <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
@@ -314,29 +413,48 @@
                                 </div>
                             <?php } ?>
 
-                            <?php if($this->shop_model->hash_dynamic_add('5')){ $hash_five = $this->shop_model->hash_dynamic_add('5')[0]; ?>
-                                <div class="col-md-2">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+                            <?php if($this->shop_model->hash_dynamic_add('5')){ ?>
+                                <div class="col-md-2 sliders_ads">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('5') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    
+                                    <a <?= $href ?> class="ad_slide5 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
+
                                     </a>
+
+                                    <?php } ?>
+
+                                    <style type="text/css">
+                                        .ad_slide5 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
-                             <?php }else{ ?>
+                            <?php }else{ ?>
                                 <div class="col-md-2">
                                     <div class="add_div">
                                         <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
@@ -372,9 +490,19 @@
                             <p><span class="badge badge-warning">ADVERTISEMENTS</span></p>
                             <div class="col-md-1"></div>
                                 
-                                <?php if($this->shop_model->hash_dynamic_add('6')){ $hash_one = $this->shop_model->hash_dynamic_add('6')[0]; ?>
-                                <div class="col-md-2">
-                                    <a href="<?= $hash_one['link'] ?>" target="_blank">
+                            <?php if($this->shop_model->hash_dynamic_add('6')){ ?>
+                                <div class="col-md-2 sliders_ads">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('6') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    
+                                    <a <?= $href ?> class="ad_slide6 kava_fade">
                                         <div class="col-md-12 add_div">
                                             <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
@@ -392,39 +520,16 @@
                                                 <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
-                                    </a>
-                                </div>
-                             <?php }else{ ?>
-                                <div class="col-md-2">
-                                    <div class="add_div">
-                                        <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
-                                        <p style="margin-bottom: 3px;">Contact For Ad</p>
-                                        <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
-                                    </div>
-                                </div>
-                            <?php } ?>
 
-                            <?php if($this->shop_model->hash_dynamic_add('7')){ $hash_two = $this->shop_model->hash_dynamic_add('7')[0]; ?>
-                                <div class="col-md-2">
-                                    <a href="<?= $hash_two['link'] ?>" target="_blank">
-                                        <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_two['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
-                                            <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_two['business_name'],13,'...') ?>        
-                                            </h5>
-                                            <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_two['mobile'] ?>
-                                            </p>
-                                            <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_two['intro'],22,'...') ?>  
-                                            </p>
-                                            <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_two['address'],22,'...') ?>  
-                                            </p>
-                                        </div>
                                     </a>
+
+                                    <?php } ?>
+
+                                    <style type="text/css">
+                                        .ad_slide6 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-md-2">
@@ -436,27 +541,46 @@
                                 </div>
                             <?php } ?>
 
-                            <?php if($this->shop_model->hash_dynamic_add('8')){ $hash_three = $this->shop_model->hash_dynamic_add('8')[0]; ?>
-                                <div class="col-md-2">
-                                    <a href="<?= $hash_three['link'] ?>" target="_blank">
+                            <?php if($this->shop_model->hash_dynamic_add('7')){ ?>
+                                <div class="col-md-2 sliders_ads">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('7') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    
+                                    <a <?= $href ?> class="ad_slide7 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_three['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_three['business_name'],13,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_three['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_three['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_three['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
+
                                     </a>
+
+                                    <?php } ?>
+
+                                    <style type="text/css">
+                                        .ad_slide7 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-md-2">
@@ -468,29 +592,48 @@
                                 </div>
                             <?php } ?>
 
-                            <?php if($this->shop_model->hash_dynamic_add('9')){ $hash_four = $this->shop_model->hash_dynamic_add('9')[0]; ?>
-                                <div class="col-md-2">
-                                    <a href="<?= $hash_four['link'] ?>" target="_blank">
+                            <?php if($this->shop_model->hash_dynamic_add('8')){ ?>
+                                <div class="col-md-2 sliders_ads">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('8') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    
+                                    <a <?= $href ?> class="ad_slide8 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_four['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_four['business_name'],13,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_four['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_four['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_four['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
+
                                     </a>
+
+                                    <?php } ?>
+
+                                    <style type="text/css">
+                                        .ad_slide8 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
-                             <?php }else{ ?>
+                            <?php }else{ ?>
                                 <div class="col-md-2">
                                     <div class="add_div">
                                         <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
@@ -500,27 +643,97 @@
                                 </div>
                             <?php } ?>
 
-                            <?php if($this->shop_model->hash_dynamic_add('10')){ $hash_five = $this->shop_model->hash_dynamic_add('10')[0]; ?>
-                                <div class="col-md-2">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+                            <?php if($this->shop_model->hash_dynamic_add('9')){ ?>
+                                <div class="col-md-2 sliders_ads">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('9') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    
+                                    <a <?= $href ?> class="ad_slide9 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],13,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
+
                                     </a>
+
+                                    <?php } ?>
+
+                                    <style type="text/css">
+                                        .ad_slide9 {  
+                                            display: none;  
+                                        }
+                                    </style>
+                                </div>
+                            <?php }else{ ?>
+                                <div class="col-md-2">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad home.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
+                            <?php } ?>
+
+                            <?php if($this->shop_model->hash_dynamic_add('10')){ ?>
+                                <div class="col-md-2 sliders_ads">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('10') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    
+                                    <a <?= $href ?> class="ad_slide10 kava_fade">
+                                        <div class="col-md-12 add_div">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                                <?= cut_string($hash_one['business_name'],13,'...') ?>        
+                                            </h5>
+                                            <p style="text-align: left; margin: 0 2px; font-size: 10px;">
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
+                                            </p>
+                                            <p style="text-align: left; margin: 0 2px; font-size: 10px;">
+                                                <i class="fa fa-info-circle"></i> 
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
+                                            </p>
+                                            <p style="text-align: left; margin: 0 2px; font-size: 10px;">
+                                                <i class="fa fa-map-marker"></i> 
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
+                                            </p>
+                                        </div>
+
+                                    </a>
+
+                                    <?php } ?>
+
+                                    <style type="text/css">
+                                        .ad_slide10 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-md-2">
@@ -548,27 +761,43 @@
                         <div class="col-sm-12 hidden-xs hidden-lg hidden-md tb-padding">
                             <p class="text-center" style="padding-bottom: 1rem;"><span class="badge badge-warning">ADVERTISEMENTS</span></p>
                             
-                            <?php if($this->shop_model->hash_dynamic_add('1')){ $hash_five = $this->shop_model->hash_dynamic_add('1')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('1')){ ?>
                                 <div class="col-xs-3">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('1') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_tab1 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],15,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+
+                                    <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_tab1 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-3">
@@ -580,27 +809,43 @@
                                 </div>
                             <?php } ?>
 
-                            <?php if($this->shop_model->hash_dynamic_add('2')){ $hash_five = $this->shop_model->hash_dynamic_add('2')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('2')){ ?>
                                 <div class="col-xs-3">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('2') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_tab2 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],15,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+
+                                    <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_tab2 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-3">
@@ -612,27 +857,43 @@
                                 </div>
                             <?php } ?>
 
-                             <?php if($this->shop_model->hash_dynamic_add('3')){ $hash_five = $this->shop_model->hash_dynamic_add('3')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('3')){ ?>
                                 <div class="col-xs-3">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('3') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_tab3 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],15,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+
+                                    <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_tab3 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-3">
@@ -644,27 +905,43 @@
                                 </div>
                             <?php } ?>
 
-                             <?php if($this->shop_model->hash_dynamic_add('4')){ $hash_five = $this->shop_model->hash_dynamic_add('4')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('4')){ ?>
                                 <div class="col-xs-3">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('4') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_tab4 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],15,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+
+                                    <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_tab4 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-3">
@@ -676,27 +953,43 @@
                                 </div>
                             <?php } ?>
 
-                             <?php if($this->shop_model->hash_dynamic_add('5')){ $hash_five = $this->shop_model->hash_dynamic_add('5')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('5')){ ?>
                                 <div class="col-xs-3">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('5') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_tab5 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],15,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+
+                                    <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_tab5 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-3">
@@ -708,27 +1001,43 @@
                                 </div>
                             <?php } ?>
 
-                             <?php if($this->shop_model->hash_dynamic_add('6')){ $hash_five = $this->shop_model->hash_dynamic_add('6')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('6')){ ?>
                                 <div class="col-xs-3">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('6') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_tab6 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],15,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+
+                                    <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_tab6 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-3">
@@ -740,27 +1049,43 @@
                                 </div>
                             <?php } ?>
 
-                             <?php if($this->shop_model->hash_dynamic_add('7')){ $hash_five = $this->shop_model->hash_dynamic_add('7')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('7')){ ?>
                                 <div class="col-xs-3">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('7') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_tab7 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],15,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+
+                                    <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_tab7 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-3">
@@ -772,27 +1097,43 @@
                                 </div>
                             <?php } ?>
 
-                             <?php if($this->shop_model->hash_dynamic_add('8')){ $hash_five = $this->shop_model->hash_dynamic_add('8')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('8')){ ?>
                                 <div class="col-xs-3">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('8') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_tab8 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],15,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+
+                                    <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_tab8 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-3">
@@ -807,27 +1148,43 @@
                             <div class="col-xs-3"></div>
 
 
-                             <?php if($this->shop_model->hash_dynamic_add('9')){ $hash_five = $this->shop_model->hash_dynamic_add('9')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('9')){ ?>
                                 <div class="col-xs-3">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('9') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_tab9 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],15,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+
+                                    <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_tab9 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-3">
@@ -839,27 +1196,43 @@
                                 </div>
                             <?php } ?>
 
-                            <?php if($this->shop_model->hash_dynamic_add('10')){ $hash_five = $this->shop_model->hash_dynamic_add('10')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('10')){ ?>
                                 <div class="col-xs-3">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('10') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_tab10 kava_fade">
                                         <div class="col-md-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],15,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+
+                                    <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_tab10 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-3">
@@ -877,36 +1250,50 @@
                                                 
                         <!-----------------------------------------------------------
                         -------------------------------------------------------------
-                                                TABLET VIEW 
+                                                Mobile VIEW 
                         -------------------------------------------------------------
                         ------------------------------------------------------------->
 
                         <div class="col-xs-12 hidden-sm hidden-lg hidden-md tb-padding">
                             <p class="text-center" style="padding-bottom: 1rem;"><span class="badge badge-warning">ADVERTISEMENTS</span></p>
 
-                            <?php if($this->shop_model->hash_dynamic_add('1')){ $hash_five = $this->shop_model->hash_dynamic_add('1')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('1')){ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('1') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_mob1 kava_fade">
                                         <div class="col-sm-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],22,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+                                <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_mob1 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
-                           <?php }else{ ?>
+                            <?php }else{ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
                                     <div class="add_div">
                                         <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
@@ -916,27 +1303,41 @@
                                 </div>
                             <?php } ?>
 
-                            <?php if($this->shop_model->hash_dynamic_add('2')){ $hash_five = $this->shop_model->hash_dynamic_add('2')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('2')){ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('2') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_mob2 kava_fade">
                                         <div class="col-sm-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],22,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+                                <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_mob2 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
@@ -948,27 +1349,41 @@
                                 </div>
                             <?php } ?>
                              
-                            <?php if($this->shop_model->hash_dynamic_add('3')){ $hash_five = $this->shop_model->hash_dynamic_add('3')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('3')){ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('3') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_mob3 kava_fade">
                                         <div class="col-sm-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],22,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+                                <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_mob3 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
@@ -980,27 +1395,41 @@
                                 </div>
                             <?php } ?>
 
-                            <?php if($this->shop_model->hash_dynamic_add('4')){ $hash_five = $this->shop_model->hash_dynamic_add('4')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('4')){ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('4') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_mob4 kava_fade">
                                         <div class="col-sm-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],22,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+                                <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_mob4 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
@@ -1012,27 +1441,41 @@
                                 </div>
                             <?php } ?>
 
-                            <?php if($this->shop_model->hash_dynamic_add('5')){ $hash_five = $this->shop_model->hash_dynamic_add('5')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('5')){ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('5') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_mob5 kava_fade">
                                         <div class="col-sm-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],22,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+                                <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_mob5 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
@@ -1044,59 +1487,41 @@
                                 </div>
                             <?php } ?>
 
-                            <?php if($this->shop_model->hash_dynamic_add('6')){ $hash_five = $this->shop_model->hash_dynamic_add('6')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('6')){ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('6') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_mob6 kava_fade">
                                         <div class="col-sm-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],22,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
-                                </div>
-                             <?php }else{ ?>
-                                <div class="col-xs-6" style="margin-bottom:10px">
-                                    <div class="add_div">
-                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
-                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;">Contact For Ad</p>
-                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
-                                    </div>
-                                </div>
-                            <?php } ?>
-
-                            <?php if($this->shop_model->hash_dynamic_add('7')){ $hash_five = $this->shop_model->hash_dynamic_add('7')[0]; ?>
-                                <div class="col-xs-6" style="margin-bottom:10px">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
-                                        <div class="col-sm-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
-                                            <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
-                                            </h5>
-                                            <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
-                                            </p>
-                                            <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
-                                            </p>
-                                            <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
-                                            </p>
-                                        </div>
-                                    </a>
+                                <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_mob6 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
@@ -1108,27 +1533,41 @@
                                 </div>
                             <?php } ?>
 
-                            <?php if($this->shop_model->hash_dynamic_add('8')){ $hash_five = $this->shop_model->hash_dynamic_add('8')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('7')){ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('7') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_mob7 kava_fade">
                                         <div class="col-sm-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],22,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+                                <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_mob7 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
@@ -1140,27 +1579,87 @@
                                 </div>
                             <?php } ?>
 
-                            <?php if($this->shop_model->hash_dynamic_add('9')){ $hash_five = $this->shop_model->hash_dynamic_add('9')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('8')){ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('8') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_mob8 kava_fade">
                                         <div class="col-sm-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],22,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+                                <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_mob8 {  
+                                            display: none;  
+                                        }
+                                    </style>
+                                </div>
+                            <?php }else{ ?>
+                                <div class="col-xs-6" style="margin-bottom:10px">
+                                    <div class="add_div">
+                                        <img src="<?= base_url() ?>image/ad.jpg" class="add_image" style="margin-bottom: 2px;">
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;">Contact For Ad</p>
+                                        <p style="margin-bottom: 3px;padding-left:3px;font-size:10px;padding-bottom:13px;"><i class="fa fa-phone"></i> <?= $setting['ad_number'] ?></p>
+                                    </div>
+                                </div>
+                            <?php } ?>
+
+                            <?php if($this->shop_model->hash_dynamic_add('9')){ ?>
+                                <div class="col-xs-6" style="margin-bottom:10px">
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('9') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_mob9 kava_fade">
+                                        <div class="col-sm-12 add_div">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
+                                                <?= cut_string($hash_one['business_name'],22,'...') ?>        
+                                            </h5>
+                                            <p style="text-align: left; margin: 0 2px; font-size: 10px;">
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
+                                            </p>
+                                            <p style="text-align: left; margin: 0 2px; font-size: 10px;">
+                                                <i class="fa fa-info-circle"></i> 
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
+                                            </p>
+                                            <p style="text-align: left; margin: 0 2px; font-size: 10px;">
+                                                <i class="fa fa-map-marker"></i> 
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
+                                            </p>
+                                        </div>
+                                    </a>
+                                <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_mob9 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
@@ -1175,27 +1674,41 @@
                             
 
 
-                            <?php if($this->shop_model->hash_dynamic_add('10')){ $hash_five = $this->shop_model->hash_dynamic_add('10')[0]; ?>
+                            <?php if($this->shop_model->hash_dynamic_add('10')){ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
-                                    <a href="<?= $hash_five['link'] ?>" target="_blank">
+                                    <?php foreach ($this->shop_model->hash_dynamic_add('10') as $key => $hash_one) { ?>
+                                    <?php 
+                                        if(empty($hash_one['link'] )){
+                                            $href = 'href="javascript:;"';
+                                        }else{
+                                            $href = 'href="'.$hash_one['link'].'" target="_blank"';
+                                        }
+                                    ?>   
+                                    <a <?= $href ?> class="ad_slide_mob10 kava_fade">
                                         <div class="col-sm-12 add_div">
-                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_five['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
+                                            <img src="<?= $this->config->config['admin_url'] ?>uploads/add/<?= $hash_one['photo'] ?>" class="add_image" style="margin-bottom: 2px;">
                                             <h5 style="text-align: left; margin: 0 2px; font-weight: bold; margin-bottom: 2px;">
-                                                <?= cut_string($hash_five['business_name'],11,'...') ?>        
+                                                <?= cut_string($hash_one['business_name'],22,'...') ?>        
                                             </h5>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
-                                                <i class="fa fa-phone"></i> <?= $hash_five['mobile'] ?>
+                                                <i class="fa fa-phone"></i> <?= $hash_one['mobile'] ?>
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-info-circle"></i> 
-                                                <?= cut_string($hash_five['intro'],22,'...') ?>  
+                                                <?= cut_string($hash_one['intro'],22,'...') ?>  
                                             </p>
                                             <p style="text-align: left; margin: 0 2px; font-size: 10px;">
                                                 <i class="fa fa-map-marker"></i> 
-                                                <?= cut_string($hash_five['address'],22,'...') ?>  
+                                                <?= cut_string($hash_one['address'],22,'...') ?>  
                                             </p>
                                         </div>
                                     </a>
+                                <?php } ?>
+                                    <style type="text/css">
+                                        .ad_slide_mob10 {  
+                                            display: none;  
+                                        }
+                                    </style>
                                 </div>
                             <?php }else{ ?>
                                 <div class="col-xs-6" style="margin-bottom:10px">
@@ -1346,7 +1859,7 @@
             });
             </script>
            
-
+            <script type="text/javascript" src="<?= base_url('home_file/js/sliders.js') ?>"></script>
            
     </body>
 </html>
