@@ -64,6 +64,14 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea class="form-control form-control-sm" value="" type="text" name="description" placeholder="Description" ><?php echo set_value('description',$category['description']); ?></textarea>
+                                            <?php echo form_error('description'); ?>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="card-footer">

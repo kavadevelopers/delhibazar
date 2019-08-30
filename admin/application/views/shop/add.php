@@ -189,15 +189,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Photo</label><br>
-                                            <span><i><span class="astrick">Note</span> : Max size & Max Resoluion(2MB, 720 X 1080) </i></span>
-                                            <input class="form-control form-control-sm" value="<?= set_value('photo'); ?>" type="file" name="photo" placeholder="Photo" autocomplete="off">
-                                            <?= form_error('photo'); ?>
-                                        </div>
-                                    </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Search Keywords <small>(Note : Please enter comma-separated values)</small></label>

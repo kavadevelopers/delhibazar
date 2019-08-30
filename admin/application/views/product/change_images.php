@@ -26,7 +26,7 @@
                                     <div class="col-md-12" style="text-align: center;">
                                         
                                         <div class="img-bannner-div">
-                                            <img src="<?= base_url().'uploads/product/banner/'._p_banner_img($product['id']); ?>" class="img-bannner" alt="no images" >
+                                            <img src="<?= base_url().'uploads/product/banner/'._p_banner_img($id); ?>" class="img-bannner" alt="no images" >
                                         </div>
 
                                         <div class="fileUpload btn btn--browse">

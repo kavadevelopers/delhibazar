@@ -150,4 +150,27 @@ function get_home_banners()
 
 	return $images;
 }
+
+function _s_banner_img($id){
+	$CI=&get_instance();
+	$product = $CI->db->get_where('shop',['id' => $id])->result_array()[0];
+	$image = '';
+	if($product['photo'] == 'no-image.png'){
+		$image = "no-image.png";
+	}
+	else{
+		if($product['photo'] == ''){
+			$image = "no-image.png";
+		}
+		else if(file_exists(FCPATH.'uploads/shop/'.$product['photo'])){
+			$image = $product['photo'];
+		}
+		else{
+			$image = "no-image.png";
+		}
+	}
+
+	return $image;
+}
+
 ?>

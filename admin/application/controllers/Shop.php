@@ -30,6 +30,7 @@ class Shop extends CI_Controller {
     {
         $data['page_title']         = 'Add Slider';
         $data['shop_slider_image']  = $this->shop_model->get_slider_image($id);
+        $data['id']                 = $id;    
         $this->load->template('shop/slider_upload',$data);
     }
 
@@ -143,42 +144,6 @@ class Shop extends CI_Controller {
             {
 
                 $id = $this->db->insert_id();
-
-                if(!empty($_FILES['photo']['name']))
-                {
-                    $path = $_FILES['photo']['name'];
-                    $newName = md5(microtime(true)).".".pathinfo($path, PATHINFO_EXTENSION); 
-                    $config['upload_path']      = './uploads/shop';
-                    $config['allowed_types']    = 'gif|jpg|png|jpeg';
-                    $config['max_size']         = 2000000;
-                    
-                    $config['file_name']        = $newName;
-                    $this->load->library('upload', $config);
-
-                    $image = [ 'photo'       =>    $newName ];
-
-                    if($this->upload->do_upload('photo'))
-                    {
-                        $image = [ 'photo'       =>    $newName ];
-
-                            $this->db->where('id',$id);
-                        if($this->db->update('shop', $image))
-                        {
-                            $this->session->set_flashdata('msg', 'Shop Successfully Added');
-                            redirect(base_url().'shop');
-                        }
-                        else
-                        {
-                            $this->session->set_flashdata('error', 'Problem In Upload Image');
-                            redirect(base_url().'shop/add');
-                        }
-                    }
-                    else
-                    {
-                        $this->session->set_flashdata('error', $this->upload->display_errors());
-                        redirect(base_url().'shop/add');
-                    }
-                }
                 
                 $this->session->set_flashdata('msg', 'Shop Successfully Added');
                 redirect(base_url().'shop');
@@ -190,6 +155,40 @@ class Shop extends CI_Controller {
             }
 
         }
+    }
+
+    public function save_banner()
+    {
+        $croped_image = $_POST['image'];
+
+        list($type, $croped_image) = explode(';', $croped_image);
+        list(, $croped_image)      = explode(',', $croped_image);
+        $croped_image = base64_decode($croped_image);
+
+        $imageName = md5(microtime(true)).'.jpg';
+
+        if(!file_put_contents('./uploads/shop/'.$imageName, $croped_image)){
+            $this->session->set_flashdata('error', 'Banner Upload Error Please Try again.');
+            exit;
+        }
+        else{
+
+            $product = $this->shop_model->shop_where($_POST['id'])[0];
+
+            if($product['bannner'] != 'no-image.png'){
+                if(file_exists(FCPATH."./uploads/shop/".$product['bannner'])){
+                    unlink(FCPATH."./uploads/shop/".$product['bannner']);    
+                }
+            }
+        
+
+            $this->db->where('id' , $_POST['id']);
+            $this->db->update('shop',['photo' => $imageName]);
+
+            $this->session->set_flashdata('msg', 'Photo Successfully Changed');
+            
+        }
+        
     }
 
     /**********************************************************************
@@ -265,48 +264,7 @@ class Shop extends CI_Controller {
 
                 $this->db->where('id',$this->input->post('id'));
             if($this->db->update('shop', $data))
-            {
-                if(!empty($_FILES['photo']['name']))
-                {
-                    $path       = $_FILES['photo']['name'];
-                    $newName    = md5(microtime(true)).".".pathinfo($path, PATHINFO_EXTENSION); 
-                    $config['upload_path']      = './uploads/shop';
-                    $config['allowed_types']    = 'gif|jpg|png|jpeg';
-                    $config['max_size']         = 2000000;
-                    
-                    $config['file_name']        = $newName;
-                    $this->load->library('upload', $config);
-
-                    $image = [ 'photo'       =>    $newName ];
-
-                    if($this->upload->do_upload('photo'))
-                    {
-                        if($shop[0]['photo'] != '')
-                        {
-                            unlink('./uploads/shop/'.$shop[0]['photo']);
-                        }
-
-                        $image = [ 'photo'       =>    $newName ];
-
-                            $this->db->where('id',$this->input->post('id'));
-                        if($this->db->update('shop', $image))
-                        {
-                            $this->session->set_flashdata('msg', 'Shop Successfully Saved');
-                            redirect(base_url().'shop');
-                        }
-                        else
-                        {
-                            $this->session->set_flashdata('error', 'Problem In Upload Image');
-                            redirect(base_url().'shop/add');
-                        }
-                    }
-                    else
-                    {
-                        $this->session->set_flashdata('error', $this->upload->display_errors());
-                        redirect(base_url().'shop/add');
-                    }
-                }
-                
+            {   
                 $this->session->set_flashdata('msg', 'Shop Successfully Saved');
                 redirect(base_url().'shop');
             }

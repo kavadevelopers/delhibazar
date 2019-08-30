@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 28, 2019 at 06:21 PM
+-- Generation Time: Aug 30, 2019 at 05:24 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -125,22 +125,24 @@ CREATE TABLE IF NOT EXISTS `category` (
   `name` varchar(250) NOT NULL,
   `category` varchar(50) NOT NULL,
   `banner` varchar(50) NOT NULL DEFAULT 'no-image.png',
+  `description` text NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
   `df` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `name`, `category`, `banner`, `status`, `df`) VALUES
-(1, 'Women', '1', 'no-image.png', 0, 0),
-(2, 'Men1', '1', 'no-image.png', 0, 0),
-(3, 'Footware', '1', 'no-image.png', 0, 0),
-(4, 'Mobile', '1', 'no-image.png', 0, 0),
-(5, 'Sample', '1', 'no-image.png', 0, 0),
-(6, 'Shirt', '2', 'cff1a04b35c62ab343a406b5946b6083.jpg', 0, 0);
+INSERT INTO `category` (`id`, `name`, `category`, `banner`, `description`, `status`, `df`) VALUES
+(1, 'Women', '1', 'no-image.png', 'This Is Description', 0, 0),
+(2, 'Men1', '1', 'no-image.png', '', 0, 0),
+(3, 'Footware', '1', 'no-image.png', '', 0, 0),
+(4, 'Mobile', '1', 'no-image.png', '', 0, 0),
+(5, 'Sample', '1', 'no-image.png', '', 0, 0),
+(6, 'Shirt', '2', 'cff1a04b35c62ab343a406b5946b6083.jpg', '', 0, 0),
+(7, 'asdasdasd', '4', 'no-image.png', 'asdasdasdasdasd dfsd', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -485,7 +487,7 @@ CREATE TABLE IF NOT EXISTS `search_keywords` (
   `keyword` text NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=117 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `search_keywords`
@@ -592,7 +594,22 @@ INSERT INTO `search_keywords` (`id`, `keyword`, `created`) VALUES
 (98, 'a', '2019-08-28 23:01:50'),
 (99, 'a', '2019-08-28 23:02:26'),
 (100, 'a', '2019-08-28 23:02:49'),
-(101, 'a', '2019-08-28 23:03:30');
+(101, 'a', '2019-08-28 23:03:30'),
+(102, 'a', '2019-08-29 10:46:57'),
+(103, 'a', '2019-08-30 09:19:50'),
+(104, 'a', '2019-08-30 09:20:18'),
+(105, 'a', '2019-08-30 09:22:51'),
+(106, 'a', '2019-08-30 09:24:05'),
+(107, 'a', '2019-08-30 09:26:29'),
+(108, 'a', '2019-08-30 09:34:18'),
+(109, 'a', '2019-08-30 10:04:52'),
+(110, 'a', '2019-08-30 10:05:20'),
+(111, 'a', '2019-08-30 10:09:54'),
+(112, 'a', '2019-08-30 10:10:02'),
+(113, 'a', '2019-08-30 10:14:45'),
+(114, 'a', '2019-08-30 10:18:12'),
+(115, 'a', '2019-08-30 10:18:24'),
+(116, 'a', '2019-08-30 10:27:35');
 
 -- --------------------------------------------------------
 
@@ -670,21 +687,22 @@ CREATE TABLE IF NOT EXISTS `shop` (
   `rating` varchar(10) NOT NULL DEFAULT '0',
   `comment` varchar(100) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shop`
 --
 
 INSERT INTO `shop` (`id`, `shop_name`, `owner_name`, `employee_name`, `mobile`, `wp_no`, `mobile_in_website`, `whats_in_website`, `address`, `landmark`, `email`, `hour_operation`, `pro_or_servi`, `payment_mode`, `photo`, `info`, `detail_desc`, `category`, `shop_plan`, `dis_in_listing`, `exp_date`, `created_by`, `created_at`, `updated_at`, `deleted_at`, `keywords`, `rating`, `comment`) VALUES
-(1, 'first', 'asdasd', 'asdasd l', '34234234234', '34234234234', 0, 0, 'asdasdasd asdasd asd asd This page didn\'t load Google Maps correctly. See the JavaScript console for technical details.', 'asdasd asdasdasda', 'asdas@gmail.com', '1212', 'sda adsd', 'aasdasd', '9e36c6a6b346ce680fa0c0b850ec714c.png', '<p>sadasdads</p>', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', 'aa', '2', 0, '2020-01-19', '1', '2019-05-29 18:07:25', '2019-08-07 17:35:23', '2019-05-29 18:55:49', 'a', '', ''),
+(1, 'first', 'asdasd', 'asdasd l', '34234234234', '34234234234', 0, 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of', 'asdasd asdasdasda', 'asdas@gmail.com', '1212', 'sda adsd', 'aasdasd', '9ee2ff1e3fe1ec7e15ae138f8b35eb68.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'aa', '2', 0, '2020-02-11', '1', '2019-05-29 18:07:25', '2019-08-30 09:24:02', '2019-05-29 18:55:49', 'a', '', ''),
 (2, 'kava developers', 'kava', 'jay', '9099998171', '9099998171', 0, 1, 'adasd asdasdasd asda s dasd', 'asdasd asda dasd', 'asdasd@gmail.com', '45', 'web developement,software,seo,smo,android,ios,desktop', 'dsasdasd', '148bc37cadf9d8170700c4122bbbd70b.jpg', '<p><em>Looking Good</em> <u>and nice </u><strong>Shop</strong></p>', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium\r\n\r\n, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the \r\n\r\nScrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', 'It Developement', '2', 0, '2020-01-19', '1', '2019-05-29 18:20:48', '2019-08-07 17:35:09', NULL, 'a', '', ''),
 (4, 'Gotham', 'Bruce Wayne', 'Lucius Fox', '2222222222', '2222555555', 0, 0, 'Gotham City', 'Wayne Towe', 'dsgsdkgjh@gmail.com', '9-5', 'application and', 'CASH', '9e36c6a6b346ce680fa0c0b850ec714c.png', '<p>DSMNB GKD GJHDKFGHDKF GHKD</p>', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', 'aa', '2', 0, '2020-01-19', '1', '2019-05-30 16:30:07', '2019-08-07 17:35:01', NULL, 'a', '', ''),
 (5, 'food Junction ***', 'coca cola', 'jguar', '7897897822', '4564585685', 0, 0, 'jkl sda dasdasdsssssssssssssssssssssss', 'Darpan Six Road, Ahemdabad', '108@gmail.com', '8 to 8', '//////////////////////////////////////////////////////////', 'Paytam  6363', '9e36c6a6b346ce680fa0c0b850ec714c.png', '<p>[][][][]][asdasssssssssssssssssssssssssssssssssss</p>', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst\r\n                                many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', 'aaaa', '2', 0, '2020-01-19', '1', '2019-05-31 14:59:50', '2019-08-07 17:34:51', NULL, 'a', '', ''),
 (6, 'lenovo', 'zoo', 'park', '1234564454', '01212121211', 0, 0, 'sdas dasd asda', 'asd asdasd asda sd', '712@gmail.com', '08:00  AM to 9:00 PM', 'asdasdas sad asdas dasd', 'Cash', 'aa5891bf0c76a6ddafeed87830ada232.jpg', '<p>asd dasd asd as</p>', 'asdasd', 'Electronic, mouse, keyboard, laptop, mobile,all items', '2', 1, '2020-01-19', '1', '2019-06-05 10:34:13', '2019-08-07 17:34:35', NULL, 'a', '', ''),
 (7, 'umiya', 'ooo', 'adasdas', '4564525652', '1234567890', 0, 1, 'asdas dasd asd asdas das', 'asda sdas', 'dasdas@gmail.com', '12 to 9', 'asda as dasd', 'check', '', '', '', 'Veg', '3', 0, '2020-08-01', '1', '2019-06-11 12:43:06', '2019-08-07 17:34:21', NULL, 'a', '', ''),
-(8, 'new Deluxea', 'Kava Developers', '', '4564523023', '1201232032', 0, 1, 'adas aS Ad,\r\nasdasdasdasd', 'ahmedabad', '', '10 to 5', 'dasda asd asd', 'cash', 'f430ee5c5567b9466c40d7b1c11bc066.jpg', '<p>asd asd asd asd asd asd</p>', 'aasdasd', 'dasdasdasd', '2', 1, '2020-01-19', '1', '2019-06-14 13:47:03', '2019-08-07 17:34:15', NULL, 'a', '', ''),
-(9, 'admin kava', 'admin', '', '1234567890', '1234567890', 0, 0, 'six road abc def gfh', 'Darpan', '', '12 to 05', '123', 'cash', '', '', '', 'sample', '2', 0, '2020-01-19', '1', '2019-06-25 12:37:38', '2019-08-07 17:34:09', NULL, 'a', '', '');
+(8, 'new Deluxea', 'Kava Developers', '', '4564523023', '1201232032', 0, 1, 'adas aS Ad,\r\nasdasdasdasd', 'ahmedabad', '', '10 to 5', 'dasda asd asd', 'cash', 'd44bad11c4881d50d691b813df0c7c81.jpg', '<p>asd asd asd asd asd asd</p>', 'aasdasd', 'dasdasdasd', '2', 1, '2020-01-19', '1', '2019-06-14 13:47:03', '2019-08-07 17:34:15', NULL, 'a', '', ''),
+(9, 'admin kava', 'admin', '', '1234567890', '1234567890', 0, 0, 'six road abc def gfh', 'Darpan', '', '12 to 05', '123', 'cash', '462855ddb97996249a28873a9a849c4c.jpg', '', '', 'sample', '2', 0, '2020-01-19', '1', '2019-06-25 12:37:38', '2019-08-07 17:34:09', NULL, 'a', '', ''),
+(10, 'My Shopa', 'ABC', '', '', '', 0, 0, 'Hello hello', '123', '', '2 - 4', 'Hello there', 'cash', 'a1b780bf42036311b74492ebd7f5836c.jpg', '<p>Hello Search</p>', '', 'Hello', '2', 0, '2020-02-11', '1', '2019-08-30 10:14:29', '2019-08-30 10:15:08', NULL, 'a', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -884,7 +902,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `user_name`, `name`, `pass`, `email`, `mobile`, `delete_flag`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`, `image`) VALUES
-(1, 'admin', 'Super User', '21232f297a57a5a743894a0e4a801fc3', 'admin@admin.com', '9898989898', 0, '0', '1', '2018-11-30 06:34:34', '2019-06-18 11:34:40', NULL, 'user.png'),
+(1, 'master', 'Super User', '21232f297a57a5a743894a0e4a801fc3', 'admin@admin.com', '9898989898', 0, '0', '1', '2018-11-30 06:34:34', '2019-06-18 11:34:40', NULL, 'user.png'),
 (2, 'kava_dev', 'Kava Developers', '21232f297a57a5a743894a0e4a801fc3', 'kava@gmail.com', '9099998171', 0, '1', '1', '2019-05-02 15:09:09', '2019-05-02 15:34:26', '2019-05-02 15:23:48', 'user.png'),
 (3, 'nayan', 'Nayan Ramani', '21232f297a57a5a743894a0e4a801fc3', 'nayan@gmail.com', '9898878720', 0, '1', '1', '2019-05-02 15:24:35', '2019-05-02 15:24:35', NULL, 'user.png');
 

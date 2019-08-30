@@ -49,6 +49,14 @@
                                             <?php echo form_error('category'); ?>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea class="form-control form-control-sm" type="text" name="description" placeholder="Description" ><?php echo set_value('description'); ?></textarea>
+                                            <?php echo form_error('description'); ?>
+                                        </div>
+                                    </div>
                                    
                                 </div>
                             </div>

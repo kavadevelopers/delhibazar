@@ -10,9 +10,18 @@
 </section>
 <!--================End Home Banner Area =================-->
 
+<section class="cat_product_area p_120" style="padding-bottom: 50px; padding-top: 50px;">
+	<div class="container">
+		<div class="col-md-12">
+			<marquee style="background: #ffc107; border-radius: 3px; color: #222222; cursor: pointer;" onmouseover="this.stop();" onmouseout="this.start();" scrollamount="3">
+				<?= $this->product_model->category_where($_cate_id)[0]['description']; ?>
+			</marquee>
+		</div>
+	</div>
+</section>
 
 <!--================Category Product Area =================-->
-<section class="cat_product_area p_120">
+<section class="cat_product_area p_120" style="padding-top: 0px; ">
 	<div class="container">
 		<div class="row flex-row-reverse">
 			<div class="col-lg-9">
@@ -32,6 +41,7 @@
 						</nav>
 					</div>
 				</div>
+
 				<div class="latest_product_inner row">
 					<?php if(!empty($products)) { ?>
 						<?php foreach ($products as $key => $value) { 

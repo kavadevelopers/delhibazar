@@ -1,0 +1,3 @@
+pages
+Setting
+user - 1 row master

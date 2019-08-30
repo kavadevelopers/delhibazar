@@ -86,7 +86,7 @@ class Products extends CI_Controller {
 		        $conditions['start'] 	  = $offset;
 		        $conditions['limit'] 	  = $this->perPage;
 		        $data['products'] 			  = $this->product_model->getRows($conditions,$id,$min,$max,$order,$products_or);
-
+		        $data['_cate_id'] 		= $id;
 
 
 

@@ -169,23 +169,22 @@ function _get_shop_img($name)
     }
     else
     {
-        $url    =   $CI->config->config['admin_url']."uploads/shop/".$name;
-        
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,$url);
-        curl_setopt($ch, CURLOPT_NOBODY, 1);
-        curl_setopt($ch, CURLOPT_FAILONERROR, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        if(curl_exec($ch)!==FALSE)
-        {
-            return $CI->config->config['admin_url']."uploads/shop/".$name;
-        }
-        else
-        {
-            return $CI->config->config['admin_url']."uploads/no-image.png";
-        }
+    	if($name == 'no-image.png'){
+			return $CI->config->config['admin_url']."uploads/no-image.png";
+		}
+		else{
+	        $url    =   $CI->config->config['admin_url']."uploads/shop/".$name;
+	        
+	        if(getimagesize($url))
+	        {
+	            return $CI->config->config['admin_url']."uploads/shop/".$name;
+	        }
+	        else
+	        {
+	            return $CI->config->config['admin_url']."uploads/no-image.png";
+	        }
+	    }
     }
-    
 
 }
 

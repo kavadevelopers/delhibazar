@@ -223,6 +223,7 @@ class Category extends CI_Controller {
 
 		$this->form_validation->set_rules('name', 'Sub Category Name', 'trim|required|min_length[2]|max_length[40]');
 		$this->form_validation->set_rules('category', 'Category', 'trim|required');
+		$this->form_validation->set_rules('description', 'Description', 'trim');
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -234,7 +235,8 @@ class Category extends CI_Controller {
 
 			$insert = array(
 		        'name'           	=> 	$this->input->post('name'),
-		        'category'          => 	$this->input->post('category')
+		        'category'          => 	$this->input->post('category'),
+		        'description'       => 	$this->input->post('description'),
 		        
 			);
 
@@ -261,6 +263,7 @@ class Category extends CI_Controller {
 		$this->form_validation->set_rules('category', 'Category', 'trim|required');
 		$this->form_validation->set_rules('main_id', 'id', 'trim');
 		$this->form_validation->set_rules('status', 'id', 'trim');
+		$this->form_validation->set_rules('description', 'Description', 'trim');
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -275,7 +278,8 @@ class Category extends CI_Controller {
 			$update = array(
 		        'name'           	  => 	$this->input->post('name'),
 		        'category'          => 	$this->input->post('category'),
-		        'status'				=>	$this->input->post('status')
+		        'status'				=>	$this->input->post('status'),
+		        'description'       => 	$this->input->post('description')
 		        
 			);
 
