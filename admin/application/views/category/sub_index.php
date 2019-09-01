@@ -24,7 +24,7 @@
                             <table class="table table-bordered table-striped table-sm">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">#</th>
+                                        <th class="text-center">Banner</th>
                                         <th>Sub Category Name</th>
                                         <th>Category</th>
                                         <th class="text-center">Status</th>
@@ -35,7 +35,9 @@
                                     <?php $a = count($categories) + 1; foreach ($categories as $key => $category) { $a--; ?>
 
                                         <tr>
-                                            <td class="text-center"><?= $a ?></td>
+                                            <td class="text-center">
+                                                <img class="zoom-img" src="<?= base_url().'uploads/category/'.get_subcategory_image($category['id']); ?>" style="width: 80px;">
+                                            </td>
                                             <td><?= $category['name']; ?></td>
                                             <td><?= $this->user_model->get_category_all($category['category'])[0]['name']; ?></td>
                                             <td class="text-center">

@@ -24,7 +24,7 @@
                             <table class="table table-bordered table-striped table-sm">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">#</th>
+                                        <th class="text-center">Banner</th>
                                         <th>Category</th>
                                         <th class="text-center">Status</th>
                                         <th class="text-center">Action</th>
@@ -34,7 +34,9 @@
                                     <?php $a = count($categories) + 1; foreach ($categories as $key => $category) { $a--; ?>
 
                                         <tr>
-                                            <td class="text-center"><?= $a ?></td>
+                                            <td class="text-center">
+                                                <img class="zoom-img" src="<?= base_url().'uploads/category/'.get_category_image($category['id']); ?>" style="width: 80px;">
+                                            </td>
                                             <td><?= $category['name']; ?></td>
                                             <td class="text-center">
                                                 <?php if($category['status'] == '0'){ ?>
