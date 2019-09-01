@@ -1,3 +1,24 @@
+<style type="text/css">
+	#widgets_inner {
+	    height: 235px;
+	}
+	#widgets_inner::-webkit-scrollbar {
+      width: 10px;
+	}
+	 
+	#widgets_inner::-webkit-scrollbar-track {
+	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	    border-radius: 10px;
+	}
+	 
+	#widgets_inner::-webkit-scrollbar-thumb {
+	  background-color: #ffc107;
+	  border-radius: 10px;
+	  outline: 1px solid slategrey;
+	}
+</style> 
+
+
  <!--================Home Banner Area =================-->
 <section class="banner_area">
     <div class="banner_inner d-flex align-items-center">
@@ -96,15 +117,23 @@
 						<div class="l_w_title">
 							<h3>Browse Categories</h3>
 						</div>
-						<div class="widgets_inner">
+						<div class="widgets_inner" style="overflow-y: scroll;" id="widgets_inner">
 							<ul class="list">
-								<?php foreach ($dynamic_category as $key => $value) { ?>
-									
-								<li><a href="<?= base_url() ?>products/list/<?= $value['id'] ?>"><?= $value['name'] ?></a></li>
-
-								<?php } ?>
-								
-								
+								<?php $this->db->order_by('rand()'); ?>
+								<?php foreach ($this->db->get_where('main_category',['df' => '0','status' => '0'])->result_array() as $key => $value) { ?>
+									<a href="<?= base_url('category/index/').$value['id'] ?>" style="color: #222222;">
+									<li>
+										<div class="row">
+											<div class="col-md-3 text-center" style="margin-bottom: 5px;">
+												<img src="<?= get_category_image($value['id']) ?>" style="width: 35px;">		
+											</div>
+											<div class="col-md-9 center_main">
+												<?= $value['name'] ?>
+											</div>
+										</div>
+									</li>	
+									</a>
+								<?php } ?>							
 							</ul>
 						</div>
 					</aside>

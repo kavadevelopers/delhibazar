@@ -44,7 +44,7 @@ class Pay extends CI_Controller {
             $city               = ucfirst($this->input->post('city'));
             $zipcode            = ucfirst($this->input->post('zip'));
 
-            $MERCHANT_KEY       = get_setting()['merchant_key'];
+            $MERCHANT_KEY       = get_setting()['merchent_key'];
             $SALT               = get_setting()['salt']; 
             $txnid              = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
             
