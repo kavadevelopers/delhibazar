@@ -118,7 +118,7 @@ class Pay extends CI_Controller {
                     $key            = $this->input->post('key');
                     $productinfo    = $this->input->post('productinfo');
                     $email          = $this->input->post('email');
-                    $salt           = $this->config->config['salt']; //  Your salt
+                    $salt           = get_setting()['salt']; //  Your salt
                     $add            = $this->input->post('additionalCharges');
 
                     if(isset($add)) {
@@ -138,7 +138,7 @@ class Pay extends CI_Controller {
                     {
                         $data = [
                                     'orderid'       => $new_order_id,
-                                    'user_id'       => explode('^~^', $this->input->post('udf1')),
+                                    'user_id'       => explode('^~^', $this->input->post('udf1'))[0],
                                     'txnid'         => $this->input->post('txnid'),
                                     'product_id'    => $this->input->post('udf3'),
                                     'cart_tbl_id'   => $this->input->post('udf5'),
@@ -179,17 +179,17 @@ class Pay extends CI_Controller {
                             
                             $this->cart_model->send_order_mail($id);
 
-                            foreach (explode('^~^', $this->input->post('udf3'))[0] as $key => $value) {
+                            foreach (explode(',',explode('^~^', $this->input->post('udf3'))[0]) as $key => $value) {
                                 $product_id = $this->product_model->product_id_where($value)[0];
 
-                                $stock = $product_id['stock'] - $this->input->post('udf4')[$key];
+                                $stock = $product_id['stock'] - explode(',',explode(',',$this->input->post('udf4'))[0])[$key];
 
                                 $this->db->where('id',$product_id['id']);
                                 $this->db->update('product',['stock' => $stock]);
                             }
 
                             $this->session->set_flashdata('msg', 'Order Successfully Placed');
-                            redirect(base_url('category'));                        
+                            redirect(base_url('home'));                        
                             
                         }
                         

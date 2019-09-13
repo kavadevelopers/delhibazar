@@ -99,8 +99,8 @@
 							</div>
                             
 							<div class="col-md-5 form-group p_star">
-								<label>District</label>
-								<input type="text" class="form-control" id="district" name="district" placeholder="District">
+								<label>State</label>
+								<input type="text" class="form-control" id="district" name="district" placeholder="State">
 							</div>
 							<div class="col-md-5 form-group p_star">
 								<label>Country</label>
@@ -308,7 +308,6 @@ $(document).ready(function(){
 		      	required: true
 		    },
 		    country: {
-		    	lettersonly: true,
 		    	minlength: 4,
 		      	maxlength: 20,
 		      	required: true
@@ -319,13 +318,11 @@ $(document).ready(function(){
 		      	required: true,
 		    },
 			city: {
-		    	lettersonly: true,
 				minlength: 3,
 		      	maxlength: 30,
 		      	required: true,
 		    },
 		    district: {
-		    	lettersonly: true,
 		      	minlength: 3,
 		      	maxlength: 30,
 		      	required: true,

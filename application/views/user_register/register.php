@@ -123,7 +123,6 @@ $(document).ready(function(){
 	    },
 	    image:{
 		  	extension: "png|jpg|jpeg",
-	      	required: true,
 	    }
 	  }
 		  

@@ -217,7 +217,7 @@
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <p><?= nl2br($product[0]['desc']) ?></p>
+                <?= nl2br($product[0]['desc']) ?>
             </div>
             
             <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">

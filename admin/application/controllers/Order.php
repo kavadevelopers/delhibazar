@@ -207,6 +207,8 @@ class Order extends CI_Controller {
             $this->db->where('id',$this->input->post('Ord_Id'));
             $this->db->update('payment',['delivered' => '1']);
 
+            $this->order_model->send_order_mail($this->input->post('Ord_Id'));
+
             $this->session->set_flashdata('msg', 'Order Successfully Delivered');
             redirect(base_url().'order/delivered_order');
         }
@@ -269,6 +271,8 @@ class Order extends CI_Controller {
         {   
             $this->db->where('id',$this->input->post('Ord_Id'));
             $this->db->update('payment',['delivered' => '1']);
+
+            $this->order_model->send_order_mail($this->input->post('Ord_Id'));
 
             $this->session->set_flashdata('msg', 'Order Successfully Delivered');
             redirect(base_url().'order/delivered_order');

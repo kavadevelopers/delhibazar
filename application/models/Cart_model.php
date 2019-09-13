@@ -58,7 +58,7 @@ class Cart_model extends CI_Model
         $this->email->from(get_setting()['smtp_user'], 'DELHIBAZAR');
         $this->email->to($order['email']); 
         $this->email->subject("Order Confirmation");
-        $data['id'] = '1';
+        $data['id'] = $order_id;
         $this->email->message($this->load->view('pay/order_mail',$data,TRUE));
         $this->email->send();
 

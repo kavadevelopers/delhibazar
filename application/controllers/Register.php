@@ -73,9 +73,23 @@ class Register extends CI_Controller {
 	                        redirect(base_url().'register');
 	                    }
 	                }
-                
-                $this->session->set_flashdata('msg', 'Registration Successfull');
-                redirect(base_url().'welcome');
+	                else{
+	                	$image = [ 'image'       =>    'user.jpg' ];
+
+                            $this->db->where('id',$id);
+                        if($this->db->update('social_user', $image))
+                        {
+                        	$this->session->set_userdata('id',$id);
+
+                            $this->session->set_flashdata('msg', 'Registration Successfull');
+                            redirect(base_url().'welcome');
+                        }
+                        else
+                        {
+                            $this->session->set_flashdata('error', 'Problem In Upload Image');
+                            redirect(base_url().'register');
+                        }
+	                }
             }
             else
             {
