@@ -112,7 +112,7 @@
 								</td>
 								<td>
 									<div class="checkout_btn_inner">
-										<a class="gray_btn" href="<?= base_url() ?>">Continue Shopping</a>
+										<a class="gray_btn" href="<?= base_url() ?>">Continue Shopping</a><br><br>
 										<a class="main_btn" href="<?= base_url() ?>cart/checkout">Proceed to checkout</a>
 									</div>
 								</td>

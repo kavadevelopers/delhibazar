@@ -140,7 +140,7 @@
                         </div>
                         <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12" style="margin-top: 5px; height: 90px !important;">
                             
-                            <div class="col-md-12 text-center" style=" background: #34495e; height: 70px;">
+                            <div class="col-md-12 text-center blink" style=" background: #34495e; height: 70px;">
                                 <p style="height: 40px;margin: 0;color: #ffc107; padding: 5px; font-weight: bold;">
                                     <?= get_setting()['dis_text'] ?>
                                 </p>
@@ -150,6 +150,17 @@
                                     </a>
                                 <?php } ?>
                             </div>
+
+                            <style type="text/css">
+                                @keyframes blink{
+                                    0%{opacity: 0;}
+                                    50%{opacity: .5;}
+                                    100%{opacity: 1;}
+                                }
+                                .blink p{
+                                    animation: blink 1s linear infinite;
+                                }
+                            </style>
 
                         </div>
 
