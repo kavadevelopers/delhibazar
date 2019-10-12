@@ -139,44 +139,18 @@
 
                         </div>
                         <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12" style="margin-top: 5px; height: 90px !important;">
-                            <div class="tradingview-widget-container" style="">
-                              <div class="tradingview-widget-container__widget"></div>
-                              <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text"></span></a></div>
-                              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-                              {
-                              "symbols": [
-                                {
-                                  "description": "USD/INR",
-                                  "proName": "OANDA:USDINR"
-                                },
-                                {
-                                  "description": "EUR/INR",
-                                  "proName": "FX_IDC:EURINR"
-                                },
-                                {
-                                  "description": "GOLD/INR",
-                                  "proName": "FX_IDC:XAUINR"
-                                },
-                                {
-                                  "description": "BSE",
-                                  "proName": "NSE:BSE"
-                                },
-                                {
-                                  "description": "NIFTY",
-                                  "proName": "NSE:NIFTY"
-                                },
-                                {
-                                  "description": "RELIANCE",
-                                  "proName": "NSE:RELIANCE"
-                                }
-                              ],
-                              "colorTheme": "dark",
-                              "isTransparent": false,
-                              "displayMode": "adaptive",
-                              "locale": "in"
-                            }
-                              </script>
+                            
+                            <div class="col-md-12 text-center" style=" background: #34495e; height: 70px;">
+                                <p style="height: 40px;margin: 0;color: #ffc107; padding: 5px; font-weight: bold;">
+                                    <?= get_setting()['dis_text'] ?>
+                                </p>
+                                <?php if(get_setting()['btn_text'] != ''){ ?>
+                                    <a href="<?= get_setting()['btn_link'] ?>" target="_blank" class="btn btn-warning btn-xs">
+                                        <?= get_setting()['btn_text'] ?>        
+                                    </a>
+                                <?php } ?>
                             </div>
+
                         </div>
 
                         <div class="col-md-2 col-lg-2 text-center col-xs-12 col-sm-12 hidden-sm hidden-xs">

@@ -174,13 +174,35 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Announcements <span class="astrick">*</span></label>
+                                            <label>Announcements </label>
                                             <textarea class="form-control form-control-sm" value="" type="text" name="announcements" placeholder="Announcements" ><?php echo set_value('announcements',$setting['announcements']); ?></textarea>
                                             <?php echo form_error('announcements'); ?>
                                         </div>
                                     </div>
 
-                                    
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Discount Text </label>
+                                            <textarea class="form-control form-control-sm" value="" type="text" name="dis_text" placeholder="Discount Text" ><?php echo set_value('dis_text',$setting['dis_text']); ?></textarea>
+                                            <?php echo form_error('dis_text'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Button Text </label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('btn_text',$setting['btn_text']); ?>" type="text" name="btn_text" placeholder="Button Text" >
+                                            <?php echo form_error('btn_text'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Button Link</label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('btn_link',$setting['btn_link']); ?>" type="text" name="btn_link" placeholder="Button Link" >
+                                            <?php echo form_error('btn_link'); ?>
+                                        </div>
+                                    </div>
                                    
                                 </div>
                             </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 30, 2019 at 05:24 AM
+-- Generation Time: Oct 12, 2019 at 04:07 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=86 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=89 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cart`
@@ -110,8 +110,7 @@ INSERT INTO `cart` (`id`, `qty`, `product_id`, `user_id`, `size`, `delivered`, `
 (61, 1, '6', '', '', 0, '2019-08-04 16:56:16', NULL),
 (62, 1, '5', '', '', 0, '2019-08-04 16:56:37', NULL),
 (63, 1, '6', '', '', 0, '2019-08-04 16:57:48', NULL),
-(84, 1, '11', '1', NULL, 0, '2019-08-10 16:40:11', NULL),
-(85, 1, '11', '1', NULL, 0, '2019-08-10 16:40:17', NULL);
+(86, 1, '12', '9', NULL, 0, '2019-09-01 11:25:15', NULL);
 
 -- --------------------------------------------------------
 
@@ -365,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `coupon_id` text NOT NULL,
   `size` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `payment`
@@ -381,7 +380,9 @@ INSERT INTO `payment` (`id`, `orderid`, `user_id`, `txnid`, `product_id`, `cart_
 (7, 'DB-007', '1', 'DB-007', '12,10^~^101.00,55.00', '76,77', '1,2', '211.00', 'Asdasd,Others', 'Adas Asdasd', 'fsfdsdf', '', 'sdfsdf', 'fsdf', 'sdfsdf', '32231', 'sdfdfsd@fff.nn', '33333333333', 0, '0', '', 0, '2019-08-08 20:50:59', NULL, NULL, ',,', ''),
 (8, 'DB-008', '1', 'DB-008', '11,10^~^144.00,55.00', '78,79', '1,2', '254.00', 'Rental,Others', 'Sdfs Dfsdf', 'sdsdsaas', '', 'dasdasda', 'fsdfs', 'dfsdfsd', 'rwerwer', 'dasds@fdf.c', '4324234234', 0, '0', '', 0, '2019-08-08 20:52:44', NULL, NULL, ',,', ''),
 (9, 'DB-009', '1', 'DB-009', '11,10^~^144.00,55.00', '80,81', '1,2', '254.00', 'Rental,Others', 'Asdas Dasd', 'asfsdfsd', '', 'fsdf', 'sfdfsd', 'fsdf', 'fsdfsd', 'sdsfsdfsdf@ggg.mm', '3123123123', 0, '0', '', 0, '2019-08-08 20:55:14', NULL, NULL, ',,', ''),
-(10, 'DB-0010', '1', 'DB-0010', '11,13^~^144.00,110.00', '82,83', '1,1', '254.00', 'Rental,Sample B', 'Ada Sdasdasd', 'sdfsdf', '', 'dsfsdf', 'sdfsdf', 'sdfsdf', 'sdf', 'sdadasd@ggg.k', '34234234324', 0, '0', '', 0, '2019-08-09 00:48:46', NULL, NULL, ',,', ',MEDIUM');
+(10, 'DB-0010', '1', 'DB-0010', '11,13^~^144.00,110.00', '82,83', '1,1', '254.00', 'Rental,Sample B', 'Ada Sdasdasd', 'sdfsdf', '', 'dsfsdf', 'sdfsdf', 'sdfsdf', 'sdf', 'sdadasd@ggg.k', '34234234324', 0, '0', '', 0, '2019-08-09 00:48:46', NULL, NULL, ',,', ',MEDIUM'),
+(11, 'DB-0011', '1', 'a3929dfe5cd48757c188', '14^~^110.00', '87', '1', '110.00', 'Featured', 'Sanmple Data', 'Fsdfsdfsdf', '', 'Fdgdfgdfg', 'Dfsdfsdfsd', 'Sdfsdfsdf', '123', 'email@ggg.com', '89898889898', 0, '1', '', 0, '2019-09-02 17:35:50', NULL, NULL, ',,', ''),
+(12, 'DB-0012', '1', '8af7c91046e6326e7234', '14^~^110.00', '88', '1', '110.00', 'Featured', 'Asd Adasd', 'Sfdfsdfsdf', '', 'Fdgdfgdfg', 'Dfsdfsdfdsf', 'Sdfsdfsdf', '23232', 'adsdsad@ff.com', '232322232232', 0, '1', '', 0, '2019-09-02 17:38:30', NULL, NULL, ',,', '');
 
 -- --------------------------------------------------------
 
@@ -430,7 +431,7 @@ INSERT INTO `product` (`id`, `hash`, `name`, `amount`, `list_price`, `short_desc
 (11, '93355210a5b16ee061d6c81d4fa38e48', 'Rental', '144.00', '150.00', 'asdads', '<p>&nbsp;</p>\r\n\r\n<p>??????</p>', '1,2', 1, '1', '1', '2019-08-07 01:22:46', '2019-08-27 17:28:44', '', '', '20', '120.00', '0', '4c729646a2d058c5bedaa813b7323553.jpg', '4', 0, 49, '', '', 1),
 (12, 'eb92283c125159ea8e043eb72482884f', 'Asdasd', '101.00', '12.00', 'df', '<p>sdf</p>', '1,2', 1, '1', '1', '2019-08-08 19:54:07', '2019-08-27 17:28:19', '', '', '1', '100.00', '0', 'b00fc47dcf7b0039ebf359460383c6b0.jpg', '0', 0, 10, '', '4ece49da087e6d8f6654bc9b09c1169c.jpg', 1),
 (13, 'e2e2d2861e5b1d9bb27370f9160f7eaf', 'Sample B', '110.00', '100.00', 'abc', '<p>मेरा नाम है&nbsp;ਮੇਰਾ ਨਾਮ ਹੈ</p>', '1,2,5,6', 1, '1', '1', '2019-08-08 23:08:40', '2019-08-27 17:06:48', '', '', '10', '100.00', '0', 'no-image.png', '0', 0, 49, 'SM,L,M,XL,XXL,MEDIUM,A', '', 1),
-(14, 'fe826de87dd96553c9180eaa340f8947', 'Featured', '110.00', '', 'hello', '<pre>\r\nलगभग 2,53,00,00,000 परिणाम (0.53 सेकंड)</pre>', '1,2,3', 1, '1', '1', '2019-08-27 17:08:33', '2019-08-27 17:40:50', '', '', '10', '100.00', '1', 'no-image.png', '0', 0, 100, '', '', 1);
+(14, 'fe826de87dd96553c9180eaa340f8947', 'Featured', '110.00', '', 'hello', '<p>हो। गए, उनका एक समय में बड़ा नाम था। पूरे देश में तालाब बनते थे बनाने वाले भी पूरे देश में थे। कहीं यह विद्या जाति के विद्यालय | सिखाई जाती थी तो कहीं यह जात से हट कर एक विशेष पांत भी जाती थी। बनाने वाले लोग कहीं एक जगह बसे मिलते थे तो कहीं -घूम कर इस काम को करते थे। I 국 घम गजधर एक सुन्दर शब्द है, तालाब बनाने वालों को आदर के साथ याद करने के लिए। राजस्थान के कुछ भागों में यह शब्द आज भी बाकी है। गजधर यानी जो गज को धारण करता है। और गज वही जो नापने के काम आता है। लेकिन फिर भी समाज ने इन्हें तीन हाथ की लोहे की छड़ लेकर घूमने वाला मिस्त्री नहीं माना। गजधर जो समाज को गहराई को नाप ले - उसे ऐसा दर्जा दिया गया है। गजधर वास्तुकार थे। गांव-समाज हो या नगर-समाज - उसके नव निर्माण की, रख-रखाव की ज़िम्मेदारी गजधर निभाते थे। नगर नियोजन से लेकर छोटे से छोटे निर्माण के काम गजधर के कधों पर टिके थे। वे योजना बनाते थे, कुल काम की लागत निकालते थे, काम में लगने वाली सारी सामग्री जुटाते थे और इस सबके बदले वे अपने जजमान से ऐसा कुछ नहीं मांग बैठते थे, जो वे दे न पाएं। लोग भी ऐसे थे कि उनसे जो कुछ बनता, वे गजधर को भेंट कर देते। काम पूरा होने पर पारिश्रमिक के अलावा गजधर को सम्मान &#39; भी मिलता था। सरोपा भेंट करना अब शायद सिर्फ सिख परंपरा में ही बचा समाज की गहराई नापते रहे हैं गुणाधर</p>', '1,2,3', 1, '1', '1', '2019-08-27 17:08:33', '2019-09-13 19:55:37', '', '', '10', '100.00', '1', 'f9611adceaf2721da82bed651f67f7bf.jpg', '0', 0, 99, '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -444,7 +445,7 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   `p_id` varchar(250) NOT NULL,
   `image` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product_images`
@@ -639,7 +640,10 @@ CREATE TABLE IF NOT EXISTS `setting` (
   `smtp_pass` text,
   `merchent_key` varchar(250) NOT NULL,
   `salt` varchar(250) NOT NULL,
-  `announcements` text NOT NULL,
+  `announcements` text CHARACTER SET utf8 NOT NULL,
+  `dis_text` text NOT NULL,
+  `btn_text` text NOT NULL,
+  `btn_link` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -647,8 +651,8 @@ CREATE TABLE IF NOT EXISTS `setting` (
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`id`, `email`, `support_email`, `contact_email`, `newsletter_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`, `meta_keywords`, `meta_description`, `shop_commission`, `ad_number`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `merchent_key`, `salt`, `announcements`) VALUES
-(1, 'kavadev@gmail.com', 'support.kava@gmail.com', 'nayanpatel807@gmail.com', 'nayanpatel807@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown', 'home', 'description', '50.00', '1234567890', 'ssl://smtp.googlemail.com', '465', 'mehul9921@gmail.com', 'KAVA@5981', 'rjQUPktU', 'e5iIg1jwi8', 'Sample ');
+INSERT INTO `setting` (`id`, `email`, `support_email`, `contact_email`, `newsletter_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`, `meta_keywords`, `meta_description`, `shop_commission`, `ad_number`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `merchent_key`, `salt`, `announcements`, `dis_text`, `btn_text`, `btn_link`) VALUES
+(1, 'kavadev@gmail.com', 'support.kava@gmail.com', 'kavadev@gmail.com', 'kavadev@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown', 'home', 'description', '50.00', '1234567890', 'ssl://smtp.googlemail.com', '465', 'mehul9921@gmail.com', 'ABCD@5981', 'rjQUPktU', 'e5iIg1jwi8', 'Sample ', 'Diwali Discount up to 70 % off', 'TEXT', 'fb.com');
 
 -- --------------------------------------------------------
 
@@ -853,7 +857,7 @@ CREATE TABLE IF NOT EXISTS `traking` (
   `date` datetime DEFAULT NULL,
   `order_id` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `traking`
@@ -871,7 +875,9 @@ INSERT INTO `traking` (`id`, `detail`, `date`, `order_id`) VALUES
 (9, 'Order Placed', '2019-08-08 20:50:59', '7'),
 (10, 'Order Placed', '2019-08-08 20:52:44', '8'),
 (11, 'Order Placed', '2019-08-08 20:55:14', '9'),
-(12, 'Order Placed', '2019-08-09 00:48:46', '10');
+(12, 'Order Placed', '2019-08-09 00:48:46', '10'),
+(13, 'Order Placed', '2019-09-02 17:35:50', '11'),
+(14, 'Order Placed', '2019-09-02 17:38:30', '12');
 
 -- --------------------------------------------------------
 
