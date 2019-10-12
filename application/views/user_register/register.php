@@ -19,7 +19,7 @@
 <section class="login_box_area p_120">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-6">
+			<div class="col-lg-6 hidden-xs hidden-sm">
 				<div class="login_box_img">
 					<img class="img-fluid" src="<?= base_url() ?>user_login/img/register.png" alt="">
 					<div class="hover">

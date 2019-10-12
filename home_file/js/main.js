@@ -6,11 +6,11 @@
 		var s = today.getSeconds();
 		m = checkTime(m);
 		s = checkTime(s);
-		session = "PM";
+		session = "AM";
 	  
 		if(h > 12){
 			h = h - 12;
-			session = "AM";
+			session = "PM";
 		}
 	  
 	  	//document.getElementById('MyClockDisplay').innerHTML = h + ":" + m + ":" + s + " "+session;
