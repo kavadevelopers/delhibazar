@@ -147,25 +147,29 @@ function JSalert(){
                                     <a class="nav-link" href="<?= base_url(); ?>pages/privacy">Privacy</a>
                                 </li>
 
-                                <li class="nav-item dropdown">
+                                <?php if($this->session->userdata('id')) { ?>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<?= base_url() ?>welcome/logout">Logout</a>
+                                    </li>
+                                <?php }else{ ?> 
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<?= base_url() ?>login">Login</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<?= base_url() ?>register">Register</a>
+                                    </li>
+                                <?php } ?>
+
+                                <!-- <li class="nav-item dropdown">
                                     <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User
                                     <span class="icon-arrow-down"></span>
                                     </a>
                                     
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <?php if($this->session->userdata('id')) { ?>
-                                        
-                                            <a class="dropdown-item" href="<?= base_url() ?>welcome/logout">Logout</a>
-                                        
-                                        <?php }else{ ?> 
 
-                                            <a class="dropdown-item" href="<?= base_url() ?>login">Login</a>
-                                            <a class="dropdown-item" href="<?= base_url() ?>register">Register</a>
-
-                                        <?php } ?>
 
                                     </div>
-                                </li>
+                                </li> -->
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= base_url(); ?>pages/contact">Contact</a>
                                 </li>
