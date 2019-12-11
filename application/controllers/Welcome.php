@@ -71,6 +71,41 @@ class Welcome extends CI_Controller {
         $this->load->template('shop/index',$data);
 	}
 
+    public function offers()
+    {
+        $data['_title']             = "DELHIBAZAR";
+        $data['setting']            = $this->general_model->setting();
+        $data['shop']               = $this->shop_model->get_shop_offers();
+        $this->load->template('shop/offers',$data);
+    }
+
+    public function session_ad()
+    {
+        $this->session->set_userdata('_offer_order',$_GET['val']);
+        redirect(base_url().'welcome/offers');
+    }
+
+    public function session_category()
+    {
+        if(!empty($_GET['val'])){
+            $this->session->set_userdata('_offer_category',$_GET['val']);
+        }
+        else{
+            $this->session->set_userdata('_offer_category',"");
+        }
+        redirect(base_url().'welcome/offers');
+    }
+
+    public function session_area()
+    {
+        if(!empty($_GET['val'])){
+            $this->session->set_userdata('_offer_area',$_GET['val']);
+        }
+        else{
+            $this->session->set_userdata('_offer_area',"");
+        }
+        redirect(base_url().'welcome/offers');
+    }
 
     public function save_newalatter()
     {

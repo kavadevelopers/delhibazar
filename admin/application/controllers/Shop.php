@@ -18,6 +18,72 @@ class Shop extends CI_Controller {
         $this->load->template('shop/index',$data);
     }
 
+    public function categories($id = false)
+    {
+        if(!$id){
+            $data['flad']       = '';
+            $data['page_title'] = 'Manage Shop Categories';
+            $data['shop']       = $this->shop_model->categories();
+            $this->load->template('shop/categories/index',$data);
+        }
+        else{
+            if($this->shop_model->categories_where($id)){
+                $data['flad']       = '1';
+                $data['page_title'] = 'Manage Shop Categories';
+                $data['shop']       = $this->shop_model->categories();
+                $data['shop_one']   = $this->shop_model->categories_where($id)[0];
+                $this->load->template('shop/categories/index',$data);   
+            }
+            else{
+                $data['flad']       = '';
+                $data['page_title'] = 'Manage Shop Categories';
+                $data['shop']       = $this->shop_model->categories();
+                $this->load->template('shop/categories/index',$data);
+            }
+        }
+    }
+
+    public function area($id = false)
+    {
+        if(!$id){
+            $data['flad']       = '';
+            $data['page_title'] = 'Manage Area';
+            $data['shop']       = $this->shop_model->area();
+            $this->load->template('shop/categories/area',$data);
+        }
+        else{
+            if($this->shop_model->area_where($id)){
+                $data['flad']       = '1';
+                $data['page_title'] = 'Manage Area';
+                $data['shop']       = $this->shop_model->area();
+                $data['shop_one']   = $this->shop_model->area_where($id)[0];
+                $this->load->template('shop/categories/area',$data);   
+            }
+            else{
+                $data['flad']       = '';
+                $data['page_title'] = 'Manage Area';
+                $data['shop']       = $this->shop_model->area();
+                $this->load->template('shop/categories/area',$data);
+            }
+        }
+    }
+
+    public function delete_cate($id)
+    {
+        $this->db->where('id',$id);
+        $this->db->update('shop_categories', ['df' => '1']);
+        $this->session->set_flashdata('msg', 'Shop Categories Successfully Deleted');
+        redirect(base_url().'shop/categories');
+    }
+
+    public function delete_area($id)
+    {
+        $this->db->where('id',$id);
+        $this->db->update('shop_area', ['df' => '1']);
+        $this->session->set_flashdata('msg', 'Shop Area Successfully Deleted');
+        redirect(base_url().'shop/area');
+    }
+
     public function add()
     {
     	$data['page_title']	        = 'Add Shop';
@@ -71,6 +137,129 @@ class Shop extends CI_Controller {
     /**********************************************************************
                                 SAVE(INSERT)
     **********************************************************************/
+    public function save_category()
+    {
+        $this->form_validation->set_error_delimiters('<div class="my_text_error">', '</div>');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required');
+        if ($this->form_validation->run() == FALSE)
+        {
+            $data['flad']       = '';
+            $data['page_title'] = 'Manage Shop Categories';
+            $data['shop']       = $this->shop_model->categories();
+            $this->load->template('shop/categories/index',$data);
+        }
+        else{
+            $data = [
+                        'name'      =>  $this->input->post('name')
+                    ];
+
+    
+            if($this->db->insert('shop_categories', $data))
+            {
+                $this->session->set_flashdata('msg', 'Shop Categories Successfully Added');
+                redirect(base_url().'shop/categories');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Problem In Add Shop Try Again');
+                redirect(base_url().'shop/categories');
+            }
+        }
+
+    }
+
+    public function save_area()
+    {
+        $this->form_validation->set_error_delimiters('<div class="my_text_error">', '</div>');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required');
+        if ($this->form_validation->run() == FALSE)
+        {
+            $data['flad']       = '';
+            $data['page_title'] = 'Manage Shop Area';
+            $data['shop']       = $this->shop_model->area();
+            $this->load->template('shop/categories/area',$data);
+        }
+        else{
+            $data = [
+                        'name'      =>  $this->input->post('name')
+                    ];
+
+    
+            if($this->db->insert('shop_area', $data))
+            {
+                $this->session->set_flashdata('msg', 'Shop Area Successfully Added');
+                redirect(base_url().'shop/area');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Problem In Add Shop Try Again');
+                redirect(base_url().'shop/area');
+            }
+        }
+
+    }
+
+    public function update_category()
+    {
+        $this->form_validation->set_error_delimiters('<div class="my_text_error">', '</div>');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required');
+        if ($this->form_validation->run() == FALSE)
+        {
+            $data['flad']       = '1';
+            $data['page_title'] = 'Manage Shop Categories';
+            $data['shop']       = $this->shop_model->categories();
+            $data['shop_one']   = $this->shop_model->categories_where($this->input->post('main_id'))[0];
+            $this->load->template('shop/categories/index',$data);  
+        }
+        else{
+            $data = [
+                        'name'      =>  $this->input->post('name')
+                    ];
+
+            $this->db->where('id',$this->input->post('main_id'));
+            if($this->db->update('shop_categories', $data))
+            {
+                $this->session->set_flashdata('msg', 'Shop Categories Successfully Saved');
+                redirect(base_url().'shop/categories');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Problem In Add Shop Try Again');
+                redirect(base_url().'shop/categories');
+            }
+        }
+    }
+
+    public function update_area()
+    {
+        $this->form_validation->set_error_delimiters('<div class="my_text_error">', '</div>');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required');
+        if ($this->form_validation->run() == FALSE)
+        {
+            $data['flad']       = '1';
+            $data['page_title'] = 'Manage Shop Area';
+            $data['shop']       = $this->shop_model->area();
+            $data['shop_one']   = $this->shop_model->area_where($this->input->post('main_id'))[0];
+            $this->load->template('shop/categories/area',$data);  
+        }
+        else{
+            $data = [
+                        'name'      =>  $this->input->post('name')
+                    ];
+
+            $this->db->where('id',$this->input->post('main_id'));
+            if($this->db->update('shop_area', $data))
+            {
+                $this->session->set_flashdata('msg', 'Shop Area Successfully Saved');
+                redirect(base_url().'shop/area');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Problem In Add Shop Try Again');
+                redirect(base_url().'shop/area');
+            }
+        }
+    }
 
     public function save()
     {
@@ -97,6 +286,11 @@ class Shop extends CI_Controller {
         $this->form_validation->set_rules('shop_plan', 'Plan', 'required|trim');
         $this->form_validation->set_rules('dis_in_listing', 'Display in Listing', 'required|trim');
         $this->form_validation->set_rules('keywords', 'Search Keywords', 'trim');
+
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[30]|alpha_dash|is_unique[shop.username]',array('is_unique' => 'Username Is Already Exists'));
+        $this->form_validation->set_rules('password', 'Password', 'min_length[5]|required');
+        $this->form_validation->set_rules('_category', 'Category', 'required|trim');
+        $this->form_validation->set_rules('_area', 'Area', 'required|trim');
 
         
 
@@ -136,7 +330,11 @@ class Shop extends CI_Controller {
                         'exp_date'       =>  $exp_date,
                         'created_by'     =>  $this->session->userdata('id'),
                         'created_at'     =>  date('Y-m-d H:i:s'),
-                        'keywords'       =>  $this->input->post('keywords')
+                        'keywords'       =>  $this->input->post('keywords'),
+                        'username'       =>  $this->input->post('username'),
+                        'password'       =>  $this->input->post('password'),
+                        '_category'      =>  $this->input->post('_category'),
+                        '_area'          =>  $this->input->post('_area'),
                     ];
 
     
@@ -220,6 +418,11 @@ class Shop extends CI_Controller {
         $this->form_validation->set_rules('shop_plan', 'Plan', 'required|trim');
         $this->form_validation->set_rules('dis_in_listing', 'Display in Listing', 'required|trim');
         $this->form_validation->set_rules('keywords', 'Search Keywords', 'trim');
+
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[30]|alpha_dash|callback_username');
+        $this->form_validation->set_rules('password', 'Password', 'min_length[5]|required');
+        $this->form_validation->set_rules('_category', 'Category', 'required|trim');
+        $this->form_validation->set_rules('_area', 'Area', 'required|trim');
         
 
         if ($this->form_validation->run() == FALSE)
@@ -258,7 +461,11 @@ class Shop extends CI_Controller {
                         'exp_date'       =>  $exp_date,
                         'detail_desc'    =>  $this->input->post('detail_desc'),
                         'updated_at'     =>  date('Y-m-d H:i:s'),
-                        'keywords'       =>  $this->input->post('keywords')
+                        'keywords'       =>  $this->input->post('keywords'),
+                        'username'       =>  $this->input->post('username'),
+                        'password'       =>  $this->input->post('password'),
+                        '_category'      =>  $this->input->post('_category'),
+                        '_area'          =>  $this->input->post('_area'),
                     ];
                         
 
@@ -391,6 +598,15 @@ class Shop extends CI_Controller {
         }
     }
 
-
+    public function username($user)
+    {
+        if($this->db->get_where('shop',['username' => $user,'id !=' => $this->input->post('id')])->result_array()){
+            $this->form_validation->set_message('username', 'Username Already Exists.');
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
 }

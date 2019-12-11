@@ -10,7 +10,6 @@ class General_model extends CI_Model
 		$this->load->database();
 	}
 
-
 	public function setting()
 	{
 		return $this->db->get_where('setting',['id' => '1'])->result_array()[0];

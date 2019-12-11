@@ -26,7 +26,49 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Username <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('username',$shop[0]['username']); ?>" id="username" type="text" name="username" placeholder="Username" autocomplete="off">
+                                            <?php echo form_error('username'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Password <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('password',$shop[0]['password']); ?>" id="password" type="text" name="password" placeholder="Password" autocomplete="off">
+                                            <?php echo form_error('password'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Category <span class="astrick">*</span></label>
+                                            <select class="form-control form-control-sm" name="_category">
+                                                <option value="">-- Select --</option>
+                                                <?php foreach ($this->shop_model->categories() as $key => $value) { ?>
+                                                    <option value="<?= $value['id'] ?>" <?= set_value('_category',$shop[0]['_category']) == $value['id']?'selected':''; ?>><?= $value['name'] ?></option>
+                                                <?php } ?>
+                                            </select>
+                                            <?php echo form_error('_category'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Area <span class="astrick">*</span></label>
+                                            <select class="form-control form-control-sm" name="_area">
+                                                <option value="">-- Select --</option>
+                                                <?php foreach ($this->shop_model->area() as $key => $value) { ?>
+                                                    <option value="<?= $value['id'] ?>" <?= set_value('_area',$shop[0]['_area']) == $value['id']?'selected':''; ?>><?= $value['name'] ?></option>
+                                                <?php } ?>
+                                            </select>
+                                            <?php echo form_error('_area'); ?>
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Shop Name <span class="astrick">*</span></label>

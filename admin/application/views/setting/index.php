@@ -203,7 +203,20 @@
                                             <?php echo form_error('btn_link'); ?>
                                         </div>
                                     </div>
-                                   
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Offer Image</label>
+                                            <input class="form-control form-control-sm" value="" type="file" name="offer_image" placeholder="Button Link" accept="image/*">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <img src="<?= base_url('uploads/').$setting['offer_image'] ?>" style="width:100%;">
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="card-footer">

@@ -14,6 +14,21 @@ class Shop_model extends CI_Model
 		return $this->db->get('shop')->result_array();
 	}
 
+	public function is_offer($id)
+	{
+		if($this->db->get_where('offers',['shop' => $id,'status' => '','date_from >=' => date('Y-m-d'),'date_to >=' => date('Y-m-d')])->result_array()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function get_offers($id)
+	{
+		return $this->db->get_where('offers',['shop' => $id,'status' => '','date_from >=' => date('Y-m-d'),'date_to >=' => date('Y-m-d')])->result_array();
+	}
+
 	public function slider_where($shop_id)
 	{
 		return $this->db->get_where('shop_slider',['shop_id' => $shop_id])->result_array();
@@ -94,6 +109,61 @@ class Shop_model extends CI_Model
 		return	$this->db->get_where('shop',[ 'exp_date >=' => date('Y-m-d'),'dis_in_listing' => '0'])->result_array();
 	}
 
+	public function get_shop_offers()
+	{
+
+		
+		$this->db->trans_start();
+		if($this->session->userdata('_offer_category')){
+			if($this->session->userdata('_offer_category') != ''){
+				$this->db->where('_category',$this->session->userdata('_offer_category'));
+			}
+		}
+
+		if($this->session->userdata('_offer_area')){
+			if($this->session->userdata('_offer_area') != ''){
+				$this->db->where('_area',$this->session->userdata('_offer_area'));
+			}
+		}
+
+		$shops = $this->db->get_where('shop',[ 'exp_date >=' => date('Y-m-d'),'dis_in_listing' => '0'])->result_array();
+		$this->db->trans_complete(); 
+		$array = [];
+		foreach ($shops as $key => $value) {
+			array_push($array, $value['id']);
+		}
+		if(count($shops) == 0){
+			$array = [0];
+		}	
+
+
+		$this->db->select("*");
+		if($this->session->userdata('_offer_order')){
+			if($this->session->userdata('_offer_order') == 'new'){
+				$this->db->order_by('id','DESC');
+			}else if($this->session->userdata('_offer_order') == 'old'){
+				$this->db->order_by('id','ASC');
+			}
+		}
+
+		$this->db->where('status', '');
+		$this->db->where('date_from >=', date('Y-m-d'));
+		$this->db->where('date_to >=', date('Y-m-d'));
+		$this->db->where_in('shop', $array);
+		return $this->db->get('offers')->result_array();
+	}
+
+	public function get_shop_categories()
+	{
+		$this->db->where('df','');
+		return 	$this->db->get('shop_categories')->result_array();
+	}
+
+	public function get_shop_area()
+	{
+		$this->db->where('df','');
+		return 	$this->db->get('shop_area')->result_array();
+	}
 
 	public function hash_dynamic_add($position)
 	{	

@@ -14,6 +14,17 @@ function _vdatetime($datetime)
 	return date('d-m-Y h:i A',strtotime($datetime));
 }
 
+function _ddate($date)
+{
+	return date('Y-m-d' ,strtotime($date));
+}
+
+function _vdate($date)
+{
+	return date('d-m-Y' ,strtotime($date));
+}
+
+
 function _now_dt()
 {
 	return date('Y-m-d H:i:s');
@@ -171,6 +182,42 @@ function _s_banner_img($id){
 	}
 
 	return $image;
+}
+
+function get_offer_image($id){
+	$CI=&get_instance();
+	$product = $CI->db->get_where('offers',['id' => $id])->result_array()[0];
+	$image = '';
+	if($product['image'] == 'no-image.png'){
+		$image = "no-image.png";
+	}
+	else{
+		if($product['image'] == ''){
+			$image = "no-image.png";
+		}
+		else if(file_exists(FCPATH.'uploads/offer/'.$product['image'])){
+			$image = $product['image'];
+		}
+		else{
+			$image = "no-image.png";
+		}
+	}
+
+	return $image;
+}
+
+function beetween_boolean($from,$to)
+{
+	$now = date('Y-m-d');
+	$now = date('Y-m-d', strtotime($now));
+	$DateBegin 	= date('Y-m-d', strtotime($from));
+	$DateEnd 	= date('Y-m-d', strtotime($to));
+
+	if (($now >= $DateBegin) && ($now <= $DateEnd)){
+	    return true;
+	}else{
+	    return false;
+	}
 }
 
 ?>

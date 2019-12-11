@@ -1693,7 +1693,18 @@
 
 <!--//=========================== Ad Section =============================-->
 
-
+<style type="text/css">
+    .ul-offer{
+        list-style: none;
+    }
+    .ul-offer li{
+        text-align: center;
+    }
+    .ul-offer img{
+        width: 50px;
+        height: 50px;
+    }
+</style>
 <!--============================= BOOKING DETAILS =============================-->
 <section class="light-bg booking-details_wrap">
     <div class="container">
@@ -1702,7 +1713,15 @@
           
             <div class="col-md-9 responsive-wrap">
                 
+                <div class="booking-checkbox_wrap">
+                    <div class="col-md-12 text-center" style="margin-bottom: 15px;"><h5>Offers</h5></div>
+                    <ul class="ul-offer">
+                        <?php foreach ($this->shop_model->get_offers($shop[0]['id']) as $key => $value) { ?>
+                            <li><img src="<?= get_offer_image($value['id']) ?>"> <?= $value['description'] ?> </li>    
+                        <?php } ?>
+                    </ul>
 
+                </div>
                 <div class="booking-checkbox_wrap">
                     <div class="booking-checkbox">
                         <p><?= nl2br($shop[0]['detail_desc']) ?></p>
@@ -1740,22 +1759,22 @@
                         <?php if($shop[0]['mobile_in_website'] == 0){ ?>
                             <div class="address" title="Mobile">
                                 <span class="icon-screen-smartphone"></span>
-                                <p><?= $shop[0]['mobile'] ?></p>
+                                <p><?= $shop[0]['mobile'] == ''?'-':$shop[0]['mobile'] ?></p>
                             </div>
                         <?php } ?>
                         <?php if($shop[0]['whats_in_website'] == 0){ ?>
                             <div class="address" title="Watsapp No.">
                                 <span class="fa fa-whatsapp"></span>
-                                <p><?= $shop[0]['wp_no'] ?></p>
+                                <p><?= $shop[0]['wp_no'] == ''?'-':$shop[0]['wp_no'] ?></p>
                             </div>
                         <?php } ?>
                         <div class="address" title="Hours Of Operation">
                             <span class="icon-clock"></span>
-                            <p><?= $shop[0]['hour_operation'] ?>
+                            <p><?= $shop[0]['hour_operation'] == ''?'-':$shop[0]['hour_operation'] ?>
                         </div>
                         <div class="address" title="Mode Of Payment">
                             <span class="fa fa-money"></span>
-                            <p><?= $shop[0]['payment_mode'] ?>
+                            <p><?= $shop[0]['payment_mode'] == ''?'-':$shop[0]['payment_mode'] ?>
                         </div>
                 </div>
             </div>

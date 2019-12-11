@@ -46,6 +46,51 @@ function selected_filter_listing($val){
 	}
 }
 
+function selected_filter_offers($val){
+	$CI=&get_instance();
+
+	if($CI->session->userdata('_offer_order')){
+
+		if($CI->session->userdata('_offer_order') == $val){
+			return "selected";
+		}
+
+	}
+	else{
+		return "";
+	}
+}
+
+function selected_category_offers($val){
+	$CI=&get_instance();
+
+	if($CI->session->userdata('_offer_category')){
+
+		if($CI->session->userdata('_offer_category') == $val){
+			return "selected";
+		}
+
+	}
+	else{
+		return "";
+	}
+}
+
+function selected_area_offers($val){
+	$CI=&get_instance();
+
+	if($CI->session->userdata('_offer_area')){
+
+		if($CI->session->userdata('_offer_area') == $val){
+			return "selected";
+		}
+
+	}
+	else{
+		return "";
+	}
+}
+
 function rating_dot($rating){
 	switch ($rating) {
 		case '1':
@@ -325,6 +370,29 @@ function get_home_banners(){
 		}
 	}
 
+
+	return $image;
+}
+
+function get_offer_image($id){
+	$CI=&get_instance();
+	$product = $CI->db->get_where('offers',['id' => $id])->result_array()[0];
+	$image = '';
+	if($product['image'] == 'no-image.png'){
+		$image = $CI->config->config['admin_url']."uploads/offer/no-image.png";
+	}
+	else{
+		$url    =   $CI->config->config['admin_url']."uploads/offer/".$product['image'];
+		if($product['image'] == ''){
+			$image = $CI->config->config['admin_url']."uploads/offer/no-image.png";
+		}
+		else if(getimagesize($url)){
+			$image = $url;
+		}
+		else{
+			$image = $CI->config->config['admin_url']."uploads/offer/no-image.png";
+		}
+	}
 
 	return $image;
 }

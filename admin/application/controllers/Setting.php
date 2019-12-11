@@ -55,6 +55,22 @@ class Setting extends CI_Controller {
         else
         {
 
+            if(!empty($_FILES['offer_image']['name']))
+            {
+                $path       = $_FILES['offer_image']['name'];
+                $newName    = md5(microtime(true)).".".pathinfo($path, PATHINFO_EXTENSION); 
+                $config['upload_path']      = './uploads';
+                $config['allowed_types']    = 'gif|jpg|png|jpeg';
+                $config['max_size']         = 2000000;
+                
+                $config['file_name']        = $newName;
+                $this->load->library('upload', $config);
+                $this->upload->do_upload('offer_image');
+
+                $this->db->where('id','1');
+                $this->db->update('setting', [' offer_image' => $newName]);
+            }
+
 
             $data = [
                         'ad_number'         =>     $this->input->post('ad_number'),

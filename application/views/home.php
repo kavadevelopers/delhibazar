@@ -130,7 +130,9 @@
                             </div>
                             <div class="col-xs-5 col-sm-5 hidden-md hidden-lg">
                             <!-- weather widget start -->
-                                <a target="_blank" href="https://www.booked.net/weather/new-delhi-18038"><img src="https://w.bookcdn.com/weather/picture/26_18038_1_1_34495e_250_2c3e50_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=2&domid=w209&anc_id=65336"  alt="booked.net"/></a>
+                                <a href="<?= base_url('welcome/offers'); ?>">
+                                    <img src="<?= $this->config->config['admin_url'] ?>uploads/<?= get_setting()['offer_image'] ?>" style="width: 120px; height: 60px;">
+                                </a>
                             <!-- weather widget end -->
                             </div>
                         </div>
@@ -167,7 +169,9 @@
 
                         <div class="col-md-2 col-lg-2 text-center col-xs-12 col-sm-12 hidden-sm hidden-xs">
                         <!-- weather widget start -->
-                            <a target="_blank" href="https://www.booked.net/weather/new-delhi-18038"><img src="https://w.bookcdn.com/weather/picture/26_18038_1_1_34495e_250_2c3e50_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=2&domid=w209&anc_id=65336"  alt="booked.net"/></a>
+                        <a href="<?= base_url('welcome/offers'); ?>">
+                            <img src="<?= $this->config->config['admin_url'] ?>uploads/<?= get_setting()['offer_image'] ?>" style="width: 120px; height: 60px;">
+                        </a>
                         <!-- weather widget end -->
                         </div>
 

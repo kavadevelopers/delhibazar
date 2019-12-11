@@ -61,7 +61,7 @@
                 <div class="row detail-filter-wrap">
                     <div class="col-md-4 featured-responsive">
                         <div class="detail-filter-text">
-                            <p><?= count($shop); ?> Results For <span>"<?= $_GET['search'] ?>"</span></p>
+                            <p></span></p>
                         </div>
                     </div>
                 </div>
@@ -1336,21 +1336,42 @@
 
             <div class="col-md-8 col-xs-12 col-sm-12">
                 <div class="row light-bg text-center">
-                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="form-group" style="padding:5px;">
+                            <select class="form-control form-control-sm" onchange="window.location.href='<?= base_url() ?>welcome/session_area/?val='+this.value">
+
+                                <option value="">Filter Area</option>
+                                <?php foreach ($this->shop_model->get_shop_area() as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>" <?= selected_area_offers($value['id']) ?>><?= $value['name'] ?></option>
+                                <?php } ?>
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group" style="padding:5px;">
+                            <select class="form-control form-control-sm" onchange="window.location.href='<?= base_url() ?>welcome/session_category/?val='+this.value">
+
+                                <option value="">Filter Industry</option>
+                                <?php foreach ($this->shop_model->get_shop_categories() as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>" <?= selected_category_offers($value['id']) ?>><?= $value['name'] ?></option>
+                                <?php } ?>
+                                
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-md-4 col-sm-12 col-xs-12" style="padding:5px;">
                         <div class="form-group">
-                            <select class="form-control form-control-sm" onchange="window.location.href='<?= base_url() ?>shop/session_ad/?data=<?= $this->input->get('search'); ?>&val='+this.value">
+                            <select class="form-control form-control-sm" onchange="window.location.href='<?= base_url() ?>welcome/session_ad/?val='+this.value">
 
-                                <option value="">Filter Result</option>
-                                <option value="rating" <?= selected_filter_listing("rating") ?>>Rating</option>
-                                <option value="new"     <?= selected_filter_listing("new") ?>>Newest</option>
-                                <option value="old"     <?= selected_filter_listing("old") ?>>Oldest</option>
-                                <option value="comment" <?= selected_filter_listing("comment") ?>>Most Commented</option>
+                                <option value="">Order Result</option>
+                                <option value="new" <?= selected_filter_offers("new") ?>>Newest</option>
+                                <option value="old" <?= selected_filter_offers("old") ?>>Oldest</option>
+                                
 
                             </select>
                         </div>
                     </div>    
-                    <div class="col-md-4"></div>
                 </div>
 
                 <style type="text/css">
@@ -1367,36 +1388,18 @@
                 </style>
 
                 <div class="row light-bg detail-options-wrap" style="min-height: 500px;">
+                    
                     <?php foreach ($shop as $key => $value) { ?>
+                        <?php $shop = $this->shop_model->shop_where($value['shop'])[0]; ?>
                         <div class="col-sm-12 col-lg-12 col-xl-6 featured-responsive col-xs-12">
                             <div class="featured-place-wrap">
-                                <a href="<?= base_url() ?>shop/shop_detail/<?= $value['id'] ?>">
-                                    <img src="<?= _get_shop_img($value['photo']) ?>" class="img-fluid" alt="#">
-                                    <span class="featured-rating-orange" style="padding: 13px 5px;"><?= round($this->rating_model->get_avarage_rating($value['id'])[0]['average'],1) ?></span>
-                                    
-                                    <?php if($this->shop_model->is_offer($value['id'])){ ?>
-                                        <span class="offer-text">offer</span>
-                                    <?php } ?>
+                                <a href="<?= base_url() ?>shop/shop_detail/<?= $shop['id'] ?>">
+                                    <img src="<?= get_offer_image($value['id']) ?>" class="img-fluid" alt="#">
 
                                     <div class="featured-title-box">
-                                        <h6><?= $value['shop_name'] ?></h6>
+                                        <h6><?= $shop['shop_name'] ?></h6>
 
-                                        <p><?= cut_string($value['category'],15,'...') ?></p> <span>• </span>
-                                        <p><?= $this->rating_model->count_review($value['id']) ?> Reviews</p><span>• </span>
-                                        <p><?= rating_dollar(round($this->rating_model->get_avarage_rating($value['id'])[0]['average'],1)) ?></p>
-                                        <ul>
-                                            <li><span class="icon-location-pin"></span>
-                                                <p><?= cut_string($value['address'],35,'...') ?>  </p>
-                                            </li>
-                                            <li><span class="ti-view-grid"></span>
-                                                <p><?= cut_string($value['pro_or_servi'],35,'...') ?>  </p>
-                                            </li>
-                                            <?php if($value['mobile_in_website'] == 0){ ?>
-                                                <li><span class="icon-screen-smartphone"></span>
-                                                    <p><?= $value['mobile'] ?></p>
-                                                </li>
-                                            <?php } ?>
-                                        </ul>
+                                        <p><?= $value['description'] ?></p>
                                         <div class="bottom-icons">
                                             <div class="closed-now"></div>
                                         </div>
@@ -1405,6 +1408,7 @@
                             </div>
                         </div>
                     <?php } ?>
+
                 </div>
             </div>    
                 

@@ -30,7 +30,6 @@ class Shop extends CI_Controller {
     {
         echo json_encode($this->shop_model->load_more($this->input->post('record'),$this->input->post('shop_id')));
     }
-
 	
 	public function rating()
 	{

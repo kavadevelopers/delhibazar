@@ -102,11 +102,46 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('shop'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("shop"))[0]; ?>">
+                    <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("shop","shop_offer"))[1]; ?>">
+                
+                        <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("shop","shop_offer"))[0]; ?>">
                             <i class="nav-icon fa fa-shopping-basket"></i>
-                            <p>Listings</p>
+                            <p>Listings
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
                         </a>
+                       
+                        <ul class="nav nav-treeview">
+                            
+                            <li class="nav-item">
+                                <a href="<?= base_url('shop/index'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("index"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Listings</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('shop/categories'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("categories"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Categories</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('shop/area'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("area"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Area</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('shop_offer'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("shop_offer"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Offers</p>
+                                </a>
+                            </li>
+
+                        </ul>
                     </li>
 
                     <li class="nav-item">
