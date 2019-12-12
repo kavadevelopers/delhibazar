@@ -204,6 +204,30 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Card Url <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('card_web',$setting['card_web']); ?>" type="text" name="card_web" placeholder="Card Url" >
+                                            <?php echo form_error('card_web'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Card Text <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('card_text',$setting['card_text']); ?>" type="text" name="card_text" placeholder="Card Text" >
+                                            <?php echo form_error('card_text'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Card Email <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('card_email',$setting['card_email']); ?>" type="text" name="card_email" placeholder="Card Email" >
+                                            <?php echo form_error('card_email'); ?>
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label>Offer Image</label>

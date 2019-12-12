@@ -120,4 +120,15 @@ class Pages extends CI_Controller {
             redirect(base_url().'pages/order_traking/?error=1');
         }
     }
+
+    public function cards()
+    {
+        if($this->session->userdata('id') && $this->session->userdata('id') != ''){
+            $data['_title']     = "DELHIBAZAR | Virtual Cards";
+            $this->load->template1('pages/cards',$data);
+        }
+        else{
+            redirect(base_url());
+        }
+    }
 }

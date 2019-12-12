@@ -91,7 +91,6 @@ class Pay extends CI_Controller {
             $data['_title']             = "DELHIBAZAR Payment";
             $data['filed']              = $this->input->post();
             $this->load->template1('pay/index',$data);
-        
     }
     
     /**********************************************

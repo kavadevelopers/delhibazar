@@ -44,6 +44,9 @@ class Setting extends CI_Controller {
         $this->form_validation->set_rules('meta_description', 'Meta Description', 'trim|required');
         $this->form_validation->set_rules('merchent_key', 'Payumoney Merchent Key', 'trim|required');
         $this->form_validation->set_rules('salt', 'SALT', 'trim|required');
+        $this->form_validation->set_rules('card_web', 'Card Url', 'trim|required');
+        $this->form_validation->set_rules('card_text', 'Card Text', 'trim|required');
+        $this->form_validation->set_rules('card_email', 'Card Email', 'trim|required');
 
 
         if ($this->form_validation->run() == FALSE)
@@ -94,7 +97,10 @@ class Setting extends CI_Controller {
                         'announcements'              =>     $this->input->post('announcements'),
                         'dis_text'              =>     $this->input->post('dis_text'),
                         'btn_text'              =>     $this->input->post('btn_text'),
-                        'btn_link'              =>     $this->input->post('btn_link')
+                        'btn_link'              =>     $this->input->post('btn_link'),
+                        'card_web'              =>     $this->input->post('card_web'),
+                        'card_text'             =>     $this->input->post('card_text'),
+                        'card_email'            =>     $this->input->post('card_email')
                     ];
 
             $this->db->where('id','1');

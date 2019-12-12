@@ -214,6 +214,7 @@ $CI->load->model('cart_model');
 								<?php if($this->session->userdata('id')) { ?>
 										
 									<li class="nav-item"><a class="nav-link" href="<?= base_url() ?>welcome/logout">Logout</a></li>
+									<li class="nav-item"><a class="nav-link" href="<?= base_url() ?>pages/cards">Virtual Card</a></li>
 								
 								<?php }else{ ?> 
 

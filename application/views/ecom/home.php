@@ -242,6 +242,47 @@
         </section>
 
 	<?php } } ?>
+
+	<section class="timer_area" style="padding-top: 50px; padding-bottom: 50px;">
+    	<div class="container">
+    		<div class="main_title">
+    			
+    		</div>
+    	</div>
+    </section>
+
+    <section class="feature_product_area">
+    	<div class="main_box">
+			<div class="container">
+				<div class="feature_product_inner">
+					<div class="main_title">
+						<h2>Virtual Card</h2>
+					</div>
+					<div class="feature_p_slider owl-carousel">
+
+						<?php foreach($this->product_model->get_cards() as $key => $value){ ?>
+							<div class="item">
+								<a href="<?= base_url() ?>products/card/<?= $value['id'] ?>">
+									<div class="f_p_item">
+										<div class="f_p_img">
+											<img class="img-fluid" src="<?= get_card_image($value['id']) ?>" alt="">
+											<div class="p_icon">
+												
+											</div>
+										</div>
+										<h4><?= $value['id'] ?></h4>
+										<h5>₹<?= $value['price'] ?></h5>
+									</div>
+								</a>
+							</div>
+
+						<?php } ?>
+						
+					</div>
+				</div>
+			</div>
+    	</div>
+    </section>
 	
 
 <!--================ End Feature Categories Area =================-->

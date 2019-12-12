@@ -240,4 +240,222 @@ class Products extends CI_Controller {
 				redirect($this->input->get('uri'));	
 			}
 	}
+
+
+
+	public function card($id = false)
+	{
+		if($id)
+		{
+			$card = $this->db->get_where('cards',['id' => $id,'df' => ''])->result_array();
+			if($card){
+				$data['_title']			= "DELHIBAZAR";
+				$data['product']		= $card[0];
+				$this->load->template1('card/purchase',$data);
+			}
+			else{
+				redirect(base_url('home'));
+			}
+		}
+		else{
+			redirect(base_url('home'));
+		}
+	}
+
+	public function purchase_card()
+	{
+		$user = $this->db->get_where('social_user',['id' => $this->session->userdata('id')])->result_array()[0];
+		$amount             = $this->input->post('grand_total');
+        $product_info       = 'Virtual Card - '.$this->input->post('product_id');
+        $customer_name      = ucfirst($user['first_name']).' '.ucfirst($user['last_name']);
+        $customer_email     = $user['email'];
+        $customer_mobile     = $user['mobile'];
+
+        $MERCHANT_KEY       = get_setting()['merchent_key'];
+        $SALT               = get_setting()['salt']; 
+        $txnid              = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
+        $udf1               = $this->input->post('product_id');
+        $udf2               = $this->session->userdata('id');
+        $udf3               = "";
+        $udf4               = "";
+        $udf5               = "";
+
+
+        $hashstring = $MERCHANT_KEY . '|' . $txnid . '|' . $amount . '|' . $product_info . '|' . $customer_name . '|' . $customer_email . '|' . $udf1 . '|' . $udf2 . '|' . $udf3 . '|' . $udf4 . '|' . $udf5 .'||||||' . $SALT;
+        $hash = strtolower(hash('sha512', $hashstring));
+
+
+        $success    = base_url() . 'products/status_payment';  
+        $fail       = base_url() . 'products/status_payment';  
+        $cancel     = base_url() . 'products/status_payment'; 
+
+        $data = array(
+                    'mkey'      => $MERCHANT_KEY,
+                    'tid'       => $txnid,
+                    'udf1'      => $udf1,
+                    'udf2'      => $udf2,
+                    'udf3'      => $udf3,
+                    'udf4'      => $udf4,
+                    'udf5'      => $udf5,
+                    'hash'      => $hash,
+                    'amount'    => $amount,           
+                    'name'      => $customer_name,
+                    'productinfo'=> $product_info,
+                    'mailid'    => $customer_email,
+                    'phoneno'   => $customer_mobile,
+                    'address1'  => "",
+                    'address2'  => "",
+                    'country'   => "",
+                    'city'      => "",
+                    'zipcode'   => "",
+                    'action'    => "https://test.payu.in", //for live change action  https://secure.payu.in ,https://test.payu.in
+                    'sucess'    => $success,
+                    'failure'   => $fail,
+                    'cancel'    => $cancel            
+            ); 
+
+        $data['_title']             = "DELHIBAZAR Payment";
+        $data['filed']              = $this->input->post();
+        $this->load->template1('card/payment',$data);
+	}
+
+	public function status_payment()
+	{
+		if($this->input->post()){
+        	$status = $this->input->post('status');
+            if($this->input->post('status')){
+                if (empty($status)) {
+                    redirect(base_url('cart'));
+                }
+               
+                    $firstname      = $this->input->post('firstname');
+                    $amount         = $this->input->post('amount');
+                    $txnid          = $this->input->post('txnid');
+                    $posted_hash    = $this->input->post('hash');
+                    $key            = $this->input->post('key');
+                    $productinfo    = $this->input->post('productinfo');
+                    $email          = $this->input->post('email');
+                    $salt           = get_setting()['salt']; //  Your salt
+                    $add            = $this->input->post('additionalCharges');
+
+                    if(isset($add)) {
+                        $additionalCharges = $this->input->post('additionalCharges');
+                        $retHashSeq = $additionalCharges . '|' . $salt . '|' . $status . '|||||||||||' . $email . '|' . $firstname . '|' . $productinfo . '|' . $amount . '|' . $txnid . '|' . $key;
+                    } else {
+                        $retHashSeq = $salt . '|' . $status . '|||||||||||' . $email . '|' . $firstname . '|' . $productinfo . '|' . $amount . '|' . $txnid . '|' . $key;
+                    }
+
+                    $data['hash']        = hash("sha512", $retHashSeq);
+                    $data['amount']      = $amount;
+                    $data['txnid']       = $txnid;
+                    $data['posted_hash'] = $posted_hash;
+                    $data['status']      = $status;
+
+                    if($status == 'success')
+                    {
+                    	$card = $this->db->get_where('cards',['id' => $this->input->post('udf1')])->row_array();
+                        $data = [
+                                    't_id'       	=> $txnid,
+                                    'amount'       	=> $amount,
+                                    'card'         	=> $this->input->post('udf1'),
+                                    'user'    		=> $this->input->post('udf2'),
+                                    'validity'    	=> $card['validity'],
+                                    'usage'    		=> $card['total_usage'],
+                                    'p_date'		=> date('Y-m-d')
+                                ];
+                        
+                        if($this->db->insert('card_purchase',$data))
+                        {
+                        	$this->send_card($this->db->insert_id());
+                            $this->session->set_flashdata('msg', 'Card Added To Your Account Thankyou');
+                            redirect(base_url('home'));
+                        }
+                        
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('error', 'Something went wrong try again');
+                        redirect(base_url('home'));
+                    }
+             
+            }
+
+            }else{
+                redirect(base_url().'error404');
+            }
+	}
+
+	public function qr($id)
+	{
+		$card = $this->db->get_where('card_purchase',['id' => $id])->row_array();
+		$this->load->library('ciqrcode');
+        $config['size']         = 256;
+        $this->ciqrcode->initialize($config);
+        $params['data'] = json_encode(['card' => $card['id'],'user' => $card['user']]);
+        $params['level'] = 'H';
+        $params['savename'] = FCPATH.'/uploads/qr/'.$card['card'].'-'.$card['user'].'.png';
+        if(!file_exists($params['savename'])){
+        	$this->ciqrcode->generate($params);
+        }
+        return $card['card'].'-'.$card['user'].'.png';
+	}
+
+	public function card_generate()
+	{
+
+
+		?>
+
+
+		<div style="width: 330px; height: 180px; background: #000000; margin: 0 auto;display: table;border-radius: 10px;">
+			<div style="vertical-align: middle; width: 50%; display: table-cell; text-align: center;">
+				<img src="<?= base_url() ?>image/logo.png" style="width: 100%;">
+				<p style="padding: 0px; text-align: center; color: #ffc107; font-size: 14px; margin: 0;">
+					<?= get_setting()['card_text'] ?>
+				</p>
+				<p style="padding: 0px; text-align: center; color: #ffffff; font-size: 14px; margin: 0;">
+					<?= get_setting()['card_email'] ?>
+				</p>
+			</div>
+			<div style="vertical-align: middle; width: 50%; display: table-cell; text-align: center;">
+				<img src="<?= base_url('uploads/qr/').$this->qr(1); ?>" style="width: 70%;">
+				<p style="padding: 0px; text-align: center; color: #ffffff; font-size: 12px; margin: 5px 0 0 0; line-height: 1;">
+					<?= get_setting()['card_web'] ?>
+				</p>
+			</div>
+		</div>
+
+
+
+		<?php
+	}
+
+
+	public function send_card($id)
+	{
+
+		$card = $this->db->get_where('card_purchase',['id' => $id])->row_array();
+		$user = $this->db->get_where('social_user',['id' => $card['user']])->row_array();
+
+		$config['protocol']     = 'smtp';
+        $config['smtp_host']    = get_setting()['smtp_host'];
+        $config['smtp_port']    = get_setting()['smtp_port'];
+        $config['smtp_timeout'] = '7';
+        $config['smtp_user']    = get_setting()['smtp_user'];
+        $config['smtp_pass']    = get_setting()['smtp_pass'];
+        $config['charset']      = 'utf-8';
+        $config['newline']      = "\r\n";
+        $config['mailtype']     = 'html';
+        $config['validation']   = TRUE; 
+        
+        $this->email->initialize($config);
+
+        $this->email->from(get_setting()['smtp_user'], 'DELHIBAZAR');
+        $this->email->to($user['email']); 
+        $this->email->subject("Your Card");
+        $data['qr']		= $this->qr($id);
+        $data['name']   = $user['first_name'].' '.$user['last_name'];
+        $this->email->message($this->load->view('card/email',$data,TRUE));
+        $this->email->send();
+	}
 }

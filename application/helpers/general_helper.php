@@ -397,4 +397,68 @@ function get_offer_image($id){
 	return $image;
 }
 
+function get_card_image($id){
+	$CI=&get_instance();
+	$product = $CI->db->get_where('cards',['id' => $id])->result_array()[0];
+	$image = '';
+	if($product['image'] == 'no-image.png'){
+		$image = $CI->config->config['admin_url']."uploads/virtual_card/no-image.png";
+	}
+	else{
+		$url    =   $CI->config->config['admin_url']."uploads/virtual_card/".$product['image'];
+		if($product['image'] == ''){
+			$image = $CI->config->config['admin_url']."uploads/virtual_card/no-image.png";
+		}
+		else if(getimagesize($url)){
+			$image = $url;
+		}
+		else{
+			$image = $CI->config->config['admin_url']."uploads/virtual_card/no-image.png";
+		}
+	}
+
+	return $image;
+}
+
+function qr($id)
+{
+	$CI=&get_instance();
+	$card = $CI->db->get_where('card_purchase',['id' => $id])->row_array();
+	$CI->load->library('ciqrcode');
+    $config['size']         = 256;
+    $CI->ciqrcode->initialize($config);
+    $params['data'] = json_encode(['card' => $card['card'],'user' => $card['user']]);
+    $params['level'] = 'H';
+    $params['savename'] = FCPATH.'/uploads/qr/'.$card['card'].'-'.$card['user'].'.png';
+    if(!file_exists($params['savename'])){
+    	$CI->ciqrcode->generate($params);
+    }
+    return $card['card'].'-'.$card['user'].'.png';
+}
+
+function get_validity($date,$days)
+{
+	$start  = date_create($date);
+	$end    = date_create(); // Current time and date
+	$diff   = date_diff( $start, $end );
+    if($days < $diff->d){
+    	return "Expire";
+    }
+    else{
+    	return $days - $diff->d.' Days Remaining';
+    }
+}
+
+function get_usage($card,$total_count)
+{
+	$CI=&get_instance();
+	$count = $CI->db->get_where('card_usage',['card' => $card,'user' => $CI->session->userdata('id')])->num_rows();
+	if($count < $total_count){
+		return $total_count - $count . ' Left' ;
+	}
+	else{
+		return "0 Left";
+	}
+}
+
 ?>

@@ -206,12 +206,34 @@ function get_offer_image($id){
 	return $image;
 }
 
+function get_card_image($id){
+	$CI=&get_instance();
+	$product = $CI->db->get_where('cards',['id' => $id])->result_array()[0];
+	$image = '';
+	if($product['image'] == 'no-image.png'){
+		$image = "no-image.png";
+	}
+	else{
+		if($product['image'] == ''){
+			$image = "no-image.png";
+		}
+		else if(file_exists(FCPATH.'uploads/virtual_card/'.$product['image'])){
+			$image = $product['image'];
+		}
+		else{
+			$image = "no-image.png";
+		}
+	}
+
+	return $image;
+}
+
 function beetween_boolean($from,$to)
 {
 	$now = date('Y-m-d');
-	$now = date('Y-m-d', strtotime($now));
-	$DateBegin 	= date('Y-m-d', strtotime($from));
-	$DateEnd 	= date('Y-m-d', strtotime($to));
+	$now = strtotime($now);
+	$DateBegin 	= strtotime($from);
+	$DateEnd 	= strtotime($to);
 
 	if (($now >= $DateBegin) && ($now <= $DateEnd)){
 	    return true;

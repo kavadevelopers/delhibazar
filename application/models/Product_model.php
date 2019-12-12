@@ -188,4 +188,11 @@ class Product_model extends CI_Model
         $this->db->group_end();
         return $this->db->get('product')->result_array();
     }
+
+
+    public function get_cards()
+    {
+        $this->db->where('df','');
+        return $this->db->get('cards')->result_array();
+    }
 }

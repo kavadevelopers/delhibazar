@@ -16,7 +16,7 @@ class Shop_model extends CI_Model
 
 	public function is_offer($id)
 	{
-		if($this->db->get_where('offers',['shop' => $id,'status' => '','date_from >=' => date('Y-m-d'),'date_to >=' => date('Y-m-d')])->result_array()){
+		if($this->db->get_where('offers',['shop' => $id,'status' => '','date_from <=' => date('Y-m-d'),'date_to >=' => date('Y-m-d')])->result_array()){
 			return true;
 		}
 		else{
@@ -147,7 +147,7 @@ class Shop_model extends CI_Model
 		}
 
 		$this->db->where('status', '');
-		$this->db->where('date_from >=', date('Y-m-d'));
+		$this->db->where('date_from <=', date('Y-m-d'));
 		$this->db->where('date_to >=', date('Y-m-d'));
 		$this->db->where_in('shop', $array);
 		return $this->db->get('offers')->result_array();
