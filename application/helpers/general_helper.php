@@ -461,4 +461,16 @@ function get_usage($card,$total_count)
 	}
 }
 
+function get_usage_api($card,$total_count,$user)
+{
+	$CI=&get_instance();
+	$count = $CI->db->get_where('card_usage',['card' => $card,'user' => $user])->num_rows();
+	if($count < $total_count){
+		return $total_count - $count . ' Left' ;
+	}
+	else{
+		return "0 Left";
+	}
+}
+
 ?>
