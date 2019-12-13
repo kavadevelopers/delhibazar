@@ -393,11 +393,11 @@ class Products extends CI_Controller {
         $this->ciqrcode->initialize($config);
         $params['data'] = json_encode(['card' => $card['id'],'user' => $card['user']]);
         $params['level'] = 'H';
-        $params['savename'] = FCPATH.'/uploads/qr/'.$card['card'].'-'.$card['user'].'.png';
+        $params['savename'] = FCPATH.'/uploads/qr/'.$card['id'].'-'.$card['user'].'.png';
         if(!file_exists($params['savename'])){
         	$this->ciqrcode->generate($params);
         }
-        return $card['card'].'-'.$card['user'].'.png';
+        return $card['id'].'-'.$card['user'].'.png';
 	}
 
 	public function card_generate()

@@ -427,13 +427,13 @@ function qr($id)
 	$CI->load->library('ciqrcode');
     $config['size']         = 256;
     $CI->ciqrcode->initialize($config);
-    $params['data'] = json_encode(['card' => $card['card'],'user' => $card['user']]);
+    $params['data'] = json_encode(['card' => $card['id'],'user' => $card['user']]);
     $params['level'] = 'H';
-    $params['savename'] = FCPATH.'/uploads/qr/'.$card['card'].'-'.$card['user'].'.png';
+    $params['savename'] = FCPATH.'/uploads/qr/'.$card['id'].'-'.$card['user'].'.png';
     if(!file_exists($params['savename'])){
     	$CI->ciqrcode->generate($params);
     }
-    return $card['card'].'-'.$card['user'].'.png';
+    return $card['id'].'-'.$card['user'].'.png';
 }
 
 function get_validity($date,$days)
