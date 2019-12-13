@@ -8,7 +8,7 @@ class Products extends CI_Controller {
     	$this->load->model('product_model');   
     	$this->load->model('rating_model');   
 		$this->load->library('pagination');
-    	$this->perPage = 1;
+    	$this->perPage = 9;
     }
 
 	public function list()
