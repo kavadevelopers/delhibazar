@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 12, 2019 at 04:07 AM
+-- Generation Time: Dec 13, 2019 at 10:59 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -86,6 +86,88 @@ INSERT INTO `ad_package` (`id`, `plan`, `price`, `duration`, `created_at`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cards`
+--
+
+DROP TABLE IF EXISTS `cards`;
+CREATE TABLE IF NOT EXISTS `cards` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `price` text NOT NULL,
+  `validity` text NOT NULL,
+  `total_usage` text NOT NULL,
+  `usage` varchar(100) NOT NULL DEFAULT '0',
+  `image` text NOT NULL,
+  `qr` text NOT NULL,
+  `created_at` datetime NOT NULL,
+  `df` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10003 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cards`
+--
+
+INSERT INTO `cards` (`id`, `price`, `validity`, `total_usage`, `usage`, `image`, `qr`, `created_at`, `df`) VALUES
+(10000, '100', '10', '12', '12', '', '', '2019-12-12 00:00:00', '1'),
+(10001, '102.00', '10', '0', '0', '7d2b6ab374cd1233e698667fb546b251.png', 'C:\\wamp64\\www\\delhibazar\\admin\\/uploads/qr/6357599ab6f4c3b3d6d459136c8cb860.jpg', '0000-00-00 00:00:00', ''),
+(10002, '102.00', '12', '10', '0', '761f8308d547d794bb1a46141eb1a997.png', '', '0000-00-00 00:00:00', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `card_purchase`
+--
+
+DROP TABLE IF EXISTS `card_purchase`;
+CREATE TABLE IF NOT EXISTS `card_purchase` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `t_id` text NOT NULL,
+  `amount` text NOT NULL,
+  `card` text NOT NULL,
+  `validity` text NOT NULL,
+  `usage` text NOT NULL,
+  `user` text NOT NULL,
+  `p_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `card_purchase`
+--
+
+INSERT INTO `card_purchase` (`id`, `t_id`, `amount`, `card`, `validity`, `usage`, `user`, `p_date`) VALUES
+(1, 'dasdasd', '120', '10001', '10', '1', '5', '2019-12-05'),
+(2, 'adad111212', '200', '10002', '0', '0', '5', '2019-12-10'),
+(3, 'adad111212', '200', '10002', '8', '1', '5', '2019-12-10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `card_usage`
+--
+
+DROP TABLE IF EXISTS `card_usage`;
+CREATE TABLE IF NOT EXISTS `card_usage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `vendor` text NOT NULL,
+  `user` text NOT NULL,
+  `card` text NOT NULL,
+  `amount` text NOT NULL,
+  `description` text NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `card_usage`
+--
+
+INSERT INTO `card_usage` (`id`, `vendor`, `user`, `card`, `amount`, `description`, `created_at`) VALUES
+(1, '1', '5', '1', '10000', '', '2019-12-18 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cart`
 --
 
@@ -100,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=89 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=92 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cart`
@@ -110,7 +192,10 @@ INSERT INTO `cart` (`id`, `qty`, `product_id`, `user_id`, `size`, `delivered`, `
 (61, 1, '6', '', '', 0, '2019-08-04 16:56:16', NULL),
 (62, 1, '5', '', '', 0, '2019-08-04 16:56:37', NULL),
 (63, 1, '6', '', '', 0, '2019-08-04 16:57:48', NULL),
-(86, 1, '12', '9', NULL, 0, '2019-09-01 11:25:15', NULL);
+(90, 1, '13', '9', 'M', 0, '2019-10-12 12:04:55', NULL),
+(86, 1, '12', '9', NULL, 0, '2019-09-01 11:25:15', NULL),
+(89, 1, '13', '1', 'L', 0, '2019-10-12 11:35:00', NULL),
+(91, 1, '11', '5', NULL, 0, '2019-12-12 13:20:01', NULL);
 
 -- --------------------------------------------------------
 
@@ -304,6 +389,34 @@ INSERT INTO `newsletter` (`id`, `email`, `active`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `offers`
+--
+
+DROP TABLE IF EXISTS `offers`;
+CREATE TABLE IF NOT EXISTS `offers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` text NOT NULL,
+  `amount` text NOT NULL,
+  `description` text NOT NULL,
+  `date_from` date NOT NULL,
+  `date_to` date NOT NULL,
+  `image` text NOT NULL,
+  `shop` text NOT NULL,
+  `status` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `offers`
+--
+
+INSERT INTO `offers` (`id`, `type`, `amount`, `description`, `date_from`, `date_to`, `image`, `shop`, `status`) VALUES
+(2, 'Percentage', '100.00', '1212313', '2019-12-11', '2019-12-22', '1c0b990e283377f44b3ebc1d3dbfe7f3.jpg', '1', ''),
+(3, 'Percentage', '200.00', 'dasdad', '2019-12-11', '2019-12-22', '', '2', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pages`
 --
 
@@ -431,7 +544,7 @@ INSERT INTO `product` (`id`, `hash`, `name`, `amount`, `list_price`, `short_desc
 (11, '93355210a5b16ee061d6c81d4fa38e48', 'Rental', '144.00', '150.00', 'asdads', '<p>&nbsp;</p>\r\n\r\n<p>??????</p>', '1,2', 1, '1', '1', '2019-08-07 01:22:46', '2019-08-27 17:28:44', '', '', '20', '120.00', '0', '4c729646a2d058c5bedaa813b7323553.jpg', '4', 0, 49, '', '', 1),
 (12, 'eb92283c125159ea8e043eb72482884f', 'Asdasd', '101.00', '12.00', 'df', '<p>sdf</p>', '1,2', 1, '1', '1', '2019-08-08 19:54:07', '2019-08-27 17:28:19', '', '', '1', '100.00', '0', 'b00fc47dcf7b0039ebf359460383c6b0.jpg', '0', 0, 10, '', '4ece49da087e6d8f6654bc9b09c1169c.jpg', 1),
 (13, 'e2e2d2861e5b1d9bb27370f9160f7eaf', 'Sample B', '110.00', '100.00', 'abc', '<p>मेरा नाम है&nbsp;ਮੇਰਾ ਨਾਮ ਹੈ</p>', '1,2,5,6', 1, '1', '1', '2019-08-08 23:08:40', '2019-08-27 17:06:48', '', '', '10', '100.00', '0', 'no-image.png', '0', 0, 49, 'SM,L,M,XL,XXL,MEDIUM,A', '', 1),
-(14, 'fe826de87dd96553c9180eaa340f8947', 'Featured', '110.00', '', 'hello', '<p>हो। गए, उनका एक समय में बड़ा नाम था। पूरे देश में तालाब बनते थे बनाने वाले भी पूरे देश में थे। कहीं यह विद्या जाति के विद्यालय | सिखाई जाती थी तो कहीं यह जात से हट कर एक विशेष पांत भी जाती थी। बनाने वाले लोग कहीं एक जगह बसे मिलते थे तो कहीं -घूम कर इस काम को करते थे। I 국 घम गजधर एक सुन्दर शब्द है, तालाब बनाने वालों को आदर के साथ याद करने के लिए। राजस्थान के कुछ भागों में यह शब्द आज भी बाकी है। गजधर यानी जो गज को धारण करता है। और गज वही जो नापने के काम आता है। लेकिन फिर भी समाज ने इन्हें तीन हाथ की लोहे की छड़ लेकर घूमने वाला मिस्त्री नहीं माना। गजधर जो समाज को गहराई को नाप ले - उसे ऐसा दर्जा दिया गया है। गजधर वास्तुकार थे। गांव-समाज हो या नगर-समाज - उसके नव निर्माण की, रख-रखाव की ज़िम्मेदारी गजधर निभाते थे। नगर नियोजन से लेकर छोटे से छोटे निर्माण के काम गजधर के कधों पर टिके थे। वे योजना बनाते थे, कुल काम की लागत निकालते थे, काम में लगने वाली सारी सामग्री जुटाते थे और इस सबके बदले वे अपने जजमान से ऐसा कुछ नहीं मांग बैठते थे, जो वे दे न पाएं। लोग भी ऐसे थे कि उनसे जो कुछ बनता, वे गजधर को भेंट कर देते। काम पूरा होने पर पारिश्रमिक के अलावा गजधर को सम्मान &#39; भी मिलता था। सरोपा भेंट करना अब शायद सिर्फ सिख परंपरा में ही बचा समाज की गहराई नापते रहे हैं गुणाधर</p>', '1,2,3', 1, '1', '1', '2019-08-27 17:08:33', '2019-09-13 19:55:37', '', '', '10', '100.00', '1', 'f9611adceaf2721da82bed651f67f7bf.jpg', '0', 0, 99, '', '', 1);
+(14, 'fe826de87dd96553c9180eaa340f8947', 'Featured', '110.00', '', 'hello', '<p>हो। गए, उनका एक समय में बड़ा नाम था। पूरे देश में तालाब बनते थे बनाने वाले भी पूरे देश में थे। कहीं यह विद्या जाति के विद्यालय | सिखाई जाती थी तो कहीं यह जात से हट कर एक विशेष पांत भी जाती थी। बनाने वाले लोग कहीं एक जगह बसे मिलते थे तो कहीं -घूम कर इस काम को करते थे। I 국 घम गजधर एक सुन्दर शब्द है, तालाब बनाने वालों को आदर के साथ याद करने के लिए। राजस्थान के कुछ भागों में यह शब्द आज भी बाकी है। गजधर यानी जो गज को धारण करता है। और गज वही जो नापने के काम आता है। लेकिन फिर भी समाज ने इन्हें तीन हाथ की लोहे की छड़ लेकर घूमने वाला मिस्त्री नहीं माना। गजधर जो समाज को गहराई को नाप ले - उसे ऐसा दर्जा दिया गया है। गजधर वास्तुकार थे। गांव-समाज हो या नगर-समाज - उसके नव निर्माण की, रख-रखाव की ज़िम्मेदारी गजधर निभाते थे। नगर नियोजन से लेकर छोटे से छोटे निर्माण के काम गजधर के कधों पर टिके थे। वे योजना बनाते थे, कुल काम की लागत निकालते थे, काम में लगने वाली सारी सामग्री जुटाते थे और इस सबके बदले वे अपने जजमान से ऐसा कुछ नहीं मांग बैठते थे, जो वे दे न पाएं। लोग भी ऐसे थे कि उनसे जो कुछ बनता, वे गजधर को भेंट कर देते। काम पूरा होने पर पारिश्रमिक के अलावा गजधर को सम्मान &#39; भी मिलता था। सरोपा भेंट करना अब शायद सिर्फ सिख परंपरा में ही बचा समाज की गहराई नापते रहे हैं गुणाधर</p>', '1,2,3', 1, '1', '1', '2019-08-27 17:08:33', '2019-09-13 19:55:37', '', '', '10', '100.00', '1', 'f9611adceaf2721da82bed651f67f7bf.jpg', '5', 0, 99, '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -474,7 +587,14 @@ CREATE TABLE IF NOT EXISTS `product_rating` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `product_rating`
+--
+
+INSERT INTO `product_rating` (`id`, `product_id`, `hash`, `user_id`, `rating`, `review`, `created_at`, `updated_at`) VALUES
+(5, '14', 'fe826de87dd96553c9180eaa340f8947', '1', '5', 'Fsdfsdf', '2019-12-12 11:47:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -488,7 +608,7 @@ CREATE TABLE IF NOT EXISTS `search_keywords` (
   `keyword` text NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=117 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=173 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `search_keywords`
@@ -610,7 +730,63 @@ INSERT INTO `search_keywords` (`id`, `keyword`, `created`) VALUES
 (113, 'a', '2019-08-30 10:14:45'),
 (114, 'a', '2019-08-30 10:18:12'),
 (115, 'a', '2019-08-30 10:18:24'),
-(116, 'a', '2019-08-30 10:27:35');
+(116, 'a', '2019-08-30 10:27:35'),
+(117, 'a', '2019-10-12 11:57:13'),
+(118, 'sad', '2019-12-04 21:20:27'),
+(119, 'a', '2019-12-05 10:32:39'),
+(120, 'a', '2019-12-05 10:35:58'),
+(121, 'a', '2019-12-05 10:36:43'),
+(122, 'a', '2019-12-05 10:39:36'),
+(123, 'a', '2019-12-05 10:42:26'),
+(124, 'a', '2019-12-05 10:43:45'),
+(125, 'a', '2019-12-05 10:43:52'),
+(126, 'a', '2019-12-05 10:44:27'),
+(127, 'a', '2019-12-05 10:44:43'),
+(128, 'a', '2019-12-05 10:44:45'),
+(129, 'a', '2019-12-05 11:47:13'),
+(130, 'a', '2019-12-05 11:48:05'),
+(131, 'a', '2019-12-05 11:48:23'),
+(132, 'a', '2019-12-05 11:49:01'),
+(133, 'a', '2019-12-11 20:27:16'),
+(134, 'a', '2019-12-11 20:27:35'),
+(135, 'a', '2019-12-11 20:29:20'),
+(136, 'a', '2019-12-11 20:29:23'),
+(137, 'a', '2019-12-11 20:29:27'),
+(138, 'a', '2019-12-11 20:29:29'),
+(139, 'a', '2019-12-11 20:29:32'),
+(140, 'a', '2019-12-11 20:35:10'),
+(141, 'a', '2019-12-11 20:41:14'),
+(142, 'a', '2019-12-11 20:41:25'),
+(143, 'a', '2019-12-11 20:41:53'),
+(144, 'a', '2019-12-11 20:47:05'),
+(145, 'a', '2019-12-11 20:47:53'),
+(146, 'a', '2019-12-11 20:49:40'),
+(147, 'a', '2019-12-11 20:50:29'),
+(148, 'a', '2019-12-11 20:51:05'),
+(149, 'a', '2019-12-11 20:51:14'),
+(150, 'a', '2019-12-11 20:51:26'),
+(151, 'a', '2019-12-11 20:51:34'),
+(152, 'a', '2019-12-11 20:51:51'),
+(153, 'a', '2019-12-11 20:52:04'),
+(154, 'a', '2019-12-11 20:52:09'),
+(155, 'a', '2019-12-11 20:52:20'),
+(156, 'a', '2019-12-11 20:52:28'),
+(157, 'a', '2019-12-11 20:52:38'),
+(158, 'a', '2019-12-11 21:27:05'),
+(159, 'a', '2019-12-11 21:27:17'),
+(160, 'a', '2019-12-11 21:27:44'),
+(161, 'a', '2019-12-11 21:31:01'),
+(162, 'a', '2019-12-11 22:29:48'),
+(163, 'a', '2019-12-11 22:30:38'),
+(164, 'a', '2019-12-12 09:13:26'),
+(165, 'a', '2019-12-12 09:13:56'),
+(166, 'a', '2019-12-12 09:34:26'),
+(167, 'a', '2019-12-12 09:36:14'),
+(168, 'a', '2019-12-12 09:36:20'),
+(169, 'a', '2019-12-12 09:36:32'),
+(170, 'a', '2019-12-12 09:36:43'),
+(171, 'a', '2019-12-12 09:36:46'),
+(172, 'a', '2019-12-12 09:36:51');
 
 -- --------------------------------------------------------
 
@@ -644,6 +820,10 @@ CREATE TABLE IF NOT EXISTS `setting` (
   `dis_text` text NOT NULL,
   `btn_text` text NOT NULL,
   `btn_link` text NOT NULL,
+  `offer_image` text NOT NULL,
+  `card_web` text NOT NULL,
+  `card_text` text NOT NULL,
+  `card_email` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -651,8 +831,8 @@ CREATE TABLE IF NOT EXISTS `setting` (
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`id`, `email`, `support_email`, `contact_email`, `newsletter_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`, `meta_keywords`, `meta_description`, `shop_commission`, `ad_number`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `merchent_key`, `salt`, `announcements`, `dis_text`, `btn_text`, `btn_link`) VALUES
-(1, 'kavadev@gmail.com', 'support.kava@gmail.com', 'kavadev@gmail.com', 'kavadev@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown', 'home', 'description', '50.00', '1234567890', 'ssl://smtp.googlemail.com', '465', 'mehul9921@gmail.com', 'ABCD@5981', 'rjQUPktU', 'e5iIg1jwi8', 'Sample ', 'Diwali Discount up to 70 % off', 'TEXT', 'fb.com');
+INSERT INTO `setting` (`id`, `email`, `support_email`, `contact_email`, `newsletter_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`, `meta_keywords`, `meta_description`, `shop_commission`, `ad_number`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `merchent_key`, `salt`, `announcements`, `dis_text`, `btn_text`, `btn_link`, `offer_image`, `card_web`, `card_text`, `card_email`) VALUES
+(1, 'kavadev@gmail.com', 'support.kava@gmail.com', 'kavadev@gmail.com', 'kavadev@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown', 'home', 'description', '50.00', '1234567890', 'ssl://smtp.googlemail.com', '465', 'mehul9921@gmail.com', 'ABCD@5981', 'rjQUPktU', 'e5iIg1jwi8', 'Sample ', 'Diwali Discount up to 70 % off', 'TEXT', 'fb.com', '8d203570d76b14345feea073fcdff52d.jpg', 'Checkout Delals At www.delhibazar.com', 'Gift Card', 'info@delhibazar.com');
 
 -- --------------------------------------------------------
 
@@ -690,23 +870,63 @@ CREATE TABLE IF NOT EXISTS `shop` (
   `keywords` longtext NOT NULL,
   `rating` varchar(10) NOT NULL DEFAULT '0',
   `comment` varchar(100) NOT NULL DEFAULT '0',
+  `username` text NOT NULL,
+  `password` text NOT NULL,
+  `_category` text NOT NULL,
+  `_area` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shop`
 --
 
-INSERT INTO `shop` (`id`, `shop_name`, `owner_name`, `employee_name`, `mobile`, `wp_no`, `mobile_in_website`, `whats_in_website`, `address`, `landmark`, `email`, `hour_operation`, `pro_or_servi`, `payment_mode`, `photo`, `info`, `detail_desc`, `category`, `shop_plan`, `dis_in_listing`, `exp_date`, `created_by`, `created_at`, `updated_at`, `deleted_at`, `keywords`, `rating`, `comment`) VALUES
-(1, 'first', 'asdasd', 'asdasd l', '34234234234', '34234234234', 0, 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of', 'asdasd asdasdasda', 'asdas@gmail.com', '1212', 'sda adsd', 'aasdasd', '9ee2ff1e3fe1ec7e15ae138f8b35eb68.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'aa', '2', 0, '2020-02-11', '1', '2019-05-29 18:07:25', '2019-08-30 09:24:02', '2019-05-29 18:55:49', 'a', '', ''),
-(2, 'kava developers', 'kava', 'jay', '9099998171', '9099998171', 0, 1, 'adasd asdasdasd asda s dasd', 'asdasd asda dasd', 'asdasd@gmail.com', '45', 'web developement,software,seo,smo,android,ios,desktop', 'dsasdasd', '148bc37cadf9d8170700c4122bbbd70b.jpg', '<p><em>Looking Good</em> <u>and nice </u><strong>Shop</strong></p>', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium\r\n\r\n, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the \r\n\r\nScrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', 'It Developement', '2', 0, '2020-01-19', '1', '2019-05-29 18:20:48', '2019-08-07 17:35:09', NULL, 'a', '', ''),
-(4, 'Gotham', 'Bruce Wayne', 'Lucius Fox', '2222222222', '2222555555', 0, 0, 'Gotham City', 'Wayne Towe', 'dsgsdkgjh@gmail.com', '9-5', 'application and', 'CASH', '9e36c6a6b346ce680fa0c0b850ec714c.png', '<p>DSMNB GKD GJHDKFGHDKF GHKD</p>', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst                                 many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', 'aa', '2', 0, '2020-01-19', '1', '2019-05-30 16:30:07', '2019-08-07 17:35:01', NULL, 'a', '', ''),
-(5, 'food Junction ***', 'coca cola', 'jguar', '7897897822', '4564585685', 0, 0, 'jkl sda dasdasdsssssssssssssssssssssss', 'Darpan Six Road, Ahemdabad', '108@gmail.com', '8 to 8', '//////////////////////////////////////////////////////////', 'Paytam  6363', '9e36c6a6b346ce680fa0c0b850ec714c.png', '<p>[][][][]][asdasssssssssssssssssssssssssssssssssss</p>', 'Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day tradition amongst\r\n                                many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.', 'aaaa', '2', 0, '2020-01-19', '1', '2019-05-31 14:59:50', '2019-08-07 17:34:51', NULL, 'a', '', ''),
-(6, 'lenovo', 'zoo', 'park', '1234564454', '01212121211', 0, 0, 'sdas dasd asda', 'asd asdasd asda sd', '712@gmail.com', '08:00  AM to 9:00 PM', 'asdasdas sad asdas dasd', 'Cash', 'aa5891bf0c76a6ddafeed87830ada232.jpg', '<p>asd dasd asd as</p>', 'asdasd', 'Electronic, mouse, keyboard, laptop, mobile,all items', '2', 1, '2020-01-19', '1', '2019-06-05 10:34:13', '2019-08-07 17:34:35', NULL, 'a', '', ''),
-(7, 'umiya', 'ooo', 'adasdas', '4564525652', '1234567890', 0, 1, 'asdas dasd asd asdas das', 'asda sdas', 'dasdas@gmail.com', '12 to 9', 'asda as dasd', 'check', '', '', '', 'Veg', '3', 0, '2020-08-01', '1', '2019-06-11 12:43:06', '2019-08-07 17:34:21', NULL, 'a', '', ''),
-(8, 'new Deluxea', 'Kava Developers', '', '4564523023', '1201232032', 0, 1, 'adas aS Ad,\r\nasdasdasdasd', 'ahmedabad', '', '10 to 5', 'dasda asd asd', 'cash', 'd44bad11c4881d50d691b813df0c7c81.jpg', '<p>asd asd asd asd asd asd</p>', 'aasdasd', 'dasdasdasd', '2', 1, '2020-01-19', '1', '2019-06-14 13:47:03', '2019-08-07 17:34:15', NULL, 'a', '', ''),
-(9, 'admin kava', 'admin', '', '1234567890', '1234567890', 0, 0, 'six road abc def gfh', 'Darpan', '', '12 to 05', '123', 'cash', '462855ddb97996249a28873a9a849c4c.jpg', '', '', 'sample', '2', 0, '2020-01-19', '1', '2019-06-25 12:37:38', '2019-08-07 17:34:09', NULL, 'a', '', ''),
-(10, 'My Shopa', 'ABC', '', '', '', 0, 0, 'Hello hello', '123', '', '2 - 4', 'Hello there', 'cash', 'a1b780bf42036311b74492ebd7f5836c.jpg', '<p>Hello Search</p>', '', 'Hello', '2', 0, '2020-02-11', '1', '2019-08-30 10:14:29', '2019-08-30 10:15:08', NULL, 'a', '0', '0');
+INSERT INTO `shop` (`id`, `shop_name`, `owner_name`, `employee_name`, `mobile`, `wp_no`, `mobile_in_website`, `whats_in_website`, `address`, `landmark`, `email`, `hour_operation`, `pro_or_servi`, `payment_mode`, `photo`, `info`, `detail_desc`, `category`, `shop_plan`, `dis_in_listing`, `exp_date`, `created_by`, `created_at`, `updated_at`, `deleted_at`, `keywords`, `rating`, `comment`, `username`, `password`, `_category`, `_area`) VALUES
+(1, 'Kava Developers', 'Kava', 'ABC', '', '', 0, 0, 'Ahmedabad Ahmedabad', 'nikol', '', '12 - 15', 'IT', 'Cash', 'fdfd828cea5ee9e5c9683aadff691157.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'ABC', '2', 0, '2020-05-24', '1', '2019-12-11 18:11:48', '2019-12-11 20:59:02', NULL, 'a', '0', '0', 'kavadev', 'admin', '2', '1'),
+(2, 'Kodek Technologies', 'navnit', '', '', '', 0, 0, 'ABC Ahmedabad', 'nikol', '', '12 - 18', 'It services', 'cash', '', '', '', 'asdasddasd', '3', 0, '2020-12-05', '1', '2019-12-11 18:24:57', NULL, NULL, 'a', '0', '0', 'kodek', 'admin', '2', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shop_area`
+--
+
+DROP TABLE IF EXISTS `shop_area`;
+CREATE TABLE IF NOT EXISTS `shop_area` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,
+  `df` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `shop_area`
+--
+
+INSERT INTO `shop_area` (`id`, `name`, `df`) VALUES
+(1, 'AVC', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shop_categories`
+--
+
+DROP TABLE IF EXISTS `shop_categories`;
+CREATE TABLE IF NOT EXISTS `shop_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,
+  `df` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `shop_categories`
+--
+
+INSERT INTO `shop_categories` (`id`, `name`, `df`) VALUES
+(1, 'Books', ''),
+(2, 'ABC', '');
 
 -- --------------------------------------------------------
 
@@ -773,17 +993,14 @@ CREATE TABLE IF NOT EXISTS `shop_slider` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shop_slider`
 --
 
 INSERT INTO `shop_slider` (`id`, `image`, `shop_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '489baedcfec8ebee14ad613734876cca.jpg', '', '1', '', '2019-06-06 13:56:04', NULL),
-(14, 'de93555952ad9b6f582c02b404d7fae8.jpg', '6', '1', '', '2019-06-06 15:12:22', NULL),
-(12, '5b47e9e1df1fd1e4282b1acc63f989e9.jpg', '6', '1', '', '2019-06-06 15:10:55', NULL),
-(13, '6fd81900ee6f27bb7a2f93af93ee3289.jpg', '6', '1', '', '2019-06-06 15:12:12', NULL);
+(1, '41a3e0440b18a970b38b7ad9cf53d822.jpg', '1', '1', '', '2019-12-11 18:12:23', NULL);
 
 -- --------------------------------------------------------
 
