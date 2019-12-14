@@ -50,7 +50,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Smtp User <span class="astrick">*</span></label>
                                             <input class="form-control form-control-sm" value="<?php echo set_value('smtp_user',$setting['smtp_user']); ?>" type="text" name="smtp_user" placeholder="Smtp User" >
@@ -58,11 +58,27 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Smtp Password <span class="astrick">*</span></label>
                                             <input class="form-control form-control-sm" value="<?php echo set_value('smtp_pass',$setting['smtp_pass']); ?>" type="text" name="smtp_pass" placeholder="Smtp Password" >
                                             <?php echo form_error('smtp_pass'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Card Email <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('acard_email',$setting['acard_email']); ?>" type="text" name="acard_email" placeholder="Card Email" >
+                                            <?php echo form_error('acard_email'); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Card Password <span class="astrick">*</span></label>
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('card_pass',$setting['card_pass']); ?>" type="text" name="card_pass" placeholder="Card Password" >
+                                            <?php echo form_error('card_pass'); ?>
                                         </div>
                                     </div>
 

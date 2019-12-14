@@ -441,8 +441,8 @@ class Products extends CI_Controller {
         $config['smtp_host']    = get_setting()['smtp_host'];
         $config['smtp_port']    = get_setting()['smtp_port'];
         $config['smtp_timeout'] = '7';
-        $config['smtp_user']    = get_setting()['smtp_user'];
-        $config['smtp_pass']    = get_setting()['smtp_pass'];
+        $config['smtp_user']    = get_setting()['acard_email'];
+        $config['smtp_pass']    = get_setting()['card_pass'];
         $config['charset']      = 'utf-8';
         $config['newline']      = "\r\n";
         $config['mailtype']     = 'html';
@@ -450,7 +450,7 @@ class Products extends CI_Controller {
         
         $this->email->initialize($config);
 
-        $this->email->from(get_setting()['smtp_user'], 'DELHIBAZAR');
+        $this->email->from(get_setting()['acard_email'], 'DELHIBAZAR');
         $this->email->to($user['email']); 
         $this->email->subject("Your Card");
         $data['qr']		= $this->qr($id);

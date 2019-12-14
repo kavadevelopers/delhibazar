@@ -473,4 +473,28 @@ function get_usage_api($card,$total_count,$user)
 	}
 }
 
+function get_validity2($date,$days)
+{
+	$start  = date_create($date);
+	$end    = date_create(); // Current time and date
+	$diff   = date_diff( $start, $end );
+    if($days < $diff->d){
+    	return false;
+    }
+    else{
+    	return true;
+    }
+}
+
+function get_usage_api2($card,$total_count,$user)
+{
+	$CI=&get_instance();
+	$count = $CI->db->get_where('card_usage',['card' => $card,'user' => $user])->num_rows();
+	if($count < $total_count){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
 ?>

@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Api extends CI_Controller {
 
-	public function __construct(){
+    public function __construct(){
         parent::__construct(); 
     }
     
@@ -14,7 +14,8 @@ class Api extends CI_Controller {
                 '_return'   => true,
                 'id'        => $user[0]['id'],
                 'name'      => $user[0]['shop_name'],
-                'ownername' => $user[0]['owner_name']
+                'ownername' => $user[0]['owner_name'],
+                'image'     => _get_shop_img($user[0]['photo'])
             ];
         }
         else{
@@ -34,6 +35,17 @@ class Api extends CI_Controller {
             $validity = $card['validity'] == '0'?'Unlimited':get_validity($card['p_date'],$card['validity']);
             $usage    = $card['usage'] == '0'?'Unlimited':get_usage_api($card['id'],$card['usage'],$card['user']);
             
+            if($card['validity'] == 0 && $card['usage'] == 0){
+                $expire = false;
+            }
+            else if(get_validity2($card['p_date'],$card['validity']) && get_usage_api2($card['id'],$card['usage'],$card['user'])){
+                $expire = false;
+            }
+            else{
+                $expire = true;
+            }
+            
+            
             $response = [
                 '_return'           => true,
                 'card_id'           => $card['card'],
@@ -41,7 +53,8 @@ class Api extends CI_Controller {
                 'user_name'         => $this->get_user($card['user'])['first_name'].' '.$this->get_user($card['user'])['last_name'],
                 'purchase_date'     => date('d-m-Y',strtotime($card['p_date'])),
                 'validity'          => $validity,  
-                'usage'             => $usage  
+                'usage'             => $usage,
+                'expire'            => $expire
             ];
         }
         else{

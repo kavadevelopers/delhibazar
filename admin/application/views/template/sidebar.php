@@ -165,6 +165,13 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('app_setting'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("app_setting"))[0]; ?>">
+                            <i class="nav-icon fa fa-android"></i>
+                            <p>Vendor App Settings</p>
+                        </a>
+                    </li>
+
                     <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("order"))[1]; ?>">
                 
                         <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("order"))[0]; ?>">

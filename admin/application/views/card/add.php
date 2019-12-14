@@ -38,7 +38,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Validity <span class="astrick">*</span></label>
-                                            <input class="form-control form-control-sm" value="<?php echo set_value('validity'); ?>" id="validity" type="text" name="validity" placeholder="Validity in days(0 if unlimited)" autocomplete="off">
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('validity',0); ?>" id="validity" type="text" name="validity" placeholder="Validity in days(0 if unlimited)" autocomplete="off">
                                             <?php echo form_error('validity'); ?>
                                         </div>
                                     </div>
@@ -46,7 +46,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Total Usage <span class="astrick">*</span></label>
-                                            <input class="form-control form-control-sm" value="<?php echo set_value('total_usage'); ?>" id="total_usage" type="text" name="total_usage" placeholder="Total Usage(0 if unlimited)" autocomplete="off">
+                                            <input class="form-control form-control-sm" value="<?php echo set_value('total_usage',0); ?>" id="total_usage" type="text" name="total_usage" placeholder="Total Usage(0 if unlimited)" autocomplete="off">
                                             <?php echo form_error('total_usage'); ?>
                                         </div>
                                     </div>

@@ -27,6 +27,8 @@ class Setting extends CI_Controller {
         $this->form_validation->set_rules('smtp_port', 'Smtp Port', 'trim|required|max_length[240]');
         $this->form_validation->set_rules('smtp_user', 'Smtp User', 'trim|required|max_length[240]');
         $this->form_validation->set_rules('smtp_pass', 'Smtp Password', 'trim|required|max_length[240]');
+        $this->form_validation->set_rules('acard_email', 'Card Email', 'trim|required|max_length[240]');
+        $this->form_validation->set_rules('card_pass', 'Card Password', 'trim|required|max_length[240]');
         
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|xss_clean|max_length[100]');
         $this->form_validation->set_rules('support_email', 'Support Email', 'required|trim|valid_email|xss_clean|max_length[100]');
@@ -100,7 +102,9 @@ class Setting extends CI_Controller {
                         'btn_link'              =>     $this->input->post('btn_link'),
                         'card_web'              =>     $this->input->post('card_web'),
                         'card_text'             =>     $this->input->post('card_text'),
-                        'card_email'            =>     $this->input->post('card_email')
+                        'card_email'            =>     $this->input->post('card_email'),
+                        'acard_email'           =>     $this->input->post('acard_email'),
+                        'card_pass'             =>     $this->input->post('card_pass')
                     ];
 
             $this->db->where('id','1');

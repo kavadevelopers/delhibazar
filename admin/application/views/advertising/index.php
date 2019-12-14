@@ -20,10 +20,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body table-responsive">
                             <table class="table table-bordered table-striped table-sm">
                                 <thead>
                                     <tr>
+                                        <th class="text-center" id="action" style="min-width: 70px;">Action</th>
                                         <th>Id</th>
                                         <th>Business Name</th>
                                         <th>Intro</th>
@@ -33,22 +34,12 @@
                                         <th>Page</th>
                                         <th>Position</th>
                                         <th>Expiry Date</th>
-                                        <th class="text-center" id="action" style="min-width: 70px;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($advertising as $key => $value) { ?>
 
                                         <tr>
-                                            <td><?= 'AD0'.$value['id'] ?></td>
-                                            <td><?= $value['business_name']; ?></td>
-                                            <td><?= nl2br($value['intro']); ?></td>
-                                            <td><?= $value['mobile'] ?></td>
-                                            <td><?= nl2br($value['address']); ?></td>
-                                            <td><?= nl2br($value['link']); ?></td>
-                                            <td><?= $value['page'] ?></td>
-                                            <td><?= $value['position'] ?></td>
-                                            <td><?=  date('d-m-Y',strtotime($value['exp_date'])) ?></td>
                                             <td class="text-center">
 
                                                 <a class="btn btn-sm btn-success" href="<?= base_url();?>advertising/edit/<?= $value['id'];?>" title="Edit">
@@ -60,6 +51,16 @@
                                                 </a>
 
                                             </td>
+                                            <td><?= 'AD0'.$value['id'] ?></td>
+                                            <td><?= $value['business_name']; ?></td>
+                                            <td><?= nl2br($value['intro']); ?></td>
+                                            <td><?= $value['mobile'] ?></td>
+                                            <td><?= nl2br($value['address']); ?></td>
+                                            <td><?= nl2br($value['link']); ?></td>
+                                            <td><?= $value['page'] ?></td>
+                                            <td><?= $value['position'] ?></td>
+                                            <td><?=  date('d-m-Y',strtotime($value['exp_date'])) ?></td>
+                                            
 
                                         </tr>
                                     <?php } ?>
@@ -83,7 +84,7 @@
             "columnDefs": [
                 
                 
-                    { "orderable": false, "targets": [9] }
+                    { "orderable": false, "targets": [0] }
                     
                 
             ],

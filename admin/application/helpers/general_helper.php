@@ -242,4 +242,26 @@ function beetween_boolean($from,$to)
 	}
 }
 
+function get_app_image($name){
+	$CI=&get_instance();
+	
+	$image = base_url('uploads/app/');
+	if($name == 'no-image.png'){
+		$image .= "no-image.png";
+	}
+	else{
+		if($name == ''){
+			$image .= "no-image.png";
+		}
+		else if(file_exists(FCPATH.'uploads/app/'.$name)){
+			$image .= $name;
+		}
+		else{
+			$image .= "no-image.png";
+		}
+	}
+
+	return $image;
+}
+
 ?>
