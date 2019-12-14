@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 13, 2019 at 10:59 PM
+-- Generation Time: Dec 14, 2019 at 05:32 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -82,6 +82,29 @@ CREATE TABLE IF NOT EXISTS `ad_package` (
 
 INSERT INTO `ad_package` (`id`, `plan`, `price`, `duration`, `created_at`) VALUES
 (2, 'silver', '4000.00', '30', '2019-06-11 14:36:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app_setting`
+--
+
+DROP TABLE IF EXISTS `app_setting`;
+CREATE TABLE IF NOT EXISTS `app_setting` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `home` text NOT NULL,
+  `home_d` text NOT NULL,
+  `sidebar` text NOT NULL,
+  `sidebar_d` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `app_setting`
+--
+
+INSERT INTO `app_setting` (`id`, `home`, `home_d`, `sidebar`, `sidebar_d`) VALUES
+(1, '071e9a4b9388112c9cc30eb1e2831add.jpg', '1', '91a8e47b9b44072bfc98455851516260.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -824,6 +847,8 @@ CREATE TABLE IF NOT EXISTS `setting` (
   `card_web` text NOT NULL,
   `card_text` text NOT NULL,
   `card_email` text NOT NULL,
+  `acard_email` text NOT NULL,
+  `card_pass` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -831,8 +856,8 @@ CREATE TABLE IF NOT EXISTS `setting` (
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`id`, `email`, `support_email`, `contact_email`, `newsletter_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`, `meta_keywords`, `meta_description`, `shop_commission`, `ad_number`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `merchent_key`, `salt`, `announcements`, `dis_text`, `btn_text`, `btn_link`, `offer_image`, `card_web`, `card_text`, `card_email`) VALUES
-(1, 'kavadev@gmail.com', 'support.kava@gmail.com', 'kavadev@gmail.com', 'kavadev@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown', 'home', 'description', '50.00', '1234567890', 'ssl://smtp.googlemail.com', '465', 'mehul9921@gmail.com', 'ABCD@5981', 'rjQUPktU', 'e5iIg1jwi8', 'Sample ', 'Diwali Discount up to 70 % off', 'TEXT', 'fb.com', '8d203570d76b14345feea073fcdff52d.jpg', 'Checkout Delals At www.delhibazar.com', 'Gift Card', 'info@delhibazar.com');
+INSERT INTO `setting` (`id`, `email`, `support_email`, `contact_email`, `newsletter_email`, `mobile`, `city`, `address`, `opening_hours`, `short_about`, `meta_keywords`, `meta_description`, `shop_commission`, `ad_number`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `merchent_key`, `salt`, `announcements`, `dis_text`, `btn_text`, `btn_link`, `offer_image`, `card_web`, `card_text`, `card_email`, `acard_email`, `card_pass`) VALUES
+(1, 'kavadev@gmail.com', 'support.kava@gmail.com', 'kavadev@gmail.com', 'kavadev@gmail.com', '+91 90-9999-8171', 'Ahmedabad', 'City, gitanjali \r\namedabad', '10 am to 7 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown', 'home', 'description', '50.00', '1234567890', 'ssl://smtp.googlemail.com', '465', 'mehul9921@gmail.com', 'ABCD@5981', 'rjQUPktU', 'e5iIg1jwi8', 'Sample ', 'Diwali Discount up to 70 % off', 'TEXT', 'fb.com', '8d203570d76b14345feea073fcdff52d.jpg', 'Checkout Delals At www.delhibazar.com', 'Gift Card', 'info@delhibazar.com', 'card@gmail.com', 'dasd');
 
 -- --------------------------------------------------------
 
@@ -883,7 +908,7 @@ CREATE TABLE IF NOT EXISTS `shop` (
 
 INSERT INTO `shop` (`id`, `shop_name`, `owner_name`, `employee_name`, `mobile`, `wp_no`, `mobile_in_website`, `whats_in_website`, `address`, `landmark`, `email`, `hour_operation`, `pro_or_servi`, `payment_mode`, `photo`, `info`, `detail_desc`, `category`, `shop_plan`, `dis_in_listing`, `exp_date`, `created_by`, `created_at`, `updated_at`, `deleted_at`, `keywords`, `rating`, `comment`, `username`, `password`, `_category`, `_area`) VALUES
 (1, 'Kava Developers', 'Kava', 'ABC', '', '', 0, 0, 'Ahmedabad Ahmedabad', 'nikol', '', '12 - 15', 'IT', 'Cash', 'fdfd828cea5ee9e5c9683aadff691157.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'ABC', '2', 0, '2020-05-24', '1', '2019-12-11 18:11:48', '2019-12-11 20:59:02', NULL, 'a', '0', '0', 'kavadev', 'admin', '2', '1'),
-(2, 'Kodek Technologies', 'navnit', '', '', '', 0, 0, 'ABC Ahmedabad', 'nikol', '', '12 - 18', 'It services', 'cash', '', '', '', 'asdasddasd', '3', 0, '2020-12-05', '1', '2019-12-11 18:24:57', NULL, NULL, 'a', '0', '0', 'kodek', 'admin', '2', '1');
+(2, 'Kodek Technologies', 'navnit', '', '', '', 0, 0, 'ABC Ahmedabad', 'nikol', '', '12 - 18', 'It services', 'cash', '7b7cdd590a26937dceee387bb42785e2.jpg', '', '', 'asdasddasd', '3', 0, '2020-12-05', '1', '2019-12-11 18:24:57', NULL, NULL, 'a', '0', '0', 'kodek', 'admin', '2', '1');
 
 -- --------------------------------------------------------
 
