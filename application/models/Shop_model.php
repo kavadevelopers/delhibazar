@@ -26,7 +26,7 @@ class Shop_model extends CI_Model
 
 	public function get_offers($id)
 	{
-		return $this->db->get_where('offers',['shop' => $id,'status' => '','date_from >=' => date('Y-m-d'),'date_to >=' => date('Y-m-d')])->result_array();
+		return $this->db->get_where('offers',['shop' => $id,'status' => '','date_from <=' => date('Y-m-d'),'date_to >=' => date('Y-m-d')])->result_array();
 	}
 
 	public function slider_where($shop_id)

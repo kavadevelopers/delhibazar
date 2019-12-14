@@ -133,6 +133,10 @@ class Api extends CI_Controller {
         $this->db->where('created_at >=', date('Y-m-1'));
         $this->db->where('created_at <=', date('Y-m-t'));
         $month = $this->db->get()->row()->amount;
+        if($total == null){ $total = 0; }
+        if($month == null){ $month = 0; }
+        
+        
         $response = [
             'total'      => $total,
             'month'      => $month
@@ -140,6 +144,17 @@ class Api extends CI_Controller {
         echo json_encode($response);
     }
     
+    
+    public function get_setting(){
+        $app = $this->db->get_where("app_setting",['id' => '1'])->row_array();
+        $response = [
+            'home'          => get_apphome_banner($app['home']),
+            'sidebar'       => get_apphome_banner($app['sidebar']),
+            'home_d'        => $app['home_d'] == '1'?true:false,
+            'sidebar_d'     => $app['sidebar_d'] == '1'?true:false
+        ];
+        echo json_encode($response);
+    }
     
     public function get_user($id){
         return $this->db->get_where("social_user",['id' => $id])->row_array();

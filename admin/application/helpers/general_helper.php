@@ -264,4 +264,10 @@ function get_app_image($name){
 	return $image;
 }
 
+
+function get_user($id)
+{
+	$CI=&get_instance();
+	return $CI->db->get_where("social_user",['id' => $id])->row_array();
+}
 ?>

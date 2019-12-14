@@ -1696,6 +1696,7 @@
 <style type="text/css">
     .ul-offer{
         list-style: none;
+        padding: 0;
     }
     .ul-offer li{
         text-align: center;
@@ -1717,7 +1718,7 @@
                     <div class="col-md-12 text-center" style="margin-bottom: 15px;"><h5>Offers</h5></div>
                     <ul class="ul-offer">
                         <?php foreach ($this->shop_model->get_offers($shop[0]['id']) as $key => $value) { ?>
-                            <li><img src="<?= get_offer_image($value['id']) ?>"> <?= $value['description'] ?> </li>    
+                            <li><img src="<?= get_offer_image($value['id']) ?>"> <br><?= $value['description'] ?> </li>    
                         <?php } ?>
                     </ul>
 

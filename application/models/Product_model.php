@@ -107,11 +107,11 @@ class Product_model extends CI_Model
             $result = $query->row_array();
         }else{
             //set start and limit
-            if(array_key_exists("start",$params) && array_key_exists("limit",$params)){
-                $this->db->limit($params['limit'],$params['start']);
-            }elseif(!array_key_exists("start",$params) && array_key_exists("limit",$params)){
-                $this->db->limit($params['limit']);
-            }
+            // if(array_key_exists("start",$params) && array_key_exists("limit",$params)){
+            //     $this->db->limit($params['limit'],$params['start']);
+            // }elseif(!array_key_exists("start",$params) && array_key_exists("limit",$params)){
+            //     $this->db->limit($params['limit']);
+            // }
             
             if(array_key_exists("returnType",$params) && $params['returnType'] == 'count'){
                 $result = $this->db->count_all_results();

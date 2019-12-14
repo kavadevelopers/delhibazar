@@ -158,11 +158,32 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="<?php echo base_url('card'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("card"))[0]; ?>">
+                    <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("card"))[1]; ?>">
+                
+                        <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("card"))[0]; ?>">
                             <i class="nav-icon fa fa-id-card"></i>
-                            <p>Virtual Cards</p>
+                            <p>Virtual Cards
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
                         </a>
+                       
+                        <ul class="nav nav-treeview">
+                            
+                            <li class="nav-item">
+                                <a href="<?= base_url('card'); ?>" class="nav-link <?php if($this->uri->segment(2) != 'usage' && $this->uri->segment(2) !=  'search'){ menu($this->uri->segment(1),array("card"))[0]; } ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Cards</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('card/usage'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("usage"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Usage</p>
+                                </a>
+                            </li>
+
+                        </ul>
                     </li>
 
                     <li class="nav-item">

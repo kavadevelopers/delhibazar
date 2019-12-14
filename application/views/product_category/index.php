@@ -54,7 +54,8 @@
 						<nav class="cat_page" aria-label="Page navigation example">
 							<ul class="pagination">
 								<?php if(!empty($this->pagination->create_links())){ ?>
-									<?= $this->pagination->create_links(); ?>
+									<li style="padding: 20px;"></li>
+									<?php //$this->pagination->create_links(); ?>
 								<?php }else{ ?>
 									<li style="padding: 20px;"></li>
 								<?php } ?>

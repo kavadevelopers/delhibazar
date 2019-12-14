@@ -420,6 +420,25 @@ function get_card_image($id){
 	return $image;
 }
 
+function get_apphome_banner($name){
+	$CI=&get_instance();
+	$image = '';
+	if($name == ''){
+		$image = "";
+	}
+	else{
+		$url    =   $CI->config->config['admin_url']."uploads/app/".$name;
+		if(getimagesize($url)){
+			$image = $url;
+		}
+		else{
+			$image = "";
+		}
+	}
+
+	return $image;
+}
+
 function qr($id)
 {
 	$CI=&get_instance();
@@ -497,4 +516,7 @@ function get_usage_api2($card,$total_count,$user)
 		return false;
 	}
 }
+
+
+
 ?>

@@ -155,6 +155,36 @@ class Card extends CI_Controller {
         redirect(base_url().'card');
     }
 
+
+
+
+    public function usage()
+    {
+        $data['page_title']     = 'Virtual Card usage';
+        $this->load->template('card/card_usage',$data);
+    }
+
+    public function search()
+    {
+        $from = $this->input->post('from');
+        $to = $this->input->post('to');
+        if($from != ""){
+            $this->db->where('created_at >=', date('Y-m-d',strtotime($from)));
+        }
+        if($to != ""){
+            $this->db->where('created_at <=', date('Y-m-d',strtotime($to)));
+        }
+        $this->db->where('vendor',$this->input->post('vendor'));
+        $this->db->limit(100);
+        $this->db->order_by('id','desc');
+        $list = $this->db->get('card_usage')->result_array();
+
+        $data['page_title']     = 'Virtual Card Usage Result';
+        $data['list']           = $list;
+        $this->load->template('card/result',$data);
+    }
+
+
     public function qrtest()
     {
         $this->load->library('ciqrcode');
