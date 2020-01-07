@@ -110,10 +110,26 @@
                         <li>
                             <b>Usage : </b><?= $product['total_usage'] == '0'?'Unlimited':$product['total_usage'].' Times / Card'; ?>
                         </li>
+                        <li style="max-height: 260px;overflow: auto;">
+                            <?= $product['desc'] ?>
+                        </li>
                     </ul>
                     
-                    <form method="post" id="add_to_cart" action="<?= base_url() ?>products/purchase_card">
-
+                    <form method="post" id="add_to_cart" action="<?= base_url() ?>products/purchase_card" style="margin-top: 20px;">
+                        <div class="card_area row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Referral ID(optional)</label>
+                                    <input type="text" class="form-control form-control-sm" id="referel_id" name="referel_id" placeholder="Referral ID(optional)">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Bank/UPI details(optional)</label>
+                                    <textarea type="text" class="form-control form-control-sm" id="bank" name="bank" placeholder="Bank/UPI details(optional)"></textarea>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card_area">
                             <?php if($this->session->userdata('id')) { ?>
                                 <button type="submit" class="main_btn btn btn-sm">Buy Now</button>

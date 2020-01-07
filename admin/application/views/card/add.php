@@ -59,6 +59,13 @@
                                     </div>
 
 
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Description <span class="astrick">*</span></label>
+                                            <textarea class="ckeditor" value="" id="editor1" type="text" name="desc" placeholder="Description" autocomplete="off"><?php echo set_value('desc'); ?></textarea>
+                                            <?php echo form_error('desc'); ?>
+                                        </div>
+                                    </div>
                                    
                                 </div>
                             </div>
@@ -76,6 +83,7 @@
         </div>
     </section>
 
+    <script src="<?= base_url(); ?>plugins/ckeditor/ckeditor.js"></script>
 
     <script type="text/javascript">
         function readFile(input) {

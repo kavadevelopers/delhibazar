@@ -276,8 +276,8 @@ class Products extends CI_Controller {
         $txnid              = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
         $udf1               = $this->input->post('product_id');
         $udf2               = $this->session->userdata('id');
-        $udf3               = "";
-        $udf4               = "";
+        $udf3               = $this->input->post('referel_id');
+        $udf4               = $this->input->post('bank');
         $udf5               = "";
 
 
@@ -361,6 +361,8 @@ class Products extends CI_Controller {
                                     'user'    		=> $this->input->post('udf2'),
                                     'validity'    	=> $card['validity'],
                                     'usage'    		=> $card['total_usage'],
+                                    'referal'    	=> $this->input->post('udf3'),
+                                    'bank'    		=> $this->input->post('udf4'),
                                     'p_date'		=> date('Y-m-d')
                                 ];
                         
@@ -455,6 +457,7 @@ class Products extends CI_Controller {
         $this->email->subject("Your Card");
         $data['qr']		= $this->qr($id);
         $data['name']   = $user['first_name'].' '.$user['last_name'];
+        $data['card_desc']   = $this->db->get_where('cards',['id' => $card['card']])->row_array();
         $this->email->message($this->load->view('card/email',$data,TRUE));
         $this->email->send();
 	}

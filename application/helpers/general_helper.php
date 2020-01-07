@@ -461,7 +461,7 @@ function get_validity($date,$days)
 	$end    = date_create(); // Current time and date
 	$diff   = date_diff( $start, $end );
     if($days < $diff->d){
-    	return "Expire";
+    	return "Expired";
     }
     else{
     	return $days - $diff->d.' Days Remaining';

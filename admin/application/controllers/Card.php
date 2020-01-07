@@ -73,6 +73,7 @@ class Card extends CI_Controller {
                 'price'                 =>  $this->input->post('amount'),
                 'validity'              =>  $this->input->post('validity'),
                 'total_usage'           =>  $this->input->post('total_usage'),
+                'desc'                  =>  $this->input->post('desc'),
                 'image'                 =>  $newName,
             );
 
@@ -129,6 +130,7 @@ class Card extends CI_Controller {
                 'price'                 =>  $this->input->post('amount'),
                 'validity'              =>  $this->input->post('validity'),
                 'total_usage'           =>  $this->input->post('total_usage'),
+                'desc'                  =>  $this->input->post('desc'),
             );
 
             $this->db->where('id',$this->input->post('main_id'));
@@ -161,6 +163,8 @@ class Card extends CI_Controller {
     public function usage()
     {
         $data['page_title']     = 'Virtual Card usage';
+                                    $this->db->order_by('id','desc');
+        $data['cards']          = $this->db->get('card_usage')->result_array();
         $this->load->template('card/card_usage',$data);
     }
 
@@ -198,6 +202,13 @@ class Card extends CI_Controller {
         echo '<img src="'.base_url().'/uploads/qr/ates.png" />';
     }
 
+    public function purchased()
+    {
+        $data['page_title']     = 'Purchased Virtual Cards';
+                                    $this->db->order_by('id','desc');
+        $data['cards']          = $this->db->get('card_purchase')->result_array();
+        $this->load->template('card/purchased',$data);
+    }
 
 }
 ?>

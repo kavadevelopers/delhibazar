@@ -8,7 +8,7 @@ class Api extends CI_Controller {
     }
     
     public function login(){
-        $user = $this->db->get_where("shop",['username' => $this->input->post('username'),'password' => $this->input->post('password')])->result_array();
+        $user = $this->db->get_where("shop",['username' => $this->input->post('username'),'password' => $this->input->post('password'),'status' => '0'])->result_array();
         if($user){
             $response = [
                 '_return'   => true,

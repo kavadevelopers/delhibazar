@@ -170,7 +170,7 @@
                         <ul class="nav nav-treeview">
                             
                             <li class="nav-item">
-                                <a href="<?= base_url('card'); ?>" class="nav-link <?php if($this->uri->segment(2) != 'usage' && $this->uri->segment(2) !=  'search'){ menu($this->uri->segment(1),array("card"))[0]; } ?>">
+                                <a href="<?= base_url('card'); ?>" class="nav-link <?php if($this->uri->segment(2) != 'usage' && $this->uri->segment(2) !=  'search' && $this->uri->segment(2) !=  'purchased'){ menu($this->uri->segment(1),array("card"))[0]; } ?>">
                                     <i class="fa fa-circle-o nav-icon"></i>
                                     <p>Cards</p>
                                 </a>
@@ -180,6 +180,13 @@
                                 <a href="<?= base_url('card/usage'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("usage"))[0]; ?>">
                                     <i class="fa fa-circle-o nav-icon"></i>
                                     <p>Usage</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('card/purchased'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("purchased"))[0]; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>Purchased Cards</p>
                                 </a>
                             </li>
 

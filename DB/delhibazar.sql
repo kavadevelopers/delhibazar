@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 14, 2019 at 05:32 PM
+-- Generation Time: Jan 07, 2020 at 05:59 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -121,19 +121,21 @@ CREATE TABLE IF NOT EXISTS `cards` (
   `usage` varchar(100) NOT NULL DEFAULT '0',
   `image` text NOT NULL,
   `qr` text NOT NULL,
+  `desc` text CHARACTER SET utf8 NOT NULL,
   `created_at` datetime NOT NULL,
   `df` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10003 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10004 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cards`
 --
 
-INSERT INTO `cards` (`id`, `price`, `validity`, `total_usage`, `usage`, `image`, `qr`, `created_at`, `df`) VALUES
-(10000, '100', '10', '12', '12', '', '', '2019-12-12 00:00:00', '1'),
-(10001, '102.00', '10', '0', '0', '7d2b6ab374cd1233e698667fb546b251.png', 'C:\\wamp64\\www\\delhibazar\\admin\\/uploads/qr/6357599ab6f4c3b3d6d459136c8cb860.jpg', '0000-00-00 00:00:00', ''),
-(10002, '102.00', '12', '10', '0', '761f8308d547d794bb1a46141eb1a997.png', '', '0000-00-00 00:00:00', '');
+INSERT INTO `cards` (`id`, `price`, `validity`, `total_usage`, `usage`, `image`, `qr`, `desc`, `created_at`, `df`) VALUES
+(10000, '100', '10', '12', '12', '', '', '', '2019-12-12 00:00:00', '1'),
+(10001, '102.00', '10', '0', '0', '7d2b6ab374cd1233e698667fb546b251.png', 'C:\\wamp64\\www\\delhibazar\\admin\\/uploads/qr/6357599ab6f4c3b3d6d459136c8cb860.jpg', '', '2020-01-14 00:00:00', ''),
+(10002, '102.00', '12', '10', '0', '761f8308d547d794bb1a46141eb1a997.png', '', '', '2020-01-14 00:00:00', ''),
+(10003, '1200.00', '100', '0', '0', '7b01f90e3a3e37d5ea390d14e62acc2f.png', '', '<p>﻿हो। गए, उनका एक समय में बड़ा नाम था। पूरे देश में तालाब बनते थे बनाने वाले भी पूरे देश में थे। कहीं यह विद्या जाति के विद्यालय | सिखाई जाती थी तो कहीं यह जात से हट कर एक विशेष पांत भी जाती थी। बनाने वाले लोग कहीं एक जगह बसे मिलते थे तो कहीं -घूम कर इस काम को करते थे। I 국 घम गजधर एक सुन्दर शब्द है, तालाब बनाने वालों को आदर के साथ याद करने के लिए। राजस्थान के कुछ भागों में यह शब्द आज भी बाकी है। गजधर यानी जो गज को धारण करता है। और गज वही जो नापने के काम आता है। लेकिन फिर भी समाज ने इन्हें तीन हाथ</p>\r\n\r\n<p>हो। गए, उनका एक समय में बड़ा नाम था। पूरे देश में तालाब बनते थे बनाने वाले भी पूरे देश में थे। कहीं यह विद्या जाति के विद्यालय | सिखाई जाती थी तो कहीं यह जात से हट कर एक विशेष पांत भी जाती थी। बनाने वाले लोग कहीं एक जगह बसे मिलते थे तो कहीं -घूम कर इस काम को करते थे। I 국 घम गजधर एक सुन्दर शब्द है, तालाब बनाने वालों को आदर के साथ याद करने के लिए। राजस्थान के कुछ भागों में यह शब्द आज भी बाकी है। गजधर यानी जो गज को धारण करता है। और गज वही जो नापने के काम आता है। लेकिन फिर भी समाज ने इन्हें तीन हाथ की लोहे की छड़ लेकर घूमने वाला मिस्त्री नहीं माना। गजधर जो समाज को गहराई को नाप ले - उसे ऐसा दर्जा दिया गया है। गजधर वास्तुकार थे। गांव-समाज हो या नगर-समाज - उसके नव निर्माण की, रख-रखाव की ज़िम्मेदारी गजधर निभाते थे। नगर नियोजन से लेकर छोटे से छोटे निर्माण के काम गजधर के कधों पर टिके थे। वे योजना बनाते थे, कुल काम की लागत निकालते थे, काम में लगने वाली सारी सामग्री जुटाते थे और इस सबके बदले वे अपने जजमान से ऐसा कुछ नहीं मांग बैठते थे, जो वे दे न पाएं। लोग भी ऐसे थे कि उनसे जो कुछ बनता, वे गजधर को भेंट कर देते। काम पूरा होने पर पारिश्रमिक के अलावा गजधर को सम्मान &#39; भी मिलता था। सरोपा भेंट करना अब शायद सिर्फ सिख परंपरा में ही बचा समाज की गहराई नापते रहे हैं गुणाधर</p>\r\n', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -151,6 +153,8 @@ CREATE TABLE IF NOT EXISTS `card_purchase` (
   `usage` text NOT NULL,
   `user` text NOT NULL,
   `p_date` date DEFAULT NULL,
+  `referal` text NOT NULL,
+  `bank` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
@@ -158,10 +162,10 @@ CREATE TABLE IF NOT EXISTS `card_purchase` (
 -- Dumping data for table `card_purchase`
 --
 
-INSERT INTO `card_purchase` (`id`, `t_id`, `amount`, `card`, `validity`, `usage`, `user`, `p_date`) VALUES
-(1, 'dasdasd', '120', '10001', '10', '1', '5', '2019-12-05'),
-(2, 'adad111212', '200', '10002', '0', '0', '5', '2019-12-10'),
-(3, 'adad111212', '200', '10002', '8', '1', '5', '2019-12-10');
+INSERT INTO `card_purchase` (`id`, `t_id`, `amount`, `card`, `validity`, `usage`, `user`, `p_date`, `referal`, `bank`) VALUES
+(1, 'dasdasd', '120', '10001', '10', '1', '5', '2019-12-05', '', ''),
+(2, 'adad111212', '200', '10002', '0', '0', '5', '2019-12-10', '', ''),
+(3, 'adad111212', '200', '10002', '8', '1', '5', '2019-12-10', '', '');
 
 -- --------------------------------------------------------
 
@@ -434,7 +438,7 @@ CREATE TABLE IF NOT EXISTS `offers` (
 --
 
 INSERT INTO `offers` (`id`, `type`, `amount`, `description`, `date_from`, `date_to`, `image`, `shop`, `status`) VALUES
-(2, 'Percentage', '100.00', '1212313', '2019-12-11', '2019-12-22', '1c0b990e283377f44b3ebc1d3dbfe7f3.jpg', '1', ''),
+(2, 'Percentage', '100.00', '1212313', '2019-12-11', '2020-01-31', '1c0b990e283377f44b3ebc1d3dbfe7f3.jpg', '1', ''),
 (3, 'Percentage', '200.00', 'dasdad', '2019-12-11', '2019-12-22', '', '2', '');
 
 -- --------------------------------------------------------
@@ -631,7 +635,7 @@ CREATE TABLE IF NOT EXISTS `search_keywords` (
   `keyword` text NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=173 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=176 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `search_keywords`
@@ -809,7 +813,10 @@ INSERT INTO `search_keywords` (`id`, `keyword`, `created`) VALUES
 (169, 'a', '2019-12-12 09:36:32'),
 (170, 'a', '2019-12-12 09:36:43'),
 (171, 'a', '2019-12-12 09:36:46'),
-(172, 'a', '2019-12-12 09:36:51');
+(172, 'a', '2019-12-12 09:36:51'),
+(173, 'a', '2020-01-07 09:34:42'),
+(174, 'a', '2020-01-07 09:35:31'),
+(175, 'a', '2020-01-07 09:36:26');
 
 -- --------------------------------------------------------
 
@@ -899,6 +906,7 @@ CREATE TABLE IF NOT EXISTS `shop` (
   `password` text NOT NULL,
   `_category` text NOT NULL,
   `_area` text NOT NULL,
+  `status` varchar(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -906,9 +914,9 @@ CREATE TABLE IF NOT EXISTS `shop` (
 -- Dumping data for table `shop`
 --
 
-INSERT INTO `shop` (`id`, `shop_name`, `owner_name`, `employee_name`, `mobile`, `wp_no`, `mobile_in_website`, `whats_in_website`, `address`, `landmark`, `email`, `hour_operation`, `pro_or_servi`, `payment_mode`, `photo`, `info`, `detail_desc`, `category`, `shop_plan`, `dis_in_listing`, `exp_date`, `created_by`, `created_at`, `updated_at`, `deleted_at`, `keywords`, `rating`, `comment`, `username`, `password`, `_category`, `_area`) VALUES
-(1, 'Kava Developers', 'Kava', 'ABC', '', '', 0, 0, 'Ahmedabad Ahmedabad', 'nikol', '', '12 - 15', 'IT', 'Cash', 'fdfd828cea5ee9e5c9683aadff691157.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'ABC', '2', 0, '2020-05-24', '1', '2019-12-11 18:11:48', '2019-12-11 20:59:02', NULL, 'a', '0', '0', 'kavadev', 'admin', '2', '1'),
-(2, 'Kodek Technologies', 'navnit', '', '', '', 0, 0, 'ABC Ahmedabad', 'nikol', '', '12 - 18', 'It services', 'cash', '7b7cdd590a26937dceee387bb42785e2.jpg', '', '', 'asdasddasd', '3', 0, '2020-12-05', '1', '2019-12-11 18:24:57', NULL, NULL, 'a', '0', '0', 'kodek', 'admin', '2', '1');
+INSERT INTO `shop` (`id`, `shop_name`, `owner_name`, `employee_name`, `mobile`, `wp_no`, `mobile_in_website`, `whats_in_website`, `address`, `landmark`, `email`, `hour_operation`, `pro_or_servi`, `payment_mode`, `photo`, `info`, `detail_desc`, `category`, `shop_plan`, `dis_in_listing`, `exp_date`, `created_by`, `created_at`, `updated_at`, `deleted_at`, `keywords`, `rating`, `comment`, `username`, `password`, `_category`, `_area`, `status`) VALUES
+(1, 'Kava Developers', 'Kava', 'ABC', '', '', 0, 0, 'Ahmedabad Ahmedabad', 'nikol', '', '12 - 15', 'IT', 'Cash', 'fdfd828cea5ee9e5c9683aadff691157.jpg', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'ABC', '2', 0, '2020-05-24', '1', '2019-12-11 18:11:48', '2019-12-11 20:59:02', NULL, 'a', '0', '0', 'kavadev', 'admin', '2', '1', '0'),
+(2, 'Kodek Technologies', 'navnit', '', '', '', 0, 0, 'ABC Ahmedabad', 'nikol', '', '12 - 18', 'It services', 'cash', '7b7cdd590a26937dceee387bb42785e2.jpg', '', '', 'asdasddasd', '3', 0, '2020-12-05', '1', '2019-12-11 18:24:57', NULL, NULL, 'a', '0', '0', 'kodek', 'admin', '2', '1', '0');
 
 -- --------------------------------------------------------
 

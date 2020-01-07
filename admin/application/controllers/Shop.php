@@ -514,6 +514,23 @@ class Shop extends CI_Controller {
         }
     }
 
+    public function status_e($id)
+    {
+        $this->db->where('id',$id);
+        $this->db->update('shop',['status' => '0']);
+
+        $this->session->set_flashdata('msg', 'Shop Enabled');
+        redirect(base_url().'shop');
+    }
+
+    public function status_d($id)
+    {
+        $this->db->where('id',$id);
+        $this->db->update('shop',['status' => '1']);
+
+        $this->session->set_flashdata('msg', 'Shop Disabled');
+        redirect(base_url().'shop');
+    }
 
     /**********************************************************************
                                 SLIDER UPLOAD

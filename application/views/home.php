@@ -73,12 +73,16 @@
     </head>
     <body>
 
-        <!-- <div class="overlay-2">
-          <div class="videoBox" id="videobox">
-            <a class="close"><i class="fa fa-close a-iii"></i></a>
-            <video autoplay controls src="<?= base_url() ?>SampleVideo.mp4"></video>
-          </div>
-        </div> -->
+        <?php if(empty($this->session->userdata('video'))){ ?>
+            <div class="overlay-2">
+              <div class="videoBox" id="videobox">
+                <a class="close"><i class="fa fa-close a-iii"></i></a>
+                <video autoplay controls src="<?= base_url() ?>SampleVideo.mp4"></video>
+              </div>
+            </div>            
+        <?php $this->session->set_userdata('video','1'); } ?>
+
+        
 
         <div id="wrapper">
             <div class="overlay"></div>

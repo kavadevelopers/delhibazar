@@ -1360,7 +1360,7 @@
                         left: 5px;
                         top: 5px;
                         line-height: 0.7;
-                        font-size: 11px;
+                        font-size: 16px;
                         background: #ffae00;
                         color: #fff;
                     }

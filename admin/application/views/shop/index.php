@@ -35,6 +35,7 @@
                                         <th>Hours of Operation</th>
                                         <th>Mode of Payment</th>
                                         <th>Expiry Date</th>
+                                        <th class="text-center">Status</th>
                                         <th class="text-center" id="action" style="min-width: 150px;">Action</th>
                                     </tr>
                                 </thead>
@@ -50,6 +51,13 @@
                                             <td><?= $value['hour_operation']; ?></td>
                                             <td><?= $value['payment_mode']; ?></td>
                                             <td><?= date('d-m-Y',strtotime($value['exp_date'])); ?></td>
+                                            <td class="text-center">
+                                                <?php if($value['status'] == '0'){ ?>
+                                                    <a href="<?= base_url('shop/status_d/').$value['id'] ?>" class="badge badge-success">enabled</a>
+                                                <?php }else{ ?>
+                                                    <a href="<?= base_url('shop/status_e/').$value['id'] ?>" class="badge badge-danger">disabled</a>
+                                                <?php } ?>
+                                            </td>
                                             
                                             <td class="text-center">
                                                 

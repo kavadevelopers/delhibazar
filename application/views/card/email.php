@@ -25,5 +25,9 @@
 			</p>
 		</div>
 	</div>
+
+	<div style="margin-top: 40px;">
+		<?= $card_desc['desc'] ?>
+	</div>
 </body>
 </html>
