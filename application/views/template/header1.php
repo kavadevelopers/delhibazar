@@ -151,6 +151,9 @@ function JSalert(){
                                     <li class="nav-item">
                                         <a class="nav-link" href="<?= base_url() ?>welcome/logout">Logout</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#" data-toggle="modal" data-target="#user_detail">Profile</a>
+                                    </li>
                                 <?php }else{ ?> 
                                     <li class="nav-item">
                                         <a class="nav-link" href="<?= base_url() ?>login">Login</a>
@@ -183,3 +186,38 @@ function JSalert(){
         </div>
     </div>
     <!--//END HEADER -->
+
+    <?php if($this->session->userdata('id')) { ?>
+        <?php $Suser = $this->db->get_where('social_user',['id' => $this->session->userdata('id')])->row() ?>
+        <div class="modal fade" id="user_detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th class="text-right">ID</th>
+                            <td><?= $this->session->userdata('id') ?></td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">Name</th>
+                            <td><?= $Suser->first_name.' '.$Suser->last_name ?></td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">Email</th>
+                            <td><?= $Suser->email ?></td>
+                        </tr>
+                    </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <?php } ?>

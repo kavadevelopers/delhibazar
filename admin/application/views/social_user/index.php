@@ -22,6 +22,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">Photo</th>
+                                        <th class="text-center">ID</th>
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Mobile</th>
@@ -36,6 +37,7 @@
                                             <td class="text-center">
                                                 <img src="<?= $this->config->config['web_url']."image/social_user_uploads/".$value['image'] ?>" alt="User image" width="50px">
                                             </td>
+                                            <td><?= $value['id']; ?></td>
                                             <td><?= $value['first_name'].' '.$value['last_name'] ?></td>
                                             <td><?= $value['email']; ?></td>
                                             <td><?= $value['mobile']; ?></td>

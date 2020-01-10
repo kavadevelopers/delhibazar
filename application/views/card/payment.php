@@ -60,7 +60,13 @@
                 <input type="hidden" name="service_provider" value="payu_paisa" size="64" />
                 <input name="curl" value="<?= $cancel; ?> " type="hidden" />
                 
-
+                <div class="row text-center">
+                    <div class="creat_account" style="margin: 0 auto;">
+                            <input type="checkbox" id="f-option23" name="" value="1" style="height: auto !important; float: left; margin: 5px;" required>
+                                <label for="f-option23">I accept <a href="<?= base_url('pages/terms') ?>" target="_blank" style="display: inline;">terms and conditions</a></label>
+                    </div>
+                </div>
+                
                 <div class="account-data">
                    <center>
                         <span class="line-height">
