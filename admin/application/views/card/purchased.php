@@ -23,6 +23,7 @@
                             <table class="table table-bordered table-striped table-sm">
                                 <thead>
                                     <tr>
+                                        <th>Customer Name</th>
                                         <th class="text-center">Transaction ID</th>
                                         <th class="text-right">Amount</th>
                                         <th class="text-center">Card Id</th>
@@ -33,8 +34,9 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach ($cards as $key => $card) { ?>
-
+                                        <?php $user = $this->db->get_where('social_user',['id' => $card['user']])->row_array() ?>
                                         <tr>
+                                            <td><?= $user['first_name'].' '.$user['last_name'] ?></td>
                                             <td class="text-center"><?= $card['t_id']; ?></td>
                                             <td class="text-right"><?= $card['amount'] ?></td>
                                             <td class="text-center"><?= $card['card'] ?></td>
@@ -64,7 +66,7 @@
             "columnDefs": [
                 
                 
-                    { "orderable": false, "targets": [5] }
+                    
                     
                 
             ],

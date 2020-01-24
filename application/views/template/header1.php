@@ -111,6 +111,13 @@ function JSalert(){
 }
 <?php $this->session->set_flashdata('msg',''); } ?>
 
+<?php if(!empty($this->session->flashdata('ok'))){ ?>
+JSalert();
+function JSalert(){
+    swal("Congrats!","<?= $this->session->flashdata('ok'); ?>", "success");
+}
+<?php $this->session->set_flashdata('ok',''); } ?>
+
 </script>
 
 

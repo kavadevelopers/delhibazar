@@ -16,8 +16,6 @@ class Register extends CI_Controller {
 
 	public function register()
 	{
-		
-		
 		$data	=	[
 						'first_name'	=>	$this->input->post('first_name'),
 						'last_name'		=>	$this->input->post('last_name'),
