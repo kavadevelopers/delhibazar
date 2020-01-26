@@ -13,7 +13,8 @@
             </div>
         </section>
         <!--================End Home Banner Area =================-->
-        <?php $cards = $this->db->get_where('card_purchase',['user' => $this->session->userdata('id')])->result_array(); ?>
+        <?php  $this->db->order_by('id','desc'); 
+        $cards = $this->db->get_where('card_purchase',['user' => $this->session->userdata('id')])->result_array(); ?>
         <!--================Contact Area =================-->
         <section class="sample-text-area">
             <div class="container">
@@ -43,7 +44,9 @@
 
                                     <p style="margin-bottom: 0px;"><b>Validity : </b> <?= $value['validity'] == '0'?'Unlimited':get_validity($value['p_date'],$value['validity']); ?> </p>
 
-                                    <p><b>Count Usage : </b> <?= $value['usage'] == '0'?'Unlimited':get_usage($value['id'],$value['usage']); ?> </p>
+                                    <p style="margin-bottom: 0px;"><b>Count Usage : </b> <?= $value['usage'] == '0'?'Unlimited':get_usage($value['id'],$value['usage']); ?> </p>
+
+                                    <p><b>Expired On : </b> <?= $value['usage'] == '0'?'Unlimited':date('d-m-Y', strtotime($value['p_date'] . '+'.$value['validity'].' day')); ?> </p>
 
                                 </div>
 

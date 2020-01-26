@@ -24,6 +24,18 @@ function _vdate($date)
 	return date('d-m-Y' ,strtotime($date));
 }
 
+function get_validity($date,$days)
+{
+	$start  = date_create($date);
+	$end    = date_create(); // Current time and date
+	$diff   = date_diff( $start, $end );
+    if($days < $diff->d){
+    	return "Expired";
+    }
+    else{
+    	return $days - $diff->d.' Days Remaining';
+    }
+}
 
 function _now_dt()
 {

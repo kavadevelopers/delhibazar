@@ -154,6 +154,10 @@ function JSalert(){
                                     <a class="nav-link" href="<?= base_url(); ?>pages/privacy">Privacy</a>
                                 </li>
 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?= base_url(); ?>pages/faq">Faq's</a>
+                                </li>
+
                                 <?php if($this->session->userdata('id')) { ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="<?= base_url() ?>welcome/logout">Logout</a>

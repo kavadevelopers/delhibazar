@@ -200,6 +200,12 @@ $CI->load->model('cart_model');
 												Order Traking
 											</a>
 										</li>
+
+										<li class="nav-item">
+											<a class="nav-link" href="<?= base_url(); ?>pages/faq">
+												Faq's
+											</a>
+										</li>
 									
 									</ul>
 								</li>

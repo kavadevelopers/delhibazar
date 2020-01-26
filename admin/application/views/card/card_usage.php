@@ -75,6 +75,7 @@
                                     <thead>
                                         <tr>
                                             <th class="">Shop Name</th>
+                                            <th class="text-center">Customer ID</th>
                                             <th class="">Customer</th>
                                             <th class="text-center">Card id</th>
                                             <th class="text-right">Amount</th>
@@ -91,6 +92,9 @@
                                                 <td>
                                                     <?= $shop['shop_name'] ?>
                                                 </td>
+                                                <td class="text-center">
+                                                    CUSTOMER0<?= $row['user'] ?>
+                                                </td> 
                                                 <td>
                                                     <?= get_user($row['user'])['first_name'].' '.get_user($row['user'])['last_name'] ?>
                                                 </td>
