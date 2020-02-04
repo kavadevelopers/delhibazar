@@ -131,4 +131,11 @@ class Pages extends CI_Controller {
             redirect(base_url());
         }
     }
+
+    public function card_usage()
+    {
+        $this->db->order_by('id','desc');
+        $data['list'] = $this->db->get_where('card_usage',['user' => $this->session->userdata('id')])->result_array();
+        $this->load->template1('card/usage',$data);
+    }
 }

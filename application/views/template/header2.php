@@ -206,7 +206,13 @@ $CI->load->model('cart_model');
 												Faq's
 											</a>
 										</li>
-									
+										<?php if($this->session->userdata('id')) { ?>
+											<li class="nav-item">
+												<a class="nav-link" href="<?= base_url() ?>pages/card_usage">
+													Card Usage
+												</a>
+											</li>
+										<?php } ?>
 									</ul>
 								</li>
 
