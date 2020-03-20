@@ -46,7 +46,7 @@
 
                                     <p style="margin-bottom: 0px;"><b>Count Usage : </b> <?= $value['usage'] == '0'?'Unlimited':get_usage($value['id'],$value['usage']); ?> </p>
 
-                                    <p><b>Expired On : </b> <?= $value['usage'] == '0'?'Unlimited':date('d-m-Y', strtotime($value['p_date'] . '+'.$value['validity'].' day')); ?> </p>
+                                    <p><b>Expired On : </b> <?= $value['validity'] == '0'?'Unlimited':date('d-m-Y', strtotime($value['p_date'] . '+'.$value['validity'].' day')); ?> </p>
 
                                 </div>
 

@@ -46,7 +46,7 @@
                                             <td class="text-center"><?= $card['card'] ?></td>
                                             <td class="text-center"><?= $card['p_date'] ?></td>
                                             <td class="text-center"><?= $card['validity'] == '0'?'Unlimited':get_validity($card['p_date'],$card['validity']); ?></td>
-                                            <td class="text-center"><?= $card['usage'] == '0'?'Unlimited':date('d-m-Y', strtotime($card['p_date'] . '+'.$card['validity'].' day')); ?></td>
+                                            <td class="text-center"><?= $card['validity'] == '0'?'Unlimited':date('d-m-Y', strtotime($card['p_date'] . '+'.$card['validity'].' day')); ?></td>
                                             <td class="text-center"><?= $card['referal'] ?></td>
                                             <td class="text-center"><?= $card['bank'] ?></td>
                                             

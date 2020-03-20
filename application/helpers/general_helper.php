@@ -457,14 +457,16 @@ function qr($id)
 
 function get_validity($date,$days)
 {
-	$start  = date_create($date);
-	$end    = date_create(); // Current time and date
-	$diff   = date_diff( $start, $end );
-    if($days < $diff->d){
+	
+	$plus_days = strtotime(date('Y-m-d' , strtotime($date . '+ '.$days.' day')));
+	$today = strtotime(date('Y-m-d'));
+    if($plus_days < $today){
     	return "Expired";
     }
     else{
-    	return $days - $diff->d.' Days Remaining';
+    	$start = strtotime(date('Y-m-d'));
+		$end = strtotime(date('Y-m-d' , strtotime($date . '+ '.$days.' day')));
+    	return ceil(abs($end - $start) / 86400).' Days Remaining';
     }
 }
 
@@ -494,13 +496,14 @@ function get_usage_api($card,$total_count,$user)
 
 function get_validity2($date,$days)
 {
-	$start  = date_create($date);
-	$end    = date_create(); // Current time and date
-	$diff   = date_diff( $start, $end );
-    if($days < $diff->d){
+    $plus_days = strtotime(date('Y-m-d' , strtotime($date . '+ '.$days.' day')));
+	$today = strtotime(date('Y-m-d'));
+    if($plus_days < $today){
     	return false;
     }
     else{
+    	$start = strtotime(date('Y-m-d'));
+		$end = strtotime(date('Y-m-d' , strtotime($date . '+ '.$days.' day')));
     	return true;
     }
 }
